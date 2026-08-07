@@ -542,3 +542,52 @@ font-size:1.1rem;
 color:#555;
 
 }
+/* ===== Calendly ===== */
+
+.section{
+
+padding:80px 20px;
+
+text-align:center;
+
+}
+
+.section h2{
+
+font-size:2.5rem;
+
+color:#17a8a4;
+
+margin-bottom:20px;
+
+}
+
+.section .description{
+
+max-width:700px;
+
+margin:0 auto 40px;
+
+line-height:1.8;
+
+font-size:1.1rem;
+
+}
+
+.calendly-inline-widget{
+
+width:100%;
+
+max-width:900px;
+
+margin:0 auto;
+
+border-radius:25px;
+
+overflow:hidden;
+
+background:white;
+
+box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+}
