@@ -44,3 +44,20 @@ h2{
     border-radius:50px;
     font-weight:bold;
 }
+.bubble-icon{
+    font-size:70px;
+    margin-bottom:20px;
+    animation:floatBubble 4s ease-in-out infinite;
+}
+
+@keyframes floatBubble{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
