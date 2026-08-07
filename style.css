@@ -1,1 +1,321 @@
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f8ffff,#e9fffb,#d8fff7);color:#245b59}nav{display:flex;justify-content:space-between;align-items:center;padding:25px 40px}.logo{font-weight:bold;color:#19a59f}nav ul{display:flex;list-style:none;gap:20px}.hero{text-align:center;padding:20px}.bubble{font-size:90px;animation:float 4s ease-in-out infinite}@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}.card{max-width:900px;margin:20px auto;background:rgba(255,255,255,.92);padding:60px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,.08)}h1{font-size:3rem;color:#18a6a0;margin-bottom:15px}h2{font-weight:400;color:#4aaea8;margin-bottom:25px}.quote{font-style:italic;font-size:1.3rem;margin-bottom:20px}.description{max-width:700px;margin:auto;line-height:1.8}.joinButton{margin-top:35px;padding:18px 36px;border:none;border-radius:50px;background:linear-gradient(135deg,#9af3e8,#61dccc);font-weight:bold}.section{max-width:900px;margin:50px auto;background:#fff;padding:40px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,.06)}.section h3{color:#18a6a0;margin-bottom:15px}.section p{line-height:1.8}footer{text-align:center;padding:50px;color:#5a7f7d;font-style:italic}@media(max-width:768px){nav{flex-direction:column;gap:15px}nav ul{flex-wrap:wrap;justify-content:center}.card{padding:35px}h1{font-size:2.2rem}}
+/* ===========================
+   The Still Becoming Village Circle
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#f8ffff 0%,#ecfffc 45%,#d8fff8 100%);
+    color:#255b59;
+    line-height:1.7;
+}
+
+/* ---------- Navigation ---------- */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(23,165,160,.12);
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    padding:20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#18a6a0;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav li{
+    cursor:pointer;
+    transition:.3s;
+    font-weight:600;
+}
+
+nav li:hover{
+    color:#18a6a0;
+}
+
+/* ---------- Hero ---------- */
+
+.hero{
+    text-align:center;
+    padding:70px 25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+        rgba(180,255,248,.55),
+        rgba(210,255,251,.12),
+        transparent 75%);
+    left:50%;
+    top:120px;
+    transform:translateX(-50%);
+    z-index:0;
+}
+
+.hero>*{
+    position:relative;
+    z-index:2;
+}
+
+.bubble{
+    font-size:95px;
+    animation:floatBubble 5s ease-in-out infinite;
+}
+
+@keyframes floatBubble{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+h1{
+    font-size:3.4rem;
+    color:#18a6a0;
+    margin:20px 0;
+}
+
+.hero h2{
+    color:#4daea8;
+    font-weight:400;
+    margin-bottom:25px;
+}
+
+.quote{
+    font-size:1.35rem;
+    font-style:italic;
+    margin-bottom:25px;
+    color:#2d8f89;
+}
+
+.description{
+    max-width:760px;
+    margin:auto;
+    font-size:1.1rem;
+}
+
+/* ---------- Button ---------- */
+
+.welcomeButton{
+    margin-top:45px;
+    background:linear-gradient(135deg,#9cf5ea,#67dfcf);
+    color:#155c58;
+    border:none;
+    border-radius:50px;
+    padding:18px 40px;
+    font-size:1.05rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 15px 30px rgba(24,166,160,.18);
+}
+
+.welcomeButton:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 40px rgba(24,166,160,.25);
+}
+
+/* ---------- Sections ---------- */
+
+.inside,
+.messages,
+.welcome{
+
+    max-width:1100px;
+    margin:70px auto;
+    padding:0 20px;
+
+}
+
+.inside h2,
+.messages h2,
+.welcome h2{
+
+    text-align:center;
+    color:#18a6a0;
+    margin-bottom:35px;
+    font-size:2.2rem;
+
+}
+
+.cards{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+
+}
+
+.card{
+
+    background:white;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card h3{
+
+    color:#18a6a0;
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    line-height:1.8;
+
+}
+
+/* ---------- Becoming Messages ---------- */
+
+.bubbleMessages{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+
+}
+
+.message{
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(10px);
+    border-radius:60px;
+    padding:18px 25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(24,166,160,.08);
+
+}
+
+/* ---------- Welcome ---------- */
+
+.welcome p{
+
+    max-width:760px;
+    margin:auto;
+    text-align:center;
+    font-size:1.1rem;
+
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+
+    margin-top:80px;
+    text-align:center;
+    padding:50px 20px;
+    color:#5b807d;
+    background:rgba(255,255,255,.45);
+
+}
+
+footer p:first-child{
+
+    margin-bottom:20px;
+    font-style:italic;
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:768px){
+
+nav{
+
+    flex-direction:column;
+    gap:18px;
+
+}
+
+nav ul{
+
+    flex-wrap:wrap;
+    justify-content:center;
+
+}
+
+h1{
+
+    font-size:2.4rem;
+
+}
+
+.hero h2{
+
+    font-size:1.2rem;
+
+}
+
+.bubble{
+
+    font-size:70px;
+
+}
+
+.hero::before{
+
+    width:420px;
+    height:420px;
+
+}
+
+.welcomeButton{
+
+    width:100%;
+
+}
+
+}
