@@ -57,6 +57,19 @@ nav li{
     font-weight:600;
 }
 
+nav a{
+    text-decoration:none;
+    color:#255b59;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#18a6a0;
+}
+
+nav a:visited{
+    color:#255b59;
+}
 nav li:hover{
     color:#18a6a0;
 }
