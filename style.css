@@ -405,3 +405,86 @@ transform:translateY(0px) scale(1);
 }
 
 }
+/* =====================================
+   Bubble Companion
+===================================== */
+
+#bubbleCompanion{
+
+position:fixed;
+
+left:40px;
+
+top:150px;
+
+z-index:9999;
+
+pointer-events:auto;
+
+}
+
+.bubbleText{
+
+background:rgba(255,255,255,.82);
+
+backdrop-filter:blur(16px);
+
+-webkit-backdrop-filter:blur(16px);
+
+padding:14px 20px;
+
+border-radius:999px;
+
+border:1px solid rgba(255,255,255,.45);
+
+box-shadow:
+0 12px 35px rgba(0,0,0,.10),
+0 0 25px rgba(146,239,226,.35);
+
+font-size:.95rem;
+
+font-weight:600;
+
+color:#168f88;
+
+white-space:nowrap;
+
+cursor:pointer;
+
+animation:floatBubble 5s ease-in-out infinite;
+
+transition:
+background .3s,
+transform .3s;
+
+}
+
+.bubbleText:hover{
+
+transform:scale(1.06);
+
+background:rgba(255,255,255,.92);
+
+}
+
+@keyframes floatBubble{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
