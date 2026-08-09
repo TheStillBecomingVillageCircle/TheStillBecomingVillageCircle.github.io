@@ -1,113 +1,1882 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Where Are You Today? | The Still Becoming Village Circle</title>
-<link rel="stylesheet" href="style.css">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Where Are You Today? | The Still Becoming Village Circle
+</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #e8fffb;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.7;
+
+    overflow-x:
+        hidden;
+}
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+header {
+
+    width:
+        100%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            40,
+            95,
+            97,
+            0.12
+        );
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+nav {
+
+    max-width:
+        1500px;
+
+    margin:
+        0 auto;
+
+    padding:
+        22px 4%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        25px;
+}
+
+
+.logo a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+}
+
+
+nav ul {
+
+    list-style:
+        none;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        28px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+nav ul li a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
+
+    font-size:
+        16px;
+
+    font-weight:
+        600;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+nav ul li a:hover {
+
+    color:
+        #16aaa9;
+}
+
+
+
+/* =====================================================
+   FLOATING BECOMING BUBBLE
+===================================================== */
+
+.floating-bubble {
+
+    position:
+        fixed;
+
+    left:
+        12vw;
+
+    top:
+        62vh;
+
+    z-index:
+        2000;
+
+    max-width:
+        min(
+            250px,
+            42vw
+        );
+
+    min-height:
+        48px;
+
+    padding:
+        12px 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    pointer-events:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                0.55
+            ),
+            rgba(
+                235,
+                255,
+                252,
+                0.23
+            ) 45%,
+            rgba(
+                170,
+                239,
+                232,
+                0.13
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.75
+        );
+
+    box-shadow:
+
+        inset
+        5px 5px 15px
+        rgba(
+            255,
+            255,
+            255,
+            0.60
+        ),
+
+        inset
+        -5px -5px 15px
+        rgba(
+            78,
+            190,
+            194,
+            0.08
+        ),
+
+        0 12px 30px
+        rgba(
+            40,
+            120,
+            120,
+            0.07
+        );
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    opacity:
+        0;
+
+    transform:
+        scale(0.96);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+.floating-bubble.visible {
+
+    opacity:
+        0.76;
+
+    transform:
+        scale(1);
+}
+
+
+.floating-bubble span {
+
+    color:
+        rgba(
+            40,
+            95,
+            97,
+            0.78
+        );
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.4;
+}
+
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height:
+        610px;
+
+    padding:
+        90px 6%
+        80px;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(
+                255,
+                255,
+                255,
+                0.98
+            ),
+            rgba(
+                226,
+                255,
+                250,
+                0.84
+            ) 48%,
+            rgba(
+                207,
+                250,
+                243,
+                0.96
+            )
+        );
+}
+
+
+
+/* =====================================================
+   HERO BUBBLE
+===================================================== */
+
+.hero-bubble {
+
+    width:
+        165px;
+
+    height:
+        165px;
+
+    margin-bottom:
+        35px;
+
+    border-radius:
+        50% 46% 54% 48%
+        /
+        48% 54% 46% 52%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                0.98
+            ),
+            rgba(
+                210,
+                251,
+                246,
+                0.72
+            )
+        );
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    box-shadow:
+
+        inset
+        12px 12px 28px
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        ),
+
+        inset
+        -12px -12px 28px
+        rgba(
+            72,
+            181,
+            196,
+            0.12
+        ),
+
+        0 25px 60px
+        rgba(
+            40,
+            130,
+            135,
+            0.13
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        65px;
+
+    animation:
+        floatHeroBubble
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes floatHeroBubble {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(3deg);
+    }
+}
+
+
+
+/* =====================================================
+   HERO TEXT
+===================================================== */
+
+.hero h1 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            78px
+        );
+
+    line-height:
+        1.05;
+
+    margin-bottom:
+        20px;
+}
+
+
+.hero h2 {
+
+    color:
+        #285f61;
+
+    font-size:
+        clamp(
+            22px,
+            4vw,
+            31px
+        );
+
+    margin-bottom:
+        24px;
+}
+
+
+.description {
+
+    max-width:
+        820px;
+
+    margin:
+        0 auto;
+
+    color:
+        #5d565f;
+
+    font-size:
+        20px;
+}
+
+
+
+/* =====================================================
+   PATH SECTION
+===================================================== */
+
+.inside {
+
+    max-width:
+        1150px;
+
+    margin:
+        0 auto;
+
+    padding:
+        85px 5%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.inside > h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            48px
+        );
+
+    margin-bottom:
+        45px;
+}
+
+
+.cards {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        30px;
+}
+
+
+.card {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    padding:
+        45px 30px;
+
+    min-height:
+        320px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(
+            40,
+            120,
+            120,
+            0.09
+        );
+
+    border-radius:
+        55px 40px 60px 45px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.card:nth-child(2) {
+
+    border-radius:
+        40px 60px 45px 55px;
+}
+
+
+.card:nth-child(3) {
+
+    border-radius:
+        60px 45px 55px 40px;
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 28px 55px
+        rgba(
+            40,
+            120,
+            120,
+            0.14
+        );
+}
+
+
+.card h3 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        27px;
+
+    margin-bottom:
+        18px;
+}
+
+
+.card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        25px;
+}
+
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.welcomeButton {
+
+    display:
+        inline-block;
+
+    align-self:
+        center;
+
+    padding:
+        13px 25px;
+
+    border-radius:
+        35px;
+
+    background:
+        #ffffff;
+
+    color:
+        #16aaa9;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            40,
+            120,
+            120,
+            0.10
+        );
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.welcomeButton:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(
+            40,
+            120,
+            120,
+            0.15
+        );
+}
+
+
+
+/* =====================================================
+   BEFORE WE MEET
+===================================================== */
+
+.before-meet {
+
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.before-meet-box {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                220,
+                255,
+                251,
+                0.92
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.97
+            )
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        60px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(
+            40,
+            120,
+            120,
+            0.10
+        );
+}
+
+
+.before-meet h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            50px
+        );
+
+    margin-bottom:
+        25px;
+}
+
+
+.before-meet p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        18px;
+}
+
+
+
+/* =====================================================
+   CALENDLY
+===================================================== */
+
+.calendar-section {
+
+    max-width:
+        1000px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 5%
+        110px;
+
+    text-align:
+        center;
+}
+
+
+.calendar-section h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            48px
+        );
+
+    margin-bottom:
+        20px;
+}
+
+
+.calendar-section > p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        18px;
+
+    margin-bottom:
+        35px;
+}
+
+
+.calendly-inline-widget {
+
+    min-width:
+        320px;
+
+    height:
+        700px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    border-radius:
+        35px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            40,
+            120,
+            120,
+            0.10
+        );
+}
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            40,
+            95,
+            97,
+            0.10
+        );
+
+    text-align:
+        center;
+
+    padding:
+        55px 6%;
+
+    color:
+        #5d565f;
+}
+
+
+footer p {
+
+    margin-bottom:
+        12px;
+}
+
+
+footer a {
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (
+    max-width: 1000px
+) {
+
+    .cards {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+
+}
+
+
+@media (
+    max-width: 900px
+) {
+
+    nav {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+
+        gap:
+            18px;
+    }
+
+
+    .logo a {
+
+        white-space:
+            normal;
+    }
+
+
+    nav ul {
+
+        justify-content:
+            center;
+
+        gap:
+            12px 18px;
+    }
+
+}
+
+
+@media (
+    max-width: 600px
+) {
+
+    nav {
+
+        padding:
+            18px 5%;
+    }
+
+
+    .logo a {
+
+        font-size:
+            20px;
+    }
+
+
+    nav ul {
+
+        gap:
+            10px 15px;
+    }
+
+
+    nav ul li a {
+
+        font-size:
+            14px;
+    }
+
+
+    .hero {
+
+        min-height:
+            560px;
+
+        padding:
+            70px 5%
+            65px;
+    }
+
+
+    .hero-bubble {
+
+        width:
+            140px;
+
+        height:
+            140px;
+
+        font-size:
+            52px;
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            45px;
+    }
+
+
+    .hero h2 {
+
+        font-size:
+            22px;
+    }
+
+
+    .description {
+
+        font-size:
+            17px;
+    }
+
+
+    .inside {
+
+        padding:
+            60px 5%
+            80px;
+    }
+
+
+    .inside > h2 {
+
+        font-size:
+            32px;
+    }
+
+
+    .card {
+
+        min-height:
+            290px;
+
+        padding:
+            40px 25px;
+    }
+
+
+    .before-meet-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .before-meet p {
+
+        font-size:
+            17px;
+    }
+
+
+    .calendar-section {
+
+        padding:
+            0 4%
+            80px;
+    }
+
+
+    .calendly-inline-widget {
+
+        height:
+            700px;
+    }
+
+
+    .floating-bubble {
+
+        max-width:
+            190px;
+
+        padding:
+            10px 17px;
+    }
+
+
+    .floating-bubble span {
+
+        font-size:
+            12px;
+    }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <header>
+
 <nav>
-<div class="logo"><a href="index.html">🌱 The Still Becoming Village Circle</a></div>
+
+
+<div class="logo">
+
+<a href="index.html">
+
+    🌱 The Still Becoming Village Circle
+
+</a>
+
+</div>
+
+
+
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">Inside the Bubble</a></li>
-<li><a href="LearningtheUnknown.html">The Unknown</a></li>
-<li><a href="events.html">Experiences</a></li>
-<li><a href="contact.html">Connect</a></li>
-<li><a href="coaching.html">Support</a></li>
+
+
+<li>
+<a href="index.html">
+    Home
+</a>
+</li>
+
+
+<li>
+<a href="about.html">
+    Inside the Bubble
+</a>
+</li>
+
+
+<li>
+<a href="LearningtheUnknown.html">
+    The Unknown
+</a>
+</li>
+
+
+<li>
+<a href="events.html">
+    Experiences
+</a>
+</li>
+
+
+<li>
+<a href="contact.html">
+    Connect
+</a>
+</li>
+
+
+<li>
+<a href="coaching.html">
+    Support
+</a>
+</li>
+
+
 </ul>
+
 </nav>
+
 </header>
 
+
+
+<!-- =====================================================
+     FLOATING MESSAGE BUBBLE
+===================================================== -->
+
+<div
+    class="floating-bubble"
+    id="floatingBubble"
+    aria-hidden="true"
+>
+
+<span id="floatingMessage">
+
+    🫧 You belong before you bloom.
+
+</span>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
-<div class="bubble">🫧</div>
-<h1>Where Are You Today?</h1>
-<h2>There isn't a wrong answer.</h2>
+
+
+<div class="hero-bubble">
+
+    🫧
+
+</div>
+
+
+<h1>
+
+    Where Are You Today?
+
+</h1>
+
+
+<h2>
+
+    There isn't a wrong answer.
+
+</h2>
+
+
 <p class="description">
-You don't have to know exactly where you're going.<br><br>
-You only have to be honest about where you are.<br><br>
-Choose the path that feels most like you today.
+
+    You don't have to know exactly where
+    you're going.
+
+    You only have to be honest about
+    where you are.
+
+    Choose the path that feels most like
+    you today.
+
 </p>
+
+
 </section>
+
+
+
+<!-- =====================================================
+     CHOOSE YOUR PATH
+===================================================== -->
 
 <section class="inside">
-<h2>Choose the path that feels most like where you are today.</h2>
+
+
+<h2>
+
+    Choose the path that feels most like
+    where you are today.
+
+</h2>
+
+
 <div class="cards">
-<div class="card">
-<h3>🌱 Find Your Footing</h3>
-<p>Everything feels a little uncertain right now.<br><br>I'm looking for solid ground before taking my next step.</p>
-<a href="#calendar" class="welcomeButton">🌱 This Feels Like Me</a>
-</div>
+
+
+
+<!-- =================================================
+     FIND YOUR FOOTING
+================================================== -->
 
 <div class="card">
-<h3>🫧 Honor Your Pace</h3>
-<p>I'm growing, but I don't want to rush the process.<br><br>I'm learning to move with compassion instead of pressure.</p>
-<a href="#calendar" class="welcomeButton">🫧 This Feels Like Me</a>
-</div>
 
-<div class="card">
-<h3>💚 Move at the Speed of Trust</h3>
-<p>I'm ready to continue becoming in a way that feels safe, steady, and true to me.</p>
-<a href="#calendar" class="welcomeButton">💚 This Feels Like Me</a>
-</div>
-</div>
-</section>
 
-<section class="section" id="calendar">
-<h2>🌱 Before We Meet</h2>
-<p class="description">
-You don't have to know exactly what you need before you arrive.<br><br>
-Whether you're finding your footing, honoring your pace, learning the unknown, or simply making space to breathe...<br><br>
-You're welcome here.<br><br>
-We'll meet where you are.
+<div>
+
+<h3>
+
+    🌱 Find Your Footing
+
+</h3>
+
+
+<p>
+
+    Everything feels a little uncertain
+    right now.
+
+    I'm looking for solid ground before
+    taking my next step.
+
 </p>
 
-<div class="calendly-inline-widget"
-data-url="https://calendly.com/thestillbecomingvillagecircle/30min?primary_color=1ade9c"
-style="min-width:320px;height:700px;"></div>
+</div>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<a
+    href="contact.html"
+    class="welcomeButton"
+>
+
+    🌱 This Feels Like Me
+
+</a>
+
+
+</div>
+
+
+
+<!-- =================================================
+     HONOR YOUR PACE
+================================================== -->
+
+<div class="card">
+
+
+<div>
+
+<h3>
+
+    🫧 Honor Your Pace
+
+</h3>
+
+
+<p>
+
+    I'm growing, but I don't want to
+    rush the process.
+
+    I'm learning to move with compassion
+    instead of pressure.
+
+</p>
+
+</div>
+
+
+<a
+    href="contact.html"
+    class="welcomeButton"
+>
+
+    🫧 This Feels Like Me
+
+</a>
+
+
+</div>
+
+
+
+<!-- =================================================
+     MOVE AT THE SPEED OF TRUST
+================================================== -->
+
+<div class="card">
+
+
+<div>
+
+<h3>
+
+    💚 Move at the Speed of Trust
+
+</h3>
+
+
+<p>
+
+    I'm ready to continue becoming in a
+    way that feels safe, steady, and true
+    to me.
+
+</p>
+
+</div>
+
+
+<a
+    href="contact.html"
+    class="welcomeButton"
+>
+
+    💚 This Feels Like Me
+
+</a>
+
+
+</div>
+
+
+</div>
+
 </section>
+
+
+
+<!-- =====================================================
+     BEFORE WE MEET
+===================================================== -->
+
+<section class="before-meet">
+
+
+<div class="before-meet-box">
+
+
+<h2>
+
+    🌱 Before We Meet
+
+</h2>
+
+
+<p>
+
+    You don't have to know exactly what
+    you need before you arrive.
+
+</p>
+
+
+<p>
+
+    Whether you're finding your footing,
+    honoring your pace, learning the unknown,
+    or simply making space to breathe...
+
+</p>
+
+
+<p>
+
+    You're welcome here.
+
+</p>
+
+
+<p>
+
+    We'll meet where you are.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALENDLY
+===================================================== -->
+
+<section class="calendar-section">
+
+
+<h2>
+
+    When You're Ready
+
+</h2>
+
+
+<p>
+
+    You don't have to have everything figured
+    out before you begin the conversation.
+
+</p>
+
+
+<div
+    class="calendly-inline-widget"
+    data-url="https://calendly.com/thestillbecomingvillagecircle/30min"
+>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-<p>
-
-Take what you need.<br><br>
-
-Leave what you don't.<br><br>
-
-Come back whenever you need to.
-
-</p>
 
 <p>
 
-Healing isn't a destination.<br><br>
+    Take what you need.
 
-It's a circle we grow through together.
+    <br><br>
+
+    Leave what you don't.
+
+    <br><br>
+
+    Come back whenever you need to.
 
 </p>
+
 
 <p>
 
-📧
-<a href="mailto:thestillbecomingvillagecircle@gmail.com">
-thestillbecomingvillagecircle@gmail.com
-</a>
+    Healing isn't a destination.
+
+    <br><br>
+
+    It's a circle we grow through together.
 
 </p>
+
 
 <p>
 
-© 2026 The Still Becoming Village Circle
+    📧
+
+    <a
+        href="mailto:thestillbecomingvillagecircle@gmail.com"
+    >
+
+        thestillbecomingvillagecircle@gmail.com
+
+    </a>
 
 </p>
+
+
+<p>
+
+    © 2026 The Still Becoming Village Circle
+
+</p>
+
 
 </footer>
 
-<script src="script.js"></script>
+
+
+<!-- =====================================================
+     CALENDLY SCRIPT
+===================================================== -->
+
+<script
+    src="https://assets.calendly.com/assets/external/widget.js"
+    async>
+</script>
+
+
+
+<!-- =====================================================
+     FLOATING MESSAGE SYSTEM
+===================================================== -->
+
+<script>
+
+const becomingMessages = [
+
+    "🫧 You belong before you bloom.",
+
+    "🫧 Healing isn't linear.",
+
+    "🫧 Rest is productive.",
+
+    "🫧 Curiosity creates connection.",
+
+    "🫧 Becoming takes courage.",
+
+    "🫧 It's okay to begin again."
+
+];
+
+
+const floatingBubble =
+    document.getElementById(
+        "floatingBubble"
+    );
+
+
+const floatingMessage =
+    document.getElementById(
+        "floatingMessage"
+    );
+
+
+let messageIndex = 0;
+
+
+let currentX = 12;
+
+let currentY = 62;
+
+
+let targetX = 12;
+
+let targetY = 62;
+
+
+
+function chooseNewBubblePosition() {
+
+    const maxX =
+        window.innerWidth < 600
+            ? 68
+            : 78;
+
+
+    const maxY =
+        window.innerWidth < 600
+            ? 78
+            : 84;
+
+
+    targetX =
+        8 +
+        Math.random()
+        *
+        (
+            maxX - 8
+        );
+
+
+    targetY =
+        14 +
+        Math.random()
+        *
+        (
+            maxY - 14
+        );
+
+}
+
+
+
+function moveBubble() {
+
+    currentX +=
+        (
+            targetX - currentX
+        )
+        *
+        0.0028;
+
+
+    currentY +=
+        (
+            targetY - currentY
+        )
+        *
+        0.0028;
+
+
+    floatingBubble.style.left =
+        currentX + "%";
+
+
+    floatingBubble.style.top =
+        currentY + "%";
+
+
+    requestAnimationFrame(
+        moveBubble
+    );
+
+}
+
+
+
+function changeMessage() {
+
+    floatingBubble.classList.remove(
+        "visible"
+    );
+
+
+    setTimeout(
+        function() {
+
+            messageIndex =
+                (
+                    messageIndex + 1
+                )
+                %
+                becomingMessages.length;
+
+
+            floatingMessage.textContent =
+                becomingMessages[
+                    messageIndex
+                ];
+
+
+            chooseNewBubblePosition();
+
+
+            floatingBubble.classList.add(
+                "visible"
+            );
+
+        },
+        1800
+    );
+
+}
+
+
+
+chooseNewBubblePosition();
+
+
+setTimeout(
+    function() {
+
+        floatingBubble.classList.add(
+            "visible"
+        );
+
+    },
+    1800
+);
+
+
+moveBubble();
+
+
+setInterval(
+    changeMessage,
+    9000
+);
+
+</script>
+
+
 </body>
+
 </html>
