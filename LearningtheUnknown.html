@@ -1,98 +1,1103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Learning the Unknown | The Still Becoming Village Circle</title>
+<title>The Unknown | The Still Becoming Village Circle</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e8fffb;
+    color: #285f61;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    background: rgba(255,255,255,0.97);
+
+    border-bottom:
+        1px solid rgba(40,95,97,0.12);
+
+    padding: 22px 4%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #285f61;
+
+    line-height: 1.3;
+}
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+
+    color: #285f61;
+
+    font-weight: 700;
+
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #16aaa9;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 650px;
+
+    padding:
+        95px 6%
+        85px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,255,255,0.98),
+            rgba(226,255,250,0.82) 48%,
+            rgba(207,250,243,0.95)
+        );
+}
+
+
+/* =========================
+   FLOATING UNKNOWN SYMBOL
+========================= */
+
+.unknown-orbit {
+
+    width: 150px;
+    height: 150px;
+
+    margin-bottom: 38px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.42);
+
+    border:
+        2px solid rgba(255,255,255,0.90);
+
+    box-shadow:
+
+        inset
+        10px 10px 25px
+        rgba(255,255,255,0.90),
+
+        inset
+        -10px -10px 25px
+        rgba(72,181,196,0.12),
+
+        0 20px 45px
+        rgba(40,130,135,0.13);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    animation:
+        floatUnknown 6s ease-in-out infinite;
+}
+
+@keyframes floatUnknown {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(4deg);
+    }
+}
+
+
+/* =========================
+   ORBITING BUBBLES
+========================= */
+
+.orbit-bubble {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.95),
+            rgba(188,246,241,0.60)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 6px 15px
+        rgba(40,130,135,0.10);
+}
+
+.orbit-one {
+
+    width: 27px;
+    height: 27px;
+
+    top: 4px;
+    right: 22px;
+}
+
+.orbit-two {
+
+    width: 17px;
+    height: 17px;
+
+    bottom: 28px;
+    left: 5px;
+}
+
+.orbit-three {
+
+    width: 11px;
+    height: 11px;
+
+    bottom: 7px;
+    right: 43px;
+}
+
+
+/* =========================
+   QUESTION MARK
+========================= */
+
+.question {
+
+    font-size: 58px;
+
+    font-weight: 700;
+
+    color: #16aaa9;
+
+    text-shadow:
+        0 8px 20px
+        rgba(22,170,169,0.15);
+}
+
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero h1 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(45px,8vw,76px);
+
+    line-height: 1.05;
+
+    margin-bottom: 28px;
+}
+
+.hero .intro {
+
+    max-width: 850px;
+
+    font-size: 21px;
+
+    color: #285f61;
+
+    margin-bottom: 20px;
+}
+
+.hero .small-intro {
+
+    max-width: 720px;
+
+    font-size: 18px;
+
+    color: #5d565f;
+}
+
+
+/* =========================
+   UNKNOWN STATEMENT
+========================= */
+
+.statement {
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    padding:
+        85px 6%;
+
+    text-align: center;
+}
+
+.statement-box {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        50% 50% 45% 55%
+        /
+        45% 55% 55% 45%;
+
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.10);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+}
+
+.statement h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(32px,5vw,50px);
+
+    margin-bottom: 30px;
+}
+
+.statement p {
+
+    font-size: 19px;
+
+    color: #5d565f;
+
+    margin-bottom: 23px;
+}
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+.questions {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+        30px 5%
+        90px;
+
+    text-align: center;
+}
+
+.questions h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom: 15px;
+}
+
+.questions-intro {
+
+    font-size: 19px;
+
+    color: #5d565f;
+
+    max-width: 720px;
+
+    margin:
+        0 auto 45px;
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.question-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 28px;
+}
+
+.question-card {
+
+    background:
+        rgba(255,255,255,0.92);
+
+    padding:
+        40px 28px;
+
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius:
+        38px 55px 42px 60px;
+
+    box-shadow:
+        0 18px 40px
+        rgba(40,120,120,0.09);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.question-card:nth-child(2) {
+
+    border-radius:
+        55px 38px 60px 42px;
+}
+
+.question-card:nth-child(3) {
+
+    border-radius:
+        42px 60px 38px 55px;
+}
+
+.question-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 25px 50px
+        rgba(40,120,120,0.14);
+}
+
+.question-card .number {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #79aaa9;
+
+    margin-bottom: 12px;
+}
+
+.question-card h3 {
+
+    color: #285f61;
+
+    font-size: 22px;
+
+    line-height: 1.35;
+
+    margin-bottom: 15px;
+}
+
+.question-card p {
+
+    color: #6a6269;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   UNKNOWN CAN BE...
+========================= */
+
+.permission {
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    padding:
+        40px 6%
+        100px;
+
+    text-align: center;
+}
+
+.permission-box {
+
+    padding:
+        65px 8%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(220,255,251,0.90),
+            rgba(255,255,255,0.94)
+        );
+
+    border-radius: 60px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(40,120,120,0.09);
+}
+
+.permission h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(32px,5vw,46px);
+
+    margin-bottom: 28px;
+}
+
+.permission p {
+
+    font-size: 20px;
+
+    color: #5d565f;
+
+    margin-bottom: 20px;
+}
+
+.permission strong {
+
+    color: #285f61;
+}
+
+
+/* =========================
+   FOOTPRINTS
+========================= */
+
+.footprints {
+
+    padding:
+        40px 5%
+        100px;
+
+    text-align: center;
+}
+
+.footprints h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom: 12px;
+}
+
+.footprints p {
+
+    color: #5d565f;
+
+    font-size: 19px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border-top:
+        1px solid
+        rgba(40,95,97,0.10);
+
+    text-align: center;
+
+    padding:
+        55px 6%;
+
+    color: #5d565f;
+}
+
+footer p {
+
+    margin-bottom: 12px;
+}
+
+footer a {
+
+    color: #16aaa9;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    nav ul {
+
+        justify-content: center;
+
+        gap: 15px 20px;
+    }
+
+    .question-grid {
+
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+
+        margin: 0 auto;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    nav {
+
+        padding: 18px 5%;
+    }
+
+    .logo {
+
+        font-size: 20px;
+    }
+
+    nav ul {
+
+        gap: 10px 15px;
+    }
+
+    nav a {
+
+        font-size: 14px;
+    }
+
+    .hero {
+
+        min-height: 560px;
+
+        padding:
+            70px 6%
+            65px;
+    }
+
+    .unknown-orbit {
+
+        width: 125px;
+        height: 125px;
+    }
+
+    .question {
+
+        font-size: 48px;
+    }
+
+    .statement {
+
+        padding:
+            60px 5%;
+    }
+
+    .statement-box {
+
+        padding:
+            45px 25px;
+    }
+
+    .statement p {
+
+        font-size: 17px;
+    }
+
+    .question-card {
+
+        min-height: 190px;
+
+        padding:
+            35px 25px;
+    }
+
+    .permission {
+
+        padding:
+            30px 5%
+            75px;
+    }
+
+    .permission-box {
+
+        padding:
+            45px 25px;
+    }
+
+    .permission p {
+
+        font-size: 18px;
+    }
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-<header>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
-<div class="logo">
-🌱 The Still Becoming Village Circle
-</div>
+    <div class="logo">
+        🌱 The Still Becoming Village Circle
+    </div>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">Inside the Bubble</a></li>
-<li><a href="LearningtheUnknown.html">The Unknown</a></li>
-<li><a href="events.html">Experiences</a></li>
-<li><a href="contact.html">Connect</a></li>
-  <li><a href="coaching.html">Support</a></li>
-</ul>
+    <ul>
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                Inside the Bubble
+            </a>
+        </li>
+
+        <li>
+            <a href="unknown.html">
+                The Unknown
+            </a>
+        </li>
+
+        <li>
+            <a href="experiences.html">
+                Experiences
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Connect
+            </a>
+        </li>
+
+        <li>
+            <a href="coaching.html">
+                Support
+            </a>
+        </li>
+
+    </ul>
 
 </nav>
 
-</header>
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-<div class="bubble">📚</div>
+    <div class="unknown-orbit">
 
-<h1>Learning the Unknown</h1>
+        <span class="orbit-bubble orbit-one"></span>
 
-<p class="description">
+        <span class="orbit-bubble orbit-two"></span>
 
-Some of life's most important lessons were never taught.
+        <span class="orbit-bubble orbit-three"></span>
 
-Not because they weren't important...
+        <div class="question">
+            ?
+        </div>
 
-But because many of us were surrounded by people who were learning for the first time, too.
+    </div>
 
-Learning the Unknown is a growing collection of books, reflections, conversations, tools, and experiences designed to help us explore what wasn't modeled, what wasn't explained, and what we're still discovering about ourselves.
 
-There is no shame in learning what you were never taught.
+    <h1>
+        The Unknown
+    </h1>
 
-There is only courage in becoming.
 
-</p>
+    <p class="intro">
+
+        What if you don't need to know yet?
+
+    </p>
+
+
+    <p class="small-intro">
+
+        Sometimes the next version of you is still
+        becoming clear.
+
+    </p>
+
 </section>
+
+
+<!-- =========================
+     THE UNKNOWN
+========================= -->
+
+<section class="statement">
+
+    <div class="statement-box">
+
+        <h2>
+            There is something beautiful about not knowing.
+        </h2>
+
+
+        <p>
+
+            We are often taught to search for the answer
+            before we have even given ourselves permission
+            to ask the question.
+
+        </p>
+
+
+        <p>
+
+            But becoming doesn't always arrive with
+            instructions.
+
+        </p>
+
+
+        <p>
+
+            Sometimes you are simply standing at the edge
+            of something unfamiliar, wondering what happens
+            next.
+
+        </p>
+
+
+        <p>
+
+            That doesn't mean you're lost.
+
+        </p>
+
+
+        <p>
+
+            It might mean you're discovering.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QUESTIONS
+========================= -->
+
+<section class="questions">
+
+    <h2>
+        Questions Worth Sitting With
+    </h2>
+
+
+    <p class="questions-intro">
+
+        You don't have to answer these today.
+        Some questions are meant to open a door,
+        not force you through it.
+
+    </p>
+
+
+    <div class="question-grid">
+
+
+        <div class="question-card">
+
+            <div class="number">
+                QUESTION ONE
+            </div>
+
+            <h3>
+                What are you curious about right now?
+            </h3>
+
+            <p>
+                Follow the question before you worry
+                about where it leads.
+            </p>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <div class="number">
+                QUESTION TWO
+            </div>
+
+            <h3>
+                What part of yourself are you still
+                getting to know?
+            </h3>
+
+            <p>
+                You are allowed to meet yourself again.
+            </p>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <div class="number">
+                QUESTION THREE
+            </div>
+
+            <h3>
+                What would you explore if you knew
+                you didn't have to get it right?
+            </h3>
+
+            <p>
+                Curiosity doesn't require perfection.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PERMISSION
+========================= -->
+
+<section class="permission">
+
+    <div class="permission-box">
+
+        <h2>
+            You Are Allowed to Be Unsure.
+        </h2>
+
+
+        <p>
+
+            You can change your mind.
+
+        </p>
+
+
+        <p>
+
+            You can take a different route.
+
+        </p>
+
+
+        <p>
+
+            You can discover that what you wanted
+            isn't what you want anymore.
+
+        </p>
+
+
+        <p>
+
+            You can begin again.
+
+        </p>
+
+
+        <p>
+
+            And you can do all of that without
+            explaining your becoming to everybody.
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                The unknown isn't always a warning.
+                Sometimes it's an invitation.
+            </strong>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTPRINTS
+========================= -->
+
+<section class="footprints">
+
+    <h2>
+        👣 Keep Walking.
+    </h2>
+
+    <p>
+        You don't have to see the whole path
+        to take the next step.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<p>
+    <p>
+        Take what you need.
+        Leave what you don't.
+        Come back whenever you need to.
+    </p>
 
-Take what you need.<br><br>
+    <p>
+        Healing isn't a destination.
+        It's a circle we grow through together.
+    </p>
 
-Leave what you don't.<br><br>
 
-Come back whenever you need to.
+    <p>
 
-</p>
+        📧
 
-<p>
+        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
+            thestillbecomingvillagecircle@gmail.com
+        </a>
 
-Healing isn't a destination.<br><br>
+    </p>
 
-It's a circle we grow through together.
 
-</p>
-
-<p>
-
-📧
-<a href="mailto:thestillbecomingvillagecircle@gmail.com">
-thestillbecomingvillagecircle@gmail.com
-</a>
-
-</p>
-
-<p>
-
-© 2026 The Still Becoming Village Circle
-
-</p>
+    <p>
+        © 2026 The Still Becoming Village Circle
+    </p>
 
 </footer>
-<script src="script.js"></script>
+
+
 </body>
 
 </html>
