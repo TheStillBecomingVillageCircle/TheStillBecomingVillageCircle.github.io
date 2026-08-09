@@ -3,750 +3,21 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kitta's Creativity Allowed My Becoming | The Still Becoming Village Circle</title>
-
-<style>
-
-/* =========================================
-   BASIC
-========================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #e8fffb;
-    color: #285f61;
-    line-height: 1.7;
-}
-
-
-/* =========================================
-   NAVIGATION
-========================================= */
-
-header {
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(40,95,97,0.10);
-}
-
-nav {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 22px 4%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 30px;
-}
-
-.logo {
-    flex-shrink: 0;
-}
-
-.logo a {
-    color: #285f61;
-    text-decoration: none;
-
-    font-size: 22px;
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-nav ul {
-    list-style: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    gap: 28px;
-
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    color: #285f61;
-    text-decoration: none;
-
-    font-size: 16px;
-    font-weight: 600;
-
-    transition: opacity 0.25s ease;
-}
-
-nav ul li a:hover {
-    opacity: 0.65;
-}
-
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero {
-    min-height: 680px;
-
-    padding: 95px 6% 90px;
-
-    text-align: center;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        radial-gradient(
-            circle at 50% 18%,
-            rgba(255,255,255,0.98),
-            rgba(226,255,250,0.84) 48%,
-            rgba(207,250,243,0.96)
-        );
-
-    overflow: hidden;
-}
-
-
-/* =========================================
-   CREATIVE BUBBLE
-========================================= */
-
-.creative-bubble {
-    width: 180px;
-    height: 180px;
-
-    margin-bottom: 38px;
-
-    border-radius:
-        50% 46% 54% 48%
-        /
-        48% 54% 46% 52%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(255,255,255,0.98),
-            rgba(210,251,246,0.72)
-        );
-
-    border:
-        2px solid rgba(255,255,255,0.95);
-
-    box-shadow:
-        inset 12px 12px 28px rgba(255,255,255,0.92),
-        inset -12px -12px 28px rgba(72,181,196,0.12),
-        0 25px 60px rgba(40,130,135,0.14);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 70px;
-
-    animation:
-        creativeFloat 7s ease-in-out infinite;
-}
-
-@keyframes creativeFloat {
-
-    0%, 100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-11px)
-            rotate(3deg);
-    }
-}
-
-
-/* =========================================
-   HERO TEXT
-========================================= */
-
-.hero h1 {
-    max-width: 1000px;
-
-    color: #16a9ae;
-
-    font-size:
-        clamp(43px,7vw,76px);
-
-    line-height: 1.08;
-
-    margin-bottom: 25px;
-}
-
-.hero .subtitle {
-    max-width: 850px;
-
-    color: #285f61;
-
-    font-size:
-        clamp(21px,3vw,29px);
-
-    font-weight: 600;
-
-    margin-bottom: 25px;
-}
-
-.hero p {
-    max-width: 850px;
-
-    color: #5d565f;
-
-    font-size: 20px;
-}
-
-
-/* =========================================
-   STORY
-========================================= */
-
-.story {
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding: 85px 6% 75px;
-
-    text-align: center;
-}
-
-.story-box {
-    background:
-        rgba(255,255,255,0.95);
-
-    padding: 65px 8%;
-
-    border-radius:
-        55px 45px 65px 40px;
-
-    box-shadow:
-        0 25px 60px rgba(40,120,120,0.10);
-}
-
-.story h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(35px,5vw,52px);
-
-    margin-bottom: 28px;
-}
-
-.story p {
-    max-width: 820px;
-
-    margin:
-        0 auto 22px;
-
-    color: #5d565f;
-
-    font-size: 19px;
-}
-
-.story strong {
-    color: #285f61;
-}
-
-
-/* =========================================
-   CREATIVE PHILOSOPHY
-========================================= */
-
-.philosophy {
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding: 10px 5% 100px;
-
-    text-align: center;
-}
-
-.philosophy h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(35px,5vw,52px);
-
-    margin-bottom: 45px;
-}
-
-.philosophy-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap: 28px;
-}
-
-.philosophy-card {
-    background:
-        rgba(255,255,255,0.94);
-
-    padding: 42px 28px;
-
-    min-height: 275px;
-
-    border:
-        2px solid rgba(255,255,255,0.90);
-
-    box-shadow:
-        0 18px 40px rgba(40,120,120,0.09);
-
-    border-radius:
-        45px 55px 40px 60px;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.philosophy-card:nth-child(2) {
-    border-radius:
-        55px 40px 60px 45px;
-}
-
-.philosophy-card:nth-child(3) {
-    border-radius:
-        40px 60px 45px 55px;
-}
-
-.philosophy-card:hover {
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        0 25px 50px rgba(40,120,120,0.14);
-}
-
-.philosophy-icon {
-    font-size: 43px;
-    margin-bottom: 16px;
-}
-
-.philosophy-card h3 {
-    color: #16a9ae;
-
-    font-size: 24px;
-
-    margin-bottom: 15px;
-}
-
-.philosophy-card p {
-    color: #5d565f;
-    font-size: 17px;
-}
-
-
-/* =========================================
-   CREATIVE WORK
-========================================= */
-
-.creative-work {
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding: 0 5% 100px;
-
-    text-align: center;
-}
-
-.creative-work-box {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(220,255,251,0.92),
-            rgba(255,255,255,0.97)
-        );
-
-    padding: 65px 8%;
-
-    border-radius:
-        65px 45px 60px 40px;
-
-    box-shadow:
-        0 25px 55px rgba(40,120,120,0.10);
-}
-
-.creative-work h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(35px,5vw,50px);
-
-    margin-bottom: 25px;
-}
-
-.creative-work p {
-    max-width: 800px;
-
-    margin:
-        0 auto 22px;
-
-    color: #5d565f;
-
-    font-size: 19px;
-}
-
-
-/* =========================================
-   CREATIVE AREAS
-========================================= */
-
-.areas {
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding: 0 5% 105px;
-
-    text-align: center;
-}
-
-.areas h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(34px,5vw,50px);
-
-    margin-bottom: 42px;
-}
-
-.area-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 28px;
-}
-
-.area-card {
-    background:
-        rgba(255,255,255,0.94);
-
-    padding: 38px 30px;
-
-    border-radius: 45px;
-
-    box-shadow:
-        0 18px 40px rgba(40,120,120,0.08);
-}
-
-.area-card h3 {
-    color: #16a9ae;
-
-    font-size: 23px;
-
-    margin-bottom: 12px;
-}
-
-.area-card p {
-    color: #5d565f;
-
-    font-size: 17px;
-}
-
-
-/* =========================================
-   MEANING
-========================================= */
-
-.meaning {
-    max-width: 950px;
-
-    margin: 0 auto;
-
-    padding: 0 6% 110px;
-
-    text-align: center;
-}
-
-.meaning-box {
-    background:
-        rgba(255,255,255,0.95);
-
-    padding: 60px 8%;
-
-    border-radius:
-        60px 45px 65px 40px;
-
-    box-shadow:
-        0 25px 55px rgba(40,120,120,0.10);
-}
-
-.meaning h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(34px,5vw,48px);
-
-    margin-bottom: 24px;
-}
-
-.meaning p {
-    color: #5d565f;
-
-    font-size: 19px;
-
-    margin-bottom: 20px;
-}
-
-
-/* =========================================
-   CTA
-========================================= */
-
-.cta {
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding: 0 5% 115px;
-
-    text-align: center;
-}
-
-.cta-box {
-    background:
-        rgba(255,255,255,0.96);
-
-    padding: 65px 8%;
-
-    border-radius:
-        60px 45px 65px 40px;
-
-    box-shadow:
-        0 25px 60px rgba(40,120,120,0.12);
-}
-
-.cta h2 {
-    color: #16a9ae;
-
-    font-size:
-        clamp(36px,6vw,55px);
-
-    margin-bottom: 20px;
-}
-
-.cta p {
-    max-width: 800px;
-
-    margin:
-        0 auto 25px;
-
-    color: #5d565f;
-
-    font-size: 19px;
-}
-
-.cta-button {
-    display: inline-block;
-
-    padding: 15px 32px;
-
-    border-radius: 40px;
-
-    background: #16a9ae;
-
-    color: #ffffff;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    font-size: 18px;
-
-    box-shadow:
-        0 12px 28px rgba(22,169,174,0.22);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.cta-button:hover {
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 17px 35px rgba(22,169,174,0.28);
-}
-
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-    background:
-        rgba(255,255,255,0.94);
-
-    border-top:
-        1px solid rgba(40,95,97,0.10);
-
-    text-align: center;
-
-    padding:
-        55px 6%;
-
-    color: #5d565f;
-}
-
-footer p {
-    margin-bottom: 12px;
-}
-
-footer a {
-    color: #16a9ae;
-
-    font-weight: 700;
-
-    text-decoration: none;
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 900px) {
-
-    nav {
-        flex-direction: column;
-
-        text-align: center;
-
-        gap: 18px;
-    }
-
-    .logo a {
-        white-space: normal;
-
-        display: block;
-    }
-
-    nav ul {
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 12px 18px;
-    }
-
-    .philosophy-grid {
-        grid-template-columns: 1fr;
-
-        max-width: 650px;
-
-        margin: 0 auto;
-    }
-
-    .area-grid {
-        grid-template-columns: 1fr;
-
-        max-width: 650px;
-
-        margin: 0 auto;
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    nav {
-        padding: 18px 5%;
-    }
-
-    .logo a {
-        font-size: 20px;
-    }
-
-    nav ul {
-        gap: 10px 15px;
-    }
-
-    nav ul li a {
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 570px;
-
-        padding:
-            70px 5%
-            65px;
-    }
-
-    .creative-bubble {
-        width: 145px;
-        height: 145px;
-
-        font-size: 52px;
-    }
-
-    .story {
-        padding:
-            60px 5%;
-    }
-
-    .story-box {
-        padding:
-            45px 25px;
-    }
-
-    .story p {
-        font-size: 17px;
-    }
-
-    .creative-work-box,
-    .meaning-box,
-    .cta-box {
-        padding:
-            45px 25px;
-    }
-
-    .creative-work p,
-    .meaning p,
-    .cta p {
-        font-size: 17px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Creativity Allowed My Becoming | Kitta
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -754,9 +25,9 @@ footer a {
 <body>
 
 
-<!-- =========================================
+<!-- =====================================================
      NAVIGATION
-========================================= -->
+===================================================== -->
 
 <header>
 
@@ -765,9 +36,7 @@ footer a {
         <div class="logo">
 
             <a href="index.html">
-
                 🌱 The Still Becoming Village Circle
-
             </a>
 
         </div>
@@ -819,106 +88,122 @@ footer a {
 
 
 
-<!-- =========================================
+<!-- =====================================================
+     FLOATING BECOMING MESSAGES
+===================================================== -->
+
+<div
+    id="floatingMessageBubble"
+    aria-live="polite"
+>
+    <span id="floatingMessageText">
+        🫧 Creativity is allowed to become visible.
+    </span>
+</div>
+
+
+
+<!-- =====================================================
      HERO
-========================================= -->
+===================================================== -->
 
-<section class="hero">
+<section class="kitta-hero">
 
+    <div class="kitta-bubble">
 
-    <div class="creative-bubble">
+        <span class="bubble-shine">
+            ✨
+        </span>
+
         🎨
+
     </div>
+
+
+    <p class="eyebrow">
+        A Village Creative Space
+    </p>
 
 
     <h1>
-        Kitta's Creativity Allowed My Becoming
+        Creativity Allowed
+        <br>
+        My Becoming
     </h1>
 
 
-    <div class="subtitle">
+    <p class="hero-intro">
 
-        Sometimes another person's creativity
-        gives your own permission to emerge.
+        Meet Kitta.
 
-    </div>
+        <br><br>
 
+        A creative mind whose work reminds us
+        that becoming isn't always something
+        you explain.
 
-    <p>
+        Sometimes...
 
-        This is a space for the creative work,
-        ideas, imagination, and possibilities
-        that can become part of someone's
-        becoming.
+        <br>
+
+        you create it.
 
     </p>
+
 
 </section>
 
 
 
-<!-- =========================================
-     STORY
-========================================= -->
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
 
-<section class="story">
+<section class="kitta-section">
 
-
-    <div class="story-box">
-
+    <div class="soft-card">
 
         <h2>
-            Creativity Can Become a Bridge.
+            🎨 Meet Kitta
         </h2>
 
 
         <p>
 
-            There are moments when someone creates
-            something that makes you see yourself
-            differently.
-
-        </p>
-
-
-        <p>
-
-            Not because they told you who to be.
-
-            Not because they handed you a blueprint.
-
-        </p>
-
-
-        <p>
-
-            But because what they created reminded
-            you that <strong>you could create too.</strong>
-
-        </p>
-
-
-        <p>
-
-            Kitta's creativity became part of that
-            kind of becoming.
-
-        </p>
-
-
-        <p>
-
-            Her imagination, creative thinking,
-            and ability to turn an idea into something
-            tangible helped make room for another
-            possibility:
-
+            Kitta is a
             <strong>
-                maybe I can become more of myself too.
+                Creative & Marketing Collaborator
             </strong>
+            within The Still Becoming Village Circle.
 
         </p>
 
+
+        <p>
+
+            She brings creativity into the Village
+            through personalized artwork, memorial
+            pieces, gift baskets, care packages,
+            event décor, creative concepts, and
+            behind-the-scenes marketing support.
+
+        </p>
+
+
+        <p>
+
+            But creativity here isn't simply about
+            making something beautiful.
+
+        </p>
+
+
+        <p>
+
+            It's about allowing something inside of you
+            to become visible.
+
+        </p>
 
     </div>
 
@@ -926,98 +211,275 @@ footer a {
 
 
 
-<!-- =========================================
-     CREATIVE PHILOSOPHY
-========================================= -->
+<!-- =====================================================
+     CREATIVITY + BECOMING
+===================================================== -->
 
-<section class="philosophy">
+<section class="becoming-section">
+
+    <div class="becoming-box">
+
+        <p class="eyebrow">
+            Creativity & Becoming
+        </p>
+
+
+        <h2>
+            What Happens When
+            Creativity Gets Room?
+        </h2>
+
+
+        <p>
+
+            Sometimes we don't realize how much of
+            ourselves has been waiting for permission.
+
+        </p>
+
+
+        <p>
+
+            Permission to make something.
+
+            <br>
+
+            Permission to imagine something different.
+
+            <br>
+
+            Permission to turn an idea into something
+            someone else can actually see and hold.
+
+        </p>
+
+
+        <p>
+
+            Kitta's presence in the Village creates
+            space for that kind of becoming.
+
+        </p>
+
+
+        <p class="highlight">
+
+            Creativity is not something you have to
+            hide until it's perfect.
+
+        </p>
+
+
+        <p class="highlight">
+
+            Sometimes you become by creating.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHAT KITTA CREATES
+===================================================== -->
+
+<section class="creative-work">
+
+    <p class="eyebrow">
+        Creative Work
+    </p>
 
 
     <h2>
-        Creativity Allowed My Becoming
+        What Can Come to Life?
     </h2>
 
 
-    <div class="philosophy-grid">
+    <div class="creative-grid">
 
 
-        <div class="philosophy-card">
+        <!-- PERSONALIZED ARTWORK -->
 
+        <article class="creative-card">
 
-            <div class="philosophy-icon">
-                💡
-            </div>
-
-
-            <h3>
-                Imagination
-            </h3>
-
-
-            <p>
-
-                Before something exists physically,
-                somebody has to imagine that it could.
-
-                Creativity gives possibility a place
-                to begin.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="philosophy-card">
-
-
-            <div class="philosophy-icon">
+            <div class="creative-icon">
                 🎨
             </div>
 
 
             <h3>
-                Expression
+                Personalized Artwork
             </h3>
 
 
             <p>
 
-                Sometimes what lives inside us
-                becomes easier to understand once
-                we give it shape, color, texture,
-                words, or form.
+                Creative pieces made with the
+                person, moment, memory, or idea
+                in mind.
 
             </p>
 
-        </div>
+        </article>
 
 
 
-        <div class="philosophy-card">
+        <!-- MEMORIAL PIECES -->
 
+        <article class="creative-card">
 
-            <div class="philosophy-icon">
-                🌱
+            <div class="creative-icon">
+                🕊️
             </div>
 
 
             <h3>
-                Becoming
+                Memorial Pieces
             </h3>
 
 
             <p>
 
-                Creativity isn't only about making
-                something beautiful.
-
-                Sometimes it helps us discover
-                something about ourselves.
+                Meaningful creative work designed
+                to honor memories and the people
+                who matter.
 
             </p>
 
-        </div>
+        </article>
+
+
+
+        <!-- GIFT BASKETS -->
+
+        <article class="creative-card">
+
+            <div class="creative-icon">
+                🎁
+            </div>
+
+
+            <h3>
+                Gift Baskets
+            </h3>
+
+
+            <p>
+
+                Thoughtful creative arrangements
+                designed around the person and
+                the occasion.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- CARE PACKAGES -->
+
+        <article class="creative-card">
+
+            <div class="creative-icon">
+                💚
+            </div>
+
+
+            <h3>
+                Care Packages
+            </h3>
+
+
+            <p>
+
+                Creative ways to remind someone
+                that they are seen, thought of,
+                and cared for.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- EVENT DÉCOR -->
+
+        <article class="creative-card">
+
+            <div class="creative-icon">
+                ✨
+            </div>
+
+
+            <h3>
+                Event Décor
+            </h3>
+
+
+            <p>
+
+                Creative concepts and décor that
+                help turn an event into an
+                experience.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- CREATIVE CONCEPTS -->
+
+        <article class="creative-card">
+
+            <div class="creative-icon">
+                💡
+            </div>
+
+
+            <h3>
+                Creative Concepts
+            </h3>
+
+
+            <p>
+
+                Ideas don't have to stay ideas.
+                Creative concepts give them room
+                to take shape.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- MARKETING SUPPORT -->
+
+        <article class="creative-card">
+
+            <div class="creative-icon">
+                📣
+            </div>
+
+
+            <h3>
+                Behind-the-Scenes Marketing
+            </h3>
+
+
+            <p>
+
+                Creative thinking and marketing
+                support that helps ideas become
+                easier to see and share.
+
+            </p>
+
+        </article>
 
 
     </div>
@@ -1026,52 +488,62 @@ footer a {
 
 
 
-<!-- =========================================
-     CREATIVE WORK
-========================================= -->
+<!-- =====================================================
+     THE DEEPER MESSAGE
+===================================================== -->
 
-<section class="creative-work">
+<section class="permission-section">
 
+    <div class="permission-box">
 
-    <div class="creative-work-box">
+        <div class="small-bubble">
+            🫧
+        </div>
 
 
         <h2>
-            When an Idea Wants to Become Real
+            You Don't Have to
+            Explain Every Gift You Have.
         </h2>
 
 
         <p>
 
-            Kitta's creative space can hold ideas
-            that begin as a thought and eventually
-            become something you can see, touch,
-            experience, or share.
+            Some people spend years believing
+            their creativity is just a hobby.
 
         </p>
 
 
         <p>
 
-            That may include personalized creative
-            pieces, gift baskets, event décor,
-            visual concepts, creative planning,
-            or other projects that need imagination
-            behind them.
+            Some never give themselves permission
+            to explore it.
 
         </p>
 
 
         <p>
 
-            The goal isn't simply to make something.
+            Some create quietly because they aren't
+            sure anyone will understand what they're
+            trying to make.
 
         </p>
 
 
         <p>
 
-            It's to help an idea become tangible.
+            The Village makes room for another
+            possibility.
+
+        </p>
+
+
+        <p class="big-message">
+
+            What if your creativity is part
+            of your becoming?
 
         </p>
 
@@ -1082,206 +554,55 @@ footer a {
 
 
 
-<!-- =========================================
-     CREATIVE AREAS
-========================================= -->
+<!-- =====================================================
+     CREATIVE CONNECTION
+===================================================== -->
 
-<section class="areas">
+<section class="creative-invitation">
 
+    <div class="invitation-card">
 
-    <h2>
-        Creative Possibilities
-    </h2>
-
-
-    <div class="area-grid">
-
-
-        <div class="area-card">
-
-
-            <h3>
-                🎁 Personalized Creations
-            </h3>
-
-
-            <p>
-
-                Thoughtful creative pieces designed
-                around a person, occasion, idea,
-                or meaningful moment.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="area-card">
-
-
-            <h3>
-                🎀 Event Décor
-            </h3>
-
-
-            <p>
-
-                Creative visual thinking for
-                celebrations, gatherings, environments,
-                and moments that deserve to feel
-                intentional.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="area-card">
-
-
-            <h3>
-                🧠 Creative Thinking
-            </h3>
-
-
-            <p>
-
-                Sometimes the project isn't the
-                problem.
-
-                The idea simply needs another creative
-                brain in the room.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="area-card">
-
-
-            <h3>
-                ✨ Creative Possibility
-            </h3>
-
-
-            <p>
-
-                If you have an idea but aren't sure
-                what it could become yet, that's
-                where curiosity gets interesting.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================
-     MEANING
-========================================= -->
-
-<section class="meaning">
-
-
-    <div class="meaning-box">
+        <p class="eyebrow">
+            Have an Idea?
+        </p>
 
 
         <h2>
-            This Is Bigger Than Decoration.
+            Let's Give It Somewhere
+            to Begin.
         </h2>
 
 
         <p>
 
-            Creativity can change an environment.
+            You don't need to have every detail
+            figured out before you reach out.
 
         </p>
 
 
         <p>
 
-            It can change the way a person feels
-            walking into a room.
+            Bring the idea.
 
-        </p>
+            <br>
 
+            Bring the question.
 
-        <p>
+            <br>
 
-            It can turn an ordinary gift into
-            a memory.
-
-        </p>
-
-
-        <p>
-
-            It can take an idea that lived only
-            inside someone's head and give it
-            somewhere to exist.
-
-        </p>
-
-
-        <p>
-
-            And sometimes...
-
-            it can remind another person that
-            their own creativity is still alive.
-
-        </p>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================
-     CTA
-========================================= -->
-
-<section class="cta">
-
-
-    <div class="cta-box">
-
-
-        <h2>
-            Have Something You Want to Create?
-        </h2>
-
-
-        <p>
-
-            If you have an idea, a celebration,
-            a visual concept, or simply something
-            you want to explore creatively,
-            start the conversation.
+            Bring the half-formed thought
+            you've been carrying around.
 
         </p>
 
 
         <a
             href="contact.html"
-            class="cta-button"
+            class="kitta-button"
         >
-
-            🎨 Start a Creative Conversation
-
+            🎨 Start the Conversation
         </a>
-
 
     </div>
 
@@ -1289,19 +610,53 @@ footer a {
 
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+<!-- =====================================================
+     RETURN TO VILLAGE
+===================================================== -->
 
-<footer>
+<section class="return-section">
+
+    <h2>
+        Creativity Belongs Here Too.
+    </h2>
 
 
     <p>
 
+        The Village is still becoming.
+
+        <br>
+
+        And so are we.
+
+    </p>
+
+
+    <a
+        href="about.html"
+        class="kitta-button secondary"
+    >
+        🫧 Return Inside the Bubble
+    </a>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+
         Take what you need.
+
         <br><br>
 
         Leave what you don't.
+
         <br><br>
 
         Come back whenever you need to.
@@ -1312,6 +667,7 @@ footer a {
     <p>
 
         Healing isn't a destination.
+
         <br><br>
 
         It's a circle we grow through together.
@@ -1323,10 +679,10 @@ footer a {
 
         📧
 
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
-
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
             thestillbecomingvillagecircle@gmail.com
-
         </a>
 
     </p>
@@ -1334,12 +690,1325 @@ footer a {
 
     <p>
 
-        © 2026 The Still Becoming Village Circle
+        © 2026
+        The Still Becoming Village Circle
 
     </p>
 
-
 </footer>
+
+
+
+<!-- =====================================================
+     PAGE STYLES
+===================================================== -->
+
+<style>
+
+
+/* =====================================================
+   KITTA HERO
+===================================================== */
+
+.kitta-hero {
+
+    min-height:
+        720px;
+
+    padding:
+        100px 7%
+        90px;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255,255,255,0.98),
+            rgba(229,255,251,0.86) 48%,
+            rgba(207,249,243,0.95)
+        );
+
+}
+
+
+.kitta-bubble {
+
+    width:
+        150px;
+
+    height:
+        150px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    font-size:
+        58px;
+
+    margin-bottom:
+        35px;
+
+    background:
+        radial-gradient(
+            circle at 28% 22%,
+            rgba(255,255,255,0.92),
+            rgba(255,255,255,0.22) 38%,
+            rgba(190,245,240,0.16)
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.88);
+
+    box-shadow:
+
+        inset
+        10px 10px 25px
+        rgba(255,255,255,0.90),
+
+        inset
+        -10px -10px 25px
+        rgba(71,184,198,0.10),
+
+        0 18px 45px
+        rgba(40,130,140,0.10);
+
+    backdrop-filter:
+        blur(3px);
+
+}
+
+
+.bubble-shine {
+
+    position:
+        absolute;
+
+    top:
+        17px;
+
+    left:
+        25px;
+
+    font-size:
+        18px;
+
+    opacity:
+        0.8;
+
+}
+
+
+.eyebrow {
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.kitta-hero h1 {
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            82px
+        );
+
+    line-height:
+        1.04;
+
+    color:
+        #16aaa9;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.hero-intro {
+
+    max-width:
+        760px;
+
+    font-size:
+        21px;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.8;
+
+}
+
+
+
+/* =====================================================
+   STANDARD SECTIONS
+===================================================== */
+
+.kitta-section {
+
+    padding:
+        90px 6%;
+
+    background:
+        #e8fffb;
+
+}
+
+
+.soft-card {
+
+    max-width:
+        1000px;
+
+    margin:
+        auto;
+
+    padding:
+        70px 8%;
+
+    text-align:
+        center;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.88);
+
+    border-radius:
+        48% 52% 45% 55%
+        /
+        52% 45% 55% 48%;
+
+    box-shadow:
+        0 25px 65px
+        rgba(40,120,120,0.10);
+
+}
+
+
+.soft-card h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            52px
+        );
+
+    margin-bottom:
+        30px;
+
+}
+
+
+.soft-card p {
+
+    max-width:
+        760px;
+
+    margin:
+        0 auto 22px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    line-height:
+        1.8;
+
+}
+
+
+
+/* =====================================================
+   BECOMING
+===================================================== */
+
+.becoming-section {
+
+    padding:
+        100px 6%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dffff8,
+            #f8ffff,
+            #d9faf4
+        );
+
+}
+
+
+.becoming-box {
+
+    max-width:
+        950px;
+
+    margin:
+        auto;
+
+    text-align:
+        center;
+
+}
+
+
+.becoming-box h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            36px,
+            6vw,
+            58px
+        );
+
+    line-height:
+        1.15;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.becoming-box p {
+
+    max-width:
+        760px;
+
+    margin:
+        0 auto 25px;
+
+    color:
+        #4e6264;
+
+    font-size:
+        20px;
+
+    line-height:
+        1.8;
+
+}
+
+
+.becoming-box .highlight {
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    font-size:
+        23px;
+
+}
+
+
+
+/* =====================================================
+   CREATIVE WORK
+===================================================== */
+
+.creative-work {
+
+    padding:
+        100px 6%;
+
+    background:
+        #f8ffff;
+
+    text-align:
+        center;
+
+}
+
+
+.creative-work > h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            36px,
+            6vw,
+            56px
+        );
+
+    margin-bottom:
+        60px;
+
+}
+
+
+.creative-grid {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        30px;
+
+}
+
+
+.creative-card {
+
+    padding:
+        45px 35px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border:
+        1px solid
+        rgba(22,170,169,0.10);
+
+    border-radius:
+        30px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(40,120,120,0.07);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.creative-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 22px 50px
+        rgba(40,120,120,0.12);
+
+}
+
+
+.creative-icon {
+
+    font-size:
+        42px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.creative-card h3 {
+
+    color:
+        #285f61;
+
+    font-size:
+        24px;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.creative-card p {
+
+    color:
+        #6a626a;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+/* =====================================================
+   PERMISSION
+===================================================== */
+
+.permission-section {
+
+    padding:
+        100px 6%;
+
+    background:
+        #e8fffb;
+
+}
+
+
+.permission-box {
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+
+    padding:
+        75px 8%;
+
+    text-align:
+        center;
+
+    background:
+        rgba(255,255,255,0.92);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.92);
+
+    border-radius:
+        55% 45% 50% 50%
+        /
+        45% 55% 50% 50%;
+
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.09);
+
+}
+
+
+.small-bubble {
+
+    font-size:
+        45px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.permission-box h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            52px
+        );
+
+    line-height:
+        1.15;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.permission-box p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    line-height:
+        1.8;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+.permission-box .big-message {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        25px;
+
+    font-weight:
+        700;
+
+    margin-top:
+        35px;
+
+}
+
+
+
+/* =====================================================
+   INVITATION
+===================================================== */
+
+.creative-invitation {
+
+    padding:
+        100px 6%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9faf4,
+            #f8ffff
+        );
+
+}
+
+
+.invitation-card {
+
+    max-width:
+        850px;
+
+    margin:
+        auto;
+
+    text-align:
+        center;
+
+    padding:
+        70px 7%;
+
+}
+
+
+.invitation-card h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            36px,
+            6vw,
+            58px
+        );
+
+    line-height:
+        1.15;
+
+    margin-bottom:
+        30px;
+
+}
+
+
+.invitation-card p {
+
+    color:
+        #536669;
+
+    font-size:
+        19px;
+
+    line-height:
+        1.8;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+.kitta-button {
+
+    display:
+        inline-block;
+
+    margin-top:
+        25px;
+
+    padding:
+        16px 30px;
+
+    border-radius:
+        999px;
+
+    background:
+        #16aaa9;
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.kitta-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(22,170,169,0.20);
+
+}
+
+
+
+/* =====================================================
+   RETURN
+===================================================== */
+
+.return-section {
+
+    padding:
+        90px 6%;
+
+    text-align:
+        center;
+
+    background:
+        #e8fffb;
+
+}
+
+
+.return-section h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            50px
+        );
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.return-section p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    line-height:
+        1.8;
+
+}
+
+
+.kitta-button.secondary {
+
+    background:
+        white;
+
+    color:
+        #16aaa9;
+
+    border:
+        2px solid
+        rgba(22,170,169,0.20);
+
+}
+
+
+
+/* =====================================================
+   FLOATING MESSAGE BUBBLE
+===================================================== */
+
+#floatingMessageBubble {
+
+    position:
+        fixed;
+
+    left:
+        12vw;
+
+    top:
+        62vh;
+
+    z-index:
+        9995;
+
+    pointer-events:
+        none;
+
+    padding:
+        13px 24px;
+
+    min-width:
+        145px;
+
+    max-width:
+        240px;
+
+    text-align:
+        center;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.38
+        );
+
+    border:
+        1.5px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    box-shadow:
+
+        inset
+        3px 3px 10px
+        rgba(
+            255,
+            255,
+            255,
+            0.48
+        ),
+
+        0 8px 22px
+        rgba(
+            80,
+            160,
+            165,
+            0.08
+        );
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    color:
+        #239a9d;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    opacity:
+        0;
+
+    transform:
+        translate3d(
+            0,
+            0,
+            0
+        );
+
+    transition:
+        opacity 2s ease;
+
+}
+
+
+#floatingMessageBubble.visible {
+
+    opacity:
+        0.82;
+
+}
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding:
+        65px 6%;
+
+    text-align:
+        center;
+
+    background:
+        #285f61;
+
+    color:
+        white;
+
+}
+
+
+footer p {
+
+    margin:
+        0 0 25px;
+
+    line-height:
+        1.8;
+
+}
+
+
+footer a {
+
+    color:
+        white;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+    .kitta-hero {
+
+        min-height:
+            650px;
+
+        padding:
+            80px 6%;
+
+    }
+
+
+    .kitta-bubble {
+
+        width:
+            125px;
+
+        height:
+            125px;
+
+        font-size:
+            48px;
+
+    }
+
+
+    .hero-intro {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .creative-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .soft-card,
+    .permission-box {
+
+        padding:
+            50px 25px;
+
+    }
+
+
+    #floatingMessageBubble {
+
+        max-width:
+            190px;
+
+        min-width:
+            125px;
+
+        padding:
+            11px 17px;
+
+        font-size:
+            13px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =====================================================
+     SLOW FLOATING MESSAGE SCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const bubble =
+            document.getElementById(
+                "floatingMessageBubble"
+            );
+
+
+        const messageText =
+            document.getElementById(
+                "floatingMessageText"
+            );
+
+
+        const messages = [
+
+            "🫧 Creativity is allowed to become visible.",
+
+            "✨ You are allowed to make something new.",
+
+            "🎨 Your imagination has somewhere to go.",
+
+            "🌱 Becoming can look like creating.",
+
+            "🫧 You don't have to make it perfect.",
+
+            "✨ Let the idea breathe.",
+
+            "🎨 Make room for what wants to emerge.",
+
+            "🌱 Your creativity belongs here.",
+
+            "🫧 Take your time becoming.",
+
+            "✨ Curiosity can become creation."
+
+        ];
+
+
+        let messageIndex =
+            0;
+
+
+        let x =
+            12;
+
+
+        let y =
+            62;
+
+
+        let targetX =
+            12;
+
+
+        let targetY =
+            62;
+
+
+        let nextMoveTime =
+            Date.now() + 3500;
+
+
+
+        /* =============================================
+           SHOW FIRST MESSAGE GENTLY
+        ============================================= */
+
+        setTimeout(
+            function () {
+
+                bubble.classList.add(
+                    "visible"
+                );
+
+            },
+            1200
+        );
+
+
+
+        /* =============================================
+           CHANGE MESSAGE SLOWLY
+        ============================================= */
+
+        setInterval(
+            function () {
+
+
+                bubble.classList.remove(
+                    "visible"
+                );
+
+
+                setTimeout(
+                    function () {
+
+
+                        messageIndex =
+                            (
+                                messageIndex + 1
+                            )
+                            %
+                            messages.length;
+
+
+                        messageText.textContent =
+                            messages[
+                                messageIndex
+                            ];
+
+
+                        bubble.classList.add(
+                            "visible"
+                        );
+
+
+                    },
+                    1800
+                );
+
+
+            },
+            9000
+        );
+
+
+
+        /* =============================================
+           PICK A NEW LOCATION
+           
+           Slow movement.
+           No sudden jumps.
+        ============================================= */
+
+        function chooseNewPosition() {
+
+
+            const maxX =
+                Math.max(
+                    8,
+                    Math.min(
+                        72,
+                        100 -
+                        (
+                            bubble.offsetWidth /
+                            window.innerWidth *
+                            100
+                        ) -
+                        8
+                    )
+                );
+
+
+            const maxY =
+                Math.max(
+                    20,
+                    Math.min(
+                        82,
+                        100 -
+                        (
+                            bubble.offsetHeight /
+                            window.innerHeight *
+                            100
+                        ) -
+                        8
+                    )
+                );
+
+
+            targetX =
+                8 +
+                Math.random()
+                *
+                (
+                    maxX - 8
+                );
+
+
+            targetY =
+                18 +
+                Math.random()
+                *
+                (
+                    maxY - 18
+                );
+
+        }
+
+
+
+        /* =============================================
+           SMOOTH FLOATING MOTION
+        ============================================= */
+
+        function animate() {
+
+
+            const ease =
+                0.0045;
+
+
+            x +=
+                (
+                    targetX - x
+                )
+                *
+                ease;
+
+
+            y +=
+                (
+                    targetY - y
+                )
+                *
+                ease;
+
+
+            bubble.style.left =
+                x + "%";
+
+
+            bubble.style.top =
+                y + "%";
+
+
+            if (
+                Date.now() >
+                nextMoveTime
+            ) {
+
+                chooseNewPosition();
+
+
+                nextMoveTime =
+                    Date.now()
+                    +
+                    9000
+                    +
+                    Math.random()
+                    * 5000;
+
+            }
+
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+
+        chooseNewPosition();
+
+
+        animate();
+
+
+    }
+);
+
+</script>
+
 
 
 </body>
