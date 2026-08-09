@@ -1,28 +1,1786 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Still Becoming Village Circle</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        The Still Becoming Village Circle
+    </title>
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #e8fffb;
+
+            color:
+                #285f61;
+
+            line-height:
+                1.7;
+
+            overflow-x:
+                hidden;
+        }
+
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        header {
+            width: 100%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
+
+            border-bottom:
+                1px solid
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.10
+                );
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                1000;
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
+        }
+
+
+        nav {
+            max-width:
+                1500px;
+
+            margin:
+                0 auto;
+
+            padding:
+                22px 4%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                30px;
+        }
+
+
+        .logo a {
+            color:
+                #285f61;
+
+            text-decoration:
+                none;
+
+            font-size:
+                22px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+        }
+
+
+        nav ul {
+            list-style:
+                none;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                28px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        nav ul li {
+            margin:
+                0;
+        }
+
+
+        nav ul li a {
+            color:
+                #285f61;
+
+            text-decoration:
+                none;
+
+            font-size:
+                16px;
+
+            font-weight:
+                600;
+
+            transition:
+                color 0.25s ease;
+        }
+
+
+        nav ul li a:hover {
+            color:
+                #16aaa9;
+        }
+
+
+
+        /* =====================================================
+           FLOATING BECOMING BUBBLE
+           
+           This is the shared Village bubble.
+           It is NOT a pill.
+           It is NOT a stationary message box.
+        ===================================================== */
+
+        .floating-bubble {
+
+            position:
+                fixed;
+
+            left:
+                12vw;
+
+            top:
+                62vh;
+
+            z-index:
+                2000;
+
+            width:
+                max-content;
+
+            max-width:
+                min(
+                    250px,
+                    42vw
+                );
+
+            min-height:
+                48px;
+
+            padding:
+                12px 22px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-align:
+                center;
+
+            pointer-events:
+                none;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.52
+                    ),
+                    rgba(
+                        235,
+                        255,
+                        252,
+                        0.22
+                    ) 45%,
+                    rgba(
+                        170,
+                        239,
+                        232,
+                        0.13
+                    )
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.75
+                );
+
+            box-shadow:
+
+                inset
+                5px 5px 15px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.60
+                ),
+
+                inset
+                -5px -5px 15px
+                rgba(
+                    78,
+                    190,
+                    194,
+                    0.08
+                ),
+
+                0 12px 30px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.07
+                );
+
+            backdrop-filter:
+                blur(4px);
+
+            -webkit-backdrop-filter:
+                blur(4px);
+
+            opacity:
+                0;
+
+            transform:
+                scale(0.96);
+
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+
+        .floating-bubble.visible {
+
+            opacity:
+                0.76;
+
+            transform:
+                scale(1);
+        }
+
+
+        .floating-bubble span {
+
+            color:
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.78
+                );
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+
+            line-height:
+                1.4;
+
+            white-space:
+                normal;
+        }
+
+
+
+        /* =====================================================
+           HOME HERO
+           
+           IMPORTANT:
+           The title does NOT move.
+        ===================================================== */
+
+        .hero {
+
+            min-height:
+                720px;
+
+            padding:
+                95px 6%
+                85px;
+
+            text-align:
+                center;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.98
+                    ),
+                    rgba(
+                        226,
+                        255,
+                        250,
+                        0.84
+                    ) 48%,
+                    rgba(
+                        207,
+                        250,
+                        243,
+                        0.96
+                    )
+                );
+        }
+
+
+
+        /* =====================================================
+           LARGE HERO BUBBLE
+           
+           This is separate from the floating message bubble.
+        ===================================================== */
+
+        .hero-bubble {
+
+            width:
+                175px;
+
+            height:
+                175px;
+
+            margin:
+                0 auto 38px;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.96
+                    ),
+                    rgba(
+                        215,
+                        253,
+                        248,
+                        0.62
+                    ) 48%,
+                    rgba(
+                        177,
+                        239,
+                        233,
+                        0.36
+                    )
+                );
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            box-shadow:
+
+                inset
+                12px 12px 28px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                ),
+
+                inset
+                -10px -10px 24px
+                rgba(
+                    69,
+                    181,
+                    193,
+                    0.10
+                ),
+
+                0 25px 60px
+                rgba(
+                    40,
+                    130,
+                    135,
+                    0.12
+                );
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                68px;
+        }
+
+
+
+        /* =====================================================
+           HERO TEXT
+        ===================================================== */
+
+        .hero h1 {
+
+            color:
+                #16aaa9;
+
+            font-size:
+                clamp(
+                    42px,
+                    7vw,
+                    76px
+                );
+
+            line-height:
+                1.08;
+
+            margin-bottom:
+                22px;
+
+            font-weight:
+                700;
+        }
+
+
+        .hero h2 {
+
+            max-width:
+                900px;
+
+            margin:
+                0 auto 24px;
+
+            color:
+                #285f61;
+
+            font-size:
+                clamp(
+                    20px,
+                    3vw,
+                    28px
+                );
+
+            line-height:
+                1.4;
+
+            font-weight:
+                600;
+        }
+
+
+        .quote {
+
+            margin-bottom:
+                30px;
+
+            color:
+                #16aaa9;
+
+            font-size:
+                20px;
+
+            font-style:
+                italic;
+
+            font-weight:
+                600;
+        }
+
+
+        .description {
+
+            max-width:
+                850px;
+
+            margin:
+                0 auto 30px;
+
+            color:
+                #5d565f;
+
+            font-size:
+                18px;
+        }
+
+
+        .welcome-button {
+
+            display:
+                inline-block;
+
+            padding:
+                14px 30px;
+
+            border-radius:
+                40px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            color:
+                #16aaa9;
+
+            text-decoration:
+                none;
+
+            font-size:
+                17px;
+
+            font-weight:
+                700;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            box-shadow:
+                0 12px 28px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.10
+                );
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .welcome-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 16px 35px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.15
+                );
+        }
+
+
+
+        /* =====================================================
+           DISCOVERY SECTION
+        ===================================================== */
+
+        .inside {
+
+            max-width:
+                1150px;
+
+            margin:
+                0 auto;
+
+            padding:
+                85px 5%
+                100px;
+
+            text-align:
+                center;
+        }
+
+
+        .inside h2 {
+
+            color:
+                #16aaa9;
+
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    52px
+                );
+
+            margin-bottom:
+                48px;
+        }
+
+
+        .cards {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap:
+                30px;
+        }
+
+
+        .card {
+
+            min-height:
+                290px;
+
+            padding:
+                45px 30px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.09
+                );
+
+            border-radius:
+                55px 40px 60px 45px;
+        }
+
+
+        .card:nth-child(2) {
+
+            border-radius:
+                40px 60px 45px 55px;
+        }
+
+
+        .card:nth-child(3) {
+
+            border-radius:
+                60px 45px 55px 40px;
+        }
+
+
+        .card h3 {
+
+            color:
+                #16aaa9;
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .card p {
+
+            color:
+                #5d565f;
+
+            font-size:
+                17px;
+
+            margin-bottom:
+                16px;
+        }
+
+
+
+        /* =====================================================
+           THERE IS ROOM SECTION
+        ===================================================== */
+
+        .welcome {
+
+            max-width:
+                1000px;
+
+            margin:
+                0 auto;
+
+            padding:
+                0 6%
+                110px;
+
+            text-align:
+                center;
+        }
+
+
+        .welcome-box {
+
+            padding:
+                65px 8%;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
+
+            border-radius:
+                60px 45px 65px 40px;
+
+            box-shadow:
+                0 25px 55px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.10
+                );
+        }
+
+
+        .welcome h2 {
+
+            color:
+                #16aaa9;
+
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    50px
+                );
+
+            margin-bottom:
+                24px;
+        }
+
+
+        .welcome p {
+
+            max-width:
+                780px;
+
+            margin:
+                0 auto;
+
+            color:
+                #5d565f;
+
+            font-size:
+                19px;
+        }
+
+
+
+        /* =====================================================
+           VILLAGE SOUNDTRACK
+           
+           Same component will be used on every page.
+        ===================================================== */
+
+        .soundtrack {
+
+            position:
+                fixed;
+
+            right:
+                22px;
+
+            bottom:
+                22px;
+
+            width:
+                170px;
+
+            height:
+                170px;
+
+            z-index:
+                3000;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.95
+                    ),
+                    rgba(
+                        224,
+                        255,
+                        250,
+                        0.82
+                    ) 50%,
+                    rgba(
+                        176,
+                        239,
+                        233,
+                        0.62
+                    )
+                );
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
+
+            box-shadow:
+
+                inset
+                8px 8px 20px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.80
+                ),
+
+                0 15px 40px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.15
+                );
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            cursor:
+                pointer;
+
+            transition:
+                all 0.4s ease;
+        }
+
+
+        .soundtrack:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.20
+                );
+        }
+
+
+        .soundtrack-label {
+
+            position:
+                absolute;
+
+            top:
+                17px;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            text-align:
+                center;
+
+            color:
+                #285f61;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .record-player {
+
+            width:
+                112px;
+
+            height:
+                78px;
+
+            margin-top:
+                20px;
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ddd5ca,
+                    #b8aa99
+                );
+
+            box-shadow:
+                0 7px 14px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.16
+                );
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+        }
+
+
+        .record {
+
+            width:
+                61px;
+
+            height:
+                61px;
+
+            border-radius:
+                50%;
+
+            background:
+                #181818;
+
+            border:
+                4px solid
+                #101010;
+
+            position:
+                relative;
+
+            box-shadow:
+                0 3px 9px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.30
+                );
+        }
+
+
+        .record::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                8px;
+
+            border-radius:
+                50%;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.13
+                );
+        }
+
+
+        .record::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            left:
+                50%;
+
+            top:
+                50%;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
+
+            border-radius:
+                50%;
+
+            background:
+                #d5c3a2;
+
+            border:
+                2px solid
+                #111111;
+        }
+
+
+        .play-button {
+
+            position:
+                absolute;
+
+            left:
+                50%;
+
+            top:
+                50%;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(
+                    22,
+                    170,
+                    169,
+                    0.94
+                );
+
+            color:
+                #ffffff;
+
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                12px;
+
+            z-index:
+                5;
+        }
+
+
+        .tone-arm {
+
+            position:
+                absolute;
+
+            width:
+                35px;
+
+            height:
+                4px;
+
+            right:
+                6px;
+
+            top:
+                15px;
+
+            background:
+                #4c4842;
+
+            border-radius:
+                5px;
+
+            transform:
+                rotate(
+                    28deg
+                );
+
+            transform-origin:
+                right center;
+        }
+
+
+        .soundtrack-note {
+
+            position:
+                absolute;
+
+            bottom:
+                13px;
+
+            width:
+                100%;
+
+            text-align:
+                center;
+
+            color:
+                #527779;
+
+            font-size:
+                9px;
+        }
+
+
+        /* OPEN PLAYER */
+
+        .soundtrack.open {
+
+            width:
+                min(
+                    390px,
+                    calc(
+                        100vw - 24px
+                    )
+                );
+
+            height:
+                auto;
+
+            min-height:
+                235px;
+
+            border-radius:
+                30px;
+
+            padding:
+                18px;
+
+            cursor:
+                default;
+        }
+
+
+        .soundtrack.open
+        .soundtrack-closed {
+
+            display:
+                none;
+        }
+
+
+        .soundtrack-player {
+
+            display:
+                none;
+
+            width:
+                100%;
+        }
+
+
+        .soundtrack.open
+        .soundtrack-player {
+
+            display:
+                block;
+        }
+
+
+        .soundtrack-title {
+
+            text-align:
+                center;
+
+            color:
+                #285f61;
+
+            font-size:
+                16px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                3px;
+        }
+
+
+        .soundtrack-song {
+
+            text-align:
+                center;
+
+            color:
+                #16aaa9;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .soundcloud-frame {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                166px;
+
+            border:
+                none;
+
+            border-radius:
+                15px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .close-soundtrack {
+
+            display:
+                block;
+
+            margin:
+                9px auto 0;
+
+            padding:
+                7px 18px;
+
+            border:
+                none;
+
+            border-radius:
+                25px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            color:
+                #285f61;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
+
+            border-top:
+                1px solid
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.10
+                );
+
+            text-align:
+                center;
+
+            padding:
+                55px 6%;
+
+            color:
+                #5d565f;
+        }
+
+
+        footer p {
+
+            margin-bottom:
+                18px;
+        }
+
+
+        footer a {
+
+            color:
+                #16aaa9;
+
+            font-weight:
+                700;
+
+            text-decoration:
+                none;
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (
+            max-width: 900px
+        ) {
+
+            nav {
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+            }
+
+
+            nav ul {
+
+                justify-content:
+                    center;
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    1fr;
+
+                max-width:
+                    650px;
+
+                margin:
+                    0 auto;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (
+            max-width: 600px
+        ) {
+
+            nav {
+
+                padding:
+                    18px 5%;
+            }
+
+
+            .logo a {
+
+                font-size:
+                    20px;
+
+                white-space:
+                    normal;
+            }
+
+
+            nav ul {
+
+                gap:
+                    10px 15px;
+            }
+
+
+            nav ul li a {
+
+                font-size:
+                    14px;
+            }
+
+
+            .hero {
+
+                min-height:
+                    650px;
+
+                padding:
+                    70px 5%
+                    65px;
+            }
+
+
+            .hero-bubble {
+
+                width:
+                    145px;
+
+                height:
+                    145px;
+
+                font-size:
+                    55px;
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    42px;
+            }
+
+
+            .hero h2 {
+
+                font-size:
+                    20px;
+            }
+
+
+            .description {
+
+                font-size:
+                    17px;
+            }
+
+
+            .inside {
+
+                padding:
+                    65px 5%
+                    80px;
+            }
+
+
+            .card {
+
+                padding:
+                    40px 25px;
+            }
+
+
+            .welcome {
+
+                padding:
+                    0 5%
+                    80px;
+            }
+
+
+            .welcome-box {
+
+                padding:
+                    45px 25px;
+            }
+
+
+            .welcome p {
+
+                font-size:
+                    17px;
+            }
+
+
+            .floating-bubble {
+
+                max-width:
+                    190px;
+
+                padding:
+                    10px 17px;
+            }
+
+
+            .floating-bubble span {
+
+                font-size:
+                    12px;
+            }
+
+
+            .soundtrack {
+
+                width:
+                    145px;
+
+                height:
+                    145px;
+
+                right:
+                    10px;
+
+                bottom:
+                    10px;
+            }
+
+
+            .record-player {
+
+                transform:
+                    scale(
+                        0.78
+                    );
+            }
+
+
+            .soundtrack.open {
+
+                width:
+                    calc(
+                        100vw - 20px
+                    );
+
+                right:
+                    10px;
+
+                bottom:
+                    10px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <header>
 
     <nav>
 
         <div class="logo">
-            <a href="index.html">🌱 The Still Becoming Village Circle</a>
+
+            <a href="index.html">
+                🌱 The Still Becoming Village Circle
+            </a>
+
         </div>
 
+
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Inside the Bubble</a></li>
-            <li><a href="LearningtheUnknown.html">The Unknown</a></li>
-            <li><a href="events.html">Experiences</a></li>
-            <li><a href="contact.html">Connect</a></li>
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+
+            <li>
+                <a href="about.html">
+                    Inside the Bubble
+                </a>
+            </li>
+
+
+            <li>
+                <a href="LearningtheUnknown.html">
+                    The Unknown
+                </a>
+            </li>
+
+
+            <li>
+                <a href="events.html">
+                    Experiences
+                </a>
+            </li>
+
+
+            <li>
+                <a href="contact.html">
+                    Connect
+                </a>
+            </li>
+
+
+            <li>
+                <a href="coaching.html">
+                    Support
+                </a>
+            </li>
+
         </ul>
 
     </nav>
@@ -30,35 +1788,74 @@
 </header>
 
 
+
+<!-- =====================================================
+     SHARED FLOATING BECOMING BUBBLE
+===================================================== -->
+
+<div
+    class="floating-bubble"
+    id="floatingBubble"
+    aria-hidden="true"
+>
+
+    <span id="floatingMessage">
+        🫧 You belong before you bloom.
+    </span>
+
+</div>
+
+
+
+<!-- =====================================================
+     HOME HERO
+===================================================== -->
+
 <main>
+
 
     <section class="hero">
 
-        <div class="bubble">
+
+        <div class="hero-bubble">
             🫧
         </div>
 
-        <h1>The Still Becoming Village Circle</h1>
+
+        <h1>
+            The Still Becoming Village Circle
+        </h1>
+
 
         <h2>
-            A place where healing, curiosity, growth, and belonging are welcomed—one step at a time.
+            A place where healing, curiosity, growth,
+            and belonging are welcomed—one step at a time.
         </h2>
+
 
         <p class="quote">
             "You don't have to have it all together to belong here."
         </p>
 
+
         <p class="description">
 
             Welcome.
 
-            You've just stepped inside The Still Becoming Village Circle..
+            You've just stepped inside
+            The Still Becoming Village Circle.
 
-            This isn't a place where you're expected to have all the answers.
+            This isn't a place where you're expected
+            to have all the answers.
 
-            It's a place where questions are welcomed, healing happens at your own pace, and becoming is honored instead of rushed.
+            It's a place where questions are welcomed,
+            healing happens at your own pace,
+            and becoming is honored instead of rushed.
 
-            Whether you're beginning again, discovering something new about yourself, or simply looking for a place where you can breathe without pretending...
+            Whether you're beginning again,
+            discovering something new about yourself,
+            or simply looking for a place where you
+            can breathe without pretending...
 
             there's room for you here.
 
@@ -68,132 +1865,265 @@
 
         </p>
 
-        <a href="about.html" class="welcomeButton">
+
+        <a
+            href="about.html"
+            class="welcome-button"
+        >
+
             🫧 Step Inside the Bubble. It's Okay.
+
         </a>
+
 
     </section>
 
+
+
+    <!-- =================================================
+         DISCOVER
+    ================================================== -->
 
     <section class="inside">
 
-        <h2>What You'll Discover Inside the Bubble</h2>
+
+        <h2>
+            What You'll Discover Inside the Bubble
+        </h2>
+
 
         <div class="cards">
 
+
             <div class="card">
 
-                <h3>📚 Learning the Unknown</h3>
+                <h3>
+                    📚 Learning the Unknown
+                </h3>
+
 
                 <p>
+
                     Explore books, journals, worksheets,
                     and resources created to support your
                     healing and becoming.
+
                 </p>
 
             </div>
 
 
+
             <div class="card">
 
-                <h3>💬 Real Conversations</h3>
+                <h3>
+                    💬 Real Conversations
+                </h3>
+
 
                 <p>
-                    Explore stories, reflections, and conversations that create space for curiosity instead of judgment.
+
+                    Explore stories, reflections,
+                    and conversations that create
+                    space for curiosity instead of judgment.
+
                 </p>
 
+
                 <p>
+
                     Discover authentic conversations,
                     belonging, encouragement,
                     and meaningful connection.
+
                 </p>
 
             </div>
+
 
 
             <div class="card">
 
-                <h3>🌱 Growing Together</h3>
+                <h3>
+                    🌱 Growing Together
+                </h3>
+
 
                 <p>
-                    Workshops, books, experiences, and community moments that support your growth one step at a time.
+
+                    Workshops, books, experiences,
+                    and community moments that support
+                    your growth one step at a time.
+
                 </p>
 
+
                 <p>
+
                     Workshops, virtual gatherings,
                     discussions, and opportunities
                     to grow together.
+
                 </p>
 
             </div>
 
-        </div>
-
-    </section>
-
-
-    <section class="messages">
-
-        <h2>Today's Becoming Messages</h2>
-
-        <div class="bubbleMessages">
-
-            <div class="message">
-                🫧 You belong before you bloom.
-            </div>
-
-            <div class="message">
-                🫧 Healing isn't linear.
-            </div>
-
-            <div class="message">
-                🫧 Rest is productive.
-            </div>
-
-            <div class="message">
-                🫧 Curiosity creates connection.
-            </div>
-
-            <div class="message">
-                🫧 Becoming takes courage.
-            </div>
-
-            <div class="message">
-                🫧 It's okay to begin again.
-            </div>
 
         </div>
 
     </section>
 
+
+
+    <!-- =================================================
+         THERE IS ROOM
+    ================================================== -->
 
     <section class="welcome">
 
-        <h2>There Is Room for You Here</h2>
 
-        <p>
+        <div class="welcome-box">
 
-            Whether you're beginning your healing journey,
-            supporting someone you love,
-            rediscovering yourself,
-            or simply searching for a place where authenticity is welcomed—
 
-            there is room for you here.
+            <h2>
+                There Is Room for You Here
+            </h2>
 
-        </p>
+
+            <p>
+
+                Whether you're beginning your healing journey,
+                supporting someone you love,
+                rediscovering yourself,
+                or simply searching for a place where
+                authenticity is welcomed—
+
+                there is room for you here.
+
+            </p>
+
+
+        </div>
+
 
     </section>
+
 
 </main>
 
 
+
+<!-- =====================================================
+     VILLAGE SOUNDTRACK
+===================================================== -->
+
+<div
+    class="soundtrack"
+    id="soundtrack"
+    onclick="openSoundtrack()"
+>
+
+
+    <!-- CLOSED -->
+
+    <div class="soundtrack-closed">
+
+
+        <div class="soundtrack-label">
+            🫧 The Village Soundtrack
+        </div>
+
+
+        <div class="record-player">
+
+
+            <div class="record">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+
+            <div class="tone-arm"></div>
+
+
+        </div>
+
+
+        <div class="soundtrack-note">
+            Tap the record to listen
+        </div>
+
+
+    </div>
+
+
+
+    <!-- OPEN -->
+
+    <div
+        class="soundtrack-player"
+        onclick="event.stopPropagation()"
+    >
+
+
+        <div class="soundtrack-title">
+            🫧 The Village Soundtrack
+        </div>
+
+
+        <div class="soundtrack-song">
+            Bricks — Andra Day
+        </div>
+
+
+        <iframe
+            class="soundcloud-frame"
+            title="The Village Soundtrack"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay; encrypted-media"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+        >
+        </iframe>
+
+
+        <button
+            class="close-soundtrack"
+            type="button"
+            onclick="closeSoundtrack()"
+        >
+
+            Close
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
+
 
     <p>
 
-        Take what you need.<br><br>
+        Take what you need.
 
-        Leave what you don't.<br><br>
+        <br><br>
+
+        Leave what you don't.
+
+        <br><br>
 
         Come back whenever you need to.
 
@@ -202,7 +2132,9 @@
 
     <p>
 
-        Healing isn't a destination.<br><br>
+        Healing isn't a destination.
+
+        <br><br>
 
         It's a circle we grow through together.
 
@@ -213,8 +2145,12 @@
 
         📧
 
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+
             thestillbecomingvillagecircle@gmail.com
+
         </a>
 
     </p>
@@ -226,10 +2162,229 @@
 
     </p>
 
+
 </footer>
 
 
-<script src="script.js"></script>
+
+<!-- =====================================================
+     FLOATING MESSAGE SYSTEM
+===================================================== -->
+
+<script>
+
+    const becomingMessages = [
+
+        "🫧 You belong before you bloom.",
+
+        "🫧 Healing isn't linear.",
+
+        "🫧 Rest is productive.",
+
+        "🫧 Curiosity creates connection.",
+
+        "🫧 Becoming takes courage.",
+
+        "🫧 It's okay to begin again."
+
+    ];
+
+
+    const floatingBubble =
+        document.getElementById(
+            "floatingBubble"
+        );
+
+
+    const floatingMessage =
+        document.getElementById(
+            "floatingMessage"
+        );
+
+
+    let messageIndex = 0;
+
+
+    let currentX = 12;
+
+    let currentY = 62;
+
+
+    let targetX = 12;
+
+    let targetY = 62;
+
+
+    function chooseNewBubblePosition() {
+
+        const maxX =
+            window.innerWidth < 600
+                ? 68
+                : 78;
+
+
+        const maxY =
+            window.innerWidth < 600
+                ? 78
+                : 84;
+
+
+        targetX =
+            8 +
+            Math.random()
+            *
+            (
+                maxX - 8
+            );
+
+
+        targetY =
+            14 +
+            Math.random()
+            *
+            (
+                maxY - 14
+            );
+
+    }
+
+
+    function moveBubble() {
+
+        currentX +=
+            (
+                targetX - currentX
+            )
+            *
+            0.0028;
+
+
+        currentY +=
+            (
+                targetY - currentY
+            )
+            *
+            0.0028;
+
+
+        floatingBubble.style.left =
+            currentX + "%";
+
+
+        floatingBubble.style.top =
+            currentY + "%";
+
+
+        requestAnimationFrame(
+            moveBubble
+        );
+
+    }
+
+
+    function changeMessage() {
+
+        floatingBubble.classList.remove(
+            "visible"
+        );
+
+
+        setTimeout(
+            function () {
+
+                messageIndex =
+                    (
+                        messageIndex + 1
+                    )
+                    %
+                    becomingMessages.length;
+
+
+                floatingMessage.textContent =
+                    becomingMessages[
+                        messageIndex
+                    ];
+
+
+                floatingBubble.classList.add(
+                    "visible"
+                );
+
+
+                chooseNewBubblePosition();
+
+            },
+            1800
+        );
+
+    }
+
+
+    setTimeout(
+        function () {
+
+            floatingBubble.classList.add(
+                "visible"
+            );
+
+        },
+        1800
+    );
+
+
+    chooseNewBubblePosition();
+
+    moveBubble();
+
+
+    setInterval(
+        changeMessage,
+        9000
+    );
+
+</script>
+
+
+
+<!-- =====================================================
+     SOUNDTRACK SYSTEM
+===================================================== -->
+
+<script>
+
+    function openSoundtrack() {
+
+        const player =
+            document.getElementById(
+                "soundtrack"
+            );
+
+
+        player.classList.add(
+            "open"
+        );
+
+    }
+
+
+    function closeSoundtrack() {
+
+        const player =
+            document.getElementById(
+                "soundtrack"
+            );
+
+
+        player.classList.remove(
+            "open"
+        );
+
+    }
+
+</script>
+
+
 
 </body>
+
 </html>
