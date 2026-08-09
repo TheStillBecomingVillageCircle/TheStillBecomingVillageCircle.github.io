@@ -1,426 +1,352 @@
 /* =========================================================
    THE STILL BECOMING VILLAGE CIRCLE
-   SITE-WIDE FLOATING BUBBLE
+   SITE-WIDE FLOATING MESSAGE BUBBLE
+   ---------------------------------------------------------
+   This controls ONLY the rotating Village message bubble.
+
+   It does NOT control:
+   - SoundCloud
+   - The Village Soundtrack
+   - Navigation
+   - Page content
+   - Buttons
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* -----------------------------------------------------
-       DO NOT ADD THE BUBBLE TWICE
-       Home already has its own soundtrack bubble.
-    ----------------------------------------------------- */
+    /* =====================================================
+       MESSAGES
+    ===================================================== */
 
-    if (document.getElementById("villageFloatingBubble")) {
-        return;
-    }
+    const villageMessages = [
 
+        "Honor your pace.",
 
-    /* -----------------------------------------------------
-       CREATE THE FLOATING BUBBLE
-    ----------------------------------------------------- */
+        "You belong before you bloom.",
 
-    const bubble = document.createElement("div");
+        "There is room for you here.",
 
-    bubble.id = "villageFloatingBubble";
+        "Stay in presence.",
 
-    bubble.innerHTML = `
+        "You don't have to know yet.",
 
-        <div class="village-bubble-inner">
+        "Becoming takes time.",
 
-            <div
-                class="village-word"
-                id="villageWord"
-            >
-                Becoming
-            </div>
+        "Curiosity is allowed here.",
 
-            <div class="village-small-text">
-                stay curious
-            </div>
+        "You are allowed to begin again.",
 
-        </div>
+        "Let yourself be unfinished.",
 
-    `;
+        "Your becoming does not need permission.",
 
+        "You can pause without disappearing.",
 
-    document.body.appendChild(bubble);
+        "There is wisdom in wondering.",
 
+        "You are still becoming.",
 
+        "Make room for what is becoming.",
 
-    /* -----------------------------------------------------
-       BUBBLE STYLES
-    ----------------------------------------------------- */
+        "You don't have to rush the answer.",
 
-    const style = document.createElement("style");
+        "Keep becoming.",
 
-    style.textContent = `
+        "Come as you are.",
 
-        #villageFloatingBubble {
+        "Your questions belong here.",
 
-            position: fixed;
+        "Growth does not always look loud.",
 
-            right: 24px;
-
-            bottom: 24px;
-
-            width: 145px;
-
-            height: 145px;
-
-            z-index: 9998;
-
-            border-radius:
-                52% 48% 55% 45%
-                /
-                46% 55% 45% 54%;
-
-            background:
-
-                radial-gradient(
-                    circle at 30% 24%,
-                    rgba(255,255,255,0.98),
-                    rgba(211,251,246,0.78)
-                );
-
-            border:
-                2px solid
-                rgba(255,255,255,0.94);
-
-            box-shadow:
-
-                inset
-                10px 10px 25px
-                rgba(255,255,255,0.90),
-
-                inset
-                -10px -10px 25px
-                rgba(72,181,196,0.10),
-
-                0 18px 45px
-                rgba(40,120,125,0.15);
-
-            backdrop-filter:
-                blur(10px);
-
-            -webkit-backdrop-filter:
-                blur(10px);
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            pointer-events:
-                none;
-
-            animation:
-                villageBubbleFloat 7s ease-in-out infinite;
-
-        }
-
-
-        .village-bubble-inner {
-
-            width:
-                100%;
-
-            height:
-                100%;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            text-align:
-                center;
-
-            padding:
-                20px;
-
-        }
-
-
-        .village-word {
-
-            color:
-                #16a9ae;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
-            font-size:
-                23px;
-
-            font-weight:
-                700;
-
-            line-height:
-                1.15;
-
-            transition:
-                opacity 0.45s ease,
-                transform 0.45s ease;
-
-        }
-
-
-        .village-small-text {
-
-            margin-top:
-                8px;
-
-            color:
-                #6c9293;
-
-            font-size:
-                11px;
-
-            letter-spacing:
-                1.5px;
-
-            text-transform:
-                lowercase;
-
-        }
-
-
-        @keyframes villageBubbleFloat {
-
-            0%,
-            100% {
-
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-
-            }
-
-            50% {
-
-                transform:
-                    translateY(-9px)
-                    rotate(2deg);
-
-            }
-
-        }
-
-
-        @keyframes villageWordOut {
-
-            from {
-
-                opacity:
-                    1;
-
-                transform:
-                    translateY(0);
-
-            }
-
-            to {
-
-                opacity:
-                    0;
-
-                transform:
-                    translateY(-7px);
-
-            }
-
-        }
-
-
-        @keyframes villageWordIn {
-
-            from {
-
-                opacity:
-                    0;
-
-                transform:
-                    translateY(7px);
-
-            }
-
-            to {
-
-                opacity:
-                    1;
-
-                transform:
-                    translateY(0);
-
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            #villageFloatingBubble {
-
-                width:
-                    112px;
-
-                height:
-                    112px;
-
-                right:
-                    12px;
-
-                bottom:
-                    12px;
-
-            }
-
-
-            .village-word {
-
-                font-size:
-                    18px;
-
-            }
-
-
-            .village-small-text {
-
-                font-size:
-                    8px;
-
-                letter-spacing:
-                    1px;
-
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(style);
-
-
-
-    /* -----------------------------------------------------
-       WORDS
-    ----------------------------------------------------- */
-
-    const villageWords = [
-
-        "Becoming",
-
-        "Curiosity",
-
-        "Presence",
-
-        "Possibility",
-
-        "Belonging",
-
-        "Reflection",
-
-        "Growth",
-
-        "Authenticity",
-
-        "Connection",
-
-        "Permission",
-
-        "Discovery",
-
-        "Becoming Again",
-
-        "Still Here",
-
-        "Stay Curious",
-
-        "You Belong",
-
-        "Begin Again"
+        "There is no deadline on becoming."
 
     ];
 
 
-    let currentWord = 0;
+    /* =====================================================
+       FIND EXISTING BUBBLE
+    ===================================================== */
 
-    const wordElement =
-        document.getElementById("villageWord");
-
-
-
-    /* -----------------------------------------------------
-       ROTATE THE WORD
-    ----------------------------------------------------- */
-
-    function changeVillageWord() {
-
-        if (!wordElement) {
-            return;
-        }
+    let bubble =
+        document.getElementById("villageFloatingMessage");
 
 
-        wordElement.style.animation =
-            "villageWordOut 0.45s ease forwards";
+    /* =====================================================
+       CREATE BUBBLE IF IT DOESN'T EXIST
+    ===================================================== */
+
+    if (!bubble) {
+
+        bubble = document.createElement("div");
+
+        bubble.id =
+            "villageFloatingMessage";
+
+        bubble.innerHTML = `
+
+            <div
+                class="village-message-text"
+                id="villageMessageText"
+            >
+                Honor your pace.
+            </div>
+
+        `;
+
+        document.body.appendChild(bubble);
+
+    }
+
+
+    /* =====================================================
+       FIND / CREATE MESSAGE TEXT
+    ===================================================== */
+
+    let messageText =
+        document.getElementById("villageMessageText");
+
+
+    if (!messageText) {
+
+        messageText =
+            document.createElement("div");
+
+        messageText.id =
+            "villageMessageText";
+
+        messageText.className =
+            "village-message-text";
+
+        messageText.textContent =
+            "Honor your pace.";
+
+        bubble.appendChild(messageText);
+
+    }
+
+
+    /* =====================================================
+       STYLES
+    ===================================================== */
+
+    if (!document.getElementById("villageMessageBubbleStyles")) {
+
+        const style =
+            document.createElement("style");
+
+        style.id =
+            "villageMessageBubbleStyles";
+
+
+        style.textContent = `
+
+            /* =============================================
+               FLOATING MESSAGE BUBBLE
+            ============================================= */
+
+            #villageFloatingMessage {
+
+                position: fixed;
+
+                left: 18px;
+
+                bottom: 24px;
+
+                z-index: 9997;
+
+                width: auto;
+
+                max-width: 330px;
+
+                min-height: 58px;
+
+                padding:
+                    14px 25px;
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                text-align: center;
+
+                background:
+                    rgba(255,255,255,0.94);
+
+                border:
+                    1px solid
+                    rgba(255,255,255,0.98);
+
+                border-radius:
+                    50px;
+
+                box-shadow:
+
+                    0 18px 45px
+                    rgba(40,120,125,0.16),
+
+                    inset
+                    0 1px 0
+                    rgba(255,255,255,0.95);
+
+                backdrop-filter:
+                    blur(12px);
+
+                -webkit-backdrop-filter:
+                    blur(12px);
+
+                pointer-events:
+                    none;
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0);
+
+                transition:
+
+                    opacity 0.55s ease,
+
+                    transform 0.55s ease;
+
+            }
+
+
+            /* =============================================
+               MESSAGE
+            ============================================= */
+
+            .village-message-text {
+
+                color:
+                    #16a9ae;
+
+                font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+
+                font-size:
+                    16px;
+
+                font-weight:
+                    600;
+
+                line-height:
+                    1.35;
+
+                white-space:
+                    normal;
+
+            }
+
+
+            /* =============================================
+               MESSAGE EXIT
+            ============================================= */
+
+            #villageFloatingMessage.message-changing {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(8px);
+
+            }
+
+
+            /* =============================================
+               MOBILE
+            ============================================= */
+
+            @media (max-width: 600px) {
+
+                #villageFloatingMessage {
+
+                    left:
+                        12px;
+
+                    bottom:
+                        14px;
+
+                    max-width:
+                        calc(100vw - 24px);
+
+                    min-height:
+                        50px;
+
+                    padding:
+                        12px 20px;
+
+                    border-radius:
+                        40px;
+
+                }
+
+
+                .village-message-text {
+
+                    font-size:
+                        14px;
+
+                }
+
+            }
+
+        `;
+
+
+        document.head.appendChild(style);
+
+    }
+
+
+    /* =====================================================
+       STARTING MESSAGE
+    ===================================================== */
+
+    let currentMessage =
+        0;
+
+
+    messageText.textContent =
+        villageMessages[currentMessage];
+
+
+    /* =====================================================
+       CHANGE MESSAGE
+       EVERY 4 SECONDS
+    ===================================================== */
+
+    setInterval(function () {
+
+        bubble.classList.add(
+            "message-changing"
+        );
 
 
         setTimeout(function () {
 
-            currentWord =
-                (currentWord + 1)
-                % villageWords.length;
+            currentMessage =
+                (currentMessage + 1)
+                % villageMessages.length;
 
 
-            wordElement.textContent =
-                villageWords[currentWord];
+            messageText.textContent =
+                villageMessages[currentMessage];
 
 
-            wordElement.style.animation =
-                "villageWordIn 0.45s ease forwards";
+            bubble.classList.remove(
+                "message-changing"
+            );
 
-        }, 450);
-
-    }
-
-
-    setInterval(
-        changeVillageWord,
-        3200
-    );
+        }, 550);
 
 
-
-    /* -----------------------------------------------------
-       ACCESSIBILITY
-    ----------------------------------------------------- */
-
-    const reduceMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-
-    if (reduceMotion.matches) {
-
-        bubble.style.animation =
-            "none";
-
-    }
+    }, 4000);
 
 
 });
