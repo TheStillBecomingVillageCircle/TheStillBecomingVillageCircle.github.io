@@ -1,19 +1,23 @@
 /* =========================================================
    THE STILL BECOMING VILLAGE CIRCLE
-   SITE-WIDE FLOATING BUBBLE
+   SOFT FLOATING VILLAGE MESSAGE
    =========================================================
 
-   This script controls:
-   • The clear/translucent floating bubble
-   • The rotating Village messages
-   • The bubble's free movement around the screen
+   PURPOSE:
+   • A clear, translucent bubble
+   • Very slow, gentle movement
+   • Soft message changes
+   • No sudden popping onto the screen
+   • No sharp jumps
+   • Works across every page that loads script.js
 
-   It does NOT control:
+   DOES NOT CONTROL:
    • SoundCloud
-   • The soundtrack record
+   • Record player
    • Navigation
    • Page content
 ========================================================= */
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -68,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       FIND EXISTING BUBBLE
+       FIND THE BUBBLE
     ===================================================== */
 
     let bubble =
@@ -78,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CREATE THE BUBBLE IF IT DOES NOT EXIST
+       CREATE BUBBLE
     ===================================================== */
 
     if (!bubble) {
@@ -100,13 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         `;
 
-        document.body.appendChild(bubble);
+        document.body.appendChild(
+            bubble
+        );
 
     }
 
 
     /* =====================================================
-       FIND MESSAGE TEXT
+       MESSAGE ELEMENT
     ===================================================== */
 
     let messageText =
@@ -114,10 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "villageMessageText"
         );
 
-
-    /* =====================================================
-       SAFETY CHECK
-    ===================================================== */
 
     if (!messageText) {
 
@@ -141,12 +143,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CREATE STYLES
+       STYLES
     ===================================================== */
 
     if (
         !document.getElementById(
-            "villageFloatingBubbleStyles"
+            "villageSoftBubbleStyles"
         )
     ) {
 
@@ -154,13 +156,13 @@ document.addEventListener("DOMContentLoaded", function () {
             document.createElement("style");
 
         style.id =
-            "villageFloatingBubbleStyles";
+            "villageSoftBubbleStyles";
 
 
         style.textContent = `
 
             /* =============================================
-               TRUE FLOATING BUBBLE
+               THE SOFT BUBBLE
             ============================================= */
 
             #villageFloatingMessage {
@@ -168,17 +170,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 position: fixed;
 
                 left: 0;
-
                 top: 0;
 
                 width: max-content;
 
-                max-width: 300px;
+                max-width: 270px;
 
-                min-height: 58px;
+                min-height: 56px;
 
                 padding:
-                    15px 26px;
+                    15px 25px;
+
 
                 display:
                     flex;
@@ -189,56 +191,49 @@ document.addEventListener("DOMContentLoaded", function () {
                 justify-content:
                     center;
 
+
                 text-align:
                     center;
 
 
                 /* -----------------------------------------
-                   CLEAR / TRANSLUCENT BUBBLE
+                   CLEAR SOAP-BUBBLE EFFECT
                 ----------------------------------------- */
 
                 background:
 
                     radial-gradient(
-                        circle at 27% 21%,
+                        circle at 28% 22%,
 
                         rgba(
                             255,
                             255,
                             255,
-                            0.58
-                        )
-                        0%,
+                            0.34
+                        ) 0%,
 
                         rgba(
                             255,
                             255,
                             255,
-                            0.20
-                        )
-                        22%,
-
-                        rgba(
-                            198,
-                            250,
-                            246,
                             0.10
-                        )
-                        55%,
+                        ) 25%,
+
+                        rgba(
+                            195,
+                            250,
+                            245,
+                            0.055
+                        ) 58%,
 
                         rgba(
                             255,
                             255,
                             255,
-                            0.025
-                        )
-                        100%
+                            0.015
+                        ) 100%
                     );
 
-
-                /* -----------------------------------------
-                   IRIDESCENT EDGE
-                ----------------------------------------- */
 
                 border:
                     1.5px solid
@@ -246,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         255,
                         255,
                         255,
-                        0.75
+                        0.60
                     );
 
 
@@ -255,62 +250,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /* -----------------------------------------
-                   REAL BUBBLE DEPTH
+                   VERY SOFT DEPTH
                 ----------------------------------------- */
 
                 box-shadow:
 
                     inset
-                    6px 6px 13px
+                    5px 5px 12px
                     rgba(
                         255,
                         255,
                         255,
-                        0.60
+                        0.45
                     ),
 
                     inset
-                    -7px -8px 16px
+                    -5px -5px 12px
                     rgba(
-                        71,
-                        183,
-                        199,
-                        0.10
+                        92,
+                        196,
+                        205,
+                        0.07
                     ),
 
-                    0 10px 28px
+                    0 8px 22px
                     rgba(
-                        55,
-                        145,
-                        153,
-                        0.12
+                        60,
+                        150,
+                        158,
+                        0.07
                     );
 
 
-                /* -----------------------------------------
-                   LET THE PAGE SHOW THROUGH
-                ----------------------------------------- */
-
                 backdrop-filter:
-                    blur(2px);
+                    blur(1.5px);
 
                 -webkit-backdrop-filter:
-                    blur(2px);
+                    blur(1.5px);
 
-
-                /* -----------------------------------------
-                   POSITION / LAYER
-                ----------------------------------------- */
 
                 z-index:
                     9997;
+
 
                 pointer-events:
                     none;
 
 
                 /* -----------------------------------------
-                   START HIDDEN
+                   IMPORTANT:
+                   START INVISIBLE AND FADE IN SLOWLY
                 ----------------------------------------- */
 
                 opacity:
@@ -326,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 transition:
-                    opacity 0.8s ease;
+                    opacity 2.5s ease;
 
 
                 will-change:
@@ -336,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* =============================================
-               NATURAL BUBBLE HIGHLIGHT
+               SOFT HIGHLIGHT
             ============================================= */
 
             #villageFloatingMessage::before {
@@ -347,11 +336,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 position:
                     absolute;
 
+
                 width:
-                    16px;
+                    13px;
 
                 height:
-                    16px;
+                    13px;
+
 
                 top:
                     9px;
@@ -369,22 +360,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         255,
                         255,
                         255,
-                        0.76
+                        0.55
                     );
 
 
                 filter:
-                    blur(1px);
+                    blur(1.5px);
 
 
                 opacity:
-                    0.78;
+                    0.65;
 
             }
 
 
             /* =============================================
-               SECONDARY IRIDESCENT REFLECTION
+               SECOND SOFT REFLECTION
             ============================================= */
 
             #villageFloatingMessage::after {
@@ -395,14 +386,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 position:
                     absolute;
 
+
                 width:
-                    7px;
+                    6px;
 
                 height:
-                    7px;
+                    6px;
+
 
                 right:
-                    18px;
+                    16px;
 
                 bottom:
                     12px;
@@ -414,10 +407,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 background:
                     rgba(
-                        169,
+                        180,
                         235,
-                        239,
-                        0.28
+                        238,
+                        0.20
                     );
 
 
@@ -428,7 +421,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* =============================================
-               MESSAGE TEXT
+               MESSAGE
             ============================================= */
 
             .village-message-text {
@@ -441,7 +434,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 color:
-                    #16a9ae;
+                    rgba(
+                        22,
+                        150,
+                        154,
+                        0.88
+                    );
 
 
                 font-family:
@@ -451,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 font-size:
-                    16px;
+                    15px;
 
 
                 font-weight:
@@ -472,18 +470,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         255,
                         255,
                         255,
-                        0.85
+                        0.70
                     );
 
 
+                opacity:
+                    1;
+
+
                 transition:
-                    opacity 0.5s ease;
+                    opacity 1.8s ease;
 
             }
 
 
             /* =============================================
-               MOBILE BUBBLE
+               MOBILE
             ============================================= */
 
             @media (max-width: 600px) {
@@ -491,13 +493,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 #villageFloatingMessage {
 
                     max-width:
-                        250px;
+                        235px;
 
                     min-height:
                         50px;
 
                     padding:
-                        12px 20px;
+                        12px 19px;
 
                 }
 
@@ -522,72 +524,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       MOVEMENT VARIABLES
+       MOVEMENT SETTINGS
     ===================================================== */
 
     let bubbleX =
-        80;
+        Math.max(
+            20,
+            window.innerWidth * 0.20
+        );
+
 
     let bubbleY =
-        180;
+        Math.max(
+            100,
+            window.innerHeight * 0.30
+        );
 
 
     let targetX =
-        80;
+        bubbleX;
+
 
     let targetY =
-        180;
+        bubbleY;
 
 
-    let pauseUntil =
-        0;
+    let nextMoveTime =
+        Date.now() +
+        5000;
 
 
     /* =====================================================
-       FIND SAFE SCREEN AREA
+       GET SAFE SCREEN AREA
     ===================================================== */
 
     function getSafeArea() {
 
         const width =
             bubble.offsetWidth ||
-            220;
+            210;
 
 
         const height =
             bubble.offsetHeight ||
-            60;
+            56;
 
 
-        const padding =
-            14;
-
-
-        const maxX =
-            Math.max(
-                padding,
-                window.innerWidth -
-                width -
-                padding
-            );
-
-
-        const maxY =
-            Math.max(
-                padding,
-                window.innerHeight -
-                height -
-                padding
-            );
+        const margin =
+            22;
 
 
         return {
 
             maxX:
-                maxX,
+                Math.max(
+                    margin,
+                    window.innerWidth -
+                    width -
+                    margin
+                ),
+
 
             maxY:
-                maxY
+                Math.max(
+                    margin,
+                    window.innerHeight -
+                    height -
+                    margin
+                )
 
         };
 
@@ -595,7 +599,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CHOOSE A NEW LOCATION
+       PICK A GENTLE NEW DESTINATION
     ===================================================== */
 
     function chooseNewDestination() {
@@ -605,40 +609,81 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         targetX =
-            Math.random()
-            * safe.maxX;
+            marginBetween(
+                25,
+                safe.maxX
+            );
 
 
         targetY =
-            Math.random()
-            * safe.maxY;
+            marginBetween(
+                70,
+                safe.maxY
+            );
 
 
-        pauseUntil =
-            Date.now()
-            +
+        /* -----------------------------------------------
+           Stay in this location for a while before
+           choosing another one.
+        ------------------------------------------------ */
+
+        nextMoveTime =
+            Date.now() +
             (
-                800
-                +
-                Math.random()
-                * 1800
+                9000 +
+                Math.random() * 6000
             );
 
     }
 
 
     /* =====================================================
-       MOVE BUBBLE SMOOTHLY
+       RANDOM NUMBER BETWEEN TWO VALUES
     ===================================================== */
 
-    function moveBubble() {
+    function marginBetween(
+        minimum,
+        maximum
+    ) {
+
+        if (
+            maximum <= minimum
+        ) {
+
+            return minimum;
+
+        }
+
+
+        return (
+            minimum +
+            Math.random()
+            *
+            (
+                maximum -
+                minimum
+            )
+        );
+
+    }
+
+
+    /* =====================================================
+       VERY SLOW MOVEMENT
+    ===================================================== */
+
+    function floatBubble() {
 
         const now =
             Date.now();
 
 
+        /* -----------------------------------------------
+           Only choose a new destination occasionally.
+        ------------------------------------------------ */
+
         if (
-            now >= pauseUntil
+            now >= nextMoveTime
         ) {
 
             chooseNewDestination();
@@ -646,24 +691,37 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        const differenceX =
+        /* -----------------------------------------------
+           Distance to destination
+        ------------------------------------------------ */
+
+        const distanceX =
             targetX -
             bubbleX;
 
 
-        const differenceY =
+        const distanceY =
             targetY -
             bubbleY;
 
 
+        /* -----------------------------------------------
+           VERY SLOW DRIFT
+
+           This is intentionally tiny.
+
+           The bubble should feel like it is floating,
+           not flying.
+        ------------------------------------------------ */
+
         bubbleX +=
-            differenceX *
-            0.008;
+            distanceX *
+            0.0018;
 
 
         bubbleY +=
-            differenceY *
-            0.008;
+            distanceY *
+            0.0018;
 
 
         bubble.style.transform =
@@ -675,35 +733,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         requestAnimationFrame(
-            moveBubble
+            floatBubble
         );
 
     }
 
 
     /* =====================================================
-       START FLOATING
+       FIRST DESTINATION
+    ===================================================== */
+
+    chooseNewDestination();
+
+
+    /* =====================================================
+       SOFT ENTRANCE
     ===================================================== */
 
     setTimeout(
         function () {
 
-            chooseNewDestination();
-
-
             bubble.style.opacity =
                 "1";
 
-
-            moveBubble();
-
         },
-        400
+        1200
     );
 
 
     /* =====================================================
-       ROTATE MESSAGE
+       START MOVEMENT
+    ===================================================== */
+
+    requestAnimationFrame(
+        floatBubble
+    );
+
+
+    /* =====================================================
+       ROTATING MESSAGES
     ===================================================== */
 
     let currentMessage =
@@ -711,6 +779,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function changeMessage() {
+
+        /* -----------------------------------------------
+           Fade words gently.
+        ------------------------------------------------ */
 
         messageText.style.opacity =
             "0";
@@ -721,8 +793,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 currentMessage =
                     (
-                        currentMessage
-                        +
+                        currentMessage +
                         1
                     )
                     %
@@ -739,24 +810,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     "1";
 
             },
-            500
+            1800
         );
 
     }
 
 
     /* =====================================================
-       CHANGE EVERY FOUR SECONDS
+       MESSAGE CHANGES EVERY 8 SECONDS
+       Not every 4.
     ===================================================== */
 
     setInterval(
         changeMessage,
-        4000
+        8000
     );
 
 
     /* =====================================================
-       KEEP BUBBLE ON SCREEN
+       RESIZE SAFETY
     ===================================================== */
 
     window.addEventListener(
@@ -797,24 +869,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-
-    /* =====================================================
-       ACCESSIBILITY
-    ===================================================== */
-
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-
-    if (
-        reducedMotion.matches
-    ) {
-
-        bubble.style.transition =
-            "opacity 0.8s ease";
-
-    }
 
 });
