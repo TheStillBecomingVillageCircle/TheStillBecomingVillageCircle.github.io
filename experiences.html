@@ -4,11 +4,16 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Experiences | The Still Becoming Village Circle</title>
 
 <style>
+
+/* =========================
+   BASIC
+========================= */
 
 * {
     box-sizing: border-box;
@@ -33,53 +38,107 @@ body {
 ========================= */
 
 nav {
-    background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid rgba(40,95,97,0.12);
 
-    padding: 22px 4%;
+    background:
+        rgba(255,255,255,0.97);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border-bottom:
+        1px solid rgba(40,95,97,0.12);
 
-    gap: 25px;
+    padding:
+        22px 4%;
 
-    position: sticky;
-    top: 0;
+    display:
+        flex;
 
-    z-index: 1000;
+    align-items:
+        center;
 
-    backdrop-filter: blur(10px);
+    justify-content:
+        space-between;
+
+    gap:
+        25px;
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    backdrop-filter:
+        blur(10px);
 }
+
 
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #285f61;
-    line-height: 1.3;
+
+    font-size:
+        24px;
+
+    font-weight:
+        700;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.3;
 }
+
+
+.logo a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
+}
+
 
 nav ul {
-    list-style: none;
 
-    display: flex;
-    align-items: center;
+    list-style:
+        none;
 
-    gap: 28px;
+    display:
+        flex;
 
-    flex-wrap: wrap;
+    align-items:
+        center;
+
+    gap:
+        28px;
+
+    flex-wrap:
+        wrap;
 }
+
 
 nav a {
-    text-decoration: none;
-    color: #285f61;
 
-    font-weight: 700;
-    font-size: 16px;
+    text-decoration:
+        none;
+
+    color:
+        #285f61;
+
+    font-weight:
+        700;
+
+    font-size:
+        16px;
 }
 
+
 nav a:hover {
-    color: #16aaa9;
+
+    color:
+        #16aaa9;
 }
 
 
@@ -89,81 +148,291 @@ nav a:hover {
 
 .hero {
 
-    min-height: 590px;
+    min-height:
+        680px;
 
-    padding: 95px 6% 80px;
+    padding:
+        90px 6%
+        85px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    display: flex;
-    flex-direction: column;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
 
     background:
+
         radial-gradient(
             circle at 50% 18%,
             rgba(255,255,255,0.98),
-            rgba(226,255,250,0.82) 48%,
-            rgba(207,250,243,0.95)
+            rgba(226,255,250,0.84) 48%,
+            rgba(207,250,243,0.96)
         );
 }
 
 
 /* =========================
-   EXPERIENCE BUBBLE
+   FLOATING BUBBLES
 ========================= */
 
-.experience-bubble {
+.hero-bubble {
 
-    width: 145px;
-    height: 145px;
+    position:
+        absolute;
 
-    margin-bottom: 35px;
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.95),
+            rgba(193,247,242,0.42)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+
+        inset
+        5px 5px 12px
+        rgba(255,255,255,0.85),
+
+        0 10px 25px
+        rgba(40,130,135,0.08);
+
+    pointer-events:
+        none;
+}
+
+
+.hero-bubble.one {
+
+    width:
+        70px;
+
+    height:
+        70px;
+
+    top:
+        18%;
+
+    left:
+        9%;
+
+    animation:
+        floatOne 7s ease-in-out infinite;
+}
+
+
+.hero-bubble.two {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    top:
+        28%;
+
+    right:
+        11%;
+
+    animation:
+        floatTwo 6s ease-in-out infinite;
+}
+
+
+.hero-bubble.three {
+
+    width:
+        25px;
+
+    height:
+        25px;
+
+    bottom:
+        18%;
+
+    left:
+        18%;
+
+    animation:
+        floatThree 5s ease-in-out infinite;
+}
+
+
+.hero-bubble.four {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+    bottom:
+        17%;
+
+    right:
+        20%;
+
+    animation:
+        floatFour 8s ease-in-out infinite;
+}
+
+
+@keyframes floatOne {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-18px);
+    }
+}
+
+
+@keyframes floatTwo {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(14px);
+    }
+}
+
+
+@keyframes floatThree {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+@keyframes floatFour {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(16px);
+    }
+}
+
+
+/* =========================
+   HERO BUBBLE
+========================= */
+
+.main-bubble {
+
+    width:
+        180px;
+
+    height:
+        180px;
+
+    margin-bottom:
+        38px;
 
     border-radius:
         52% 48% 55% 45%
         /
-        48% 55% 45% 52%;
+        46% 55% 45% 54%;
 
     background:
+
         radial-gradient(
             circle at 30% 25%,
-            rgba(255,255,255,0.96),
+            rgba(255,255,255,0.98),
             rgba(210,251,246,0.72)
         );
 
-    border: 2px solid rgba(255,255,255,0.92);
+    border:
+        2px solid
+        rgba(255,255,255,0.94);
 
     box-shadow:
-        inset 10px 10px 25px rgba(255,255,255,0.90),
-        inset -10px -10px 25px rgba(72,181,196,0.12),
-        0 20px 45px rgba(40,130,135,0.13);
 
-    display: flex;
+        inset
+        12px 12px 28px
+        rgba(255,255,255,0.92),
 
-    align-items: center;
-    justify-content: center;
+        inset
+        -12px -12px 28px
+        rgba(72,181,196,0.12),
 
-    font-size: 55px;
+        0 25px 60px
+        rgba(40,130,135,0.14);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        62px;
 
     animation:
-        experienceFloat 6s ease-in-out infinite;
+        mainFloat 7s ease-in-out infinite;
 }
 
-@keyframes experienceFloat {
 
-    0%, 100% {
+@keyframes mainFloat {
+
+    0%,100% {
+
         transform:
             translateY(0)
             rotate(0deg);
     }
 
     50% {
+
         transform:
-            translateY(-9px)
-            rotate(-3deg);
+            translateY(-10px)
+            rotate(2deg);
     }
 }
 
@@ -174,23 +443,30 @@ nav a:hover {
 
 .hero h1 {
 
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
     font-size:
-        clamp(45px,8vw,76px);
+        clamp(48px,8vw,80px);
 
-    line-height: 1.05;
+    line-height:
+        1.05;
 
-    margin-bottom: 25px;
+    margin-bottom:
+        20px;
 }
+
 
 .hero p {
 
-    max-width: 820px;
+    max-width:
+        820px;
 
-    font-size: 21px;
+    color:
+        #5d565f;
 
-    color: #5d565f;
+    font-size:
+        20px;
 }
 
 
@@ -200,362 +476,22 @@ nav a:hover {
 
 .intro {
 
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding: 80px 6% 55px;
-
-    text-align: center;
-}
-
-.intro h2 {
-
-    color: #16aaa9;
-
-    font-size:
-        clamp(34px,5vw,50px);
-
-    margin-bottom: 25px;
-}
-
-.intro p {
-
-    max-width: 800px;
-
-    margin: 0 auto;
-
-    font-size: 19px;
-
-    color: #5d565f;
-}
-
-
-/* =========================
-   VILLAGE PEOPLE
-========================= */
-
-.village-people {
-
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding: 10px 5% 75px;
-}
-
-.village-people-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 35px;
-}
-
-.village-person {
-
-    background:
-        rgba(255,255,255,0.94);
-
-    padding: 45px 38px;
-
-    box-shadow:
-        0 20px 45px rgba(40,120,120,0.09);
-
-    border:
-        2px solid rgba(255,255,255,0.90);
-
-    text-align: center;
-
-    border-radius:
-        55px 40px 60px 45px;
-}
-
-.village-person:nth-child(2) {
-
-    border-radius:
-        40px 60px 45px 55px;
-}
-
-.village-person-icon {
-
-    font-size: 43px;
-
-    margin-bottom: 12px;
-}
-
-.village-person h2 {
-
-    color: #16aaa9;
-
-    font-size: 30px;
-
-    margin-bottom: 6px;
-}
-
-.village-person .role {
-
-    color: #285f61;
-
-    font-weight: 700;
-
-    margin-bottom: 22px;
-}
-
-.village-person p {
-
-    color: #5d565f;
-
-    font-size: 17px;
-
-    margin-bottom: 18px;
-}
-
-.person-link {
-
-    display: inline-block;
-
-    margin-top: 8px;
-
-    padding: 12px 24px;
-
-    border-radius: 35px;
-
-    background: #ffffff;
-
-    color: #16aaa9;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 8px 20px rgba(40,120,120,0.10);
-
-    transition:
-        transform 0.25s ease;
-}
-
-.person-link:hover {
-
-    transform:
-        translateY(-2px);
-}
-
-
-/* =========================
-   EXPERIENCE CARDS
-========================= */
-
-.experiences {
-
-    max-width: 1150px;
-
-    margin: 0 auto;
-
-    padding:
-        20px 5%
-        100px;
-}
-
-.experience-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 35px;
-}
-
-.experience-card {
-
-    background:
-        rgba(255,255,255,0.94);
-
-    padding:
-        48px 38px;
-
-    min-height: 300px;
-
-    box-shadow:
-        0 20px 45px rgba(40,120,120,0.09);
-
-    border:
-        2px solid rgba(255,255,255,0.90);
-
-    border-radius:
-        50px 35px 55px 40px;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.experience-card:nth-child(2) {
-
-    border-radius:
-        35px 55px 40px 50px;
-}
-
-.experience-card:nth-child(3) {
-
-    border-radius:
-        55px 40px 50px 35px;
-}
-
-.experience-card:nth-child(4) {
-
-    border-radius:
-        40px 50px 35px 55px;
-}
-
-.experience-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    box-shadow:
-        0 28px 55px rgba(40,120,120,0.14);
-}
-
-.experience-icon {
-
-    font-size: 42px;
-
-    margin-bottom: 18px;
-}
-
-.experience-card h3 {
-
-    color: #16aaa9;
-
-    font-size: 28px;
-
-    margin-bottom: 15px;
-}
-
-.experience-card p {
-
-    color: #5d565f;
-
-    font-size: 17px;
-
-    margin-bottom: 18px;
-}
-
-.experience-card .note {
-
-    color: #285f61;
-
-    font-weight: 700;
-
-    font-size: 15px;
-}
-
-
-/* =========================
-   KENDRA'S COACHING
-========================= */
-
-.coaching-section {
-
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding:
-        10px 6%
-        90px;
-
-    text-align: center;
-}
-
-.coaching-box {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(220,255,251,0.90),
-            rgba(255,255,255,0.96)
-        );
-
-    padding:
-        65px 8%;
-
-    border-radius:
-        65px 45px 60px 40px;
-
-    box-shadow:
-        0 25px 55px rgba(40,120,120,0.10);
-}
-
-.coaching-box h2 {
-
-    color: #16aaa9;
-
-    font-size:
-        clamp(34px,5vw,50px);
-
-    margin-bottom: 25px;
-}
-
-.coaching-box p {
-
-    max-width: 800px;
+    max-width:
+        1050px;
 
     margin:
-        0 auto 22px;
-
-    color: #5d565f;
-
-    font-size: 19px;
-}
-
-.coaching-link {
-
-    display: inline-block;
-
-    margin-top: 18px;
+        0 auto;
 
     padding:
-        14px 28px;
+        85px 6%
+        70px;
 
-    border-radius: 35px;
-
-    background: #ffffff;
-
-    color: #16aaa9;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 10px 25px rgba(40,120,120,0.10);
+    text-align:
+        center;
 }
 
 
-/* =========================
-   CREATIVE EXPERIENCE
-========================= */
-
-.creative-section {
-
-    max-width: 1050px;
-
-    margin: 0 auto;
-
-    padding:
-        0 6%
-        100px;
-
-    text-align: center;
-}
-
-.creative-box {
+.intro-box {
 
     background:
         rgba(255,255,255,0.95);
@@ -564,90 +500,514 @@ nav a:hover {
         65px 8%;
 
     border-radius:
-        45px 65px 40px 60px;
+        50% 50% 45% 55%
+        /
+        48% 52% 55% 45%;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
 
     box-shadow:
-        0 25px 55px rgba(40,120,120,0.10);
+        0 25px 60px
+        rgba(40,120,120,0.10);
 }
 
-.creative-box h2 {
 
-    color: #16aaa9;
+.intro h2 {
+
+    color:
+        #16aaa9;
 
     font-size:
         clamp(34px,5vw,50px);
 
-    margin-bottom: 25px;
+    margin-bottom:
+        28px;
 }
 
-.creative-box p {
 
-    max-width: 800px;
+.intro p {
+
+    max-width:
+        820px;
 
     margin:
         0 auto 22px;
 
-    color: #5d565f;
+    color:
+        #5d565f;
 
-    font-size: 19px;
-}
-
-.creative-link {
-
-    display: inline-block;
-
-    margin-top: 18px;
-
-    padding:
-        14px 28px;
-
-    border-radius: 35px;
-
-    background: #ffffff;
-
-    color: #16aaa9;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 10px 25px rgba(40,120,120,0.10);
+    font-size:
+        19px;
 }
 
 
 /* =========================
-   CLOSING
+   EXPERIENCE TYPES
 ========================= */
 
-.closing {
+.experiences {
+
+    max-width:
+        1100px;
+
+    margin:
+        0 auto;
 
     padding:
-        20px 6%
+        20px 5%
         100px;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
-.closing h2 {
 
-    color: #16aaa9;
+.experiences h2 {
+
+    color:
+        #16aaa9;
 
     font-size:
-        clamp(34px,5vw,52px);
+        clamp(34px,5vw,50px);
 
-    margin-bottom: 18px;
+    margin-bottom:
+        45px;
 }
 
-.closing p {
 
-    max-width: 760px;
+.experience-grid {
 
-    margin: 0 auto;
+    display:
+        grid;
 
-    font-size: 20px;
+    grid-template-columns:
+        repeat(3,1fr);
 
-    color: #5d565f;
+    gap:
+        28px;
+}
+
+
+.experience-card {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    padding:
+        42px 28px;
+
+    min-height:
+        275px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 18px 40px
+        rgba(40,120,120,0.09);
+
+    border-radius:
+        45px 55px 40px 60px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.experience-card:nth-child(2) {
+
+    border-radius:
+        55px 40px 60px 45px;
+}
+
+
+.experience-card:nth-child(3) {
+
+    border-radius:
+        40px 60px 45px 55px;
+}
+
+
+.experience-card:nth-child(4) {
+
+    border-radius:
+        55px 45px 60px 40px;
+}
+
+
+.experience-card:nth-child(5) {
+
+    border-radius:
+        40px 55px 45px 60px;
+}
+
+
+.experience-card:nth-child(6) {
+
+    border-radius:
+        60px 40px 55px 45px;
+}
+
+
+.experience-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 25px 50px
+        rgba(40,120,120,0.14);
+}
+
+
+.experience-icon {
+
+    font-size:
+        42px;
+
+    margin-bottom:
+        15px;
+}
+
+
+.experience-card h3 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        23px;
+
+    margin-bottom:
+        15px;
+}
+
+
+.experience-card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        17px;
+}
+
+
+/* =========================
+   EXPERIENCE PHILOSOPHY
+========================= */
+
+.philosophy {
+
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.philosophy-box {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(220,255,251,0.92),
+            rgba(255,255,255,0.97)
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        60px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(40,120,120,0.10);
+}
+
+
+.philosophy h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,48px);
+
+    margin-bottom:
+        28px;
+}
+
+
+.philosophy p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        20px;
+}
+
+
+.philosophy strong {
+
+    color:
+        #285f61;
+}
+
+
+/* =========================
+   HOW TO PARTICIPATE
+========================= */
+
+.participate {
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 5%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.participate h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom:
+        45px;
+}
+
+
+.participate-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        25px;
+}
+
+
+.participate-card {
+
+    background:
+        rgba(255,255,255,0.93);
+
+    padding:
+        38px 25px;
+
+    border-radius:
+        42px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(40,120,120,0.08);
+}
+
+
+.participate-number {
+
+    width:
+        45px;
+
+    height:
+        45px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:
+        50%;
+
+    background:
+        #e8fffb;
+
+    color:
+        #16aaa9;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        700;
+
+    font-size:
+        18px;
+}
+
+
+.participate-card h3 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        21px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.participate-card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        16px;
+}
+
+
+/* =========================
+   CURRENT / UPCOMING
+========================= */
+
+.upcoming {
+
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 6%
+        110px;
+
+    text-align:
+        center;
+}
+
+
+.upcoming-box {
+
+    background:
+        rgba(255,255,255,0.95);
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        55px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.11);
+}
+
+
+.upcoming h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom:
+        22px;
+}
+
+
+.upcoming p {
+
+    max-width:
+        760px;
+
+    margin:
+        0 auto 20px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+.event-button {
+
+    display:
+        inline-block;
+
+    margin-top:
+        15px;
+
+    padding:
+        15px 32px;
+
+    border-radius:
+        35px;
+
+    background:
+        #16aaa9;
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 12px 25px
+        rgba(22,170,169,0.20);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.event-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 32px
+        rgba(22,170,169,0.25);
 }
 
 
@@ -661,28 +1021,37 @@ footer {
         rgba(255,255,255,0.94);
 
     border-top:
-        1px solid rgba(40,95,97,0.10);
+        1px solid
+        rgba(40,95,97,0.10);
 
-    text-align: center;
+    text-align:
+        center;
 
     padding:
         55px 6%;
 
-    color: #5d565f;
+    color:
+        #5d565f;
 }
+
 
 footer p {
 
-    margin-bottom: 12px;
+    margin-bottom:
+        12px;
 }
+
 
 footer a {
 
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 }
 
 
@@ -694,27 +1063,49 @@ footer a {
 
     nav {
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
-        text-align: center;
+        text-align:
+            center;
     }
+
 
     nav ul {
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        gap: 15px 20px;
+        gap:
+            15px 20px;
     }
 
-    .village-people-grid,
+
     .experience-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
-        max-width: 650px;
+        max-width:
+            650px;
 
-        margin: 0 auto;
+        margin:
+            0 auto;
     }
+
+
+    .participate-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+
 }
 
 
@@ -722,86 +1113,105 @@ footer a {
 
     nav {
 
-        padding: 18px 5%;
+        padding:
+            18px 5%;
     }
+
 
     .logo {
 
-        font-size: 20px;
+        font-size:
+            20px;
     }
+
 
     nav ul {
 
-        gap: 10px 15px;
+        gap:
+            10px 15px;
     }
+
 
     nav a {
 
-        font-size: 14px;
+        font-size:
+            14px;
     }
+
 
     .hero {
 
-        min-height: 530px;
+        min-height:
+            570px;
 
         padding:
-            70px 6%
-            60px;
+            70px 5%
+            65px;
     }
 
-    .experience-bubble {
 
-        width: 120px;
-        height: 120px;
+    .main-bubble {
 
-        font-size: 45px;
+        width:
+            145px;
+
+        height:
+            145px;
+
+        font-size:
+            52px;
     }
+
 
     .intro {
 
         padding:
             60px 5%
-            40px;
+            55px;
     }
 
-    .village-person {
 
-        padding:
-            40px 25px;
-    }
-
-    .experience-card {
-
-        padding:
-            40px 25px;
-
-        min-height: 270px;
-    }
-
-    .coaching-box,
-    .creative-box {
+    .intro-box {
 
         padding:
             45px 25px;
     }
 
-    .coaching-box p,
-    .creative-box p {
 
-        font-size: 17px;
+    .intro p {
+
+        font-size:
+            17px;
     }
 
-    .closing {
+
+    .philosophy-box {
 
         padding:
-            20px 5%
-            80px;
+            45px 25px;
     }
 
-    .closing p {
 
-        font-size: 18px;
+    .philosophy p {
+
+        font-size:
+            17px;
     }
+
+
+    .upcoming-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .upcoming p {
+
+        font-size:
+            17px;
+    }
+
 }
 
 </style>
@@ -819,34 +1229,57 @@ footer a {
 <nav>
 
     <div class="logo">
-        🌱 The Still Becoming Village Circle
+
+        <a href="index.html">
+
+            🌱 The Still Becoming Village Circle
+
+        </a>
+
     </div>
 
 
     <ul>
 
         <li>
-            <a href="index.html">Home</a>
+            <a href="index.html">
+                Home
+            </a>
         </li>
 
-        <li>
-            <a href="about.html">Inside the Bubble</a>
-        </li>
 
         <li>
-            <a href="unknown.html">The Unknown</a>
+            <a href="about.html">
+                Inside the Bubble
+            </a>
         </li>
 
-        <li>
-            <a href="experiences.html">Experiences</a>
-        </li>
 
         <li>
-            <a href="contact.html">Connect</a>
+            <a href="LearningtheUnknown.html">
+                The Unknown
+            </a>
         </li>
 
+
         <li>
-            <a href="coaching.html">Support</a>
+            <a href="experiences.html">
+                Experiences
+            </a>
+        </li>
+
+
+        <li>
+            <a href="contact.html">
+                Connect
+            </a>
+        </li>
+
+
+        <li>
+            <a href="coaching.html">
+                Support
+            </a>
         </li>
 
     </ul>
@@ -860,17 +1293,36 @@ footer a {
 
 <section class="hero">
 
-    <div class="experience-bubble">
-        ✨
+
+    <div class="hero-bubble one"></div>
+
+    <div class="hero-bubble two"></div>
+
+    <div class="hero-bubble three"></div>
+
+    <div class="hero-bubble four"></div>
+
+
+    <div class="main-bubble">
+        🫧
     </div>
+
 
     <h1>
         Experiences
     </h1>
 
+
     <p>
-        Some things are easier to understand
-        when you experience them.
+
+        Some things are better experienced
+        than explained.
+
+        The Village creates spaces where
+        curiosity, connection, creativity,
+        reflection, and becoming can happen
+        together.
+
     </p>
 
 </section>
@@ -882,108 +1334,57 @@ footer a {
 
 <section class="intro">
 
-    <h2>
-        Come Experience the Village
-    </h2>
 
-    <p>
-        The Village isn't only a place to read about
-        becoming. It's a place to pause, create,
-        connect, reflect, and try something different.
-    </p>
-
-</section>
+    <div class="intro-box">
 
 
-<!-- =========================
-     KENDRA + KITTA
-========================= -->
-
-<section class="village-people">
-
-    <div class="village-people-grid">
+        <h2>
+            More Than Something to Attend.
+        </h2>
 
 
-        <!-- KENDRA -->
+        <p>
 
-        <div class="village-person">
+            An experience can be a conversation.
 
-            <div class="village-person-icon">
-                🌱
-            </div>
+            A workshop.
 
-            <h2>
-                Kendra
-            </h2>
+            A gathering.
 
-            <div class="role">
-                Instantiator of Becoming
-            </div>
+            A creative moment.
 
-            <p>
-                Kendra brings the reflective,
-                conversational, and coaching side
-                of the Village through writing,
-                questions, lived insight, and honest
-                exploration.
-            </p>
+            A question that stays with you
+            long after you leave.
 
-            <p>
-                Her work creates room to slow down,
-                examine what is happening beneath
-                the surface, and explore what you
-                may be becoming next.
-            </p>
-
-            <a
-                class="person-link"
-                href="coaching.html"
-            >
-                Explore Coaching
-            </a>
-
-        </div>
+        </p>
 
 
-        <!-- KITTA -->
+        <p>
 
-        <div class="village-person">
+            The goal isn't simply to fill a calendar.
 
-            <div class="village-person-icon">
-                🎨
-            </div>
+        </p>
 
-            <h2>
-                Kitta
-            </h2>
 
-            <div class="role">
-                Creative & Marketing Collaborator
-            </div>
+        <p>
 
-            <p>
-                Kitta brings the creative side of
-                the Village through personalized
-                pieces, event décor, gift baskets,
-                meaningful creations, and creative
-                concepts.
-            </p>
+            It's to create moments that give people
+            something to think about, feel, discover,
+            practice, remember, or carry with them.
 
-            <p>
-                Her work begins with understanding
-                the feeling behind what someone wants
-                to create—and allowing that feeling
-                to guide the process.
-            </p>
+        </p>
 
-            <a
-                class="person-link"
-                href="kitta.html"
-            >
-                Explore Kitta's Creativity
-            </a>
 
-        </div>
+        <p>
+
+            <strong>
+                Come for the experience.
+                Leave with something that continues
+                becoming after you do.
+            </strong>
+
+        </p>
+
 
     </div>
 
@@ -991,41 +1392,19 @@ footer a {
 
 
 <!-- =========================
-     EXPERIENCE CARDS
+     EXPERIENCE TYPES
 ========================= -->
 
 <section class="experiences">
 
+
+    <h2>
+        What May Happen Here
+    </h2>
+
+
     <div class="experience-grid">
 
-
-        <!-- REFLECTION -->
-
-        <div class="experience-card">
-
-            <div class="experience-icon">
-                🪞
-            </div>
-
-            <h3>
-                Reflection
-            </h3>
-
-            <p>
-                Space to slow down long enough to hear
-                what you've actually been thinking,
-                feeling, and needing.
-            </p>
-
-            <div class="note">
-                Sometimes the answer gets quieter
-                before it gets clearer.
-            </div>
-
-        </div>
-
-
-        <!-- CONVERSATION -->
 
         <div class="experience-card">
 
@@ -1033,25 +1412,47 @@ footer a {
                 💬
             </div>
 
+
             <h3>
-                Conversation
+                Village Conversations
             </h3>
 
-            <p>
-                Honest conversations about relationships,
-                identity, boundaries, healing, curiosity,
-                and the beautifully complicated business
-                of being human.
-            </p>
 
-            <div class="note">
-                You don't have to perform here.
-            </div>
+            <p>
+
+                Honest conversations around
+                relationships, healing, identity,
+                boundaries, growth, and the things
+                people don't always know how to say.
+
+            </p>
 
         </div>
 
 
-        <!-- CREATIVITY -->
+        <div class="experience-card">
+
+            <div class="experience-icon">
+                📚
+            </div>
+
+
+            <h3>
+                Book Experiences
+            </h3>
+
+
+            <p>
+
+                Conversations, readings, reflections,
+                journal prompts, and gatherings
+                connected to the books and ideas
+                growing from the Village.
+
+            </p>
+
+        </div>
+
 
         <div class="experience-card">
 
@@ -1059,25 +1460,23 @@ footer a {
                 🎨
             </div>
 
+
             <h3>
-                Creativity
+                Creative Experiences
             </h3>
 
-            <p>
-                Creative ideas can become tangible things:
-                gifts, décor, personalized pieces,
-                experiences, concepts, and expressions
-                that carry meaning.
-            </p>
 
-            <div class="note">
-                Sometimes creativity says what words can't.
-            </div>
+            <p>
+
+                Opportunities to explore creativity
+                as expression, communication,
+                celebration, remembrance, and
+                connection.
+
+            </p>
 
         </div>
 
-
-        <!-- COACHING -->
 
         <div class="experience-card">
 
@@ -1085,65 +1484,139 @@ footer a {
                 🌱
             </div>
 
+
             <h3>
-                Coaching
+                Becoming Workshops
             </h3>
 
-            <p>
-                A space with Kendra to think through
-                where you are, where you want to go,
-                and what might need to change along
-                the way.
-            </p>
 
-            <div class="note">
-                You are still the person making the choices.
-            </div>
+            <p>
+
+                Guided spaces for reflection,
+                learning, questioning, and exploring
+                what happens when you begin looking
+                at yourself differently.
+
+            </p>
 
         </div>
 
+
+        <div class="experience-card">
+
+            <div class="experience-icon">
+                🫧
+            </div>
+
+
+            <h3>
+                Bubble Gatherings
+            </h3>
+
+
+            <p>
+
+                Smaller spaces designed for
+                meaningful connection, community,
+                conversation, and simply being
+                around people who understand.
+
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="experience-icon">
+                ✨
+            </div>
+
+
+            <h3>
+                Something New
+            </h3>
+
+
+            <p>
+
+                Some experiences won't fit neatly
+                into a category yet.
+
+                That's okay.
+
+                The Village is still becoming too.
+
+            </p>
+
+        </div>
+
+
     </div>
 
 </section>
 
 
 <!-- =========================
-     KENDRA'S COACHING
+     PHILOSOPHY
 ========================= -->
 
-<section class="coaching-section">
+<section class="philosophy">
 
-    <div class="coaching-box">
+
+    <div class="philosophy-box">
+
 
         <h2>
-            🌱 Kendra's Coaching Space
+            The Experience Is Part of the Becoming.
         </h2>
 
-        <p>
-            Coaching here isn't about someone handing
-            you a map and telling you where to go.
-        </p>
 
         <p>
-            It's about having space to look at the map
-            you're already carrying, question the route,
-            notice what no longer fits, and decide what
-            deserves your attention next.
+
+            You don't always know what a conversation
+            will unlock before you have it.
+
         </p>
+
 
         <p>
-            Sometimes you don't need someone to fix
-            your life.
 
-            You need somewhere safe enough to think.
+            You don't always know what a question
+            will change before you answer it.
+
         </p>
 
-        <a
-            class="coaching-link"
-            href="coaching.html"
-        >
-            Enter Kendra's Coaching Space
-        </a>
+
+        <p>
+
+            You don't always know what part of yourself
+            will show up when you finally have room
+            to create.
+
+        </p>
+
+
+        <p>
+
+            That's why the Village makes room for
+            experiences that aren't about performing
+            or proving anything.
+
+        </p>
+
+
+        <p>
+
+            <strong>
+
+                Sometimes you just need somewhere
+                different to experience yourself.
+
+            </strong>
+
+        </p>
+
 
     </div>
 
@@ -1151,58 +1624,136 @@ footer a {
 
 
 <!-- =========================
-     KITTA'S CREATIVE SPACE
+     HOW TO PARTICIPATE
 ========================= -->
 
-<section class="creative-section">
+<section class="participate">
 
-    <div class="creative-box">
-
-        <h2>
-            🎨 Kitta's Creative Space
-        </h2>
-
-        <p>
-            Some Village experiences begin with an idea
-            that doesn't quite have a shape yet.
-        </p>
-
-        <p>
-            Whether you're celebrating something,
-            honoring someone, creating a meaningful gift,
-            decorating an event, or simply wanting
-            something that feels like <em>you</em>—
-
-            the process starts with a conversation.
-        </p>
-
-        <a
-            class="creative-link"
-            href="kitta.html"
-        >
-            Explore Kitta's Creative Space
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CLOSING
-========================= -->
-
-<section class="closing">
 
     <h2>
-        You Don't Have to Know What You Need Yet.
+        How to Find Your Way In
     </h2>
 
-    <p>
-        Sometimes you discover the experience
-        by simply stepping into the Village
-        and seeing what speaks to you.
-    </p>
+
+    <div class="participate-grid">
+
+
+        <div class="participate-card">
+
+
+            <div class="participate-number">
+                1
+            </div>
+
+
+            <h3>
+                Explore
+            </h3>
+
+
+            <p>
+
+                Look around and discover what
+                experiences are being offered.
+
+            </p>
+
+        </div>
+
+
+        <div class="participate-card">
+
+
+            <div class="participate-number">
+                2
+            </div>
+
+
+            <h3>
+                Choose
+            </h3>
+
+
+            <p>
+
+                Choose the experience that feels
+                right for where you are.
+
+            </p>
+
+        </div>
+
+
+        <div class="participate-card">
+
+
+            <div class="participate-number">
+                3
+            </div>
+
+
+            <h3>
+                Experience
+            </h3>
+
+
+            <p>
+
+                Show up as yourself.
+
+                No perfect version required.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     UPCOMING
+========================= -->
+
+<section class="upcoming">
+
+
+    <div class="upcoming-box">
+
+
+        <h2>
+            What's Happening Next?
+        </h2>
+
+
+        <p>
+
+            New Village experiences will appear here
+            as they become available.
+
+        </p>
+
+
+        <p>
+
+            This space is intentionally growing with
+            the Village rather than filling itself with
+            things simply to have something listed.
+
+        </p>
+
+
+        <a
+            class="event-button"
+            href="contact.html"
+        >
+            🫧 Ask About an Experience
+        </a>
+
+
+    </div>
 
 </section>
 
@@ -1213,30 +1764,45 @@ footer a {
 
 <footer>
 
+
     <p>
+
         Take what you need.
         Leave what you don't.
         Come back whenever you need to.
+
     </p>
 
+
     <p>
+
         Healing isn't a destination.
         It's a circle we grow through together.
+
     </p>
+
 
     <p>
 
         📧
 
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+
             thestillbecomingvillagecircle@gmail.com
+
         </a>
 
     </p>
 
+
     <p>
+
         © 2026 The Still Becoming Village Circle
+
     </p>
+
 
 </footer>
 
