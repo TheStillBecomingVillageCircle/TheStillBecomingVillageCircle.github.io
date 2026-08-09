@@ -91,28 +91,26 @@ nav a:hover {
 
 
 /* =========================
-   FLOATING MUSIC BUBBLE
+   FLOATING VILLAGE SOUNDTRACK
 ========================= */
 
 .music-bubble {
 
     position: fixed;
 
-    right: 25px;
-    bottom: 25px;
+    right: 22px;
+    bottom: 22px;
 
-    width: 175px;
-    min-height: 175px;
+    width: 185px;
+    height: 185px;
 
-    border-radius:
-        52% 48% 55% 45%
-        / 48% 55% 45% 52%;
+    border-radius: 50%;
 
     background:
         radial-gradient(
             circle at 30% 25%,
             rgba(255,255,255,0.98),
-            rgba(220,255,251,0.90) 48%,
+            rgba(220,255,251,0.92) 48%,
             rgba(177,239,233,0.78)
         );
 
@@ -126,23 +124,18 @@ nav a:hover {
 
     display: flex;
 
-    flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
-    padding: 14px;
 
     cursor: pointer;
 
+    animation: floatBubble 5s ease-in-out infinite;
+
     transition:
         width 0.4s ease,
-        min-height 0.4s ease,
+        height 0.4s ease,
         border-radius 0.4s ease,
         box-shadow 0.4s ease;
-
-    animation: floatBubble 5s ease-in-out infinite;
 }
 
 .music-bubble:hover {
@@ -177,6 +170,8 @@ nav a:hover {
     align-items: center;
 
     justify-content: center;
+
+    width: 100%;
 }
 
 .music-label {
@@ -192,15 +187,6 @@ nav a:hover {
     margin-bottom: 8px;
 }
 
-.tap-note {
-
-    font-size: 11px;
-
-    color: #527779;
-
-    margin-top: 5px;
-}
-
 
 /* =========================
    OLD SCHOOL RECORD PLAYER
@@ -208,8 +194,8 @@ nav a:hover {
 
 .record-player {
 
-    width: 125px;
-    height: 84px;
+    width: 130px;
+    height: 88px;
 
     background:
         linear-gradient(
@@ -218,27 +204,31 @@ nav a:hover {
             #b7aa99
         );
 
-    border-radius: 12px;
+    border-radius: 13px;
 
     box-shadow:
         0 8px 16px rgba(0,0,0,0.18);
 
     position: relative;
 
-    padding: 7px;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     overflow: hidden;
 }
 
 
 /* =========================
-   BRICKS RECORD
+   BRICKS COVER = RECORD
 ========================= */
 
 .record {
 
-    width: 66px;
-    height: 66px;
+    width: 70px;
+    height: 70px;
 
     border-radius: 50%;
 
@@ -249,22 +239,68 @@ nav a:hover {
 
     background-position: center;
 
-    position: absolute;
+    position: relative;
 
-    left: 14px;
-    top: 9px;
+    z-index: 2;
 
-    border: 4px solid #171717;
+    border: 5px solid #171717;
 
     box-shadow:
-        0 3px 8px rgba(0,0,0,0.35);
+        0 3px 10px rgba(0,0,0,0.35);
 
     transition:
-        transform 0.5s ease;
+        transform 0.5s linear;
 }
 
 
-/* CENTER OF RECORD */
+/* =========================
+   PLAY BUTTON ON THE RECORD
+========================= */
+
+.play-button {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(255,255,255,0.98);
+
+    background:
+        rgba(22,170,169,0.94);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.30);
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   RECORD CENTER
+========================= */
 
 .record::after {
 
@@ -272,8 +308,8 @@ nav a:hover {
 
     position: absolute;
 
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 
     border-radius: 50%;
 
@@ -286,31 +322,32 @@ nav a:hover {
 
     transform:
         translate(-50%, -50%);
-
 }
 
 
 /* =========================
-   TONE ARM
+   OLD SCHOOL TONE ARM
 ========================= */
 
 .tone-arm {
 
-    width: 46px;
+    width: 42px;
     height: 5px;
 
     background: #4e4942;
 
     position: absolute;
 
-    right: 8px;
-    top: 18px;
+    right: 7px;
+    top: 17px;
 
     transform: rotate(28deg);
 
     transform-origin: right center;
 
     border-radius: 5px;
+
+    z-index: 3;
 }
 
 .tone-arm::after {
@@ -332,63 +369,42 @@ nav a:hover {
 
 
 /* =========================
-   BIG PLAY BUTTON
+   TAP TEXT
 ========================= */
 
-.play-button {
+.tap-note {
 
-    position: absolute;
+    font-size: 11px;
 
-    right: 9px;
-    bottom: 9px;
+    color: #527779;
 
-    width: 38px;
-    height: 38px;
-
-    border-radius: 50%;
-
-    border: 2px solid white;
-
-    background: #16aaa9;
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 17px;
-
-    box-shadow:
-        0 5px 12px rgba(0,0,0,0.20);
-
-    z-index: 10;
+    margin-top: 7px;
 }
 
 
 /* =========================
-   OPEN PLAYER
+   OPEN MUSIC PLAYER
 ========================= */
 
 .music-open {
 
-    width: min(430px, calc(100vw - 30px));
+    width:
+        min(390px, calc(100vw - 24px));
 
-    min-height: 265px;
+    height: auto;
 
-    border-radius: 35px;
+    min-height: 245px;
+
+    border-radius: 32px;
 
     cursor: default;
 
     animation: none;
 
-    padding: 18px;
+    padding: 16px;
 }
 
 .music-open .music-closed {
-
     display: none;
 }
 
@@ -400,7 +416,6 @@ nav a:hover {
 }
 
 .music-open .music-player-content {
-
     display: block;
 }
 
@@ -425,7 +440,7 @@ nav a:hover {
 
     font-size: 14px;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 
@@ -455,11 +470,12 @@ nav a:hover {
 
     display: block;
 
-    margin: 10px auto 0;
+    margin: 9px auto 0;
 
     border: none;
 
-    background: rgba(255,255,255,0.85);
+    background:
+        rgba(255,255,255,0.90);
 
     color: #285f61;
 
@@ -501,9 +517,11 @@ nav a:hover {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.50);
+    background:
+        rgba(255,255,255,0.50);
 
-    border: 2px solid rgba(255,255,255,0.90);
+    border:
+        2px solid rgba(255,255,255,0.90);
 
     box-shadow:
         inset 8px 8px 18px rgba(255,255,255,0.90),
@@ -513,7 +531,6 @@ nav a:hover {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 42px;
@@ -691,7 +708,8 @@ nav a:hover {
 
     border-radius: 35px;
 
-    background: #ffffff;
+    background:
+        #ffffff;
 
     color: #16aaa9;
 
@@ -916,7 +934,6 @@ footer {
 }
 
 footer p {
-
     margin-bottom: 12px;
 }
 
@@ -1034,13 +1051,16 @@ footer a {
 
     .music-bubble {
 
-        width: 150px;
-
-        min-height: 150px;
+        width: 155px;
+        height: 155px;
 
         right: 10px;
-
         bottom: 10px;
+    }
+
+    .record-player {
+
+        transform: scale(0.78);
     }
 
     .music-open {
@@ -1048,20 +1068,10 @@ footer a {
         width:
             calc(100vw - 20px);
 
-        min-height: 245px;
+        min-height: 240px;
 
         right: 10px;
-
         bottom: 10px;
-    }
-
-    .record-player {
-
-        transform: scale(0.76);
-
-        margin-top: -5px;
-
-        margin-bottom: -5px;
     }
 
 }
@@ -1116,7 +1126,7 @@ footer a {
 
 
 <!-- =========================
-     FLOATING MUSIC BUBBLE
+     FLOATING VILLAGE SOUNDTRACK
 ========================= -->
 
 <div
@@ -1125,8 +1135,7 @@ footer a {
     onclick="openMusic()"
 >
 
-
-    <!-- CLOSED VERSION -->
+    <!-- CLOSED MUSIC BUBBLE -->
 
     <div class="music-closed">
 
@@ -1137,35 +1146,34 @@ footer a {
 
         <div class="record-player">
 
+            <!-- BRICKS COVER IS THE RECORD -->
 
-            <!-- ACTUAL BRICKS ARTWORK -->
+            <div class="record">
 
-            <div class="record"></div>
+                <!-- PLAY BUTTON IS ON THE RECORD -->
 
+                <div class="play-button">
+                    ▶
+                </div>
 
-            <!-- RECORD PLAYER ARM -->
-
-            <div class="tone-arm"></div>
-
-
-            <!-- OBVIOUS PLAY BUTTON -->
-
-            <div class="play-button">
-                ▶
             </div>
 
+
+            <!-- OLD SCHOOL TONE ARM -->
+
+            <div class="tone-arm"></div>
 
         </div>
 
 
         <div class="tap-note">
-            Tap to listen
+            Tap the record to listen
         </div>
 
     </div>
 
 
-    <!-- OPEN VERSION -->
+    <!-- OPEN SOUNDCLOUD PLAYER -->
 
     <div
         class="music-player-content"
@@ -1391,7 +1399,7 @@ footer a {
 
 
 <!-- =========================
-     FOOTPRINTS
+     FOOTPRINTS IN THE SAND
 ========================= -->
 
 <section class="footprints">
@@ -1452,6 +1460,7 @@ footer a {
     </p>
 
     <p>
+
         📧
 
         <a href="mailto:thestillbecomingvillagecircle@gmail.com">
