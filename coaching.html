@@ -4,15 +4,22 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Support | LeSheAnn Hargro | The Still Becoming Village Circle</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Support | LeSheAnn Hargro | The Still Becoming Village Circle
+</title>
+
 
 <style>
 
-/* =========================
+/* =====================================================
    BASIC
-========================= */
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -25,16 +32,28 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #e8fffb;
-    color: #285f61;
-    line-height: 1.7;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #e8fffb;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.7;
+
+    overflow-x:
+        hidden;
 }
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 nav {
 
@@ -42,7 +61,8 @@ nav {
         rgba(255,255,255,0.97);
 
     border-bottom:
-        1px solid rgba(40,95,97,0.12);
+        1px solid
+        rgba(40,95,97,0.12);
 
     padding:
         22px 4%;
@@ -72,9 +92,7 @@ nav {
         blur(10px);
 }
 
-
 .logo {
-
     font-size:
         24px;
 
@@ -88,16 +106,13 @@ nav {
         1.3;
 }
 
-
 .logo a {
-
     color:
         #285f61;
 
     text-decoration:
         none;
 }
-
 
 nav ul {
 
@@ -117,7 +132,6 @@ nav ul {
         wrap;
 }
 
-
 nav a {
 
     text-decoration:
@@ -133,17 +147,124 @@ nav a {
         16px;
 }
 
-
 nav a:hover {
-
     color:
         #16aaa9;
 }
 
 
-/* =========================
+/* =====================================================
+   FLOATING BECOMING BUBBLE
+===================================================== */
+
+.floating-bubble {
+
+    position:
+        fixed;
+
+    left:
+        12vw;
+
+    top:
+        62vh;
+
+    z-index:
+        2000;
+
+    max-width:
+        min(250px, 42vw);
+
+    padding:
+        12px 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    pointer-events:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.55),
+            rgba(235,255,252,0.23) 45%,
+            rgba(170,239,232,0.13)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.75);
+
+    box-shadow:
+
+        inset
+        5px 5px 15px
+        rgba(255,255,255,0.60),
+
+        inset
+        -5px -5px 15px
+        rgba(78,190,194,0.08),
+
+        0 12px 30px
+        rgba(40,120,120,0.07);
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    opacity:
+        0;
+
+    transform:
+        scale(0.96);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+.floating-bubble.visible {
+
+    opacity:
+        0.76;
+
+    transform:
+        scale(1);
+}
+
+.floating-bubble span {
+
+    color:
+        rgba(40,95,97,0.78);
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.4;
+}
+
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero {
 
@@ -170,7 +291,6 @@ nav a:hover {
         center;
 
     background:
-
         radial-gradient(
             circle at 50% 18%,
             rgba(255,255,255,0.98),
@@ -186,9 +306,9 @@ nav a:hover {
 }
 
 
-/* =========================
-   BUBBLE
-========================= */
+/* =====================================================
+   COACHING BUBBLE
+===================================================== */
 
 .coaching-bubble {
 
@@ -207,7 +327,6 @@ nav a:hover {
         46% 55% 45% 54%;
 
     background:
-
         radial-gradient(
             circle at 30% 25%,
             rgba(255,255,255,0.98),
@@ -244,13 +363,17 @@ nav a:hover {
         68px;
 
     animation:
-        coachingFloat 7s ease-in-out infinite;
+        coachingFloat
+        7s
+        ease-in-out
+        infinite;
 }
 
 
 @keyframes coachingFloat {
 
-    0%, 100% {
+    0%,
+    100% {
 
         transform:
             translateY(0)
@@ -266,9 +389,9 @@ nav a:hover {
 }
 
 
-/* =========================
+/* =====================================================
    HERO TEXT
-========================= */
+===================================================== */
 
 .hero h1 {
 
@@ -285,7 +408,6 @@ nav a:hover {
         15px;
 }
 
-
 .hero .name {
 
     color:
@@ -300,7 +422,6 @@ nav a:hover {
     margin-bottom:
         4px;
 }
-
 
 .hero .title {
 
@@ -320,7 +441,6 @@ nav a:hover {
         25px;
 }
 
-
 .hero p {
 
     max-width:
@@ -334,9 +454,9 @@ nav a:hover {
 }
 
 
-/* =========================
+/* =====================================================
    INTRO
-========================= */
+===================================================== */
 
 .intro {
 
@@ -352,7 +472,6 @@ nav a:hover {
     text-align:
         center;
 }
-
 
 .intro-box {
 
@@ -376,7 +495,6 @@ nav a:hover {
         rgba(40,120,120,0.10);
 }
 
-
 .intro h2 {
 
     color:
@@ -388,7 +506,6 @@ nav a:hover {
     margin-bottom:
         28px;
 }
-
 
 .intro p {
 
@@ -406,142 +523,9 @@ nav a:hover {
 }
 
 
-/* =========================
-   COACHING CARDS
-========================= */
-
-.coaching-section {
-
-    max-width:
-        1100px;
-
-    margin:
-        0 auto;
-
-    padding:
-        10px 5%
-        100px;
-
-    text-align:
-        center;
-}
-
-
-.coaching-section h2 {
-
-    color:
-        #16aaa9;
-
-    font-size:
-        clamp(34px,5vw,50px);
-
-    margin-bottom:
-        45px;
-}
-
-
-.coaching-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:
-        28px;
-}
-
-
-.coaching-card {
-
-    background:
-        rgba(255,255,255,0.94);
-
-    padding:
-        42px 28px;
-
-    min-height:
-        270px;
-
-    border:
-        2px solid
-        rgba(255,255,255,0.90);
-
-    box-shadow:
-        0 18px 40px
-        rgba(40,120,120,0.09);
-
-    border-radius:
-        45px 55px 40px 60px;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-.coaching-card:nth-child(2) {
-
-    border-radius:
-        55px 40px 60px 45px;
-}
-
-
-.coaching-card:nth-child(3) {
-
-    border-radius:
-        40px 60px 45px 55px;
-}
-
-
-.coaching-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        0 25px 50px
-        rgba(40,120,120,0.14);
-}
-
-
-.coaching-icon {
-
-    font-size:
-        42px;
-
-    margin-bottom:
-        15px;
-}
-
-
-.coaching-card h3 {
-
-    color:
-        #16aaa9;
-
-    font-size:
-        23px;
-
-    margin-bottom:
-        15px;
-}
-
-
-.coaching-card p {
-
-    color:
-        #5d565f;
-
-    font-size:
-        17px;
-}
-
-
-/* =========================
+/* =====================================================
    WHAT COACHING CAN HOLD
-========================= */
+===================================================== */
 
 .hold {
 
@@ -559,11 +543,9 @@ nav a:hover {
         center;
 }
 
-
 .hold-box {
 
     background:
-
         linear-gradient(
             145deg,
             rgba(220,255,251,0.92),
@@ -581,7 +563,6 @@ nav a:hover {
         rgba(40,120,120,0.10);
 }
 
-
 .hold h2 {
 
     color:
@@ -594,7 +575,6 @@ nav a:hover {
         28px;
 }
 
-
 .hold p {
 
     color:
@@ -606,7 +586,6 @@ nav a:hover {
     margin-bottom:
         20px;
 }
-
 
 .hold ul {
 
@@ -629,7 +608,6 @@ nav a:hover {
         18px;
 }
 
-
 .hold li {
 
     margin-bottom:
@@ -637,9 +615,9 @@ nav a:hover {
 }
 
 
-/* =========================
+/* =====================================================
    APPROACH
-========================= */
+===================================================== */
 
 .approach {
 
@@ -657,7 +635,6 @@ nav a:hover {
         center;
 }
 
-
 .approach h2 {
 
     color:
@@ -670,7 +647,6 @@ nav a:hover {
         45px;
 }
 
-
 .approach-grid {
 
     display:
@@ -682,7 +658,6 @@ nav a:hover {
     gap:
         28px;
 }
-
 
 .approach-card {
 
@@ -700,7 +675,6 @@ nav a:hover {
         rgba(40,120,120,0.08);
 }
 
-
 .approach-card h3 {
 
     color:
@@ -713,7 +687,6 @@ nav a:hover {
         12px;
 }
 
-
 .approach-card p {
 
     color:
@@ -724,9 +697,9 @@ nav a:hover {
 }
 
 
-/* =========================
-   NOT THERAPY
-========================= */
+/* =====================================================
+   BOUNDARY
+===================================================== */
 
 .boundary {
 
@@ -744,7 +717,6 @@ nav a:hover {
         center;
 }
 
-
 .boundary-box {
 
     background:
@@ -761,7 +733,6 @@ nav a:hover {
         rgba(40,120,120,0.09);
 }
 
-
 .boundary h2 {
 
     color:
@@ -773,7 +744,6 @@ nav a:hover {
     margin-bottom:
         20px;
 }
-
 
 .boundary p {
 
@@ -788,9 +758,9 @@ nav a:hover {
 }
 
 
-/* =========================
+/* =====================================================
    BOOKING
-========================= */
+===================================================== */
 
 .booking {
 
@@ -808,7 +778,6 @@ nav a:hover {
         center;
 }
 
-
 .booking-box {
 
     background:
@@ -825,7 +794,6 @@ nav a:hover {
         rgba(40,120,120,0.12);
 }
 
-
 .booking h2 {
 
     color:
@@ -837,7 +805,6 @@ nav a:hover {
     margin-bottom:
         18px;
 }
-
 
 .booking p {
 
@@ -853,7 +820,6 @@ nav a:hover {
     font-size:
         19px;
 }
-
 
 .booking-button {
 
@@ -893,7 +859,6 @@ nav a:hover {
         box-shadow 0.25s ease;
 }
 
-
 .booking-button:hover {
 
     transform:
@@ -905,9 +870,9 @@ nav a:hover {
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer {
 
@@ -928,13 +893,11 @@ footer {
         #5d565f;
 }
 
-
 footer p {
 
     margin-bottom:
         12px;
 }
-
 
 footer a {
 
@@ -949,9 +912,9 @@ footer a {
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media (max-width: 900px) {
 
@@ -964,7 +927,6 @@ footer a {
             center;
     }
 
-
     nav ul {
 
         justify-content:
@@ -973,20 +935,6 @@ footer a {
         gap:
             15px 20px;
     }
-
-
-    .coaching-grid {
-
-        grid-template-columns:
-            1fr;
-
-        max-width:
-            650px;
-
-        margin:
-            0 auto;
-    }
-
 
     .approach-grid {
 
@@ -999,7 +947,6 @@ footer a {
         margin:
             0 auto;
     }
-
 }
 
 
@@ -1011,13 +958,11 @@ footer a {
             18px 5%;
     }
 
-
     .logo {
 
         font-size:
             20px;
     }
-
 
     nav ul {
 
@@ -1025,13 +970,11 @@ footer a {
             10px 15px;
     }
 
-
     nav a {
 
         font-size:
             14px;
     }
-
 
     .hero {
 
@@ -1042,7 +985,6 @@ footer a {
             70px 5%
             65px;
     }
-
 
     .coaching-bubble {
 
@@ -1056,7 +998,6 @@ footer a {
             52px;
     }
 
-
     .intro {
 
         padding:
@@ -1064,13 +1005,11 @@ footer a {
             55px;
     }
 
-
     .intro-box {
 
         padding:
             45px 25px;
     }
-
 
     .intro p {
 
@@ -1078,13 +1017,11 @@ footer a {
             17px;
     }
 
-
     .hold-box {
 
         padding:
             45px 25px;
     }
-
 
     .hold p {
 
@@ -1092,13 +1029,11 @@ footer a {
             17px;
     }
 
-
     .hold ul {
 
         font-size:
             16px;
     }
-
 
     .booking-box {
 
@@ -1106,13 +1041,26 @@ footer a {
             45px 25px;
     }
 
-
     .booking p {
 
         font-size:
             17px;
     }
 
+    .floating-bubble {
+
+        max-width:
+            190px;
+
+        padding:
+            10px 17px;
+    }
+
+    .floating-bubble span {
+
+        font-size:
+            12px;
+    }
 }
 
 </style>
@@ -1123,493 +1071,726 @@ footer a {
 <body>
 
 
-<!-- =========================
+
+<!-- =====================================================
      NAVIGATION
-========================= -->
+===================================================== -->
 
 <nav>
 
-    <div class="logo">
+<div class="logo">
 
-        <a href="index.html">
+<a href="index.html">
 
-            🌱 The Still Becoming Village Circle
+    🌱 The Still Becoming Village Circle
 
-        </a>
+</a>
 
-    </div>
-
-
-    <ul>
-
-        <li>
-            <a href="index.html">
-                Home
-            </a>
-        </li>
+</div>
 
 
-        <li>
-            <a href="about.html">
-                Inside the Bubble
-            </a>
-        </li>
+<ul>
 
+<li>
+<a href="index.html">
+    Home
+</a>
+</li>
 
-        <li>
-            <a href="LearningtheUnknown.html">
-                The Unknown
-            </a>
-        </li>
+<li>
+<a href="about.html">
+    Inside the Bubble
+</a>
+</li>
 
+<li>
+<a href="LearningtheUnknown.html">
+    The Unknown
+</a>
+</li>
 
-        <li>
-            <a href="experiences.html">
-                Experiences
-            </a>
-        </li>
+<li>
+<a href="experiences.html">
+    Experiences
+</a>
+</li>
 
+<li>
+<a href="contact.html">
+    Connect
+</a>
+</li>
 
-        <li>
-            <a href="contact.html">
-                Connect
-            </a>
-        </li>
+<li>
+<a href="coaching.html">
+    Support
+</a>
+</li>
 
-
-        <li>
-            <a href="coaching.html">
-                Support
-            </a>
-        </li>
-
-    </ul>
+</ul>
 
 </nav>
 
 
-<!-- =========================
+
+<!-- =====================================================
+     FLOATING BECOMING MESSAGE
+===================================================== -->
+
+<div
+    class="floating-bubble"
+    id="floatingBubble"
+    aria-hidden="true"
+>
+
+<span id="floatingMessage">
+
+    🫧 Curiosity creates connection.
+
+</span>
+
+</div>
+
+
+
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
 
-    <div class="coaching-bubble">
-        🌱
-    </div>
+<div class="coaching-bubble">
+
+    🌱
+
+</div>
 
 
-    <div class="name">
-        LeSheAnn Hargro
-    </div>
+<div class="name">
+
+    LeSheAnn Hargro
+
+</div>
 
 
-    <div class="title">
-        Instantiator of Becoming
-    </div>
+<div class="title">
+
+    Instantiator of Becoming
+
+</div>
 
 
-    <h1>
-        Support
-    </h1>
+<h1>
+
+    Support
+
+</h1>
 
 
-    <p>
+<p>
 
-        A space to pause, unpack, question,
-        reflect, and explore what becoming
-        looks like from where you are right now.
+    A space to pause, unpack, question,
+    reflect, and explore what becoming
+    looks like from where you are right now.
 
-    </p>
+</p>
+
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      INTRO
-========================= -->
+===================================================== -->
 
 <section class="intro">
 
 
-    <div class="intro-box">
+<div class="intro-box">
 
 
-        <h2>
-            You Don't Have to Figure It Out Alone.
-        </h2>
+<h2>
+
+    You Don't Have to Figure It Out Alone.
+
+</h2>
 
 
-        <p>
+<p>
 
-            Sometimes you don't need someone to
-            tell you what to do.
+    Sometimes you don't need someone to
+    tell you what to do.
 
-        </p>
-
-
-        <p>
-
-            You need somewhere safe enough to
-            slow down and hear yourself think.
-
-        </p>
+</p>
 
 
-        <p>
+<p>
 
-            Coaching inside The Still Becoming
-            Village Circle creates space for
-            honest conversation, curiosity,
-            reflection, and intentional movement.
+    You need somewhere safe enough to
+    slow down and hear yourself think.
 
-        </p>
+</p>
 
 
-        <p>
+<p>
 
-            You bring what you're carrying.
+    Coaching inside The Still Becoming
+    Village Circle creates space for
+    honest conversation, curiosity,
+    reflection, and intentional movement.
 
-            We explore it together.
-
-        </p>
+</p>
 
 
-    </div>
+<p>
+
+    You bring what you're carrying.
+
+    We explore it together.
+
+</p>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      WHAT COACHING CAN HOLD
-========================= -->
+===================================================== -->
 
 <section class="hold">
 
 
-    <div class="hold-box">
+<div class="hold-box">
 
 
-        <h2>
-            What Can We Talk About?
-        </h2>
+<h2>
+
+    What Can We Talk About?
+
+</h2>
 
 
-        <p>
+<p>
 
-            Your conversation doesn't have to fit
-            into one perfect category.
+    Your conversation doesn't have to fit
+    into one perfect category.
 
-        </p>
-
-
-        <p>
-
-            Coaching may create space to explore:
-
-        </p>
+</p>
 
 
-        <ul>
+<p>
 
-            <li>
-                A transition you're trying to understand
-            </li>
+    Coaching may create space to explore:
 
-            <li>
-                A decision you're struggling to make
-            </li>
-
-            <li>
-                Boundaries you're learning to establish
-            </li>
-
-            <li>
-                Relationships and communication
-            </li>
-
-            <li>
-                Identity and self-discovery
-            </li>
-
-            <li>
-                Creative ideas you're trying to bring
-                into form
-            </li>
-
-            <li>
-                Patterns you're beginning to notice
-            </li>
-
-            <li>
-                The version of yourself you're becoming
-            </li>
-
-            <li>
-                Something you simply need to say
-                out loud
-            </li>
-
-        </ul>
+</p>
 
 
-        <p>
+<ul>
 
-            You don't have to know exactly what
-            the conversation is before you schedule it.
+<li>
+    A transition you're trying to understand
+</li>
 
-        </p>
+<li>
+    A decision you're struggling to make
+</li>
+
+<li>
+    Boundaries you're learning to establish
+</li>
+
+<li>
+    Relationships and communication
+</li>
+
+<li>
+    Identity and self-discovery
+</li>
+
+<li>
+    Creative ideas you're trying to bring
+    into form
+</li>
+
+<li>
+    Patterns you're beginning to notice
+</li>
+
+<li>
+    The version of yourself you're becoming
+</li>
+
+<li>
+    Something you simply need to say
+    out loud
+</li>
+
+</ul>
 
 
-    </div>
+<p>
+
+    You don't have to know exactly what
+    the conversation is before you schedule it.
+
+</p>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      APPROACH
-========================= -->
+===================================================== -->
 
 <section class="approach">
 
 
-    <h2>
-        The Conversation
-    </h2>
+<h2>
+
+    The Conversation
+
+</h2>
 
 
-    <div class="approach-grid">
+<div class="approach-grid">
 
 
-        <div class="approach-card">
+
+<div class="approach-card">
+
+<h3>
+
+    👂 Listen
+
+</h3>
+
+<p>
+
+    The first responsibility is to hear
+    what you're actually saying—not simply
+    prepare a response.
+
+</p>
+
+</div>
 
 
-            <h3>
-                👂 Listen
-            </h3>
+
+<div class="approach-card">
+
+<h3>
+
+    🔎 Explore
+
+</h3>
+
+<p>
+
+    Questions can help uncover what is
+    underneath the immediate problem,
+    assumption, fear, desire, or decision.
+
+</p>
+
+</div>
 
 
-            <p>
 
-                The first responsibility is to hear
-                what you're actually saying—not simply
-                prepare a response.
+<div class="approach-card">
 
-            </p>
+<h3>
 
-        </div>
+    🪞 Reflect
 
+</h3>
 
-        <div class="approach-card">
+<p>
 
+    Reflection creates room to notice
+    patterns, beliefs, choices, and
+    possibilities without rushing
+    toward an answer.
 
-            <h3>
-                🔎 Explore
-            </h3>
+</p>
 
-
-            <p>
-
-                Questions can help uncover what is
-                underneath the immediate problem,
-                assumption, fear, desire, or decision.
-
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="approach-card">
+
+<div class="approach-card">
+
+<h3>
+
+    🌱 Become
+
+</h3>
+
+<p>
+
+    The goal isn't to become somebody
+    else.
+
+    It's to become more intentional
+    about who you are becoming.
+
+</p>
+
+</div>
 
 
-            <h3>
-                🪞 Reflect
-            </h3>
-
-
-            <p>
-
-                Reflection creates room to notice
-                patterns, beliefs, choices, and
-                possibilities without rushing
-                toward an answer.
-
-            </p>
-
-        </div>
-
-
-        <div class="approach-card">
-
-
-            <h3>
-                🌱 Become
-            </h3>
-
-
-            <p>
-
-                The goal isn't to become somebody
-                else.
-
-                It's to become more intentional
-                about who you are becoming.
-
-            </p>
-
-        </div>
-
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      BOUNDARY
-========================= -->
+===================================================== -->
 
 <section class="boundary">
 
 
-    <div class="boundary-box">
+<div class="boundary-box">
 
 
-        <h2>
-            A Conversation Is Not a Diagnosis.
-        </h2>
+<h2>
+
+    A Conversation Is Not a Diagnosis.
+
+</h2>
 
 
-        <p>
+<p>
 
-            Coaching is a space for reflection,
-            conversation, personal development,
-            and exploring possibilities.
+    Coaching is a space for reflection,
+    conversation, personal development,
+    and exploring possibilities.
 
-        </p>
-
-
-        <p>
-
-            It is not therapy, medical care,
-            crisis intervention, or a substitute
-            for licensed mental-health treatment.
-
-        </p>
+</p>
 
 
-        <p>
+<p>
 
-            If something requires specialized
-            professional care, that deserves the
-            appropriate professional support.
+    It is not therapy, medical care,
+    crisis intervention, or a substitute
+    for licensed mental-health treatment.
 
-        </p>
+</p>
 
 
-    </div>
+<p>
+
+    If something requires specialized
+    professional care, that deserves the
+    appropriate professional support.
+
+</p>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      BOOKING
-========================= -->
+===================================================== -->
 
 <section class="booking">
 
 
-    <div class="booking-box">
+<div class="booking-box">
 
 
-        <h2>
-            Ready to Have the Conversation?
-        </h2>
+<h2>
+
+    Ready to Have the Conversation?
+
+</h2>
 
 
-        <p>
+<p>
 
-            Schedule a 30-minute conversation
-            with LeSheAnn Hargro.
+    Schedule a 30-minute conversation
+    with LeSheAnn Hargro.
 
-        </p>
-
-
-        <p>
-
-            You don't need a polished explanation.
-
-            You can simply arrive with whatever
-            you're currently trying to understand.
-
-        </p>
+</p>
 
 
-        <a
-            class="booking-button"
-            href="https://calendly.com/thestillbecomingvillagecircle/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+<p>
 
-            🌱 Schedule a Conversation
+    You don't need a polished explanation.
 
-        </a>
+    You can simply arrive with whatever
+    you're currently trying to understand.
+
+</p>
 
 
-    </div>
+<a
+    class="booking-button"
+    href="https://calendly.com/thestillbecomingvillagecircle/30min"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+
+    🌱 Schedule a Conversation
+
+</a>
+
+
+</div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
 
-    <p>
+<p>
 
-        Take what you need.
-        Leave what you don't.
-        Come back whenever you need to.
+    Take what you need.
 
-    </p>
+    Leave what you don't.
 
+    Come back whenever you need to.
 
-    <p>
-
-        Healing isn't a destination.
-        It's a circle we grow through together.
-
-    </p>
+</p>
 
 
-    <p>
+<p>
 
-        📧
+    Healing isn't a destination.
 
-        <a
-            href="mailto:thestillbecomingvillagecircle@gmail.com"
-        >
+    It's a circle we grow through together.
 
-            thestillbecomingvillagecircle@gmail.com
-
-        </a>
-
-    </p>
+</p>
 
 
-    <p>
+<p>
 
-        © 2026 The Still Becoming Village Circle
+    📧
 
-    </p>
+    <a
+        href="mailto:thestillbecomingvillagecircle@gmail.com"
+    >
+
+        thestillbecomingvillagecircle@gmail.com
+
+    </a>
+
+</p>
+
+
+<p>
+
+    © 2026 The Still Becoming Village Circle
+
+</p>
 
 
 </footer>
+
+
+
+<!-- =====================================================
+     FLOATING MESSAGE SYSTEM
+===================================================== -->
+
+<script>
+
+const becomingMessages = [
+
+    "🫧 You belong before you bloom.",
+
+    "🫧 Healing isn't linear.",
+
+    "🫧 Rest is productive.",
+
+    "🫧 Curiosity creates connection.",
+
+    "🫧 Becoming takes courage.",
+
+    "🫧 It's okay to begin again."
+
+];
+
+
+const floatingBubble =
+    document.getElementById(
+        "floatingBubble"
+    );
+
+
+const floatingMessage =
+    document.getElementById(
+        "floatingMessage"
+    );
+
+
+let messageIndex = 0;
+
+
+let currentX = 12;
+
+let currentY = 62;
+
+
+let targetX = 12;
+
+let targetY = 62;
+
+
+
+function chooseNewBubblePosition() {
+
+    const maxX =
+        window.innerWidth < 600
+            ? 68
+            : 78;
+
+
+    const maxY =
+        window.innerWidth < 600
+            ? 78
+            : 84;
+
+
+    targetX =
+        8 +
+        Math.random()
+        *
+        (
+            maxX - 8
+        );
+
+
+    targetY =
+        14 +
+        Math.random()
+        *
+        (
+            maxY - 14
+        );
+
+}
+
+
+
+function moveBubble() {
+
+    currentX +=
+        (
+            targetX - currentX
+        )
+        *
+        0.0028;
+
+
+    currentY +=
+        (
+            targetY - currentY
+        )
+        *
+        0.0028;
+
+
+    floatingBubble.style.left =
+        currentX + "%";
+
+
+    floatingBubble.style.top =
+        currentY + "%";
+
+
+    requestAnimationFrame(
+        moveBubble
+    );
+
+}
+
+
+
+function changeMessage() {
+
+    floatingBubble.classList.remove(
+        "visible"
+    );
+
+
+    setTimeout(
+        function() {
+
+            messageIndex =
+                (
+                    messageIndex + 1
+                )
+                %
+                becomingMessages.length;
+
+
+            floatingMessage.textContent =
+                becomingMessages[
+                    messageIndex
+                ];
+
+
+            chooseNewBubblePosition();
+
+
+            floatingBubble.classList.add(
+                "visible"
+            );
+
+        },
+        1800
+    );
+
+}
+
+
+
+chooseNewBubblePosition();
+
+
+setTimeout(
+    function() {
+
+        floatingBubble.classList.add(
+            "visible"
+        );
+
+    },
+    1800
+);
+
+
+moveBubble();
+
+
+setInterval(
+    changeMessage,
+    9000
+);
+
+</script>
 
 
 </body>
