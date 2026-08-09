@@ -1,21 +1,25 @@
 /* =========================================================
    THE STILL BECOMING VILLAGE CIRCLE
-   SITE-WIDE FLOATING MESSAGE BUBBLE
-   ---------------------------------------------------------
-   This controls ONLY the rotating Village message bubble.
+   SITE-WIDE FLOATING BUBBLE
+   =========================================================
+
+   This script controls:
+   • The clear/translucent floating bubble
+   • The rotating Village messages
+   • The bubble's free movement around the screen
 
    It does NOT control:
-   - SoundCloud
-   - The Village Soundtrack
-   - Navigation
-   - Page content
-   - Buttons
+   • SoundCloud
+   • The soundtrack record
+   • Navigation
+   • Page content
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
     /* =====================================================
-       MESSAGES
+       VILLAGE MESSAGES
     ===================================================== */
 
     const villageMessages = [
@@ -68,16 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     let bubble =
-        document.getElementById("villageFloatingMessage");
+        document.getElementById(
+            "villageFloatingMessage"
+        );
 
 
     /* =====================================================
-       CREATE BUBBLE IF IT DOESN'T EXIST
+       CREATE THE BUBBLE IF IT DOES NOT EXIST
     ===================================================== */
 
     if (!bubble) {
 
-        bubble = document.createElement("div");
+        bubble =
+            document.createElement("div");
 
         bubble.id =
             "villageFloatingMessage";
@@ -85,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
         bubble.innerHTML = `
 
             <div
-                class="village-message-text"
                 id="villageMessageText"
+                class="village-message-text"
             >
                 Honor your pace.
             </div>
@@ -99,12 +106,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       FIND / CREATE MESSAGE TEXT
+       FIND MESSAGE TEXT
     ===================================================== */
 
     let messageText =
-        document.getElementById("villageMessageText");
+        document.getElementById(
+            "villageMessageText"
+        );
 
+
+    /* =====================================================
+       SAFETY CHECK
+    ===================================================== */
 
     if (!messageText) {
 
@@ -120,169 +133,371 @@ document.addEventListener("DOMContentLoaded", function () {
         messageText.textContent =
             "Honor your pace.";
 
-        bubble.appendChild(messageText);
+        bubble.appendChild(
+            messageText
+        );
 
     }
 
 
     /* =====================================================
-       STYLES
+       CREATE STYLES
     ===================================================== */
 
-    if (!document.getElementById("villageMessageBubbleStyles")) {
+    if (
+        !document.getElementById(
+            "villageFloatingBubbleStyles"
+        )
+    ) {
 
         const style =
             document.createElement("style");
 
         style.id =
-            "villageMessageBubbleStyles";
+            "villageFloatingBubbleStyles";
 
 
         style.textContent = `
 
             /* =============================================
-               FLOATING MESSAGE BUBBLE
+               TRUE FLOATING BUBBLE
             ============================================= */
 
             #villageFloatingMessage {
 
                 position: fixed;
 
-                left: 18px;
+                left: 0;
 
-                bottom: 24px;
+                top: 0;
 
-                z-index: 9997;
+                width: max-content;
 
-                width: auto;
-
-                max-width: 330px;
+                max-width: 300px;
 
                 min-height: 58px;
 
                 padding:
-                    14px 25px;
+                    15px 26px;
 
-                display: flex;
+                display:
+                    flex;
 
-                align-items: center;
+                align-items:
+                    center;
 
-                justify-content: center;
+                justify-content:
+                    center;
 
-                text-align: center;
+                text-align:
+                    center;
+
+
+                /* -----------------------------------------
+                   CLEAR / TRANSLUCENT BUBBLE
+                ----------------------------------------- */
 
                 background:
-                    rgba(255,255,255,0.94);
+
+                    radial-gradient(
+                        circle at 27% 21%,
+
+                        rgba(
+                            255,
+                            255,
+                            255,
+                            0.58
+                        )
+                        0%,
+
+                        rgba(
+                            255,
+                            255,
+                            255,
+                            0.20
+                        )
+                        22%,
+
+                        rgba(
+                            198,
+                            250,
+                            246,
+                            0.10
+                        )
+                        55%,
+
+                        rgba(
+                            255,
+                            255,
+                            255,
+                            0.025
+                        )
+                        100%
+                    );
+
+
+                /* -----------------------------------------
+                   IRIDESCENT EDGE
+                ----------------------------------------- */
 
                 border:
-                    1px solid
-                    rgba(255,255,255,0.98);
+                    1.5px solid
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.75
+                    );
+
 
                 border-radius:
-                    50px;
+                    50%;
+
+
+                /* -----------------------------------------
+                   REAL BUBBLE DEPTH
+                ----------------------------------------- */
 
                 box-shadow:
 
-                    0 18px 45px
-                    rgba(40,120,125,0.16),
+                    inset
+                    6px 6px 13px
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.60
+                    ),
 
                     inset
-                    0 1px 0
-                    rgba(255,255,255,0.95);
+                    -7px -8px 16px
+                    rgba(
+                        71,
+                        183,
+                        199,
+                        0.10
+                    ),
+
+                    0 10px 28px
+                    rgba(
+                        55,
+                        145,
+                        153,
+                        0.12
+                    );
+
+
+                /* -----------------------------------------
+                   LET THE PAGE SHOW THROUGH
+                ----------------------------------------- */
 
                 backdrop-filter:
-                    blur(12px);
+                    blur(2px);
 
                 -webkit-backdrop-filter:
-                    blur(12px);
+                    blur(2px);
+
+
+                /* -----------------------------------------
+                   POSITION / LAYER
+                ----------------------------------------- */
+
+                z-index:
+                    9997;
 
                 pointer-events:
                     none;
 
+
+                /* -----------------------------------------
+                   START HIDDEN
+                ----------------------------------------- */
+
                 opacity:
-                    1;
+                    0;
+
 
                 transform:
-                    translateY(0);
+                    translate3d(
+                        0,
+                        0,
+                        0
+                    );
+
 
                 transition:
+                    opacity 0.8s ease;
 
-                    opacity 0.55s ease,
 
-                    transform 0.55s ease;
+                will-change:
+                    transform;
 
             }
 
 
             /* =============================================
-               MESSAGE
+               NATURAL BUBBLE HIGHLIGHT
+            ============================================= */
+
+            #villageFloatingMessage::before {
+
+                content:
+                    "";
+
+                position:
+                    absolute;
+
+                width:
+                    16px;
+
+                height:
+                    16px;
+
+                top:
+                    9px;
+
+                left:
+                    17px;
+
+
+                border-radius:
+                    50%;
+
+
+                background:
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.76
+                    );
+
+
+                filter:
+                    blur(1px);
+
+
+                opacity:
+                    0.78;
+
+            }
+
+
+            /* =============================================
+               SECONDARY IRIDESCENT REFLECTION
+            ============================================= */
+
+            #villageFloatingMessage::after {
+
+                content:
+                    "";
+
+                position:
+                    absolute;
+
+                width:
+                    7px;
+
+                height:
+                    7px;
+
+                right:
+                    18px;
+
+                bottom:
+                    12px;
+
+
+                border-radius:
+                    50%;
+
+
+                background:
+                    rgba(
+                        169,
+                        235,
+                        239,
+                        0.28
+                    );
+
+
+                filter:
+                    blur(1px);
+
+            }
+
+
+            /* =============================================
+               MESSAGE TEXT
             ============================================= */
 
             .village-message-text {
 
+                position:
+                    relative;
+
+                z-index:
+                    2;
+
+
                 color:
                     #16a9ae;
+
 
                 font-family:
                     Arial,
                     Helvetica,
                     sans-serif;
 
+
                 font-size:
                     16px;
+
 
                 font-weight:
                     600;
 
+
                 line-height:
                     1.35;
+
 
                 white-space:
                     normal;
 
+
+                text-shadow:
+                    0 1px 3px
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.85
+                    );
+
+
+                transition:
+                    opacity 0.5s ease;
+
             }
 
 
             /* =============================================
-               MESSAGE EXIT
-            ============================================= */
-
-            #villageFloatingMessage.message-changing {
-
-                opacity:
-                    0;
-
-                transform:
-                    translateY(8px);
-
-            }
-
-
-            /* =============================================
-               MOBILE
+               MOBILE BUBBLE
             ============================================= */
 
             @media (max-width: 600px) {
 
                 #villageFloatingMessage {
 
-                    left:
-                        12px;
-
-                    bottom:
-                        14px;
-
                     max-width:
-                        calc(100vw - 24px);
+                        250px;
 
                     min-height:
                         50px;
 
                     padding:
                         12px 20px;
-
-                    border-radius:
-                        40px;
 
                 }
 
@@ -299,54 +514,307 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
 
-        document.head.appendChild(style);
+        document.head.appendChild(
+            style
+        );
 
     }
 
 
     /* =====================================================
-       STARTING MESSAGE
+       MOVEMENT VARIABLES
+    ===================================================== */
+
+    let bubbleX =
+        80;
+
+    let bubbleY =
+        180;
+
+
+    let targetX =
+        80;
+
+    let targetY =
+        180;
+
+
+    let pauseUntil =
+        0;
+
+
+    /* =====================================================
+       FIND SAFE SCREEN AREA
+    ===================================================== */
+
+    function getSafeArea() {
+
+        const width =
+            bubble.offsetWidth ||
+            220;
+
+
+        const height =
+            bubble.offsetHeight ||
+            60;
+
+
+        const padding =
+            14;
+
+
+        const maxX =
+            Math.max(
+                padding,
+                window.innerWidth -
+                width -
+                padding
+            );
+
+
+        const maxY =
+            Math.max(
+                padding,
+                window.innerHeight -
+                height -
+                padding
+            );
+
+
+        return {
+
+            maxX:
+                maxX,
+
+            maxY:
+                maxY
+
+        };
+
+    }
+
+
+    /* =====================================================
+       CHOOSE A NEW LOCATION
+    ===================================================== */
+
+    function chooseNewDestination() {
+
+        const safe =
+            getSafeArea();
+
+
+        targetX =
+            Math.random()
+            * safe.maxX;
+
+
+        targetY =
+            Math.random()
+            * safe.maxY;
+
+
+        pauseUntil =
+            Date.now()
+            +
+            (
+                800
+                +
+                Math.random()
+                * 1800
+            );
+
+    }
+
+
+    /* =====================================================
+       MOVE BUBBLE SMOOTHLY
+    ===================================================== */
+
+    function moveBubble() {
+
+        const now =
+            Date.now();
+
+
+        if (
+            now >= pauseUntil
+        ) {
+
+            chooseNewDestination();
+
+        }
+
+
+        const differenceX =
+            targetX -
+            bubbleX;
+
+
+        const differenceY =
+            targetY -
+            bubbleY;
+
+
+        bubbleX +=
+            differenceX *
+            0.008;
+
+
+        bubbleY +=
+            differenceY *
+            0.008;
+
+
+        bubble.style.transform =
+            `translate3d(
+                ${bubbleX}px,
+                ${bubbleY}px,
+                0
+            )`;
+
+
+        requestAnimationFrame(
+            moveBubble
+        );
+
+    }
+
+
+    /* =====================================================
+       START FLOATING
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            chooseNewDestination();
+
+
+            bubble.style.opacity =
+                "1";
+
+
+            moveBubble();
+
+        },
+        400
+    );
+
+
+    /* =====================================================
+       ROTATE MESSAGE
     ===================================================== */
 
     let currentMessage =
         0;
 
 
-    messageText.textContent =
-        villageMessages[currentMessage];
+    function changeMessage() {
+
+        messageText.style.opacity =
+            "0";
+
+
+        setTimeout(
+            function () {
+
+                currentMessage =
+                    (
+                        currentMessage
+                        +
+                        1
+                    )
+                    %
+                    villageMessages.length;
+
+
+                messageText.textContent =
+                    villageMessages[
+                        currentMessage
+                    ];
+
+
+                messageText.style.opacity =
+                    "1";
+
+            },
+            500
+        );
+
+    }
 
 
     /* =====================================================
-       CHANGE MESSAGE
-       EVERY 4 SECONDS
+       CHANGE EVERY FOUR SECONDS
     ===================================================== */
 
-    setInterval(function () {
+    setInterval(
+        changeMessage,
+        4000
+    );
 
-        bubble.classList.add(
-            "message-changing"
+
+    /* =====================================================
+       KEEP BUBBLE ON SCREEN
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            const safe =
+                getSafeArea();
+
+
+            bubbleX =
+                Math.min(
+                    bubbleX,
+                    safe.maxX
+                );
+
+
+            bubbleY =
+                Math.min(
+                    bubbleY,
+                    safe.maxY
+                );
+
+
+            targetX =
+                Math.min(
+                    targetX,
+                    safe.maxX
+                );
+
+
+            targetY =
+                Math.min(
+                    targetY,
+                    safe.maxY
+                );
+
+        }
+    );
+
+
+    /* =====================================================
+       ACCESSIBILITY
+    ===================================================== */
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
         );
 
 
-        setTimeout(function () {
+    if (
+        reducedMotion.matches
+    ) {
 
-            currentMessage =
-                (currentMessage + 1)
-                % villageMessages.length;
+        bubble.style.transition =
+            "opacity 0.8s ease";
 
-
-            messageText.textContent =
-                villageMessages[currentMessage];
-
-
-            bubble.classList.remove(
-                "message-changing"
-            );
-
-        }, 550);
-
-
-    }, 4000);
-
+    }
 
 });
