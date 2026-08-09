@@ -14,7 +14,7 @@
 
     <meta
         name="description"
-        content="Learn what The Still Becoming Village Circle is, what we believe, and why there is room for you here."
+        content="Inside The Still Becoming Village Circle — a place for curiosity, healing, creativity, connection, and becoming."
     >
 
     <style>
@@ -36,14 +36,13 @@
             line-height: 1.7;
         }
 
-
         /* =========================
            NAVIGATION
         ========================== */
 
         nav {
-            background: rgba(255, 255, 255, 0.94);
-            border-bottom: 1px solid rgba(40, 95, 97, 0.12);
+            background: rgba(255,255,255,0.94);
+            border-bottom: 1px solid rgba(40,95,97,0.12);
 
             padding: 22px 4%;
 
@@ -75,21 +74,253 @@
             align-items: center;
 
             gap: 28px;
+
             flex-wrap: wrap;
         }
 
         nav a {
             text-decoration: none;
+
             color: #285f61;
 
             font-weight: 700;
+
             font-size: 16px;
 
             transition: 0.3s ease;
         }
 
         nav a:hover {
-            color: #12aaa9;
+            color: #16aaa9;
+        }
+
+
+        /* =========================
+           FLOATING MUSIC BUBBLE
+        ========================== */
+
+        .music-bubble {
+            position: fixed;
+
+            right: 24px;
+            bottom: 24px;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius:
+                52% 48% 55% 45%
+                / 48% 55% 45% 52%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(255,255,255,0.95),
+                    rgba(214,255,249,0.78) 45%,
+                    rgba(170,235,230,0.65)
+                );
+
+            border: 2px solid rgba(255,255,255,0.9);
+
+            box-shadow:
+                0 18px 45px rgba(40,120,120,0.22),
+                inset 8px 8px 18px rgba(255,255,255,0.85);
+
+            z-index: 2000;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 12px;
+
+            animation: floatBubble 5s ease-in-out infinite;
+        }
+
+        @keyframes floatBubble {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(1deg);
+            }
+
+        }
+
+        .music-title {
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #285f61;
+
+            margin-bottom: 8px;
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           RECORD PLAYER LOOK
+        ========================== */
+
+        .record-player {
+            width: 135px;
+            height: 92px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d9d0c3,
+                    #b7aa9a
+                );
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,0.18);
+
+            position: relative;
+
+            padding: 8px;
+        }
+
+        .record {
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #d8c7a6 0 8%,
+                    #252525 9% 15%,
+                    #111 16% 100%
+                );
+
+            position: absolute;
+
+            left: 17px;
+            top: 10px;
+
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.3);
+
+            animation: spinRecord 4s linear infinite;
+
+            animation-play-state: paused;
+        }
+
+        .record::before {
+            content: "";
+
+            position: absolute;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #d8c7a6;
+
+            left: 31px;
+            top: 31px;
+        }
+
+        @keyframes spinRecord {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           TONE ARM
+        ========================== */
+
+        .tone-arm {
+
+            width: 52px;
+            height: 5px;
+
+            background: #4e4942;
+
+            position: absolute;
+
+            right: 9px;
+            top: 20px;
+
+            transform: rotate(28deg);
+
+            transform-origin: right center;
+
+            border-radius: 5px;
+
+        }
+
+        .tone-arm::after {
+
+            content: "";
+
+            width: 10px;
+            height: 10px;
+
+            background: #4e4942;
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            right: -4px;
+            top: -3px;
+
+        }
+
+
+        /* =========================
+           MUSIC CONTROLS
+        ========================== */
+
+        .music-controls {
+
+            margin-top: 7px;
+
+            width: 100%;
+
+            height: 38px;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+        }
+
+        .music-controls iframe {
+
+            width: 100% !important;
+
+            height: 38px !important;
+
+            border: none;
         }
 
 
@@ -98,6 +329,7 @@
         ========================== */
 
         .page-intro {
+
             text-align: center;
 
             padding: 95px 6% 70px;
@@ -112,6 +344,7 @@
         }
 
         .bubble-icon {
+
             width: 92px;
             height: 92px;
 
@@ -129,6 +362,7 @@
                 0 12px 35px rgba(40,150,160,0.12);
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
@@ -136,7 +370,8 @@
         }
 
         .page-intro h1 {
-            font-size: clamp(40px, 7vw, 68px);
+
+            font-size: clamp(40px,7vw,68px);
 
             line-height: 1.1;
 
@@ -146,6 +381,7 @@
         }
 
         .page-intro p {
+
             max-width: 850px;
 
             margin: 0 auto;
@@ -157,10 +393,11 @@
 
 
         /* =========================
-           MAIN CONTENT
+           CONTENT
         ========================== */
 
         .section {
+
             max-width: 1000px;
 
             margin: 0 auto;
@@ -171,6 +408,7 @@
         }
 
         .section-box {
+
             background: rgba(255,255,255,0.9);
 
             padding: 60px 8%;
@@ -186,9 +424,10 @@
         }
 
         .section h2 {
+
             color: #16aaa9;
 
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(32px,5vw,48px);
 
             line-height: 1.2;
 
@@ -196,6 +435,7 @@
         }
 
         .section p {
+
             font-size: 19px;
 
             color: #5d565f;
@@ -205,93 +445,11 @@
 
 
         /* =========================
-           WHAT THE VILLAGE IS
-        ========================== */
-
-        .pillars {
-            max-width: 1150px;
-
-            margin: 0 auto;
-
-            padding: 40px 5% 90px;
-
-            text-align: center;
-        }
-
-        .pillars h2 {
-            color: #16aaa9;
-
-            font-size: clamp(34px, 5vw, 50px);
-
-            margin-bottom: 55px;
-        }
-
-        .pillar-grid {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 40px;
-        }
-
-        .pillar {
-            min-height: 300px;
-
-            padding: 45px 30px;
-
-            background: rgba(255,255,255,0.82);
-
-            border: 2px solid rgba(255,255,255,0.9);
-
-            box-shadow:
-                0 20px 45px rgba(40,130,135,0.12),
-                inset 8px 8px 18px rgba(255,255,255,0.9);
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .pillar:nth-child(1) {
-            border-radius:
-                55% 45% 60% 40%
-                / 45% 55% 45% 55%;
-        }
-
-        .pillar:nth-child(2) {
-            border-radius:
-                45% 55% 40% 60%
-                / 55% 45% 60% 40%;
-        }
-
-        .pillar:nth-child(3) {
-            border-radius:
-                60% 40% 55% 45%
-                / 45% 60% 40% 55%;
-        }
-
-        .pillar h3 {
-            color: #16aaa9;
-
-            font-size: 24px;
-
-            margin-bottom: 20px;
-        }
-
-        .pillar p {
-            color: #285f61;
-
-            font-size: 17px;
-        }
-
-
-        /* =========================
-           WHO WE ARE
+           MISSION
         ========================== */
 
         .mission {
+
             max-width: 1000px;
 
             margin: 0 auto;
@@ -302,6 +460,7 @@
         }
 
         .mission-box {
+
             background: rgba(255,255,255,0.9);
 
             padding: 65px 8%;
@@ -314,14 +473,16 @@
         }
 
         .mission h2 {
+
             color: #16aaa9;
 
-            font-size: clamp(34px, 5vw, 50px);
+            font-size: clamp(34px,5vw,50px);
 
             margin-bottom: 30px;
         }
 
         .mission p {
+
             font-size: 19px;
 
             color: #5d565f;
@@ -330,6 +491,7 @@
         }
 
         .mission-highlight {
+
             margin-top: 35px;
 
             font-size: 23px !important;
@@ -341,69 +503,97 @@
 
 
         /* =========================
-           KITTA
+           PEOPLE
         ========================== */
 
-        .kitta {
-            max-width: 900px;
+        .people {
+
+            max-width: 1100px;
 
             margin: 0 auto;
 
-            padding: 20px 6% 100px;
+            padding: 50px 5% 100px;
 
             text-align: center;
         }
 
-        .kitta-box {
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.94),
-                    rgba(235,255,251,0.9)
-                );
+        .people h2 {
 
-            padding: 55px 8%;
-
-            border-radius:
-                45% 55% 50% 50%
-                / 55% 45% 55% 45%;
-
-            box-shadow:
-                0 25px 60px rgba(40,120,120,0.10);
-        }
-
-        .kitta h2 {
             color: #16aaa9;
 
-            font-size: clamp(30px, 5vw, 45px);
+            font-size: clamp(34px,5vw,50px);
 
-            margin-bottom: 18px;
+            margin-bottom: 55px;
         }
 
-        .kitta h3 {
-            color: #285f61;
+        .person-grid {
 
-            font-size: 21px;
+            display: grid;
+
+            grid-template-columns: repeat(2,1fr);
+
+            gap: 45px;
+        }
+
+        .person {
+
+            background: rgba(255,255,255,0.86);
+
+            padding: 50px 35px;
+
+            border-radius:
+                55% 45% 60% 40%
+                / 45% 55% 45% 55%;
+
+            box-shadow:
+                0 20px 45px rgba(40,130,135,0.12);
+
+            border: 2px solid rgba(255,255,255,0.9);
+        }
+
+        .person:nth-child(2) {
+
+            border-radius:
+                45% 55% 40% 60%
+                / 55% 45% 60% 40%;
+        }
+
+        .person h3 {
+
+            color: #16aaa9;
+
+            font-size: 27px;
+
+            margin-bottom: 10px;
+        }
+
+        .person .role {
+
+            font-weight: 700;
+
+            color: #285f61;
 
             margin-bottom: 25px;
         }
 
-        .kitta p {
+        .person p {
+
             color: #5d565f;
 
             font-size: 18px;
 
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .kitta-link {
+        .person a {
+
             display: inline-block;
 
             margin-top: 10px;
 
-            padding: 14px 28px;
+            padding: 12px 24px;
 
-            border-radius: 40px;
+            border-radius: 35px;
 
             background: #ffffff;
 
@@ -414,39 +604,30 @@
             font-weight: 700;
 
             box-shadow:
-                0 10px 25px rgba(40,120,120,0.10);
-
-            transition: 0.3s ease;
-        }
-
-        .kitta-link:hover {
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 15px 30px rgba(40,120,120,0.15);
+                0 8px 20px rgba(40,120,120,0.10);
         }
 
 
         /* =========================
-           FOOTPRINT BOOKING SECTION
+           FOOTPRINTS
         ========================== */
 
         .footprints {
+
             max-width: 1050px;
 
             margin: 0 auto;
 
-            padding: 90px 5% 110px;
+            padding: 70px 5% 110px;
 
             text-align: center;
-
-            position: relative;
         }
 
         .footprints h2 {
+
             color: #16aaa9;
 
-            font-size: clamp(34px, 5vw, 52px);
+            font-size: clamp(34px,5vw,52px);
 
             line-height: 1.2;
 
@@ -454,22 +635,21 @@
         }
 
         .footprints-subtitle {
+
             font-size: 21px;
 
             color: #5d565f;
 
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
-
-        /* FOOTPRINT TRAIL */
-
         .footprint-trail {
+
             width: 100%;
 
             max-width: 500px;
 
-            height: 135px;
+            height: 130px;
 
             margin: 0 auto 25px;
 
@@ -477,15 +657,12 @@
         }
 
         .foot {
+
             position: absolute;
 
             font-size: 28px;
 
-            opacity: 0.72;
-
-            filter: saturate(0.75);
-
-            transition: 0.3s ease;
+            opacity: 0.65;
         }
 
         .foot-one {
@@ -496,7 +673,7 @@
 
         .foot-two {
             left: 25%;
-            top: 38px;
+            top: 35px;
             transform: rotate(12deg);
         }
 
@@ -508,20 +685,23 @@
 
         .foot-four {
             left: 66%;
-            top: 34px;
+            top: 35px;
             transform: rotate(15deg);
         }
 
         .foot-five {
             left: 84%;
-            top: 62px;
+            top: 60px;
             transform: rotate(-8deg);
         }
 
 
-        /* CALENDLY CONTAINER */
+        /* =========================
+           CALENDLY
+        ========================== */
 
         .calendly-wrapper {
+
             width: 100%;
 
             max-width: 720px;
@@ -532,22 +712,21 @@
 
             border-radius: 35px;
 
-            padding: 15px;
+            padding: 12px;
 
             box-shadow:
                 0 20px 50px rgba(40,120,120,0.12);
-
-            border: 2px solid rgba(255,255,255,0.9);
 
             overflow: hidden;
         }
 
         .calendly-inline-widget {
+
             width: 100%;
 
             min-width: 280px;
 
-            height: 650px;
+            height: 620px;
         }
 
 
@@ -556,6 +735,7 @@
         ========================== */
 
         footer {
+
             background: rgba(255,255,255,0.92);
 
             border-top:
@@ -569,19 +749,17 @@
         }
 
         footer p {
+
             margin-bottom: 12px;
         }
 
         footer a {
+
             color: #16aaa9;
 
             font-weight: 700;
 
             text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
         }
 
 
@@ -592,18 +770,21 @@
         @media (max-width: 900px) {
 
             nav {
+
                 flex-direction: column;
 
                 text-align: center;
             }
 
             nav ul {
+
                 justify-content: center;
 
                 gap: 15px 20px;
             }
 
-            .pillar-grid {
+            .person-grid {
+
                 grid-template-columns: 1fr;
 
                 max-width: 600px;
@@ -611,16 +792,20 @@
                 margin: 0 auto;
             }
 
-            .pillar {
-                min-height: 270px;
+            .music-bubble {
+
+                width: 165px;
+
+                height: 165px;
+
+                right: 14px;
+
+                bottom: 14px;
             }
 
-            .footprint-trail {
-                max-width: 390px;
-            }
+            .record-player {
 
-            .calendly-inline-widget {
-                height: 620px;
+                transform: scale(0.85);
             }
         }
 
@@ -628,81 +813,114 @@
         @media (max-width: 600px) {
 
             nav {
+
                 padding: 18px 5%;
             }
 
             .logo {
+
                 font-size: 20px;
             }
 
             nav ul {
+
                 gap: 10px 15px;
             }
 
             nav a {
+
                 font-size: 14px;
             }
 
             .page-intro {
+
                 padding: 70px 6% 55px;
             }
 
             .section {
+
                 padding: 55px 5%;
             }
 
             .section-box,
             .mission-box {
+
                 padding: 45px 25px;
             }
 
             .section p,
             .mission p {
+
                 font-size: 17px;
             }
 
-            .pillars {
-                padding: 30px 5% 65px;
+            .people {
+
+                padding: 35px 5% 70px;
             }
 
-            .pillar {
+            .person {
+
                 padding: 40px 25px;
             }
 
-            .kitta {
-                padding-bottom: 70px;
-            }
-
-            .kitta-box {
-                padding: 45px 25px;
-            }
-
             .footprints {
-                padding: 65px 5% 80px;
-            }
 
-            .footprints-subtitle {
-                font-size: 18px;
+                padding: 60px 5% 80px;
             }
 
             .footprint-trail {
-                height: 105px;
 
                 max-width: 320px;
+
+                height: 105px;
             }
 
             .foot {
+
                 font-size: 22px;
             }
 
             .calendly-wrapper {
-                padding: 8px;
+
+                padding: 7px;
 
                 border-radius: 25px;
             }
 
             .calendly-inline-widget {
+
                 height: 600px;
+            }
+
+            .music-bubble {
+
+                width: 145px;
+
+                height: 145px;
+
+                right: 10px;
+
+                bottom: 10px;
+            }
+
+            .music-title {
+
+                font-size: 10px;
+            }
+
+            .record-player {
+
+                transform: scale(0.72);
+
+                margin-top: -8px;
+
+                margin-bottom: -8px;
+            }
+
+            .music-controls {
+
+                width: 125px;
             }
         }
 
@@ -727,39 +945,27 @@
         <ul>
 
             <li>
-                <a href="index.html">
-                    Home
-                </a>
+                <a href="index.html">Home</a>
             </li>
 
             <li>
-                <a href="about.html">
-                    Inside the Bubble
-                </a>
+                <a href="about.html">Inside the Bubble</a>
             </li>
 
             <li>
-                <a href="unknown.html">
-                    The Unknown
-                </a>
+                <a href="unknown.html">The Unknown</a>
             </li>
 
             <li>
-                <a href="experiences.html">
-                    Experiences
-                </a>
+                <a href="experiences.html">Experiences</a>
             </li>
 
             <li>
-                <a href="contact.html">
-                    Connect
-                </a>
+                <a href="contact.html">Connect</a>
             </li>
 
             <li>
-                <a href="coaching.html">
-                    Support
-                </a>
+                <a href="coaching.html">Support</a>
             </li>
 
         </ul>
@@ -769,7 +975,42 @@
 
 
     <!-- =========================
-         INTRO
+         FLOATING VILLAGE SOUNDTRACK
+    ========================== -->
+
+    <div class="music-bubble">
+
+        <div class="music-title">
+            🫧 The Village Soundtrack
+        </div>
+
+
+        <div class="record-player">
+
+            <div class="record"></div>
+
+            <div class="tone-arm"></div>
+
+        </div>
+
+
+        <div class="music-controls">
+
+            <iframe
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay; encrypted-media"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%23ffffff&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         PAGE INTRO
     ========================== -->
 
     <section class="page-intro">
@@ -832,6 +1073,89 @@
 
 
     <!-- =========================
+         KENDRA / KITTA
+    ========================== -->
+
+    <section class="people">
+
+        <h2>
+            🌱 The People Within the Village
+        </h2>
+
+
+        <div class="person-grid">
+
+
+            <div class="person">
+
+                <h3>
+                    Kendra
+                </h3>
+
+                <div class="role">
+                    Author & Coach
+                </div>
+
+                <p>
+                    The Still Becoming Village Circle grew from
+                    Kendra's discovery that a village isn't simply
+                    something you create around yourself.
+                </p>
+
+                <p>
+                    Sometimes you become the kind of village
+                    you once needed—and then make room for others
+                    to discover what they're becoming too.
+                </p>
+
+                <p>
+                    The work of the Village brings together
+                    writing, coaching, curiosity, reflection,
+                    creativity, and connection.
+                </p>
+
+            </div>
+
+
+
+            <div class="person">
+
+                <h3>
+                    Kitta
+                </h3>
+
+                <div class="role">
+                    Creative & Marketing Collaborator
+                </div>
+
+                <p>
+                    Kitta brings creativity into the Village
+                    through personalized artwork, memorial pieces,
+                    gift baskets, care packages, event décor,
+                    creative concepts, and behind-the-scenes
+                    marketing support.
+                </p>
+
+                <p>
+                    Her presence in the Village is also an
+                    opportunity to explore what happens when
+                    creativity is allowed to become visible.
+                </p>
+
+                <a href="kitta.html">
+                    🎨 Creativity Allowed My Becoming
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
          MISSION
     ========================== -->
 
@@ -875,120 +1199,7 @@
 
 
     <!-- =========================
-         WHAT YOU'LL FIND
-    ========================== -->
-
-    <section class="pillars">
-
-        <h2>
-            🫧 What You'll Find Here
-        </h2>
-
-
-        <div class="pillar-grid">
-
-
-            <div class="pillar">
-
-                <h3>
-                    📚 Learning the Unknown
-                </h3>
-
-                <p>
-                    Books, journals, resources, reflections,
-                    and ideas that invite you to explore
-                    something you may not understand yet.
-                </p>
-
-            </div>
-
-
-
-            <div class="pillar">
-
-                <h3>
-                    💬 Real Conversations
-                </h3>
-
-                <p>
-                    Honest conversations about life,
-                    relationships, healing, identity,
-                    curiosity, and the moments that make
-                    us stop and ask, “What now?”
-                </p>
-
-            </div>
-
-
-
-            <div class="pillar">
-
-                <h3>
-                    🌱 Growing Together
-                </h3>
-
-                <p>
-                    Experiences, workshops, gatherings,
-                    and opportunities to connect while
-                    continuing to become.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         KITTA INTRO
-    ========================== -->
-
-    <section class="kitta">
-
-        <div class="kitta-box">
-
-            <h2>
-                🎨 Creativity Allowed My Becoming
-            </h2>
-
-            <h3>
-                Kitta — Creative & Marketing Collaborator
-            </h3>
-
-            <p>
-                Some of the best ideas aren't created alone.
-            </p>
-
-            <p>
-                Kitta brings creativity, visual presentation,
-                event decorating, personalized gifting,
-                and thoughtful client experiences into the
-                work we're building together.
-            </p>
-
-            <p>
-                Her story is one of discovering what can happen
-                when creativity is given room to grow.
-            </p>
-
-            <a
-                href="kitta.html"
-                class="kitta-link"
-            >
-                🌱 Meet Kitta's Creative Journey
-            </a>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         FOOTPRINTS + CALENDLY
+         FOOTPRINTS
     ========================== -->
 
     <section class="footprints">
@@ -1002,46 +1213,33 @@
         </p>
 
 
-        <!-- FOOTPRINT TRAIL -->
-
         <div class="footprint-trail">
 
-            <span class="foot foot-one">
-                👣
-            </span>
+            <span class="foot foot-one">👣</span>
 
-            <span class="foot foot-two">
-                👣
-            </span>
+            <span class="foot foot-two">👣</span>
 
-            <span class="foot foot-three">
-                👣
-            </span>
+            <span class="foot foot-three">👣</span>
 
-            <span class="foot foot-four">
-                👣
-            </span>
+            <span class="foot foot-four">👣</span>
 
-            <span class="foot foot-five">
-                👣
-            </span>
+            <span class="foot foot-five">👣</span>
 
         </div>
 
 
-
-        <!-- SMALLER CALENDLY -->
+        <!-- =========================
+             CALENDLY
+        ========================== -->
 
         <div class="calendly-wrapper">
 
             <div
                 class="calendly-inline-widget"
-                data-url="https://calendly.com/thestillbecomingvillagecircle/30min?hide_gdpr_banner=1"
-            >
+                data-url="https://calendly.com/thestillbecomingvillagecircle/30min?hide_gdpr_banner=1">
             </div>
 
         </div>
-
 
     </section>
 
@@ -1068,9 +1266,7 @@
 
             📧
 
-            <a
-                href="mailto:thestillbecomingvillagecircle@gmail.com"
-            >
+            <a href="mailto:thestillbecomingvillagecircle@gmail.com">
                 thestillbecomingvillagecircle@gmail.com
             </a>
 
@@ -1084,12 +1280,13 @@
 
 
 
-    <!-- CALENDLY SCRIPT -->
+    <!-- =========================
+         CALENDLY SCRIPT
+    ========================== -->
 
     <script
         src="https://assets.calendly.com/assets/external/widget.js"
-        async
-    >
+        async>
     </script>
 
 
