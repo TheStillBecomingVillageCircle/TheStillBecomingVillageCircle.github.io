@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Unknown | The Still Becoming Village Circle</title>
+<title>Learning the Unknown | The Still Becoming Village Circle</title>
 
 <style>
 
@@ -38,66 +38,104 @@ body {
 ========================= */
 
 nav {
-    background: rgba(255,255,255,0.97);
+
+    background:
+        rgba(255,255,255,0.97);
 
     border-bottom:
         1px solid rgba(40,95,97,0.12);
 
-    padding: 22px 4%;
+    padding:
+        22px 4%;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: space-between;
+    align-items:
+        center;
 
-    gap: 25px;
+    justify-content:
+        space-between;
 
-    position: sticky;
-    top: 0;
+    gap:
+        25px;
 
-    z-index: 1000;
+    position:
+        sticky;
 
-    backdrop-filter: blur(10px);
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    backdrop-filter:
+        blur(10px);
 }
 
 
 .logo {
-    font-size: 24px;
 
-    font-weight: 700;
+    font-size:
+        24px;
 
-    color: #285f61;
+    font-weight:
+        700;
 
-    line-height: 1.3;
+    line-height:
+        1.3;
+}
+
+
+.logo a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
 }
 
 
 nav ul {
-    list-style: none;
 
-    display: flex;
+    list-style:
+        none;
 
-    align-items: center;
+    display:
+        flex;
 
-    gap: 28px;
+    align-items:
+        center;
 
-    flex-wrap: wrap;
+    gap:
+        28px;
+
+    flex-wrap:
+        wrap;
 }
 
 
 nav a {
-    text-decoration: none;
 
-    color: #285f61;
+    text-decoration:
+        none;
 
-    font-weight: 700;
+    color:
+        #285f61;
 
-    font-size: 16px;
+    font-weight:
+        700;
+
+    font-size:
+        16px;
 }
 
 
 nav a:hover {
-    color: #16aaa9;
+
+    color:
+        #16aaa9;
 }
 
 
@@ -107,163 +145,292 @@ nav a:hover {
 
 .hero {
 
-    min-height: 650px;
+    min-height:
+        680px;
 
     padding:
-        95px 6%
+        90px 6%
         85px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
 
     background:
+
         radial-gradient(
-            circle at 50% 20%,
+            circle at 50% 18%,
             rgba(255,255,255,0.98),
-            rgba(226,255,250,0.82) 48%,
-            rgba(207,250,243,0.95)
+            rgba(226,255,250,0.84) 48%,
+            rgba(207,250,243,0.96)
         );
 }
 
 
 /* =========================
-   FLOATING UNKNOWN SYMBOL
+   FLOATING BUBBLES
 ========================= */
 
-.unknown-orbit {
+.bubble {
 
-    width: 150px;
-    height: 150px;
+    position:
+        absolute;
 
-    margin-bottom: 38px;
-
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     background:
-        rgba(255,255,255,0.42);
+
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.95),
+            rgba(193,247,242,0.42)
+        );
 
     border:
-        2px solid rgba(255,255,255,0.90);
+        1px solid
+        rgba(255,255,255,0.90);
 
     box-shadow:
 
         inset
-        10px 10px 25px
-        rgba(255,255,255,0.90),
+        5px 5px 12px
+        rgba(255,255,255,0.85),
 
-        inset
-        -10px -10px 25px
-        rgba(72,181,196,0.12),
+        0 10px 25px
+        rgba(40,130,135,0.08);
 
-        0 20px 45px
-        rgba(40,130,135,0.13);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-
-    animation:
-        floatUnknown 6s ease-in-out infinite;
+    pointer-events:
+        none;
 }
 
 
-@keyframes floatUnknown {
+.bubble.one {
 
-    0%, 100% {
+    width:
+        75px;
+
+    height:
+        75px;
+
+    top:
+        17%;
+
+    left:
+        8%;
+
+    animation:
+        floatOne 7s ease-in-out infinite;
+}
+
+
+.bubble.two {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    top:
+        25%;
+
+    right:
+        12%;
+
+    animation:
+        floatTwo 6s ease-in-out infinite;
+}
+
+
+.bubble.three {
+
+    width:
+        28px;
+
+    height:
+        28px;
+
+    bottom:
+        20%;
+
+    left:
+        18%;
+
+    animation:
+        floatThree 5s ease-in-out infinite;
+}
+
+
+.bubble.four {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    bottom:
+        16%;
+
+    right:
+        18%;
+
+    animation:
+        floatFour 8s ease-in-out infinite;
+}
+
+
+@keyframes floatOne {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-18px);
+    }
+}
+
+
+@keyframes floatTwo {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(14px);
+    }
+}
+
+
+@keyframes floatThree {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+@keyframes floatFour {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(16px);
+    }
+}
+
+
+/* =========================
+   MAIN BUBBLE
+========================= */
+
+.main-bubble {
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    margin-bottom:
+        38px;
+
+    border-radius:
+        52% 48% 55% 45%
+        /
+        46% 55% 45% 54%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.98),
+            rgba(210,251,246,0.72)
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.94);
+
+    box-shadow:
+
+        inset
+        12px 12px 28px
+        rgba(255,255,255,0.92),
+
+        inset
+        -12px -12px 28px
+        rgba(72,181,196,0.12),
+
+        0 25px 60px
+        rgba(40,130,135,0.14);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        70px;
+
+    animation:
+        mainFloat 7s ease-in-out infinite;
+}
+
+
+@keyframes mainFloat {
+
+    0%,100% {
+
         transform:
             translateY(0)
             rotate(0deg);
     }
 
     50% {
+
         transform:
             translateY(-10px)
-            rotate(4deg);
+            rotate(2deg);
     }
-}
-
-
-/* =========================
-   ORBITING BUBBLES
-========================= */
-
-.orbit-bubble {
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(255,255,255,0.95),
-            rgba(188,246,241,0.60)
-        );
-
-    border:
-        1px solid rgba(255,255,255,0.90);
-
-    box-shadow:
-        0 6px 15px
-        rgba(40,130,135,0.10);
-}
-
-
-.orbit-one {
-
-    width: 27px;
-    height: 27px;
-
-    top: 4px;
-    right: 22px;
-}
-
-
-.orbit-two {
-
-    width: 17px;
-    height: 17px;
-
-    bottom: 28px;
-    left: 5px;
-}
-
-
-.orbit-three {
-
-    width: 11px;
-    height: 11px;
-
-    bottom: 7px;
-    right: 43px;
-}
-
-
-/* =========================
-   QUESTION MARK
-========================= */
-
-.question {
-
-    font-size: 58px;
-
-    font-weight: 700;
-
-    color: #16aaa9;
-
-    text-shadow:
-        0 8px 20px
-        rgba(22,170,169,0.15);
 }
 
 
@@ -273,60 +440,73 @@ nav a:hover {
 
 .hero h1 {
 
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
     font-size:
-        clamp(45px,8vw,76px);
+        clamp(45px,8vw,78px);
 
-    line-height: 1.05;
+    line-height:
+        1.05;
 
-    margin-bottom: 28px;
+    margin-bottom:
+        20px;
 }
 
 
-.hero .intro {
+.hero .subtitle {
 
-    max-width: 850px;
+    color:
+        #285f61;
 
-    font-size: 21px;
+    font-size:
+        clamp(20px,3vw,27px);
 
-    color: #285f61;
+    font-weight:
+        700;
 
-    margin-bottom: 20px;
+    margin-bottom:
+        20px;
 }
 
 
-.hero .small-intro {
+.hero p {
 
-    max-width: 720px;
+    max-width:
+        850px;
 
-    font-size: 18px;
+    color:
+        #5d565f;
 
-    color: #5d565f;
+    font-size:
+        20px;
 }
 
 
 /* =========================
-   UNKNOWN STATEMENT
+   INTRO
 ========================= */
 
-.statement {
+.intro {
 
-    max-width: 1050px;
+    max-width:
+        1050px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     padding:
         85px 6%;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 
-.statement-box {
+.intro-box {
 
     background:
-        rgba(255,255,255,0.94);
+        rgba(255,255,255,0.95);
 
     padding:
         65px 8%;
@@ -334,122 +514,200 @@ nav a:hover {
     border-radius:
         50% 50% 45% 55%
         /
-        45% 55% 55% 45%;
-
-    box-shadow:
-        0 25px 60px
-        rgba(40,120,120,0.10);
+        48% 52% 55% 45%;
 
     border:
         2px solid
         rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.10);
 }
 
 
-.statement h2 {
+.intro h2 {
 
-    color: #16aaa9;
-
-    font-size:
-        clamp(32px,5vw,50px);
-
-    margin-bottom: 30px;
-}
-
-
-.statement p {
-
-    font-size: 19px;
-
-    color: #5d565f;
-
-    margin-bottom: 23px;
-}
-
-
-/* =========================
-   QUESTIONS
-========================= */
-
-.questions {
-
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding:
-        30px 5%
-        90px;
-
-    text-align: center;
-}
-
-
-.questions h2 {
-
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
     font-size:
         clamp(34px,5vw,50px);
 
-    margin-bottom: 15px;
+    margin-bottom:
+        28px;
 }
 
 
-.questions-intro {
+.intro p {
 
-    font-size: 19px;
-
-    color: #5d565f;
-
-    max-width: 720px;
+    max-width:
+        820px;
 
     margin:
-        0 auto 45px;
+        0 auto 22px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
 }
 
 
 /* =========================
-   QUESTION CARDS
+   WORD OF THE VILLAGE
 ========================= */
 
-.question-grid {
+.word-section {
 
-    display: grid;
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.word-box {
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(220,255,251,0.92),
+            rgba(255,255,255,0.97)
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        60px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(40,120,120,0.10);
+}
+
+
+.word-box h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,48px);
+
+    margin-bottom:
+        8px;
+}
+
+
+.word-definition {
+
+    color:
+        #79aaa9;
+
+    font-size:
+        17px;
+
+    font-style:
+        italic;
+
+    margin-bottom:
+        28px;
+}
+
+
+.word-box p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        20px;
+}
+
+
+/* =========================
+   LEARNING AREAS
+========================= */
+
+.learning {
+
+    max-width:
+        1100px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 5%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.learning h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom:
+        45px;
+}
+
+
+.learning-grid {
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap: 28px;
+    gap:
+        28px;
 }
 
 
-.question-card {
+.learning-card {
 
     background:
-        rgba(255,255,255,0.92);
+        rgba(255,255,255,0.94);
 
     padding:
-        40px 28px;
+        42px 28px;
 
-    min-height: 220px;
+    min-height:
+        275px;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    border-radius:
-        38px 55px 42px 60px;
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
 
     box-shadow:
         0 18px 40px
         rgba(40,120,120,0.09);
 
-    border:
-        2px solid
-        rgba(255,255,255,0.90);
+    border-radius:
+        45px 55px 40px 60px;
 
     transition:
         transform 0.3s ease,
@@ -457,24 +715,45 @@ nav a:hover {
 }
 
 
-.question-card:nth-child(2) {
+.learning-card:nth-child(2) {
 
     border-radius:
-        55px 38px 60px 42px;
+        55px 40px 60px 45px;
 }
 
 
-.question-card:nth-child(3) {
+.learning-card:nth-child(3) {
 
     border-radius:
-        42px 60px 38px 55px;
+        40px 60px 45px 55px;
 }
 
 
-.question-card:hover {
+.learning-card:nth-child(4) {
+
+    border-radius:
+        60px 45px 55px 40px;
+}
+
+
+.learning-card:nth-child(5) {
+
+    border-radius:
+        45px 60px 40px 55px;
+}
+
+
+.learning-card:nth-child(6) {
+
+    border-radius:
+        55px 45px 60px 40px;
+}
+
+
+.learning-card:hover {
 
     transform:
-        translateY(-6px);
+        translateY(-7px);
 
     box-shadow:
         0 25px 50px
@@ -482,133 +761,297 @@ nav a:hover {
 }
 
 
-.question-card .number {
+.learning-icon {
 
-    font-size: 14px;
+    font-size:
+        42px;
 
-    font-weight: 700;
-
-    color: #79aaa9;
-
-    margin-bottom: 12px;
+    margin-bottom:
+        15px;
 }
 
 
-.question-card h3 {
+.learning-card h3 {
 
-    color: #285f61;
+    color:
+        #16aaa9;
 
-    font-size: 22px;
+    font-size:
+        23px;
 
-    line-height: 1.35;
-
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 }
 
 
-.question-card p {
+.learning-card p {
 
-    color: #6a6269;
+    color:
+        #5d565f;
 
-    font-size: 16px;
+    font-size:
+        17px;
 }
 
 
 /* =========================
-   UNKNOWN CAN BE...
+   LEARNING PHILOSOPHY
 ========================= */
 
-.permission {
+.philosophy {
 
-    max-width: 950px;
+    max-width:
+        1000px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     padding:
-        40px 6%
+        10px 6%
         100px;
 
-    text-align: center;
+    text-align:
+        center;
 }
 
 
-.permission-box {
+.philosophy-box {
+
+    background:
+        rgba(255,255,255,0.95);
 
     padding:
         65px 8%;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(220,255,251,0.90),
-            rgba(255,255,255,0.94)
-        );
-
-    border-radius: 60px;
+    border-radius:
+        55px 45px 65px 40px;
 
     box-shadow:
-        0 20px 50px
-        rgba(40,120,120,0.09);
+        0 25px 60px
+        rgba(40,120,120,0.10);
 }
 
 
-.permission h2 {
+.philosophy h2 {
 
-    color: #16aaa9;
-
-    font-size:
-        clamp(32px,5vw,46px);
-
-    margin-bottom: 28px;
-}
-
-
-.permission p {
-
-    font-size: 20px;
-
-    color: #5d565f;
-
-    margin-bottom: 20px;
-}
-
-
-.permission strong {
-
-    color: #285f61;
-}
-
-
-/* =========================
-   FOOTPRINTS
-========================= */
-
-.footprints {
-
-    padding:
-        40px 5%
-        100px;
-
-    text-align: center;
-}
-
-
-.footprints h2 {
-
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
     font-size:
         clamp(34px,5vw,50px);
 
-    margin-bottom: 12px;
+    margin-bottom:
+        28px;
 }
 
 
-.footprints p {
+.philosophy p {
 
-    color: #5d565f;
+    color:
+        #5d565f;
 
-    font-size: 19px;
+    font-size:
+        19px;
+
+    margin-bottom:
+        22px;
+}
+
+
+.philosophy strong {
+
+    color:
+        #285f61;
+}
+
+
+/* =========================
+   RESOURCES
+========================= */
+
+.resources {
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 5%
+        110px;
+
+    text-align:
+        center;
+}
+
+
+.resources h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom:
+        22px;
+}
+
+
+.resources-intro {
+
+    max-width:
+        760px;
+
+    margin:
+        0 auto 45px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+.resource-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        28px;
+}
+
+
+.resource-card {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    padding:
+        40px 30px;
+
+    border-radius:
+        45px;
+
+    box-shadow:
+        0 18px 40px
+        rgba(40,120,120,0.08);
+}
+
+
+.resource-card h3 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        23px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.resource-card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        20px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.resource-button {
+
+    display:
+        inline-block;
+
+    padding:
+        12px 25px;
+
+    border-radius:
+        35px;
+
+    background:
+        #ffffff;
+
+    color:
+        #16aaa9;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 8px 20px
+        rgba(40,120,120,0.10);
+}
+
+
+.resource-button:hover {
+
+    background:
+        #e8fffb;
+}
+
+
+/* =========================
+   CLOSING
+========================= */
+
+.closing {
+
+    padding:
+        10px 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.closing h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,52px);
+
+    margin-bottom:
+        20px;
+}
+
+
+.closing p {
+
+    max-width:
+        780px;
+
+    margin:
+        0 auto;
+
+    color:
+        #5d565f;
+
+    font-size:
+        20px;
 }
 
 
@@ -625,28 +1068,34 @@ footer {
         1px solid
         rgba(40,95,97,0.10);
 
-    text-align: center;
+    text-align:
+        center;
 
     padding:
         55px 6%;
 
-    color: #5d565f;
+    color:
+        #5d565f;
 }
 
 
 footer p {
 
-    margin-bottom: 12px;
+    margin-bottom:
+        12px;
 }
 
 
 footer a {
 
-    color: #16aaa9;
+    color:
+        #16aaa9;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 }
 
 
@@ -658,28 +1107,49 @@ footer a {
 
     nav {
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
-        text-align: center;
+        text-align:
+            center;
     }
 
 
     nav ul {
 
-        justify-content: center;
+        justify-content:
+            center;
 
-        gap: 15px 20px;
+        gap:
+            15px 20px;
     }
 
 
-    .question-grid {
+    .learning-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
-        max-width: 600px;
+        max-width:
+            650px;
 
-        margin: 0 auto;
+        margin:
+            0 auto;
     }
+
+
+    .resource-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+
 }
 
 
@@ -687,98 +1157,103 @@ footer a {
 
     nav {
 
-        padding: 18px 5%;
+        padding:
+            18px 5%;
     }
 
 
     .logo {
 
-        font-size: 20px;
+        font-size:
+            20px;
     }
 
 
     nav ul {
 
-        gap: 10px 15px;
+        gap:
+            10px 15px;
     }
 
 
     nav a {
 
-        font-size: 14px;
+        font-size:
+            14px;
     }
 
 
     .hero {
 
-        min-height: 560px;
+        min-height:
+            570px;
 
         padding:
-            70px 6%
+            70px 5%
             65px;
     }
 
 
-    .unknown-orbit {
+    .main-bubble {
 
-        width: 125px;
-        height: 125px;
+        width:
+            145px;
+
+        height:
+            145px;
+
+        font-size:
+            52px;
     }
 
 
-    .question {
-
-        font-size: 48px;
-    }
-
-
-    .statement {
+    .intro {
 
         padding:
-            60px 5%;
+            60px 5%
+            55px;
     }
 
 
-    .statement-box {
-
-        padding:
-            45px 25px;
-    }
-
-
-    .statement p {
-
-        font-size: 17px;
-    }
-
-
-    .question-card {
-
-        min-height: 190px;
-
-        padding:
-            35px 25px;
-    }
-
-
-    .permission {
-
-        padding:
-            30px 5%
-            75px;
-    }
-
-
-    .permission-box {
+    .intro-box {
 
         padding:
             45px 25px;
     }
 
 
-    .permission p {
+    .intro p {
 
-        font-size: 18px;
+        font-size:
+            17px;
+    }
+
+
+    .word-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .word-box p {
+
+        font-size:
+            17px;
+    }
+
+
+    .philosophy-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .philosophy p {
+
+        font-size:
+            17px;
     }
 
 }
@@ -798,7 +1273,13 @@ footer a {
 <nav>
 
     <div class="logo">
-        🌱 The Still Becoming Village Circle
+
+        <a href="index.html">
+
+            🌱 The Still Becoming Village Circle
+
+        </a>
+
     </div>
 
 
@@ -817,8 +1298,6 @@ footer a {
             </a>
         </li>
 
-
-        <!-- FIXED: points to the actual file name -->
 
         <li>
             <a href="LearningtheUnknown.html">
@@ -859,38 +1338,37 @@ footer a {
 <section class="hero">
 
 
-    <div class="unknown-orbit">
+    <div class="bubble one"></div>
 
-        <span class="orbit-bubble orbit-one"></span>
+    <div class="bubble two"></div>
 
-        <span class="orbit-bubble orbit-two"></span>
+    <div class="bubble three"></div>
 
-        <span class="orbit-bubble orbit-three"></span>
+    <div class="bubble four"></div>
 
 
-        <div class="question">
-            ?
-        </div>
-
+    <div class="main-bubble">
+        🔎
     </div>
 
 
     <h1>
-        The Unknown
+        Learning the Unknown
     </h1>
 
 
-    <p class="intro">
-
-        What if you don't need to know yet?
-
-    </p>
+    <div class="subtitle">
+        Curiosity is allowed here.
+    </div>
 
 
-    <p class="small-intro">
+    <p>
 
-        Sometimes the next version of you is still
-        becoming clear.
+        You don't have to understand everything
+        before you're allowed to explore it.
+
+        Sometimes learning begins with admitting
+        that you don't know.
 
     </p>
 
@@ -898,58 +1376,56 @@ footer a {
 
 
 <!-- =========================
-     THE UNKNOWN
+     INTRO
 ========================= -->
 
-<section class="statement">
+<section class="intro">
 
 
-    <div class="statement-box">
+    <div class="intro-box">
 
 
         <h2>
-            There is something beautiful about not knowing.
+            The Unknown Isn't Empty.
         </h2>
 
 
         <p>
 
-            We are often taught to search for the answer
-            before we have even given ourselves permission
-            to ask the question.
+            The unknown can be a question.
+
+            A possibility.
+
+            A place you've never been.
+
+            A version of yourself you've never met.
 
         </p>
 
 
         <p>
 
-            But becoming doesn't always arrive with
-            instructions.
+            It can also be uncomfortable.
 
         </p>
 
 
         <p>
 
-            Sometimes you are simply standing at the edge
-            of something unfamiliar, wondering what happens
-            next.
+            This space exists because curiosity
+            deserves somewhere to live without
+            immediately becoming an answer.
 
         </p>
 
 
         <p>
 
-            That doesn't mean you're lost.
+            Here, we can ask questions before we
+            decide what we believe.
 
         </p>
 
-
-        <p>
-
-            It might mean you're discovering.
-
-        </p>
 
     </div>
 
@@ -957,84 +1433,222 @@ footer a {
 
 
 <!-- =========================
-     QUESTIONS
+     WORD
 ========================= -->
 
-<section class="questions">
+<section class="word-section">
+
+
+    <div class="word-box">
+
+
+        <h2>
+            Epistemic Humility
+        </h2>
+
+
+        <div class="word-definition">
+
+            noun — the recognition that what we know
+            may be incomplete, limited, or capable
+            of being revised
+
+        </div>
+
+
+        <p>
+
+            Not knowing something doesn't make you
+            unintelligent.
+
+        </p>
+
+
+        <p>
+
+            Being willing to learn something new
+            doesn't make everything you previously
+            believed meaningless.
+
+        </p>
+
+
+        <p>
+
+            Sometimes wisdom begins with:
+
+            <strong>
+                "I don't know yet."
+            </strong>
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LEARNING AREAS
+========================= -->
+
+<section class="learning">
 
 
     <h2>
-        Questions Worth Sitting With
+        What We Can Explore
     </h2>
 
 
-    <p class="questions-intro">
-
-        You don't have to answer these today.
-        Some questions are meant to open a door,
-        not force you through it.
-
-    </p>
+    <div class="learning-grid">
 
 
-    <div class="question-grid">
+        <div class="learning-card">
 
 
-        <div class="question-card">
-
-            <div class="number">
-                QUESTION ONE
+            <div class="learning-icon">
+                🧠
             </div>
 
 
             <h3>
-                What are you curious about right now?
+                Understanding Yourself
             </h3>
 
 
             <p>
-                Follow the question before you worry
-                about where it leads.
+
+                Explore patterns, perspectives,
+                emotions, assumptions, choices,
+                and the questions that help you
+                understand yourself more honestly.
+
             </p>
 
         </div>
 
 
-        <div class="question-card">
+        <div class="learning-card">
 
-            <div class="number">
-                QUESTION TWO
+
+            <div class="learning-icon">
+                💬
             </div>
 
 
             <h3>
-                What part of yourself are you still
-                getting to know?
+                Human Connection
             </h3>
 
 
             <p>
-                You are allowed to meet yourself again.
+
+                Examine communication, relationships,
+                boundaries, presence, conflict,
+                curiosity, and what happens between
+                people in real time.
+
             </p>
 
         </div>
 
 
-        <div class="question-card">
+        <div class="learning-card">
 
-            <div class="number">
-                QUESTION THREE
+
+            <div class="learning-icon">
+                🪞
             </div>
 
 
             <h3>
-                What would you explore if you knew
-                you didn't have to get it right?
+                Reflection
             </h3>
 
 
             <p>
-                Curiosity doesn't require perfection.
+
+                Sometimes the most useful information
+                is what becomes visible when you slow
+                down enough to look at your own
+                experience.
+
+            </p>
+
+        </div>
+
+
+        <div class="learning-card">
+
+
+            <div class="learning-icon">
+                🌱
+            </div>
+
+
+            <h3>
+                Becoming
+            </h3>
+
+
+            <p>
+
+                Explore the space between who you
+                were, who you are, and who you may
+                be becoming.
+
+            </p>
+
+        </div>
+
+
+        <div class="learning-card">
+
+
+            <div class="learning-icon">
+                ❓
+            </div>
+
+
+            <h3>
+                Better Questions
+            </h3>
+
+
+            <p>
+
+                Not every question needs an immediate
+                answer.
+
+                Some questions are valuable because
+                they change the way you look.
+
+            </p>
+
+        </div>
+
+
+        <div class="learning-card">
+
+
+            <div class="learning-icon">
+                📚
+            </div>
+
+
+            <h3>
+                Learning Resources
+            </h3>
+
+
+            <p>
+
+                Books, reflections, worksheets,
+                conversations, concepts, and other
+                resources can be gathered here as
+                the Village continues becoming.
+
             </p>
 
         </div>
@@ -1046,47 +1660,47 @@ footer a {
 
 
 <!-- =========================
-     PERMISSION
+     PHILOSOPHY
 ========================= -->
 
-<section class="permission">
+<section class="philosophy">
 
 
-    <div class="permission-box">
+    <div class="philosophy-box">
 
 
         <h2>
-            You Are Allowed to Be Unsure.
+            You Are Allowed to Change Your Mind.
         </h2>
 
 
         <p>
-            You can change your mind.
-        </p>
 
-
-        <p>
-            You can take a different route.
-        </p>
-
-
-        <p>
-
-            You can discover that what you wanted
-            isn't what you want anymore.
+            Learning means encountering information
+            that may challenge something you thought
+            you already understood.
 
         </p>
 
 
         <p>
-            You can begin again.
+
+            That doesn't automatically mean you were
+            foolish before.
+
         </p>
 
 
         <p>
 
-            And you can do all of that without
-            explaining your becoming to everybody.
+            It means you encountered something new.
+
+        </p>
+
+
+        <p>
+
+            The Village makes room for that process.
 
         </p>
 
@@ -1094,11 +1708,15 @@ footer a {
         <p>
 
             <strong>
-                The unknown isn't always a warning.
-                Sometimes it's an invitation.
+
+                Curiosity before certainty.
+                Questions before assumptions.
+                Understanding before judgment.
+
             </strong>
 
         </p>
+
 
     </div>
 
@@ -1106,21 +1724,108 @@ footer a {
 
 
 <!-- =========================
-     FOOTPRINTS
+     RESOURCES
 ========================= -->
 
-<section class="footprints">
+<section class="resources">
 
 
     <h2>
-        👣 Keep Walking.
+        Keep Exploring
+    </h2>
+
+
+    <p class="resources-intro">
+
+        The Unknown is not a page you finish.
+
+        It is a place you return to whenever
+        another question finds you.
+
+    </p>
+
+
+    <div class="resource-grid">
+
+
+        <div class="resource-card">
+
+
+            <h3>
+                📖 The Village Library
+            </h3>
+
+
+            <p>
+
+                Explore books and written work
+                connected to the ideas growing
+                throughout the Village.
+
+            </p>
+
+
+            <a
+                class="resource-button"
+                href="index.html"
+            >
+                Return to the Village
+            </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+
+            <h3>
+                🫧 Inside the Bubble
+            </h3>
+
+
+            <p>
+
+                Learn more about the people,
+                purpose, and philosophy behind
+                The Still Becoming Village Circle.
+
+            </p>
+
+
+            <a
+                class="resource-button"
+                href="about.html"
+            >
+                Enter the Bubble
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CLOSING
+========================= -->
+
+<section class="closing">
+
+
+    <h2>
+        Stay Curious.
     </h2>
 
 
     <p>
 
-        You don't have to see the whole path
-        to take the next step.
+        You don't have to know where every question
+        is going.
+
+        You only have to be willing to follow
+        the next one.
 
     </p>
 
@@ -1155,7 +1860,9 @@ footer a {
 
         📧
 
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
 
             thestillbecomingvillagecircle@gmail.com
 
@@ -1165,7 +1872,9 @@ footer a {
 
 
     <p>
+
         © 2026 The Still Becoming Village Circle
+
     </p>
 
 
