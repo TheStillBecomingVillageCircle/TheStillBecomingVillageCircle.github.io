@@ -2,254 +2,734 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Still Becoming Village Circle</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================
+           HOME PAGE HEADER
+        ========================================= */
+
+        header {
+            background: #ffffff;
+            width: 100%;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 22px 4%;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        header .logo {
+            flex-shrink: 0;
+        }
+
+        header .logo a {
+            color: #285f61;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        header nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 28px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li a {
+            color: #285f61;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            transition: opacity 0.25s ease;
+        }
+
+        header nav ul li a:hover {
+            opacity: 0.65;
+        }
+
+
+        /* =========================================
+           HOME HERO
+        ========================================= */
+
+        .hero {
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(255,255,255,0.95),
+                    rgba(218,250,247,0.9) 45%,
+                    rgba(205,247,243,1) 100%
+                );
+
+            text-align: center;
+            padding: 110px 6% 105px;
+        }
+
+        .hero .bubble {
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.55);
+
+            border: 2px solid rgba(255,255,255,0.9);
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+            box-shadow:
+                0 10px 30px rgba(40,95,97,0.08),
+                inset 0 0 25px rgba(255,255,255,0.8);
 
-<title>Liminality | The Still Becoming Village Circle</title>
+            font-size: 42px;
+        }
 
-<link rel="stylesheet" href="style.css">
+        .hero h1 {
+            color: #16a9ae;
+            font-size: clamp(52px, 7vw, 92px);
+            line-height: 1.05;
+            margin: 0 auto 30px;
+            font-weight: 800;
+        }
 
-<style>
+        .hero h2 {
+            max-width: 1000px;
+            margin: 0 auto 35px;
+            color: #285f61;
+            font-size: clamp(23px, 3vw, 34px);
+            line-height: 1.5;
+            font-weight: 500;
+        }
 
-/* =========================
-   HOMEPAGE ENHANCEMENTS
-========================= */
+        .quote {
+            color: #15999c;
+            font-size: 25px;
+            font-style: italic;
+            margin: 35px auto;
+            max-width: 900px;
+        }
 
-.hero {
-    position: relative;
-    overflow: hidden;
-}
+        .description {
+            max-width: 950px;
+            margin: 0 auto;
+            color: #285f61;
+            font-size: 20px;
+            line-height: 1.9;
+        }
 
-.hero::before,
-.hero::after {
-    content: "🫧";
 
-    position: absolute;
+        /* =========================================
+           PRIMARY HOME BUTTON
+        ========================================= */
 
-    opacity: 0.35;
+        .welcomeButton {
+            display: inline-block;
 
-    font-size: 42px;
+            margin-top: 35px;
 
-    pointer-events: none;
-}
+            padding: 16px 32px;
 
-.hero::before {
-    top: 18%;
-    left: 8%;
-}
+            border-radius: 50px;
 
-.hero::after {
-    right: 9%;
-    bottom: 20%;
-    font-size: 28px;
-}
+            background: #6bded3;
 
+            color: #164f52;
 
-/* =========================
-   MAIN BUBBLE
-========================= */
+            text-decoration: none;
 
-.bubble {
+            font-size: 18px;
+            font-weight: 700;
 
-    animation:
-        homeBubbleFloat 6s ease-in-out infinite;
-}
+            box-shadow:
+                0 8px 25px rgba(40,95,97,0.12);
 
-@keyframes homeBubbleFloat {
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
 
-    0%, 100% {
-        transform:
-            translateY(0)
-            scale(1);
-    }
+        .welcomeButton:hover {
+            transform: translateY(-3px);
 
-    50% {
-        transform:
-            translateY(-10px)
-            scale(1.03);
-    }
-}
+            box-shadow:
+                0 12px 30px rgba(40,95,97,0.18);
+        }
 
 
-/* =========================
-   LIMINALITY SECTION
-========================= */
+        /* =========================================
+           DISCOVERY SECTION
+        ========================================= */
 
-.liminality {
+        .inside {
+            background: #e7fbf9;
 
-    max-width: 1000px;
+            text-align: center;
 
-    margin: 0 auto;
+            padding: 95px 6%;
+        }
 
-    padding:
-        80px 6%
-        95px;
+        .inside h2 {
+            color: #16a9ae;
 
-    text-align: center;
-}
+            font-size: clamp(38px, 5vw, 58px);
 
-.liminality-box {
+            margin-bottom: 55px;
+        }
 
-    background:
-        rgba(255,255,255,0.95);
+        .cards {
+            max-width: 1200px;
 
-    padding:
-        65px 8%;
+            margin: 0 auto;
 
-    border-radius:
-        52% 48% 45% 55%
-        /
-        48% 55% 45% 52%;
+            display: grid;
 
-    border:
-        2px solid
-        rgba(255,255,255,0.92);
+            grid-template-columns:
+                repeat(3, 1fr);
 
-    box-shadow:
-        0 25px 60px
-        rgba(40,120,120,0.10);
-}
+            gap: 30px;
+        }
 
-.liminality-word {
+        .card {
+            background: rgba(255,255,255,0.85);
 
-    color:
-        #16aaa9;
+            border-radius: 30px;
 
-    font-size:
-        clamp(48px,8vw,76px);
+            padding: 38px 30px;
 
-    font-weight:
-        700;
+            box-shadow:
+                0 10px 30px rgba(40,95,97,0.07);
+        }
 
-    line-height:
-        1.05;
+        .card h3 {
+            color: #16a9ae;
 
-    margin-bottom:
-        18px;
-}
+            font-size: 25px;
 
-.liminality-definition {
+            margin-bottom: 20px;
+        }
 
-    color:
-        #79aaa9;
+        .card p {
+            color: #4b5657;
 
-    font-size:
-        16px;
+            font-size: 17px;
 
-    letter-spacing:
-        0.5px;
+            line-height: 1.8;
+        }
 
-    margin-bottom:
-        30px;
-}
 
-.liminality-box p {
+        /* =========================================
+           TODAY'S BECOMING MESSAGES
+        ========================================= */
 
-    max-width:
-        800px;
+        .messages {
+            background: #e7fbf9;
 
-    margin:
-        0 auto 22px;
+            text-align: center;
 
-    color:
-        #5d565f;
+            padding: 90px 6%;
+        }
 
-    font-size:
-        19px;
-}
+        .messages h2 {
+            color: #16a9ae;
 
-.liminality-box strong {
+            font-size: 45px;
 
-    color:
-        #285f61;
-}
+            margin-bottom: 40px;
+        }
 
+        .bubbleMessages {
+            max-width: 950px;
 
-/* =========================
-   DISCOVERY CARDS
-========================= */
+            margin: 0 auto;
 
-.card {
+            display: flex;
 
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
+            flex-wrap: wrap;
 
-.card:hover {
+            justify-content: center;
 
-    transform:
-        translateY(-6px);
+            gap: 18px;
+        }
 
-    box-shadow:
-        0 20px 40px
-        rgba(40,120,120,0.12);
-}
+        .message {
+            background: rgba(255,255,255,0.85);
 
+            color: #285f61;
 
-/* =========================
-   MESSAGE BUBBLES
-========================= */
+            padding: 15px 22px;
 
-.message {
+            border-radius: 40px;
 
-    transition:
-        transform 0.25s ease;
-}
+            box-shadow:
+                0 6px 20px rgba(40,95,97,0.06);
 
-.message:hover {
+            font-size: 17px;
+        }
 
-    transform:
-        translateY(-4px);
-}
 
+        /* =========================================
+           LIMINALITY
+        ========================================= */
 
-/* =========================
-   FOOTER
-========================= */
+        .liminality {
+            position: relative;
 
-footer a {
+            overflow: hidden;
 
-    color:
-        #16aaa9;
+            background: #e7fbf9;
 
-    text-decoration:
-        none;
+            padding: 120px 6% 150px;
 
-    font-weight:
-        700;
-}
+            text-align: center;
+        }
 
+        .liminality::before {
+            content: "";
 
-/* =========================
-   MOBILE
-========================= */
+            position: absolute;
 
-@media (max-width: 600px) {
+            width: 900px;
+            height: 500px;
 
-    .liminality {
+            left: 50%;
+            top: 80px;
 
-        padding:
-            60px 5%
-            75px;
-    }
+            transform: translateX(-50%);
 
-    .liminality-box {
+            background: #ffffff;
 
-        padding:
-            45px 25px;
-    }
+            border-radius:
+                50% 50% 0 0 / 100% 100% 0 0;
 
-    .liminality-box p {
+            z-index: 0;
+        }
 
-        font-size:
-            17px;
-    }
+        .liminality-content {
+            position: relative;
 
-}
+            z-index: 1;
 
-</style>
+            max-width: 1000px;
+
+            margin: 0 auto;
+        }
+
+        .liminality h2 {
+            color: #16a9ae;
+
+            font-size: clamp(48px, 7vw, 78px);
+
+            margin: 0 0 20px;
+        }
+
+        .liminality-definition {
+            color: #73aeb0;
+
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            margin-bottom: 35px;
+        }
+
+        .liminality-definition strong {
+            color: #285f61;
+        }
+
+        .liminality-text {
+            color: #285f61;
+
+            font-size: 19px;
+
+            line-height: 1.9;
+
+            max-width: 850px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           FINAL HOME MESSAGE
+        ========================================= */
+
+        .welcome {
+            background: #e7fbf9;
+
+            text-align: center;
+
+            padding: 100px 6%;
+        }
+
+        .welcome h2 {
+            color: #16a9ae;
+
+            font-size: 48px;
+
+            margin-bottom: 25px;
+        }
+
+        .welcome p {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            color: #285f61;
+
+            font-size: 20px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =========================================
+           FLOATING VILLAGE SOUNDTRACK
+        ========================================= */
+
+        .music-bubble {
+            position: fixed;
+
+            right: 24px;
+            bottom: 24px;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(229, 255, 252, 0.88);
+
+            border:
+                2px solid rgba(255,255,255,0.95);
+
+            box-shadow:
+                0 12px 35px rgba(40,95,97,0.15),
+                inset 0 0 30px rgba(255,255,255,0.8);
+
+            backdrop-filter: blur(10px);
+
+            z-index: 9999;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            transition:
+                transform 0.25s ease;
+        }
+
+        .music-bubble:hover {
+            transform: scale(1.04);
+        }
+
+        .music-closed {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+        }
+
+        .music-label {
+            color: #285f61;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            text-align: center;
+        }
+
+        .record-player {
+            position: relative;
+
+            width: 125px;
+            height: 90px;
+
+            border-radius: 12px;
+
+            background: #d9d0bf;
+
+            box-shadow:
+                0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        /* =========================================
+           BRICKS COVER AS THE RECORD
+        ========================================= */
+
+        .record {
+            position: absolute;
+
+            width: 65px;
+            height: 65px;
+
+            left: 25px;
+            top: 13px;
+
+            border-radius: 50%;
+
+            background-image:
+                url("bricks-cover.jpeg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            border:
+                4px solid #111;
+
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.3);
+
+            animation:
+                recordSpin 6s linear infinite;
+
+            animation-play-state: paused;
+        }
+
+        .music-bubble:hover .record {
+            animation-play-state: running;
+        }
+
+        .play-button {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 28px;
+            height: 28px;
+
+            border-radius: 50%;
+
+            background: #16a9ae;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 13px;
+
+            border:
+                2px solid rgba(255,255,255,0.9);
+
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.25);
+
+            z-index: 3;
+        }
+
+        .tone-arm {
+            position: absolute;
+
+            width: 58px;
+            height: 5px;
+
+            background: #5d584f;
+
+            right: 8px;
+            top: 16px;
+
+            transform:
+                rotate(28deg);
+
+            transform-origin: right center;
+
+            border-radius: 10px;
+        }
+
+        .tone-arm::after {
+            content: "";
+
+            position: absolute;
+
+            width: 12px;
+            height: 12px;
+
+            right: -3px;
+            top: -4px;
+
+            border-radius: 50%;
+
+            background: #5d584f;
+        }
+
+        @keyframes recordSpin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            header nav {
+                flex-direction: column;
+
+                gap: 18px;
+
+                padding:
+                    20px 5%;
+            }
+
+            header .logo a {
+                font-size: 20px;
+
+                white-space: normal;
+
+                text-align: center;
+
+                display: block;
+            }
+
+            header nav ul {
+                justify-content: center;
+
+                flex-wrap: wrap;
+
+                gap: 12px 18px;
+            }
+
+            header nav ul li a {
+                font-size: 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .liminality::before {
+                width: 700px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding:
+                    75px 5% 80px;
+            }
+
+            .hero .bubble {
+                width: 95px;
+                height: 95px;
+
+                margin-bottom: 35px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .description {
+                font-size: 17px;
+            }
+
+            .inside,
+            .messages,
+            .welcome {
+                padding:
+                    70px 5%;
+            }
+
+            .inside h2,
+            .messages h2,
+            .welcome h2 {
+                font-size: 38px;
+            }
+
+            .liminality {
+                padding:
+                    100px 5% 120px;
+            }
+
+            .liminality::before {
+                width: 550px;
+                height: 420px;
+            }
+
+            .liminality h2 {
+                font-size: 48px;
+            }
+
+            .liminality-definition,
+            .liminality-text {
+                font-size: 17px;
+            }
+
+            .music-bubble {
+                width: 155px;
+                height: 155px;
+
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .record-player {
+                transform: scale(0.78);
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -257,87 +737,77 @@ footer a {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- =========================================
+     NAVIGATION
+========================================= -->
 
 <header>
 
-<nav>
+    <nav>
 
+        <div class="logo">
 
-    <div class="logo">
-
-        <a href="index.html">
-
-            🌱 The Still Becoming Village Circle
-
-        </a>
-
-    </div>
-
-
-    <ul>
-
-
-        <li>
             <a href="index.html">
-                Home
+                🌱 The Still Becoming Village Circle
             </a>
-        </li>
+
+        </div>
 
 
-        <li>
-            <a href="about.html">
-                Inside the Bubble
-            </a>
-        </li>
+        <ul>
 
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
 
-        <li>
-            <a href="LearningtheUnknown.html">
-                The Unknown
-            </a>
-        </li>
+            <li>
+                <a href="about.html">
+                    Inside the Bubble
+                </a>
+            </li>
 
+            <li>
+                <a href="LearningtheUnknown.html">
+                    The Unknown
+                </a>
+            </li>
 
-        <li>
-            <a href="events.html">
-                Experiences
-            </a>
-        </li>
+            <li>
+                <a href="events.html">
+                    Experiences
+                </a>
+            </li>
 
+            <li>
+                <a href="contact.html">
+                    Connect
+                </a>
+            </li>
 
-        <li>
-            <a href="contact.html">
-                Connect
-            </a>
-        </li>
+            <li>
+                <a href="coaching.html">
+                    Support
+                </a>
+            </li>
 
+        </ul>
 
-        <li>
-            <a href="coaching.html">
-                Support
-            </a>
-        </li>
-
-
-    </ul>
-
-</nav>
+    </nav>
 
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
 
 <main>
 
 
-<section class="hero">
+<!-- =========================================
+     HERO
+========================================= -->
 
+<section class="hero">
 
     <div class="bubble">
         🫧
@@ -350,23 +820,23 @@ footer a {
 
 
     <h2>
-
-        A place where healing, curiosity,
-        growth, and belonging are welcomed—
+        A place where healing, curiosity, growth,
+        and belonging are welcomed—
         one step at a time.
-
     </h2>
 
 
     <p class="quote">
-
-        "You don't have to have it all together
-        to belong here."
-
+        "You don't have to have it all together to belong here."
     </p>
 
 
     <p class="description">
+
+        You've just stepped inside
+        The Still Becoming Village Circle.
+
+        <br><br>
 
         This isn't a place where you're expected
         to have all the answers.
@@ -374,8 +844,8 @@ footer a {
         <br><br>
 
         It's a place where questions are welcomed,
-        healing happens at your own pace, and
-        becoming is honored instead of rushed.
+        healing happens at your own pace,
+        and becoming is honored instead of rushed.
 
         <br><br>
 
@@ -391,122 +861,19 @@ footer a {
     </p>
 
 
-    <a
-        href="about.html"
-        class="welcomeButton"
-    >
-
+    <a href="about.html" class="welcomeButton">
         🫧 Step Inside the Bubble
-
     </a>
 
-
 </section>
 
 
-<!-- =========================
-     LIMINALITY
-========================= -->
 
-<section class="liminality">
-
-
-    <div class="liminality-box">
-
-
-        <div class="liminality-word">
-            Liminality
-        </div>
-
-
-        <div class="liminality-definition">
-
-            noun — the state of being between
-            one stage, condition, identity, or place
-            and another
-
-        </div>
-
-
-        <p>
-
-            The space between who you were
-            and who you're becoming.
-
-        </p>
-
-
-        <p>
-
-            Sometimes an old version of your life
-            no longer fits, while the next version
-            hasn't fully taken shape.
-
-        </p>
-
-
-        <p>
-
-            That space can feel uncertain.
-
-            Strange.
-
-            Quiet.
-
-            Exciting.
-
-            Uncomfortable.
-
-            Liberating.
-
-        </p>
-
-
-        <p>
-
-            And sometimes it can feel like
-            nothing is happening—
-
-            while everything is changing.
-
-        </p>
-
-
-        <p>
-
-            <strong>
-
-                You may not be lost.
-
-                You may simply be in between.
-
-            </strong>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-
-                This Village lives in that space.
-
-            </strong>
-
-        </p>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DISCOVER
-========================= -->
+<!-- =========================================
+     WHAT YOU'LL DISCOVER
+========================================= -->
 
 <section class="inside">
-
 
     <h2>
         What You'll Discover Inside the Bubble
@@ -518,77 +885,58 @@ footer a {
 
         <div class="card">
 
-
             <h3>
                 📚 Learning the Unknown
             </h3>
 
-
             <p>
-
                 Explore books, journals, worksheets,
-                and resources created to support your
-                healing and becoming.
-
+                and resources created to support
+                your healing and becoming.
             </p>
-
 
         </div>
 
 
-        <div class="card">
 
+        <div class="card">
 
             <h3>
                 💬 Real Conversations
             </h3>
 
-
             <p>
-
-                Explore stories, reflections, and
-                conversations that create space
-                for curiosity instead of judgment.
-
+                Explore stories, reflections,
+                and conversations that create
+                space for curiosity instead of judgment.
             </p>
 
-
             <p>
-
                 Discover authentic conversations,
                 belonging, encouragement,
                 and meaningful connection.
-
             </p>
-
 
         </div>
 
 
-        <div class="card">
 
+        <div class="card">
 
             <h3>
                 🌱 Growing Together
             </h3>
 
-
             <p>
-
                 Workshops, books, experiences,
                 and community moments that support
                 your growth one step at a time.
-
             </p>
-
 
             <p>
-
                 Virtual gatherings, discussions,
                 and opportunities to grow together.
-
             </p>
-
 
         </div>
 
@@ -598,12 +946,12 @@ footer a {
 </section>
 
 
-<!-- =========================
-     BECOMING MESSAGES
-========================= -->
+
+<!-- =========================================
+     TODAY'S BECOMING MESSAGES
+========================================= -->
 
 <section class="messages">
-
 
     <h2>
         Today's Becoming Messages
@@ -612,35 +960,93 @@ footer a {
 
     <div class="bubbleMessages">
 
-
         <div class="message">
             🫧 You belong before you bloom.
         </div>
-
 
         <div class="message">
             🫧 Healing isn't linear.
         </div>
 
-
         <div class="message">
             🫧 Rest is productive.
         </div>
-
 
         <div class="message">
             🫧 Curiosity creates connection.
         </div>
 
-
         <div class="message">
             🫧 Becoming takes courage.
         </div>
 
-
         <div class="message">
             🫧 It's okay to begin again.
         </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     LIMINALITY
+========================================= -->
+
+<section class="liminality">
+
+    <div class="liminality-content">
+
+
+        <h2>
+            Liminality
+        </h2>
+
+
+        <p class="liminality-definition">
+
+            <strong>noun</strong>
+            —
+            the state of being between one stage,
+            condition, identity, or place and another.
+
+        </p>
+
+
+        <p class="liminality-text">
+
+            Sometimes becoming doesn't look like
+            having everything figured out.
+
+            <br><br>
+
+            Sometimes it looks like standing
+            in the space between what was
+            and what hasn't arrived yet.
+
+            <br><br>
+
+            That space has a name.
+
+            <br><br>
+
+            <strong>Liminality.</strong>
+
+            <br><br>
+
+            The threshold.
+
+            The in-between.
+
+            The place where something is changing
+            before you can fully name what it is.
+
+            <br><br>
+
+            You don't have to rush through it.
+
+        </p>
 
 
     </div>
@@ -648,12 +1054,12 @@ footer a {
 </section>
 
 
-<!-- =========================
-     ROOM FOR YOU
-========================= -->
+
+<!-- =========================================
+     FINAL HOME MESSAGE
+========================================= -->
 
 <section class="welcome">
-
 
     <h2>
         There Is Room for You Here
@@ -662,11 +1068,11 @@ footer a {
 
     <p>
 
-        Whether you're beginning your healing
-        journey, supporting someone you love,
-        rediscovering yourself, or simply
-        searching for a place where authenticity
-        is welcomed—
+        Whether you're beginning your healing journey,
+        supporting someone you love,
+        rediscovering yourself,
+        or simply searching for a place where
+        authenticity is welcomed—
 
         <br><br>
 
@@ -674,28 +1080,73 @@ footer a {
 
     </p>
 
-
 </section>
 
 
 </main>
 
 
-<!-- =========================
+
+<!-- =========================================
+     FLOATING VILLAGE SOUNDTRACK
+========================================= -->
+
+<div
+    class="music-bubble"
+    id="musicBubble"
+    onclick="openMusic()"
+    aria-label="Open The Village Soundtrack"
+>
+
+
+    <div class="music-closed">
+
+
+        <div class="music-label">
+            🫧 The Village Soundtrack
+        </div>
+
+
+        <div class="record-player">
+
+
+            <!-- BRICKS COVER IS THE RECORD -->
+
+            <div class="record">
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+
+            <!-- OLD SCHOOL TONE ARM -->
+
+            <div class="tone-arm"></div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
      FOOTER
-========================= -->
+========================================= -->
 
 <footer>
-
 
     <p>
 
         Take what you need.
-
         <br><br>
 
         Leave what you don't.
-
         <br><br>
 
         Come back whenever you need to.
@@ -706,7 +1157,6 @@ footer a {
     <p>
 
         Healing isn't a destination.
-
         <br><br>
 
         It's a circle we grow through together.
@@ -719,25 +1169,50 @@ footer a {
         📧
 
         <a href="mailto:thestillbecomingvillagecircle@gmail.com">
-
             thestillbecomingvillagecircle@gmail.com
-
         </a>
 
     </p>
 
 
     <p>
-
         © 2026 The Still Becoming Village Circle
-
     </p>
-
 
 </footer>
 
 
+
 <script src="script.js"></script>
+
+
+<script>
+
+    /*
+    =========================================
+    VILLAGE SOUNDTRACK
+    =========================================
+    */
+
+    function openMusic() {
+
+        /*
+        The existing soundtrack functionality
+        can be connected through script.js.
+        This keeps the record itself as the
+        visual trigger.
+        */
+
+        if (typeof window.openMusicPlayer === "function") {
+
+            window.openMusicPlayer();
+
+        }
+
+    }
+
+</script>
+
 
 </body>
 
