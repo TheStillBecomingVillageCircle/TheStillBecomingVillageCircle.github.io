@@ -2,734 +2,22 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Still Becoming Village Circle</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-
-        /* =========================================
-           HOME PAGE HEADER
-        ========================================= */
-
-        header {
-            background: #ffffff;
-            width: 100%;
-        }
-
-        header nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            padding: 22px 4%;
-            max-width: 1500px;
-            margin: 0 auto;
-        }
-
-        header .logo {
-            flex-shrink: 0;
-        }
-
-        header .logo a {
-            color: #285f61;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        header nav ul {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 28px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        header nav ul li {
-            margin: 0;
-            padding: 0;
-        }
-
-        header nav ul li a {
-            color: #285f61;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
-            transition: opacity 0.25s ease;
-        }
-
-        header nav ul li a:hover {
-            opacity: 0.65;
-        }
-
-
-        /* =========================================
-           HOME HERO
-        ========================================= */
-
-        .hero {
-            background:
-                radial-gradient(
-                    circle at 50% 20%,
-                    rgba(255,255,255,0.95),
-                    rgba(218,250,247,0.9) 45%,
-                    rgba(205,247,243,1) 100%
-                );
-
-            text-align: center;
-            padding: 110px 6% 105px;
-        }
-
-        .hero .bubble {
-            width: 115px;
-            height: 115px;
-            margin: 0 auto 45px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.55);
-
-            border: 2px solid rgba(255,255,255,0.9);
-
-            box-shadow:
-                0 10px 30px rgba(40,95,97,0.08),
-                inset 0 0 25px rgba(255,255,255,0.8);
-
-            font-size: 42px;
-        }
-
-        .hero h1 {
-            color: #16a9ae;
-            font-size: clamp(52px, 7vw, 92px);
-            line-height: 1.05;
-            margin: 0 auto 30px;
-            font-weight: 800;
-        }
-
-        .hero h2 {
-            max-width: 1000px;
-            margin: 0 auto 35px;
-            color: #285f61;
-            font-size: clamp(23px, 3vw, 34px);
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        .quote {
-            color: #15999c;
-            font-size: 25px;
-            font-style: italic;
-            margin: 35px auto;
-            max-width: 900px;
-        }
-
-        .description {
-            max-width: 950px;
-            margin: 0 auto;
-            color: #285f61;
-            font-size: 20px;
-            line-height: 1.9;
-        }
-
-
-        /* =========================================
-           PRIMARY HOME BUTTON
-        ========================================= */
-
-        .welcomeButton {
-            display: inline-block;
-
-            margin-top: 35px;
-
-            padding: 16px 32px;
-
-            border-radius: 50px;
-
-            background: #6bded3;
-
-            color: #164f52;
-
-            text-decoration: none;
-
-            font-size: 18px;
-            font-weight: 700;
-
-            box-shadow:
-                0 8px 25px rgba(40,95,97,0.12);
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-        }
-
-        .welcomeButton:hover {
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 12px 30px rgba(40,95,97,0.18);
-        }
-
-
-        /* =========================================
-           DISCOVERY SECTION
-        ========================================= */
-
-        .inside {
-            background: #e7fbf9;
-
-            text-align: center;
-
-            padding: 95px 6%;
-        }
-
-        .inside h2 {
-            color: #16a9ae;
-
-            font-size: clamp(38px, 5vw, 58px);
-
-            margin-bottom: 55px;
-        }
-
-        .cards {
-            max-width: 1200px;
-
-            margin: 0 auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 30px;
-        }
-
-        .card {
-            background: rgba(255,255,255,0.85);
-
-            border-radius: 30px;
-
-            padding: 38px 30px;
-
-            box-shadow:
-                0 10px 30px rgba(40,95,97,0.07);
-        }
-
-        .card h3 {
-            color: #16a9ae;
-
-            font-size: 25px;
-
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            color: #4b5657;
-
-            font-size: 17px;
-
-            line-height: 1.8;
-        }
-
-
-        /* =========================================
-           TODAY'S BECOMING MESSAGES
-        ========================================= */
-
-        .messages {
-            background: #e7fbf9;
-
-            text-align: center;
-
-            padding: 90px 6%;
-        }
-
-        .messages h2 {
-            color: #16a9ae;
-
-            font-size: 45px;
-
-            margin-bottom: 40px;
-        }
-
-        .bubbleMessages {
-            max-width: 950px;
-
-            margin: 0 auto;
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            justify-content: center;
-
-            gap: 18px;
-        }
-
-        .message {
-            background: rgba(255,255,255,0.85);
-
-            color: #285f61;
-
-            padding: 15px 22px;
-
-            border-radius: 40px;
-
-            box-shadow:
-                0 6px 20px rgba(40,95,97,0.06);
-
-            font-size: 17px;
-        }
-
-
-        /* =========================================
-           LIMINALITY
-        ========================================= */
-
-        .liminality {
-            position: relative;
-
-            overflow: hidden;
-
-            background: #e7fbf9;
-
-            padding: 120px 6% 150px;
-
-            text-align: center;
-        }
-
-        .liminality::before {
-            content: "";
-
-            position: absolute;
-
-            width: 900px;
-            height: 500px;
-
-            left: 50%;
-            top: 80px;
-
-            transform: translateX(-50%);
-
-            background: #ffffff;
-
-            border-radius:
-                50% 50% 0 0 / 100% 100% 0 0;
-
-            z-index: 0;
-        }
-
-        .liminality-content {
-            position: relative;
-
-            z-index: 1;
-
-            max-width: 1000px;
-
-            margin: 0 auto;
-        }
-
-        .liminality h2 {
-            color: #16a9ae;
-
-            font-size: clamp(48px, 7vw, 78px);
-
-            margin: 0 0 20px;
-        }
-
-        .liminality-definition {
-            color: #73aeb0;
-
-            font-size: 20px;
-
-            line-height: 1.7;
-
-            margin-bottom: 35px;
-        }
-
-        .liminality-definition strong {
-            color: #285f61;
-        }
-
-        .liminality-text {
-            color: #285f61;
-
-            font-size: 19px;
-
-            line-height: 1.9;
-
-            max-width: 850px;
-
-            margin: 0 auto;
-        }
-
-
-        /* =========================================
-           FINAL HOME MESSAGE
-        ========================================= */
-
-        .welcome {
-            background: #e7fbf9;
-
-            text-align: center;
-
-            padding: 100px 6%;
-        }
-
-        .welcome h2 {
-            color: #16a9ae;
-
-            font-size: 48px;
-
-            margin-bottom: 25px;
-        }
-
-        .welcome p {
-            max-width: 900px;
-
-            margin: 0 auto;
-
-            color: #285f61;
-
-            font-size: 20px;
-
-            line-height: 1.9;
-        }
-
-
-        /* =========================================
-           FLOATING VILLAGE SOUNDTRACK
-        ========================================= */
-
-        .music-bubble {
-            position: fixed;
-
-            right: 24px;
-            bottom: 24px;
-
-            width: 190px;
-            height: 190px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(229, 255, 252, 0.88);
-
-            border:
-                2px solid rgba(255,255,255,0.95);
-
-            box-shadow:
-                0 12px 35px rgba(40,95,97,0.15),
-                inset 0 0 30px rgba(255,255,255,0.8);
-
-            backdrop-filter: blur(10px);
-
-            z-index: 9999;
-
-            cursor: pointer;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            transition:
-                transform 0.25s ease;
-        }
-
-        .music-bubble:hover {
-            transform: scale(1.04);
-        }
-
-        .music-closed {
-            width: 100%;
-            height: 100%;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 8px;
-        }
-
-        .music-label {
-            color: #285f61;
-
-            font-size: 15px;
-
-            font-weight: 700;
-
-            text-align: center;
-        }
-
-        .record-player {
-            position: relative;
-
-            width: 125px;
-            height: 90px;
-
-            border-radius: 12px;
-
-            background: #d9d0bf;
-
-            box-shadow:
-                0 6px 15px rgba(0,0,0,0.12);
-        }
-
-        /* =========================================
-           BRICKS COVER AS THE RECORD
-        ========================================= */
-
-        .record {
-            position: absolute;
-
-            width: 65px;
-            height: 65px;
-
-            left: 25px;
-            top: 13px;
-
-            border-radius: 50%;
-
-            background-image:
-                url("bricks-cover.jpeg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            border:
-                4px solid #111;
-
-            box-shadow:
-                0 3px 8px rgba(0,0,0,0.3);
-
-            animation:
-                recordSpin 6s linear infinite;
-
-            animation-play-state: paused;
-        }
-
-        .music-bubble:hover .record {
-            animation-play-state: running;
-        }
-
-        .play-button {
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            width: 28px;
-            height: 28px;
-
-            border-radius: 50%;
-
-            background: #16a9ae;
-
-            color: white;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            font-size: 13px;
-
-            border:
-                2px solid rgba(255,255,255,0.9);
-
-            box-shadow:
-                0 3px 8px rgba(0,0,0,0.25);
-
-            z-index: 3;
-        }
-
-        .tone-arm {
-            position: absolute;
-
-            width: 58px;
-            height: 5px;
-
-            background: #5d584f;
-
-            right: 8px;
-            top: 16px;
-
-            transform:
-                rotate(28deg);
-
-            transform-origin: right center;
-
-            border-radius: 10px;
-        }
-
-        .tone-arm::after {
-            content: "";
-
-            position: absolute;
-
-            width: 12px;
-            height: 12px;
-
-            right: -3px;
-            top: -4px;
-
-            border-radius: 50%;
-
-            background: #5d584f;
-        }
-
-        @keyframes recordSpin {
-
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
-        @media (max-width: 850px) {
-
-            header nav {
-                flex-direction: column;
-
-                gap: 18px;
-
-                padding:
-                    20px 5%;
-            }
-
-            header .logo a {
-                font-size: 20px;
-
-                white-space: normal;
-
-                text-align: center;
-
-                display: block;
-            }
-
-            header nav ul {
-                justify-content: center;
-
-                flex-wrap: wrap;
-
-                gap: 12px 18px;
-            }
-
-            header nav ul li a {
-                font-size: 15px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .liminality::before {
-                width: 700px;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .hero {
-                padding:
-                    75px 5% 80px;
-            }
-
-            .hero .bubble {
-                width: 95px;
-                height: 95px;
-
-                margin-bottom: 35px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero h2 {
-                font-size: 22px;
-            }
-
-            .description {
-                font-size: 17px;
-            }
-
-            .inside,
-            .messages,
-            .welcome {
-                padding:
-                    70px 5%;
-            }
-
-            .inside h2,
-            .messages h2,
-            .welcome h2 {
-                font-size: 38px;
-            }
-
-            .liminality {
-                padding:
-                    100px 5% 120px;
-            }
-
-            .liminality::before {
-                width: 550px;
-                height: 420px;
-            }
-
-            .liminality h2 {
-                font-size: 48px;
-            }
-
-            .liminality-definition,
-            .liminality-text {
-                font-size: 17px;
-            }
-
-            .music-bubble {
-                width: 155px;
-                height: 155px;
-
-                right: 10px;
-                bottom: 10px;
-            }
-
-            .record-player {
-                transform: scale(0.78);
-            }
-
-        }
-
-    </style>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        The Still Becoming Village Circle
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -737,9 +25,9 @@
 <body>
 
 
-<!-- =========================================
+<!-- =====================================================
      NAVIGATION
-========================================= -->
+===================================================== -->
 
 <header>
 
@@ -775,7 +63,7 @@
             </li>
 
             <li>
-                <a href="events.html">
+                <a href="experiences.html">
                     Experiences
                 </a>
             </li>
@@ -800,12 +88,16 @@
 
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
 
 
-<!-- =========================================
+<!-- =====================================================
      HERO
-========================================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -821,13 +113,13 @@
 
     <h2>
         A place where healing, curiosity, growth,
-        and belonging are welcomed—
-        one step at a time.
+        and belonging are welcomed—one step at a time.
     </h2>
 
 
     <p class="quote">
-        "You don't have to have it all together to belong here."
+        "You don't have to have it all together
+        to belong here."
     </p>
 
 
@@ -851,8 +143,8 @@
 
         Whether you're beginning again,
         discovering something new about yourself,
-        or simply looking for a place where you
-        can breathe without pretending...
+        or simply looking for a place where
+        you can breathe without pretending...
 
         <br><br>
 
@@ -861,17 +153,20 @@
     </p>
 
 
-    <a href="about.html" class="welcomeButton">
-        🫧 Step Inside the Bubble
+    <a
+        href="about.html"
+        class="welcomeButton"
+    >
+        🫧 Step Inside the Bubble. It's Okay.
     </a>
 
 </section>
 
 
 
-<!-- =========================================
+<!-- =====================================================
      WHAT YOU'LL DISCOVER
-========================================= -->
+===================================================== -->
 
 <section class="inside">
 
@@ -890,9 +185,12 @@
             </h3>
 
             <p>
-                Explore books, journals, worksheets,
-                and resources created to support
-                your healing and becoming.
+
+                Explore books, journals,
+                worksheets, and resources
+                created to support your
+                healing and becoming.
+
             </p>
 
         </div>
@@ -906,15 +204,20 @@
             </h3>
 
             <p>
+
                 Explore stories, reflections,
                 and conversations that create
-                space for curiosity instead of judgment.
+                space for curiosity instead
+                of judgment.
+
             </p>
 
             <p>
+
                 Discover authentic conversations,
                 belonging, encouragement,
                 and meaningful connection.
+
             </p>
 
         </div>
@@ -928,14 +231,20 @@
             </h3>
 
             <p>
+
                 Workshops, books, experiences,
-                and community moments that support
-                your growth one step at a time.
+                and community moments that
+                support your growth one step
+                at a time.
+
             </p>
 
             <p>
-                Virtual gatherings, discussions,
-                and opportunities to grow together.
+
+                Workshops, virtual gatherings,
+                discussions, and opportunities
+                to grow together.
+
             </p>
 
         </div>
@@ -947,9 +256,9 @@
 
 
 
-<!-- =========================================
+<!-- =====================================================
      TODAY'S BECOMING MESSAGES
-========================================= -->
+===================================================== -->
 
 <section class="messages">
 
@@ -990,74 +299,9 @@
 
 
 
-<!-- =========================================
-     LIMINALITY
-========================================= -->
-
-<section class="liminality">
-
-    <div class="liminality-content">
-
-
-        <h2>
-            Liminality
-        </h2>
-
-
-        <p class="liminality-definition">
-
-            <strong>noun</strong>
-            —
-            the state of being between one stage,
-            condition, identity, or place and another.
-
-        </p>
-
-
-        <p class="liminality-text">
-
-            Sometimes becoming doesn't look like
-            having everything figured out.
-
-            <br><br>
-
-            Sometimes it looks like standing
-            in the space between what was
-            and what hasn't arrived yet.
-
-            <br><br>
-
-            That space has a name.
-
-            <br><br>
-
-            <strong>Liminality.</strong>
-
-            <br><br>
-
-            The threshold.
-
-            The in-between.
-
-            The place where something is changing
-            before you can fully name what it is.
-
-            <br><br>
-
-            You don't have to rush through it.
-
-        </p>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================
-     FINAL HOME MESSAGE
-========================================= -->
+<!-- =====================================================
+     THERE IS ROOM FOR YOU
+===================================================== -->
 
 <section class="welcome">
 
@@ -1068,11 +312,15 @@
 
     <p>
 
-        Whether you're beginning your healing journey,
+        Whether you're beginning your
+        healing journey,
+
         supporting someone you love,
+
         rediscovering yourself,
-        or simply searching for a place where
-        authenticity is welcomed—
+
+        or simply searching for a place
+        where authenticity is welcomed—
 
         <br><br>
 
@@ -1087,131 +335,631 @@
 
 
 
-<!-- =========================================
-     FLOATING VILLAGE SOUNDTRACK
-========================================= -->
+<!-- =====================================================
+     VILLAGE SOUNDTRACK
+===================================================== -->
 
 <div
-    class="music-bubble"
-    id="musicBubble"
-    onclick="openMusic()"
-    aria-label="Open The Village Soundtrack"
+    id="villageSoundtrack"
+    aria-label="The Village Soundtrack"
 >
 
 
-    <div class="music-closed">
+    <div class="soundtrack-title">
 
-
-        <div class="music-label">
-            🫧 The Village Soundtrack
-        </div>
-
-
-        <div class="record-player">
-
-
-            <!-- BRICKS COVER IS THE RECORD -->
-
-            <div class="record">
-
-                <div class="play-button">
-                    ▶
-                </div>
-
-            </div>
-
-
-            <!-- OLD SCHOOL TONE ARM -->
-
-            <div class="tone-arm"></div>
-
-
-        </div>
-
+        🫧 The Village Soundtrack
 
     </div>
+
+
+
+    <!-- =================================================
+         SOUNDCLOUD PLAYER
+
+         Bricks — Andra Day
+         Track ID: 1935974870
+    ================================================== -->
+
+    <iframe
+        id="soundcloudPlayer"
+        title="Bricks by Andra Day"
+        width="1"
+        height="1"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay; encrypted-media"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+    >
+    </iframe>
+
+
+
+    <!-- =================================================
+         CUSTOM RECORD
+    ================================================== -->
+
+    <button
+        id="villageRecordButton"
+        type="button"
+        aria-label="Play The Village Soundtrack"
+    >
+
+        <img
+            src="bricks-cover.jpeg"
+            alt="Bricks by Andra Day artwork"
+            class="village-record-art"
+        >
+
+
+        <span class="record-center">
+
+            <span
+                class="record-play"
+                id="recordPlayIcon"
+            >
+                ▶
+            </span>
+
+        </span>
+
+    </button>
+
 
 </div>
 
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+<!-- =====================================================
+     SOUNDTRACK STYLES
+===================================================== -->
 
-<footer>
+<style>
 
-    <p>
+#villageSoundtrack {
 
-        Take what you need.
-        <br><br>
+    position: fixed;
 
-        Leave what you don't.
-        <br><br>
+    right: 28px;
 
-        Come back whenever you need to.
+    bottom: 28px;
 
-    </p>
+    width: 220px;
+
+    padding: 16px;
+
+    border-radius: 120px;
+
+    background:
+        rgba(
+            220,
+            250,
+            247,
+            0.24
+        );
+
+    border:
+        1.5px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.72
+        );
+
+    box-shadow:
+
+        inset
+        4px 4px 14px
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        ),
+
+        0 12px 30px
+        rgba(
+            60,
+            150,
+            158,
+            0.10
+        );
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    z-index:
+        9996;
+
+    text-align:
+        center;
+
+}
 
 
-    <p>
+/* =====================================================
+   SOUNDTRACK TITLE
+===================================================== */
 
-        Healing isn't a destination.
-        <br><br>
+.soundtrack-title {
 
-        It's a circle we grow through together.
+    color:
+        #28676b;
 
-    </p>
+    font-size:
+        15px;
 
+    font-weight:
+        700;
 
-    <p>
+    margin-bottom:
+        10px;
 
-        📧
-
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
-            thestillbecomingvillagecircle@gmail.com
-        </a>
-
-    </p>
-
-
-    <p>
-        © 2026 The Still Becoming Village Circle
-    </p>
-
-</footer>
+}
 
 
+/* =====================================================
+   RECORD BUTTON
+===================================================== */
 
-<script src="script.js"></script>
+#villageRecordButton {
+
+    position:
+        relative;
+
+    width:
+        126px;
+
+    height:
+        126px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        #171717;
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    display:
+        block;
+
+    box-shadow:
+        0 5px 15px
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
 
 
-<script>
+/* =====================================================
+   ALBUM ART ON RECORD
+===================================================== */
 
-    /*
-    =========================================
-    VILLAGE SOUNDTRACK
-    =========================================
-    */
+.village-record-art {
 
-    function openMusic() {
+    position:
+        absolute;
 
-        /*
-        The existing soundtrack functionality
-        can be connected through script.js.
-        This keeps the record itself as the
-        visual trigger.
-        */
+    inset:
+        13px;
 
-        if (typeof window.openMusicPlayer === "function") {
+    width:
+        calc(100% - 26px);
 
-            window.openMusicPlayer();
+    height:
+        calc(100% - 26px);
 
-        }
+    object-fit:
+        cover;
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =====================================================
+   RECORD CENTER
+===================================================== */
+
+.record-center {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.88
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    box-shadow:
+        0 2px 8px
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+}
+
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+.record-play {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border-radius:
+        50%;
+
+    background:
+        #16a9ae;
+
+    color:
+        white;
+
+    font-size:
+        13px;
+
+    padding-left:
+        2px;
+
+}
+
+
+/* =====================================================
+   PLAYING STATE
+===================================================== */
+
+#villageRecordButton.playing {
+
+    animation:
+        recordSpin 8s linear infinite;
+
+}
+
+
+#villageRecordButton.playing
+.record-play {
+
+    font-size:
+        0;
+
+}
+
+
+#villageRecordButton.playing
+.record-play::after {
+
+    content:
+        "Ⅱ";
+
+    font-size:
+        13px;
+
+}
+
+
+/* =====================================================
+   RECORD ROTATION
+===================================================== */
+
+@keyframes recordSpin {
+
+    from {
+
+        transform:
+            rotate(0deg);
 
     }
 
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE SOUNDTRACK
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #villageSoundtrack {
+
+        right:
+            14px;
+
+        bottom:
+            14px;
+
+        width:
+            190px;
+
+        padding:
+            13px;
+
+    }
+
+
+    #villageRecordButton {
+
+        width:
+            110px;
+
+        height:
+            110px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =====================================================
+     SOUNDCLOUD WIDGET API
+===================================================== -->
+
+<script
+    src="https://w.soundcloud.com/player/api.js"
+></script>
+
+
+
+<!-- =====================================================
+     SOUNDTRACK CONTROL
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const iframe =
+            document.getElementById(
+                "soundcloudPlayer"
+            );
+
+
+        const record =
+            document.getElementById(
+                "villageRecordButton"
+            );
+
+
+        if (
+            !iframe ||
+            !record
+        ) {
+
+            return;
+
+        }
+
+
+        const widget =
+            SC.Widget(
+                iframe
+            );
+
+
+        let isPlaying =
+            false;
+
+
+
+        /* =============================================
+           WAIT FOR SOUNDCLOUD
+        ============================================= */
+
+        widget.bind(
+            SC.Widget.Events.READY,
+            function () {
+
+
+                record.addEventListener(
+                    "click",
+                    function () {
+
+
+                        if (
+                            isPlaying
+                        ) {
+
+                            widget.pause();
+
+                        }
+
+                        else {
+
+                            widget.play();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =============================================
+           PLAY
+        ============================================= */
+
+        widget.bind(
+            SC.Widget.Events.PLAY,
+            function () {
+
+                isPlaying =
+                    true;
+
+
+                record.classList.add(
+                    "playing"
+                );
+
+
+                record.setAttribute(
+                    "aria-label",
+                    "Pause The Village Soundtrack"
+                );
+
+            }
+        );
+
+
+
+        /* =============================================
+           PAUSE
+        ============================================= */
+
+        widget.bind(
+            SC.Widget.Events.PAUSE,
+            function () {
+
+                isPlaying =
+                    false;
+
+
+                record.classList.remove(
+                    "playing"
+                );
+
+
+                record.setAttribute(
+                    "aria-label",
+                    "Play The Village Soundtrack"
+                );
+
+            }
+        );
+
+
+
+        /* =============================================
+           FINISH
+        ============================================= */
+
+        widget.bind(
+            SC.Widget.Events.FINISH,
+            function () {
+
+                isPlaying =
+                    false;
+
+
+                record.classList.remove(
+                    "playing"
+                );
+
+
+                record.setAttribute(
+                    "aria-label",
+                    "Play The Village Soundtrack"
+                );
+
+            }
+        );
+
+
+    }
+);
+
 </script>
+
+
+
+<!-- =====================================================
+     SHARED VILLAGE SCRIPT
+     
+     This keeps your soft, translucent,
+     slowly drifting message bubble.
+===================================================== -->
+
+<script src="script.js"></script>
 
 
 </body>
