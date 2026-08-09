@@ -3,1918 +3,1534 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>
-        Inside the Bubble | The Still Becoming Village Circle
-    </title>
+<title>
+    Inside the Bubble | The Still Becoming Village Circle
+</title>
 
+<style>
 
-    <style>
+/* =====================================================
+   RESET
+===================================================== */
 
-        /* =====================================================
-           BASIC
-        ===================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    background:
+        #e8fffb;
 
+    color:
+        #285f61;
 
-        body {
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+    line-height:
+        1.7;
 
-            background:
-                #e8fffb;
+    overflow-x:
+        hidden;
+}
 
-            color:
-                #285f61;
 
-            line-height:
-                1.7;
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-            overflow-x:
-                hidden;
-        }
+header {
+    width: 100%;
 
+    background:
+        rgba(255,255,255,0.96);
 
+    border-bottom:
+        1px solid
+        rgba(40,95,97,0.10);
 
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
+    position:
+        sticky;
 
-        nav {
+    top:
+        0;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.96
-                );
+    z-index:
+        1000;
 
-            border-bottom:
-                1px solid
-                rgba(
-                    40,
-                    95,
-                    97,
-                    0.12
-                );
+    backdrop-filter:
+        blur(10px);
 
-            padding:
-                22px 4%;
+    -webkit-backdrop-filter:
+        blur(10px);
+}
 
-            display:
-                flex;
+nav {
+    max-width:
+        1500px;
 
-            align-items:
-                center;
+    margin:
+        0 auto;
 
-            justify-content:
-                space-between;
+    padding:
+        22px 4%;
 
-            gap:
-                25px;
+    display:
+        flex;
 
-            position:
-                sticky;
+    align-items:
+        center;
 
-            top:
-                0;
+    justify-content:
+        space-between;
 
-            z-index:
-                1000;
+    gap:
+        30px;
+}
 
-            backdrop-filter:
-                blur(10px);
+.logo a {
+    color:
+        #285f61;
 
-            -webkit-backdrop-filter:
-                blur(10px);
-        }
+    text-decoration:
+        none;
 
+    font-size:
+        22px;
 
-        .logo {
+    font-weight:
+        700;
 
-            font-size:
-                24px;
+    white-space:
+        nowrap;
+}
 
-            font-weight:
-                700;
+nav ul {
+    list-style:
+        none;
 
-            color:
-                #285f61;
+    display:
+        flex;
 
-            line-height:
-                1.3;
-        }
+    align-items:
+        center;
 
+    justify-content:
+        flex-end;
 
-        .logo a {
+    gap:
+        28px;
 
-            color:
-                inherit;
+    flex-wrap:
+        wrap;
+}
 
-            text-decoration:
-                none;
-        }
+nav ul li a {
+    color:
+        #285f61;
 
+    text-decoration:
+        none;
 
-        nav ul {
+    font-size:
+        16px;
 
-            list-style:
-                none;
+    font-weight:
+        600;
 
-            display:
-                flex;
+    transition:
+        color 0.25s ease;
+}
 
-            align-items:
-                center;
+nav ul li a:hover {
+    color:
+        #16aaa9;
+}
 
-            gap:
-                28px;
 
-            flex-wrap:
-                wrap;
-        }
+/* =====================================================
+   SHARED FLOATING BECOMING BUBBLE
+===================================================== */
 
+.floating-bubble {
 
-        nav a {
+    position:
+        fixed;
 
-            text-decoration:
-                none;
+    left:
+        12vw;
 
-            color:
-                #285f61;
+    top:
+        62vh;
 
-            font-weight:
-                700;
+    z-index:
+        2000;
 
-            font-size:
-                16px;
-        }
+    width:
+        max-content;
 
+    max-width:
+        min(250px,42vw);
 
-        nav a:hover {
+    min-height:
+        48px;
 
-            color:
-                #16aaa9;
-        }
+    padding:
+        12px 22px;
 
+    display:
+        flex;
 
+    align-items:
+        center;
 
-        /* =====================================================
-           FLOATING BECOMING MESSAGE
-           
-           This is separate from the soundtrack.
-           It is translucent, soft, slow, and moves around
-           the page.
-        ===================================================== */
+    justify-content:
+        center;
 
-        #floatingMessageBubble {
+    text-align:
+        center;
 
-            position:
-                fixed;
+    pointer-events:
+        none;
 
-            left:
-                12vw;
+    border-radius:
+        50%;
 
-            top:
-                62vh;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.52),
+            rgba(235,255,252,0.22) 45%,
+            rgba(170,239,232,0.13)
+        );
 
-            z-index:
-                2500;
+    border:
+        1px solid
+        rgba(255,255,255,0.75);
 
-            pointer-events:
-                none;
+    box-shadow:
 
-            padding:
-                13px 24px;
+        inset
+        5px 5px 15px
+        rgba(255,255,255,0.60),
 
-            min-width:
-                145px;
+        inset
+        -5px -5px 15px
+        rgba(78,190,194,0.08),
 
-            max-width:
-                240px;
+        0 12px 30px
+        rgba(40,120,120,0.07);
 
-            text-align:
-                center;
+    backdrop-filter:
+        blur(4px);
 
-            border-radius:
-                999px;
+    -webkit-backdrop-filter:
+        blur(4px);
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.30
-                );
+    opacity:
+        0;
 
-            border:
-                1.5px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.78
-                );
+    transform:
+        scale(0.96);
 
-            box-shadow:
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
 
-                inset
-                3px 3px 12px
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.55
-                ),
+.floating-bubble.visible {
+    opacity:
+        0.76;
 
-                0 10px 28px
-                rgba(
-                    80,
-                    160,
-                    165,
-                    0.08
-                );
+    transform:
+        scale(1);
+}
 
-            backdrop-filter:
-                blur(5px);
+.floating-bubble span {
 
-            -webkit-backdrop-filter:
-                blur(5px);
+    color:
+        rgba(40,95,97,0.78);
 
-            color:
-                #239a9d;
+    font-size:
+        13px;
 
-            font-size:
-                14px;
+    font-weight:
+        600;
 
-            font-weight:
-                700;
+    line-height:
+        1.4;
+}
 
-            opacity:
-                0;
 
-            transition:
-                opacity 1.8s ease;
-        }
+/* =====================================================
+   PAGE HERO
+===================================================== */
 
+.page-intro {
 
-        #floatingMessageBubble.visible {
+    text-align:
+        center;
 
-            opacity:
-                0.82;
-        }
+    padding:
+        95px 6% 75px;
 
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255,255,255,0.95),
+            rgba(226,255,250,0.75) 50%,
+            rgba(207,250,243,0.90)
+        );
+}
 
+.bubble-icon {
 
-        /* =====================================================
-           VILLAGE SOUNDTRACK
-           
-           KEEPING THE OLD-SCHOOL RECORD PLAYER DESIGN
-        ===================================================== */
+    width:
+        110px;
 
-        .music-bubble {
+    height:
+        110px;
 
-            position:
-                fixed;
+    margin:
+        0 auto 30px;
 
-            right:
-                22px;
+    border-radius:
+        50%;
 
-            bottom:
-                22px;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.96),
+            rgba(215,253,248,0.60) 50%,
+            rgba(177,239,233,0.30)
+        );
 
-            width:
-                185px;
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
 
-            height:
-                185px;
+    box-shadow:
 
-            border-radius:
-                50%;
+        inset
+        10px 10px 22px
+        rgba(255,255,255,0.90),
 
-            background:
-                radial-gradient(
-                    circle at 30% 25%,
-                    rgba(
-                        255,
-                        255,
-                        255,
-                        0.98
-                    ),
-                    rgba(
-                        220,
-                        255,
-                        251,
-                        0.92
-                    ) 48%,
-                    rgba(
-                        177,
-                        239,
-                        233,
-                        0.78
-                    )
-                );
+        inset
+        -8px -8px 18px
+        rgba(94,196,214,0.15),
 
-            border:
-                2px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.95
-                );
+        0 14px 38px
+        rgba(40,150,160,0.12);
 
-            box-shadow:
+    display:
+        flex;
 
-                0 18px 45px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.20
-                ),
+    align-items:
+        center;
 
-                inset
-                8px 8px 18px
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
+    justify-content:
+        center;
 
-            z-index:
-                3000;
+    font-size:
+        48px;
+}
 
-            display:
-                flex;
+.page-intro h1 {
 
-            align-items:
-                center;
+    font-size:
+        clamp(40px,7vw,68px);
 
-            justify-content:
-                center;
+    line-height:
+        1.1;
 
-            cursor:
-                pointer;
+    color:
+        #16aaa9;
 
-            animation:
-                floatBubble 5s ease-in-out infinite;
+    margin-bottom:
+        25px;
+}
 
-            transition:
-                width 0.4s ease,
-                height 0.4s ease,
-                border-radius 0.4s ease,
-                box-shadow 0.4s ease;
-        }
+.page-intro p {
 
+    max-width:
+        850px;
 
-        .music-bubble:hover {
+    margin:
+        0 auto;
 
-            box-shadow:
+    font-size:
+        20px;
 
-                0 22px 55px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.28
-                ),
+    color:
+        #285f61;
+}
 
-                inset
-                8px 8px 18px
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.95
-                );
-        }
 
+/* =====================================================
+   WHO WE ARE
+===================================================== */
 
-        @keyframes floatBubble {
+.section {
 
-            0%,
-            100% {
-                transform:
-                    translateY(0);
-            }
+    padding:
+        85px 6%;
 
-            50% {
-                transform:
-                    translateY(-7px);
-            }
-        }
+    display:
+        flex;
 
+    justify-content:
+        center;
+}
 
+.section-box {
 
-        /* =====================================================
-           CLOSED MUSIC BUBBLE
-        ===================================================== */
+    width:
+        min(1050px,100%);
 
-        .music-closed {
+    padding:
+        60px 8%;
 
-            display:
-                flex;
+    background:
+        rgba(255,255,255,0.94);
 
-            flex-direction:
-                column;
+    border-radius:
+        70px 50px 65px 45px;
 
-            align-items:
-                center;
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.10);
 
-            justify-content:
-                center;
+    text-align:
+        center;
+}
 
-            width:
-                100%;
-        }
+.section-box h2 {
 
+    color:
+        #16aaa9;
 
-        .music-label {
+    font-size:
+        clamp(32px,5vw,50px);
 
-            font-size:
-                12px;
+    margin-bottom:
+        30px;
+}
 
-            font-weight:
-                700;
+.section-box p {
 
-            color:
-                #285f61;
+    max-width:
+        820px;
 
-            text-align:
-                center;
+    margin:
+        0 auto 20px;
 
-            margin-bottom:
-                8px;
-        }
+    color:
+        #5d565f;
 
+    font-size:
+        18px;
+}
 
 
-        /* =====================================================
-           OLD SCHOOL RECORD PLAYER
-        ===================================================== */
+/* =====================================================
+   PEOPLE
+===================================================== */
 
-        .record-player {
+.people {
 
-            width:
-                130px;
+    padding:
+        35px 6% 90px;
 
-            height:
-                88px;
+    text-align:
+        center;
+}
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #ded6ca,
-                    #b7aa99
-                );
+.people > h2 {
 
-            border-radius:
-                13px;
+    color:
+        #16aaa9;
 
-            box-shadow:
-                0 8px 16px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.18
-                );
+    font-size:
+        clamp(32px,5vw,50px);
 
-            position:
-                relative;
+    margin-bottom:
+        45px;
+}
 
-            display:
-                flex;
+.person-grid {
 
-            align-items:
-                center;
+    max-width:
+        1100px;
 
-            justify-content:
-                center;
+    margin:
+        0 auto;
 
-            overflow:
-                hidden;
-        }
+    display:
+        grid;
 
+    grid-template-columns:
+        repeat(2,1fr);
 
+    gap:
+        35px;
 
-        /* =====================================================
-           BRICKS COVER = RECORD
-        ===================================================== */
+    text-align:
+        left;
+}
 
-        .record {
+.person {
 
-            width:
-                70px;
+    padding:
+        45px 35px;
 
-            height:
-                70px;
+    background:
+        rgba(255,255,255,0.94);
 
-            border-radius:
-                50%;
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
 
-            background-image:
-                url("bricks-cover.jpeg");
+    box-shadow:
+        0 20px 50px
+        rgba(40,120,120,0.09);
 
-            background-size:
-                cover;
+    border-radius:
+        55px 40px 60px 45px;
+}
 
-            background-position:
-                center;
+.person:nth-child(2) {
 
-            position:
-                relative;
+    border-radius:
+        40px 60px 45px 55px;
+}
 
-            z-index:
-                2;
+.person h3 {
 
-            border:
-                5px solid
-                #171717;
+    color:
+        #16aaa9;
 
-            box-shadow:
-                0 3px 10px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.35
-                );
+    font-size:
+        30px;
 
-            transition:
-                transform 0.5s linear;
-        }
+    margin-bottom:
+        5px;
+}
 
+.role {
 
+    color:
+        #527779;
 
-        /* =====================================================
-           PLAY BUTTON
-        ===================================================== */
+    font-size:
+        17px;
 
-        .play-button {
+    font-weight:
+        700;
 
-            position:
-                absolute;
+    margin-bottom:
+        20px;
+}
 
-            left:
-                50%;
+.village-tagline {
 
-            top:
-                50%;
+    font-style:
+        italic;
 
-            transform:
-                translate(
-                    -50%,
-                    -50%
-                );
+    font-weight:
+        600;
 
-            width:
-                36px;
+    color:
+        #79aaa9;
 
-            height:
-                36px;
+    margin-top:
+        -14px;
 
-            border-radius:
-                50%;
+    margin-bottom:
+        22px;
+}
 
-            border:
-                2px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.98
-                );
+.person p {
 
-            background:
-                rgba(
-                    22,
-                    170,
-                    169,
-                    0.94
-                );
+    color:
+        #5d565f;
 
-            color:
-                white;
+    font-size:
+        17px;
 
-            display:
-                flex;
+    margin-bottom:
+        18px;
+}
 
-            align-items:
-                center;
+.person a {
 
-            justify-content:
-                center;
+    display:
+        inline-block;
 
-            font-size:
-                16px;
+    margin-top:
+        5px;
 
-            line-height:
-                1;
+    color:
+        #16aaa9;
 
-            box-shadow:
-                0 4px 12px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.30
-                );
+    font-weight:
+        700;
 
-            z-index:
-                5;
+    text-decoration:
+        none;
+}
 
-            pointer-events:
-                none;
-        }
+.person a:hover {
+    text-decoration:
+        underline;
+}
 
 
+/* =====================================================
+   MISSION
+===================================================== */
 
-        /* =====================================================
-           RECORD CENTER
-        ===================================================== */
+.mission {
 
-        .record::after {
+    padding:
+        20px 6% 90px;
 
-            content:
-                "";
+    display:
+        flex;
 
-            position:
-                absolute;
+    justify-content:
+        center;
+}
 
-            width:
-                8px;
+.mission-box {
 
-            height:
-                8px;
+    width:
+        min(1000px,100%);
 
-            border-radius:
-                50%;
+    padding:
+        65px 8%;
 
-            background:
-                #d7c6a4;
+    text-align:
+        center;
 
-            border:
-                2px solid
-                #111;
+    background:
+        rgba(255,255,255,0.94);
 
-            left:
-                50%;
+    border-radius:
+        65px 45px 60px 50px;
 
-            top:
-                50%;
+    box-shadow:
+        0 25px 55px
+        rgba(40,120,120,0.09);
+}
 
-            transform:
-                translate(
-                    -50%,
-                    -50%
-                );
-        }
+.mission-box h2 {
 
+    color:
+        #16aaa9;
 
+    font-size:
+        clamp(32px,5vw,50px);
 
-        /* =====================================================
-           TONE ARM
-        ===================================================== */
+    margin-bottom:
+        30px;
+}
 
-        .tone-arm {
+.mission-box p {
 
-            width:
-                42px;
+    max-width:
+        820px;
 
-            height:
-                5px;
+    margin:
+        0 auto 20px;
 
-            background:
-                #4e4942;
+    color:
+        #5d565f;
 
-            position:
-                absolute;
+    font-size:
+        18px;
+}
 
-            right:
-                7px;
+.mission-highlight {
 
-            top:
-                17px;
+    color:
+        #16aaa9 !important;
 
-            transform:
-                rotate(28deg);
+    font-weight:
+        700;
 
-            transform-origin:
-                right center;
+    font-size:
+        20px !important;
 
-            border-radius:
-                5px;
+    margin-top:
+        30px !important;
+}
 
-            z-index:
-                3;
-        }
 
+/* =====================================================
+   FOOTPRINTS IN THE SAND
+===================================================== */
 
-        .tone-arm::after {
+.footprints {
 
-            content:
-                "";
+    padding:
+        20px 6% 100px;
 
-            width:
-                9px;
+    text-align:
+        center;
 
-            height:
-                9px;
+    overflow:
+        hidden;
+}
 
-            background:
-                #4e4942;
+.footprints h2 {
 
-            border-radius:
-                50%;
+    color:
+        #16aaa9;
 
-            position:
-                absolute;
+    font-size:
+        clamp(32px,5vw,50px);
 
-            right:
-                -4px;
+    margin-bottom:
+        8px;
+}
 
-            top:
-                -2px;
-        }
+.footprints-subtitle {
 
+    color:
+        #527779;
 
+    font-size:
+        18px;
 
-        /* =====================================================
-           TAP NOTE
-        ===================================================== */
+    margin-bottom:
+        35px;
+}
 
-        .tap-note {
+.footprint-trail {
 
-            font-size:
-                11px;
+    min-height:
+        85px;
 
-            color:
-                #527779;
+    max-width:
+        700px;
 
-            margin-top:
-                7px;
-        }
+    margin:
+        0 auto 35px;
 
+    display:
+        flex;
 
+    align-items:
+        center;
 
-        /* =====================================================
-           OPEN MUSIC PLAYER
-        ===================================================== */
+    justify-content:
+        space-around;
 
-        .music-open {
+    transform:
+        rotate(-4deg);
+}
 
-            width:
-                min(
-                    390px,
-                    calc(100vw - 24px)
-                );
+.foot {
 
-            height:
-                auto;
+    display:
+        inline-block;
 
-            min-height:
-                245px;
+    font-size:
+        34px;
 
-            border-radius:
-                32px;
+    opacity:
+        0.60;
+}
 
-            cursor:
-                default;
+.foot-one {
+    transform:
+        rotate(8deg)
+        translateY(5px);
+}
 
-            animation:
-                none;
+.foot-two {
+    transform:
+        rotate(-7deg)
+        translateY(-7px);
+}
 
-            padding:
-                16px;
-        }
+.foot-three {
+    transform:
+        rotate(10deg)
+        translateY(4px);
+}
 
+.foot-four {
+    transform:
+        rotate(-8deg)
+        translateY(-6px);
+}
 
-        .music-open .music-closed {
+.foot-five {
+    transform:
+        rotate(7deg)
+        translateY(3px);
+}
 
-            display:
-                none;
-        }
 
+/* =====================================================
+   CALENDLY
+===================================================== */
 
-        .music-player-content {
+.calendly-wrapper {
 
-            display:
-                none;
+    max-width:
+        1000px;
 
-            width:
-                100%;
-        }
+    margin:
+        0 auto;
 
+    background:
+        rgba(255,255,255,0.92);
 
-        .music-open .music-player-content {
+    border-radius:
+        35px;
 
-            display:
-                block;
-        }
+    overflow:
+        hidden;
 
+    box-shadow:
+        0 20px 50px
+        rgba(40,120,120,0.10);
+}
 
-        .music-player-title {
+.calendly-inline-widget {
 
-            text-align:
-                center;
+    min-width:
+        320px;
 
-            color:
-                #285f61;
+    height:
+        700px;
+}
 
-            font-weight:
-                700;
 
-            font-size:
-                17px;
+/* =====================================================
+   VILLAGE SOUNDTRACK
+===================================================== */
 
-            margin-bottom:
-                2px;
-        }
+.music-bubble {
 
+    position:
+        fixed;
 
-        .music-player-song {
+    right:
+        22px;
 
-            text-align:
-                center;
+    bottom:
+        22px;
 
-            color:
-                #16aaa9;
+    width:
+        170px;
 
-            font-size:
-                14px;
+    height:
+        170px;
 
-            margin-bottom:
-                10px;
-        }
+    z-index:
+        3000;
 
+    border-radius:
+        50%;
 
-        .soundcloud-frame {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.95),
+            rgba(224,255,250,0.82) 50%,
+            rgba(176,239,233,0.62)
+        );
 
-            width:
-                100%;
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
 
-            height:
-                166px;
+    box-shadow:
 
-            border:
-                none;
+        inset
+        8px 8px 20px
+        rgba(255,255,255,0.80),
 
-            border-radius:
-                16px;
+        0 15px 40px
+        rgba(40,120,120,0.15);
 
-            overflow:
-                hidden;
-        }
+    backdrop-filter:
+        blur(5px);
 
+    -webkit-backdrop-filter:
+        blur(5px);
 
-        .close-music {
+    display:
+        flex;
 
-            display:
-                block;
+    align-items:
+        center;
 
-            margin:
-                9px auto 0;
+    justify-content:
+        center;
 
-            border:
-                none;
+    cursor:
+        pointer;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
+    transition:
+        all 0.4s ease;
+}
 
-            color:
-                #285f61;
+.music-bubble:hover {
 
-            padding:
-                7px 20px;
+    transform:
+        translateY(-4px);
 
-            border-radius:
-                25px;
+    box-shadow:
+        0 20px 50px
+        rgba(40,120,120,0.20);
+}
 
-            font-weight:
-                700;
+.music-closed {
 
-            cursor:
-                pointer;
-        }
+    width:
+        100%;
 
+    height:
+        100%;
 
+    display:
+        flex;
 
-        /* =====================================================
-           PAGE HERO
-        ===================================================== */
+    flex-direction:
+        column;
 
-        .page-intro {
+    align-items:
+        center;
 
-            text-align:
-                center;
+    justify-content:
+        center;
+}
 
-            padding:
-                95px 6% 70px;
+.music-label {
 
-            background:
-                radial-gradient(
-                    circle at 50% 15%,
-                    rgba(
-                        255,
-                        255,
-                        255,
-                        0.95
-                    ),
-                    rgba(
-                        226,
-                        255,
-                        250,
-                        0.75
-                    ) 50%,
-                    rgba(
-                        207,
-                        250,
-                        243,
-                        0.90
-                    )
-                );
-        }
+    position:
+        absolute;
 
+    top:
+        17px;
 
-        .bubble-icon {
+    width:
+        100%;
 
-            width:
-                92px;
+    text-align:
+        center;
 
-            height:
-                92px;
+    color:
+        #285f61;
 
-            margin:
-                0 auto 30px;
+    font-size:
+        11px;
 
-            border-radius:
-                50%;
+    font-weight:
+        700;
+}
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.50
-                );
+.record-player {
 
-            border:
-                2px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
+    width:
+        112px;
 
-            box-shadow:
+    height:
+        78px;
 
-                inset
-                8px 8px 18px
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                ),
+    margin-top:
+        18px;
 
-                inset
-                -8px -8px 18px
-                rgba(
-                    94,
-                    196,
-                    214,
-                    0.15
-                ),
+    border-radius:
+        12px;
 
-                0 12px 35px
-                rgba(
-                    40,
-                    150,
-                    160,
-                    0.12
-                );
+    background:
+        linear-gradient(
+            145deg,
+            #ddd5ca,
+            #b8aa99
+        );
 
-            display:
-                flex;
+    box-shadow:
+        0 7px 14px
+        rgba(0,0,0,0.16);
 
-            align-items:
-                center;
+    position:
+        relative;
 
-            justify-content:
-                center;
+    display:
+        flex;
 
-            font-size:
-                42px;
-        }
+    align-items:
+        center;
 
+    justify-content:
+        center;
+}
 
-        .page-intro h1 {
+.record {
 
-            font-size:
-                clamp(
-                    40px,
-                    7vw,
-                    68px
-                );
+    width:
+        61px;
 
-            line-height:
-                1.1;
+    height:
+        61px;
 
-            color:
-                #16aaa9;
+    border-radius:
+        50%;
 
-            margin-bottom:
-                25px;
-        }
+    background:
+        #181818;
 
+    border:
+        4px solid
+        #101010;
 
-        .page-intro p {
+    position:
+        relative;
+}
 
-            max-width:
-                850px;
+.record::before {
 
-            margin:
-                0 auto;
+    content:
+        "";
 
-            font-size:
-                20px;
-        }
+    position:
+        absolute;
 
+    inset:
+        8px;
 
+    border-radius:
+        50%;
 
-        /* =====================================================
-           WHO WE ARE
-        ===================================================== */
+    border:
+        1px solid
+        rgba(255,255,255,0.13);
+}
 
-        .section {
+.record::after {
 
-            max-width:
-                1050px;
+    content:
+        "";
 
-            margin:
-                0 auto;
+    position:
+        absolute;
 
-            padding:
-                80px 6%;
+    width:
+        8px;
 
-            text-align:
-                center;
-        }
+    height:
+        8px;
 
+    left:
+        50%;
 
-        .section-box {
+    top:
+        50%;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.94
-                );
+    transform:
+        translate(-50%,-50%);
 
-            padding:
-                60px 8%;
+    border-radius:
+        50%;
 
-            border-radius:
-                48% 52% 55% 45%
-                /
-                45% 55% 45% 55%;
+    background:
+        #d5c3a2;
 
-            box-shadow:
-                0 25px 60px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.10
-                );
+    border:
+        2px solid
+        #111;
+}
 
-            border:
-                2px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
-        }
+.play-button {
 
+    position:
+        absolute;
 
-        .section h2 {
+    left:
+        50%;
 
-            color:
-                #16aaa9;
+    top:
+        50%;
 
-            font-size:
-                clamp(
-                    32px,
-                    5vw,
-                    48px
-                );
+    transform:
+        translate(-50%,-50%);
 
-            margin-bottom:
-                30px;
-        }
+    width:
+        30px;
 
+    height:
+        30px;
 
-        .section p {
+    border-radius:
+        50%;
 
-            font-size:
-                19px;
+    background:
+        rgba(22,170,169,0.94);
 
-            color:
-                #5d565f;
+    color:
+        white;
 
-            margin-bottom:
-                22px;
-        }
+    border:
+        2px solid
+        white;
 
+    display:
+        flex;
 
+    align-items:
+        center;
 
-        /* =====================================================
-           PEOPLE
-        ===================================================== */
+    justify-content:
+        center;
 
-        .people {
+    font-size:
+        12px;
 
-            max-width:
-                1100px;
+    z-index:
+        5;
+}
 
-            margin:
-                0 auto;
+.tone-arm {
 
-            padding:
-                50px 5% 100px;
+    position:
+        absolute;
 
-            text-align:
-                center;
-        }
+    width:
+        35px;
 
+    height:
+        4px;
 
-        .people h2 {
+    right:
+        6px;
 
-            color:
-                #16aaa9;
+    top:
+        15px;
 
-            font-size:
-                clamp(
-                    34px,
-                    5vw,
-                    50px
-                );
+    background:
+        #4c4842;
 
-            margin-bottom:
-                55px;
-        }
+    border-radius:
+        5px;
 
+    transform:
+        rotate(28deg);
 
-        .person-grid {
+    transform-origin:
+        right center;
+}
 
-            display:
-                grid;
+.tap-note {
 
-            grid-template-columns:
-                repeat(
-                    2,
-                    1fr
-                );
+    position:
+        absolute;
 
-            gap:
-                45px;
-        }
+    bottom:
+        13px;
 
+    width:
+        100%;
 
-        .person {
+    text-align:
+        center;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
+    color:
+        #527779;
 
-            padding:
-                50px 35px;
+    font-size:
+        9px;
+}
 
-            border-radius:
-                55% 45% 60% 40%
-                /
-                45% 55% 45% 55%;
 
-            box-shadow:
-                0 20px 45px
-                rgba(
-                    40,
-                    130,
-                    135,
-                    0.12
-                );
+/* =====================================================
+   OPEN SOUNDTRACK
+===================================================== */
 
-            border:
-                2px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.90
-                );
-        }
+.music-open {
 
+    width:
+        min(390px,calc(100vw - 24px));
 
-        .person:nth-child(2) {
+    height:
+        auto;
 
-            border-radius:
-                45% 55% 40% 60%
-                /
-                55% 45% 60% 40%;
-        }
+    min-height:
+        245px;
 
+    border-radius:
+        32px;
 
-        .person h3 {
+    cursor:
+        default;
 
-            color:
-                #16aaa9;
+    padding:
+        16px;
+}
 
-            font-size:
-                28px;
+.music-open .music-closed {
+    display:
+        none;
+}
 
-            margin-bottom:
-                8px;
-        }
+.music-player-content {
 
+    display:
+        none;
 
-        .person .role {
+    width:
+        100%;
+}
 
-            font-weight:
-                700;
+.music-open .music-player-content {
+    display:
+        block;
+}
 
-            color:
-                #285f61;
+.music-player-title {
 
-            margin-bottom:
-                25px;
-        }
+    text-align:
+        center;
 
+    color:
+        #285f61;
 
-        .person .subtitle-role {
+    font-weight:
+        700;
 
-            font-style:
-                italic;
+    font-size:
+        17px;
 
-            font-weight:
-                600;
+    margin-bottom:
+        2px;
+}
 
-            color:
-                #79aaa9;
+.music-player-song {
 
-            margin-top:
-                -15px;
+    text-align:
+        center;
 
-            margin-bottom:
-                25px;
-        }
+    color:
+        #16aaa9;
 
+    font-size:
+        14px;
 
-        .person p {
+    margin-bottom:
+        10px;
+}
 
-            color:
-                #5d565f;
+.soundcloud-frame {
 
-            font-size:
-                18px;
+    width:
+        100%;
 
-            margin-bottom:
-                20px;
-        }
+    height:
+        166px;
 
+    border:
+        none;
 
-        .person a {
+    border-radius:
+        16px;
 
-            display:
-                inline-block;
+    overflow:
+        hidden;
+}
 
-            margin-top:
-                10px;
+.close-music {
 
-            padding:
-                12px 24px;
+    display:
+        block;
 
-            border-radius:
-                35px;
+    margin:
+        9px auto 0;
 
-            background:
-                #ffffff;
+    border:
+        none;
 
-            color:
-                #16aaa9;
+    background:
+        rgba(255,255,255,0.90);
 
-            text-decoration:
-                none;
+    color:
+        #285f61;
 
-            font-weight:
-                700;
+    padding:
+        7px 20px;
 
-            box-shadow:
-                0 8px 20px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.10
-                );
-        }
+    border-radius:
+        25px;
 
+    font-weight:
+        700;
 
+    cursor:
+        pointer;
+}
 
-        /* =====================================================
-           MISSION
-        ===================================================== */
 
-        .mission {
+/* =====================================================
+   FOOTER
+===================================================== */
 
-            max-width:
-                1050px;
+footer {
 
-            margin:
-                0 auto;
+    background:
+        rgba(255,255,255,0.95);
 
-            padding:
-                50px 6% 100px;
+    border-top:
+        1px solid
+        rgba(40,95,97,0.10);
 
-            text-align:
-                center;
-        }
+    text-align:
+        center;
 
+    padding:
+        55px 6%;
 
-        .mission-box {
+    color:
+        #5d565f;
+}
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.94
-                );
+footer p {
+    margin-bottom:
+        18px;
+}
 
-            padding:
-                65px 8%;
+footer a {
 
-            border-radius:
-                55px 40px 65px 45px;
+    color:
+        #16aaa9;
 
-            box-shadow:
-                0 25px 60px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.10
-                );
-        }
+    font-weight:
+        700;
 
+    text-decoration:
+        none;
+}
 
-        .mission h2 {
 
-            color:
-                #16aaa9;
+/* =====================================================
+   TABLET
+===================================================== */
 
-            font-size:
-                clamp(
-                    34px,
-                    5vw,
-                    50px
-                );
+@media (max-width:900px) {
 
-            margin-bottom:
-                30px;
-        }
+    nav {
 
+        flex-direction:
+            column;
 
-        .mission p {
+        text-align:
+            center;
+    }
 
-            font-size:
-                19px;
+    nav ul {
 
-            color:
-                #5d565f;
+        justify-content:
+            center;
+    }
 
-            margin-bottom:
-                22px;
-        }
+    .person-grid {
 
+        grid-template-columns:
+            1fr;
 
-        .mission-highlight {
+        max-width:
+            650px;
+    }
+}
 
-            margin-top:
-                35px;
 
-            font-size:
-                23px !important;
+/* =====================================================
+   MOBILE
+===================================================== */
 
-            font-weight:
-                700;
+@media (max-width:600px) {
 
-            color:
-                #285f61 !important;
-        }
+    nav {
+        padding:
+            18px 5%;
+    }
 
+    .logo a {
 
+        font-size:
+            20px;
 
-        /* =====================================================
-           FOOTPRINTS IN THE SAND
-        ===================================================== */
+        white-space:
+            normal;
+    }
 
-        .footprints {
+    nav ul {
 
-            max-width:
-                1050px;
+        gap:
+            10px 15px;
+    }
 
-            margin:
-                0 auto;
+    nav ul li a {
 
-            padding:
-                60px 5% 110px;
+        font-size:
+            14px;
+    }
 
-            text-align:
-                center;
-        }
+    .page-intro {
 
+        padding:
+            70px 5% 55px;
+    }
 
-        .footprints h2 {
+    .bubble-icon {
 
-            color:
-                #16aaa9;
+        width:
+            90px;
 
-            font-size:
-                clamp(
-                    34px,
-                    5vw,
-                    52px
-                );
+        height:
+            90px;
 
-            margin-bottom:
-                10px;
-        }
+        font-size:
+            40px;
+    }
 
+    .page-intro h1 {
 
-        .footprints-subtitle {
+        font-size:
+            42px;
+    }
 
-            font-size:
-                21px;
+    .page-intro p {
 
-            color:
-                #5d565f;
+        font-size:
+            17px;
+    }
 
-            margin-bottom:
-                35px;
-        }
+    .section {
 
+        padding:
+            60px 5%;
+    }
 
-        .footprint-trail {
+    .section-box {
 
-            width:
-                100%;
+        padding:
+            45px 25px;
+    }
 
-            max-width:
-                500px;
+    .section-box p {
 
-            height:
-                130px;
+        font-size:
+            17px;
+    }
 
-            margin:
-                0 auto 30px;
+    .people {
 
-            position:
-                relative;
-        }
+        padding:
+            10px 5% 70px;
+    }
 
+    .person {
 
-        .foot {
+        padding:
+            38px 25px;
+    }
 
-            position:
-                absolute;
+    .mission {
 
-            font-size:
-                28px;
+        padding:
+            10px 5% 70px;
+    }
 
-            opacity:
-                0.65;
-        }
+    .mission-box {
 
+        padding:
+            45px 25px;
+    }
 
-        .foot-one {
+    .footprints {
 
-            left:
-                5%;
+        padding:
+            10px 5% 80px;
+    }
 
-            top:
-                65px;
+    .footprint-trail {
 
-            transform:
-                rotate(-18deg);
-        }
+        gap:
+            4px;
+    }
 
+    .foot {
 
-        .foot-two {
+        font-size:
+            25px;
+    }
 
-            left:
-                25%;
+    .floating-bubble {
 
-            top:
-                35px;
+        max-width:
+            190px;
 
-            transform:
-                rotate(12deg);
-        }
+        padding:
+            10px 17px;
+    }
 
+    .floating-bubble span {
 
-        .foot-three {
+        font-size:
+            12px;
+    }
 
-            left:
-                46%;
+    .music-bubble {
 
-            top:
-                65px;
+        width:
+            145px;
 
-            transform:
-                rotate(-12deg);
-        }
+        height:
+            145px;
 
+        right:
+            10px;
 
-        .foot-four {
+        bottom:
+            10px;
+    }
 
-            left:
-                66%;
+    .music-open {
 
-            top:
-                35px;
+        width:
+            calc(100vw - 20px);
 
-            transform:
-                rotate(15deg);
-        }
+        right:
+            10px;
 
+        bottom:
+            10px;
+    }
 
-        .foot-five {
+}
 
-            left:
-                84%;
-
-            top:
-                60px;
-
-            transform:
-                rotate(-8deg);
-        }
-
-
-
-        /* =====================================================
-           CALENDLY
-        ===================================================== */
-
-        .calendly-wrapper {
-
-            width:
-                100%;
-
-            max-width:
-                700px;
-
-            margin:
-                0 auto;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.92
-                );
-
-            border-radius:
-                30px;
-
-            padding:
-                10px;
-
-            box-shadow:
-                0 20px 50px
-                rgba(
-                    40,
-                    120,
-                    120,
-                    0.12
-                );
-
-            overflow:
-                hidden;
-        }
-
-
-        .calendly-inline-widget {
-
-            width:
-                100%;
-
-            min-width:
-                280px;
-
-            height:
-                600px;
-        }
-
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.94
-                );
-
-            border-top:
-                1px solid
-                rgba(
-                    40,
-                    95,
-                    97,
-                    0.10
-                );
-
-            text-align:
-                center;
-
-            padding:
-                55px 6%;
-
-            color:
-                #5d565f;
-        }
-
-
-        footer p {
-
-            margin-bottom:
-                12px;
-        }
-
-
-        footer a {
-
-            color:
-                #16aaa9;
-
-            font-weight:
-                700;
-
-            text-decoration:
-                none;
-        }
-
-
-
-        /* =====================================================
-           TABLET
-        ===================================================== */
-
-        @media (max-width: 900px) {
-
-            nav {
-
-                flex-direction:
-                    column;
-
-                text-align:
-                    center;
-            }
-
-
-            nav ul {
-
-                justify-content:
-                    center;
-
-                gap:
-                    15px 20px;
-            }
-
-
-            .person-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                max-width:
-                    600px;
-
-                margin:
-                    0 auto;
-            }
-
-        }
-
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 600px) {
-
-            nav {
-
-                padding:
-                    18px 5%;
-            }
-
-
-            .logo {
-
-                font-size:
-                    20px;
-            }
-
-
-            nav ul {
-
-                gap:
-                    10px 15px;
-            }
-
-
-            nav a {
-
-                font-size:
-                    14px;
-            }
-
-
-            .page-intro {
-
-                padding:
-                    70px 6% 55px;
-            }
-
-
-            .section {
-
-                padding:
-                    55px 5%;
-            }
-
-
-            .section-box,
-            .mission-box {
-
-                padding:
-                    45px 25px;
-            }
-
-
-            .section p,
-            .mission p {
-
-                font-size:
-                    17px;
-            }
-
-
-            .person {
-
-                padding:
-                    40px 25px;
-            }
-
-
-            .footprints {
-
-                padding:
-                    60px 5% 80px;
-            }
-
-
-            .footprint-trail {
-
-                max-width:
-                    320px;
-
-                height:
-                    105px;
-            }
-
-
-            .foot {
-
-                font-size:
-                    22px;
-            }
-
-
-            .calendly-inline-widget {
-
-                height:
-                    570px;
-            }
-
-
-            .music-bubble {
-
-                width:
-                    155px;
-
-                height:
-                    155px;
-
-                right:
-                    10px;
-
-                bottom:
-                    10px;
-            }
-
-
-            .record-player {
-
-                transform:
-                    scale(0.78);
-            }
-
-
-            .music-open {
-
-                width:
-                    calc(
-                        100vw - 20px
-                    );
-
-                min-height:
-                    240px;
-
-                right:
-                    10px;
-
-                bottom:
-                    10px;
-            }
-
-
-            #floatingMessageBubble {
-
-                max-width:
-                    190px;
-
-                min-width:
-                    125px;
-
-                padding:
-                    11px 17px;
-
-                font-size:
-                    13px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
-
 
 
 <body>
@@ -1924,80 +1540,389 @@
      NAVIGATION
 ===================================================== -->
 
+<header>
+
 <nav>
 
-    <div class="logo">
+<div class="logo">
 
-        <a href="index.html">
-            🌱 The Still Becoming Village Circle
-        </a>
+<a href="index.html">
+    🌱 The Still Becoming Village Circle
+</a>
 
-    </div>
-
-
-    <ul>
-
-        <li>
-            <a href="index.html">
-                Home
-            </a>
-        </li>
+</div>
 
 
-        <li>
-            <a href="about.html">
-                Inside the Bubble
-            </a>
-        </li>
+<ul>
 
+<li>
+<a href="index.html">
+    Home
+</a>
+</li>
 
-        <li>
-            <a href="LearningtheUnknown.html">
-                The Unknown
-            </a>
-        </li>
+<li>
+<a href="about.html">
+    Inside the Bubble
+</a>
+</li>
 
+<li>
+<a href="LearningtheUnknown.html">
+    The Unknown
+</a>
+</li>
 
-        <li>
-            <a href="events.html">
-                Experiences
-            </a>
-        </li>
+<li>
+<a href="experiences.html">
+    Experiences
+</a>
+</li>
 
+<li>
+<a href="contact.html">
+    Connect
+</a>
+</li>
 
-        <li>
-            <a href="contact.html">
-                Connect
-            </a>
-        </li>
+<li>
+<a href="coaching.html">
+    Support
+</a>
+</li>
 
-
-        <li>
-            <a href="coaching.html">
-                Support
-            </a>
-        </li>
-
-    </ul>
+</ul>
 
 </nav>
+
+</header>
 
 
 
 <!-- =====================================================
-     FLOATING BECOMING MESSAGE
+     FLOATING BECOMING BUBBLE
 ===================================================== -->
 
 <div
-    id="floatingMessageBubble"
-    aria-live="polite"
+    class="floating-bubble"
+    id="floatingBubble"
+    aria-hidden="true"
 >
 
-    <span id="floatingMessageText">
-        🫧 You belong before you bloom.
-    </span>
+<span id="floatingMessage">
+    🫧 You belong before you bloom.
+</span>
 
 </div>
+
+
+
+<!-- =====================================================
+     INSIDE THE BUBBLE HERO
+===================================================== -->
+
+<section class="page-intro">
+
+<div class="bubble-icon">
+    🫧
+</div>
+
+
+<h1>
+    Inside the Bubble
+</h1>
+
+
+<p>
+
+    A space to explore what it means to be human,
+    to heal, to wonder, to grow, and to keep becoming.
+
+</p>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHO WE ARE
+===================================================== -->
+
+<section class="section">
+
+<div class="section-box">
+
+<h2>
+    🌱 Who We Are
+</h2>
+
+
+<p>
+
+    The Still Becoming Village Circle was created
+    for people who are figuring things out while
+    they're figuring themselves out.
+
+</p>
+
+
+<p>
+
+    You don't have to arrive with all the answers.
+    You don't have to know exactly where you're going.
+    You don't even have to know what you're looking
+    for yet.
+
+</p>
+
+
+<p>
+
+    This is a place for curiosity, reflection,
+    connection, creativity, and growth.
+
+</p>
+
+
+<p>
+
+    A place where becoming doesn't have to be rushed.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THE PEOPLE WITHIN THE VILLAGE
+===================================================== -->
+
+<section class="people">
+
+<h2>
+    🌱 The People Within the Village
+</h2>
+
+
+<div class="person-grid">
+
+
+<!-- =================================================
+     LESHEANN
+================================================== -->
+
+<div class="person">
+
+<h3>
+    LeSheAnn Hargro
+</h3>
+
+
+<div class="role">
+    Instantiator of Becoming
+</div>
+
+
+<div class="village-tagline">
+    The Village That Became Her
+</div>
+
+
+<p>
+
+    The Still Becoming Village Circle grew from
+    LeSheAnn's discovery that a village isn't simply
+    something you create around yourself.
+
+</p>
+
+
+<p>
+
+    Sometimes you become the kind of village
+    you once needed—and then make room for others
+    to discover what they're becoming too.
+
+</p>
+
+
+<p>
+
+    The work of the Village brings together
+    writing, coaching, curiosity, reflection,
+    creativity, and connection.
+
+</p>
+
+</div>
+
+
+
+<!-- =================================================
+     KITTA
+================================================== -->
+
+<div class="person">
+
+<h3>
+    Kitta
+</h3>
+
+
+<div class="role">
+    Creative &amp; Marketing Collaborator
+</div>
+
+
+<p>
+
+    Kitta brings creativity into the Village
+    through personalized artwork, memorial pieces,
+    gift baskets, care packages, event décor,
+    creative concepts, and behind-the-scenes
+    marketing support.
+
+</p>
+
+
+<p>
+
+    Her presence in the Village is also an
+    opportunity to explore what happens when
+    creativity is allowed to become visible.
+
+</p>
+
+
+<a href="kitta.html">
+    🎨 Creativity Allowed My Becoming
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OUR MISSION
+===================================================== -->
+
+<section class="mission">
+
+<div class="mission-box">
+
+<h2>
+    🌱 Our Mission
+</h2>
+
+
+<p>
+
+    We believe people deserve space to explore
+    who they are becoming without being pressured
+    to have everything figured out.
+
+</p>
+
+
+<p>
+
+    The Village creates room for learning,
+    honest conversations, creativity, meaningful
+    experiences, and connection.
+
+</p>
+
+
+<p>
+
+    Sometimes becoming requires information.
+    Sometimes it requires reflection.
+    Sometimes it requires community.
+    Sometimes it simply requires someone saying,
+    “You can take your time.”
+
+</p>
+
+
+<p class="mission-highlight">
+
+    You don't have to know the whole path.
+    You just have to be willing to take the next step.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTPRINTS IN THE SAND
+===================================================== -->
+
+<section class="footprints">
+
+<h2>
+    👣 Footprints in the Sand
+</h2>
+
+
+<p class="footprints-subtitle">
+    Every step toward yourself counts.
+</p>
+
+
+<div class="footprint-trail">
+
+<span class="foot foot-one">
+    👣
+</span>
+
+<span class="foot foot-two">
+    👣
+</span>
+
+<span class="foot foot-three">
+    👣
+</span>
+
+<span class="foot foot-four">
+    👣
+</span>
+
+<span class="foot foot-five">
+    👣
+</span>
+
+</div>
+
+
+
+<!-- =================================================
+     CALENDLY
+================================================== -->
+
+<div class="calendly-wrapper">
+
+<div
+    class="calendly-inline-widget"
+    data-url="https://calendly.com/thestillbecomingvillagecircle/30min?hide_gdpr_banner=1"
+>
+
+</div>
+
+</div>
+
+</section>
 
 
 
@@ -2012,383 +1937,77 @@
 >
 
 
-    <!-- CLOSED MUSIC BUBBLE -->
-
-    <div class="music-closed">
-
-        <div class="music-label">
-            🫧 The Village Soundtrack
-        </div>
+<div class="music-closed">
 
 
-        <div class="record-player">
-
-            <div class="record">
-
-                <div class="play-button">
-                    ▶
-                </div>
-
-            </div>
+<div class="music-label">
+    🫧 The Village Soundtrack
+</div>
 
 
-            <div class="tone-arm"></div>
+<div class="record-player">
 
-        </div>
+<div class="record">
 
+<div class="play-button">
+    ▶
+</div>
 
-        <div class="tap-note">
-            Tap the record to listen
-        </div>
-
-    </div>
-
+</div>
 
 
-    <!-- OPEN SOUNDCLOUD PLAYER -->
+<div class="tone-arm"></div>
 
-    <div
-        class="music-player-content"
-        onclick="event.stopPropagation()"
-    >
-
-        <div class="music-player-title">
-            🫧 The Village Soundtrack
-        </div>
+</div>
 
 
-        <div class="music-player-song">
-            Bricks — Andra Day
-        </div>
-
-
-        <iframe
-            class="soundcloud-frame"
-            scrolling="no"
-            frameborder="no"
-            allow="autoplay; encrypted-media"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false">
-        </iframe>
-
-
-        <button
-            class="close-music"
-            onclick="closeMusic()"
-        >
-            Close
-        </button>
-
-    </div>
+<div class="tap-note">
+    Tap the record to listen
+</div>
 
 </div>
 
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<div
+    class="music-player-content"
+    onclick="event.stopPropagation()"
+>
 
-<section class="page-intro">
 
-    <div class="bubble-icon">
-        🫧
-    </div>
+<div class="music-player-title">
+    🫧 The Village Soundtrack
+</div>
 
 
-    <h1>
-        Inside the Bubble
-    </h1>
+<div class="music-player-song">
+    Bricks — Andra Day
+</div>
 
 
-    <p>
+<iframe
+    class="soundcloud-frame"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay; encrypted-media"
+    title="The Village Soundtrack"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+>
+</iframe>
 
-        A space to explore what it means to be human,
-        to heal, to wonder, to grow, and to keep becoming.
 
-    </p>
+<button
+    class="close-music"
+    type="button"
+    onclick="closeMusic()"
+>
+    Close
+</button>
 
-</section>
 
+</div>
 
-
-<!-- =====================================================
-     WHO WE ARE
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-box">
-
-        <h2>
-            🌱 Who We Are
-        </h2>
-
-
-        <p>
-
-            The Still Becoming Village Circle was created
-            for people who are figuring things out while
-            they're figuring themselves out.
-
-        </p>
-
-
-        <p>
-
-            You don't have to arrive with all the answers.
-            You don't have to know exactly where you're going.
-            You don't even have to know what you're looking
-            for yet.
-
-        </p>
-
-
-        <p>
-
-            This is a place for curiosity, reflection,
-            connection, creativity, and growth.
-
-        </p>
-
-
-        <p>
-
-            A place where becoming doesn't have to be rushed.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PEOPLE WITHIN THE VILLAGE
-===================================================== -->
-
-<section class="people">
-
-    <h2>
-        🌱 The People Within the Village
-    </h2>
-
-
-    <div class="person-grid">
-
-
-        <!-- =================================================
-             LESHEANN HARGRO
-        ================================================== -->
-
-        <div class="person">
-
-            <h3>
-                LeSheAnn Hargro
-            </h3>
-
-
-            <div class="role">
-                Instantiator of Becoming
-            </div>
-
-
-            <div class="subtitle-role">
-                The Village That Became Her
-            </div>
-
-
-            <p>
-
-                The Still Becoming Village Circle grew from
-                LeSheAnn's discovery that a village isn't simply
-                something you create around yourself.
-
-            </p>
-
-
-            <p>
-
-                Sometimes you become the kind of village
-                you once needed—and then make room for others
-                to discover what they're becoming too.
-
-            </p>
-
-
-            <p>
-
-                The work of the Village brings together
-                writing, coaching, curiosity, reflection,
-                creativity, and connection.
-
-            </p>
-
-        </div>
-
-
-
-        <!-- =================================================
-             KITTA
-        ================================================== -->
-
-        <div class="person">
-
-            <h3>
-                Kitta
-            </h3>
-
-
-            <div class="role">
-                Creative & Marketing Collaborator
-            </div>
-
-
-            <p>
-
-                Kitta brings creativity into the Village
-                through personalized artwork, memorial pieces,
-                gift baskets, care packages, event décor,
-                creative concepts, and behind-the-scenes
-                marketing support.
-
-            </p>
-
-
-            <p>
-
-                Her presence in the Village is also an
-                opportunity to explore what happens when
-                creativity is allowed to become visible.
-
-            </p>
-
-
-            <a href="kitta.html">
-                🎨 Creativity Allowed My Becoming
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     MISSION
-===================================================== -->
-
-<section class="mission">
-
-    <div class="mission-box">
-
-        <h2>
-            🌱 Our Mission
-        </h2>
-
-
-        <p>
-
-            We believe people deserve space to explore
-            who they are becoming without being pressured
-            to have everything figured out.
-
-        </p>
-
-
-        <p>
-
-            The Village creates room for learning,
-            honest conversations, creativity, meaningful
-            experiences, and connection.
-
-        </p>
-
-
-        <p>
-
-            Sometimes becoming requires information.
-            Sometimes it requires reflection.
-            Sometimes it requires community.
-            Sometimes it simply requires someone saying,
-            “You can take your time.”
-
-        </p>
-
-
-        <p class="mission-highlight">
-
-            You don't have to know the whole path.
-            You just have to be willing to take the next step.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTPRINTS IN THE SAND
-===================================================== -->
-
-<section class="footprints">
-
-    <h2>
-        👣 Footprints in the Sand
-    </h2>
-
-
-    <p class="footprints-subtitle">
-        Every step toward yourself counts.
-    </p>
-
-
-    <div class="footprint-trail">
-
-        <span class="foot foot-one">
-            👣
-        </span>
-
-        <span class="foot foot-two">
-            👣
-        </span>
-
-        <span class="foot foot-three">
-            👣
-        </span>
-
-        <span class="foot foot-four">
-            👣
-        </span>
-
-        <span class="foot foot-five">
-            👣
-        </span>
-
-    </div>
-
-
-
-    <!-- =================================================
-         CALENDLY
-    ================================================== -->
-
-    <div class="calendly-wrapper">
-
-        <div
-            class="calendly-inline-widget"
-            data-url="https://calendly.com/thestillbecomingvillagecircle/30min?hide_gdpr_banner=1"
-        >
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
 
@@ -2398,47 +2017,46 @@
 
 <footer>
 
-    <p>
 
-        Take what you need.
+<p>
 
-        Leave what you don't.
+    Take what you need.
+    Leave what you don't.
+    Come back whenever you need to.
 
-        Come back whenever you need to.
-
-    </p>
-
-
-    <p>
-
-        Healing isn't a destination.
-
-        It's a circle we grow through together.
-
-    </p>
+</p>
 
 
-    <p>
+<p>
 
-        📧
+    Healing isn't a destination.
+    It's a circle we grow through together.
 
-        <a href="mailto:thestillbecomingvillagecircle@gmail.com">
-            thestillbecomingvillagecircle@gmail.com
-        </a>
-
-    </p>
+</p>
 
 
-    <p>
-        © 2026 The Still Becoming Village Circle
-    </p>
+<p>
+
+    📧
+
+    <a href="mailto:thestillbecomingvillagecircle@gmail.com">
+        thestillbecomingvillagecircle@gmail.com
+    </a>
+
+</p>
+
+
+<p>
+    © 2026 The Still Becoming Village Circle
+</p>
+
 
 </footer>
 
 
 
 <!-- =====================================================
-     CALENDLY
+     CALENDLY SCRIPT
 ===================================================== -->
 
 <script
@@ -2449,7 +2067,179 @@
 
 
 <!-- =====================================================
-     SOUNDTRACK CONTROLS
+     FLOATING MESSAGE SYSTEM
+===================================================== -->
+
+<script>
+
+const becomingMessages = [
+
+    "🫧 You belong before you bloom.",
+
+    "🫧 Healing isn't linear.",
+
+    "🫧 Rest is productive.",
+
+    "🫧 Curiosity creates connection.",
+
+    "🫧 Becoming takes courage.",
+
+    "🫧 It's okay to begin again."
+
+];
+
+
+const floatingBubble =
+    document.getElementById(
+        "floatingBubble"
+    );
+
+
+const floatingMessage =
+    document.getElementById(
+        "floatingMessage"
+    );
+
+
+let messageIndex = 0;
+
+
+let currentX = 12;
+let currentY = 62;
+
+let targetX = 12;
+let targetY = 62;
+
+
+function chooseNewBubblePosition() {
+
+    const maxX =
+        window.innerWidth < 600
+            ? 68
+            : 78;
+
+    const maxY =
+        window.innerWidth < 600
+            ? 78
+            : 84;
+
+
+    targetX =
+        8 +
+        Math.random()
+        *
+        (maxX - 8);
+
+
+    targetY =
+        14 +
+        Math.random()
+        *
+        (maxY - 14);
+
+}
+
+
+function moveBubble() {
+
+    currentX +=
+        (
+            targetX - currentX
+        )
+        *
+        0.0028;
+
+
+    currentY +=
+        (
+            targetY - currentY
+        )
+        *
+        0.0028;
+
+
+    floatingBubble.style.left =
+        currentX + "%";
+
+
+    floatingBubble.style.top =
+        currentY + "%";
+
+
+    requestAnimationFrame(
+        moveBubble
+    );
+
+}
+
+
+function changeMessage() {
+
+    floatingBubble.classList.remove(
+        "visible"
+    );
+
+
+    setTimeout(
+        function() {
+
+            messageIndex =
+                (
+                    messageIndex + 1
+                )
+                %
+                becomingMessages.length;
+
+
+            floatingMessage.textContent =
+                becomingMessages[
+                    messageIndex
+                ];
+
+
+            chooseNewBubblePosition();
+
+
+            floatingBubble.classList.add(
+                "visible"
+            );
+
+        },
+        1800
+    );
+
+}
+
+
+chooseNewBubblePosition();
+
+
+setTimeout(
+    function() {
+
+        floatingBubble.classList.add(
+            "visible"
+        );
+
+    },
+    1800
+);
+
+
+moveBubble();
+
+
+setInterval(
+    changeMessage,
+    9000
+);
+
+</script>
+
+
+
+<!-- =====================================================
+     MUSIC SYSTEM
 ===================================================== -->
 
 <script>
@@ -2462,17 +2252,11 @@ function openMusic() {
         );
 
 
-    if (!bubble) {
-        return;
-    }
-
-
     bubble.classList.add(
         "music-open"
     );
 
 }
-
 
 
 function closeMusic() {
@@ -2483,308 +2267,11 @@ function closeMusic() {
         );
 
 
-    if (!bubble) {
-        return;
-    }
-
-
     bubble.classList.remove(
         "music-open"
     );
 
 }
-
-</script>
-
-
-
-<!-- =====================================================
-     SLOW FLOATING BECOMING MESSAGE
-===================================================== -->
-
-<script>
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-
-        const bubble =
-            document.getElementById(
-                "floatingMessageBubble"
-            );
-
-
-        const messageText =
-            document.getElementById(
-                "floatingMessageText"
-            );
-
-
-        if (
-            !bubble ||
-            !messageText
-        ) {
-            return;
-        }
-
-
-        const messages = [
-
-            "🫧 You belong before you bloom.",
-
-            "🫧 Healing isn't linear.",
-
-            "🫧 Rest is productive.",
-
-            "🫧 Curiosity creates connection.",
-
-            "🫧 Becoming takes courage.",
-
-            "🫧 It's okay to begin again.",
-
-            "🫧 You are allowed to change.",
-
-            "🫧 You don't have to rush becoming.",
-
-            "🫧 Your next step is enough.",
-
-            "🫧 Curiosity can lead somewhere beautiful.",
-
-            "🫧 You are allowed to learn yourself again.",
-
-            "🫧 There is room for who you're becoming."
-
-        ];
-
-
-        let messageIndex =
-            0;
-
-
-        let x =
-            12;
-
-
-        let y =
-            62;
-
-
-        let targetX =
-            12;
-
-
-        let targetY =
-            62;
-
-
-        let nextMoveTime =
-            Date.now() + 3500;
-
-
-
-        /* =============================================
-           FIRST APPEARANCE
-        ============================================= */
-
-        setTimeout(
-            function () {
-
-                bubble.classList.add(
-                    "visible"
-                );
-
-            },
-            1200
-        );
-
-
-
-        /* =============================================
-           SLOW MESSAGE CHANGE
-        ============================================= */
-
-        setInterval(
-            function () {
-
-
-                bubble.classList.remove(
-                    "visible"
-                );
-
-
-                setTimeout(
-                    function () {
-
-
-                        messageIndex =
-                            (
-                                messageIndex + 1
-                            )
-                            %
-                            messages.length;
-
-
-                        messageText.textContent =
-                            messages[
-                                messageIndex
-                            ];
-
-
-                        bubble.classList.add(
-                            "visible"
-                        );
-
-
-                    },
-                    1800
-                );
-
-
-            },
-            9000
-        );
-
-
-
-        /* =============================================
-           CHOOSE A NEW POSITION
-        ============================================= */
-
-        function chooseNewPosition() {
-
-
-            const bubbleWidth =
-                bubble.offsetWidth ||
-                180;
-
-
-            const bubbleHeight =
-                bubble.offsetHeight ||
-                55;
-
-
-            const widthPercent =
-                (
-                    bubbleWidth /
-                    window.innerWidth
-                )
-                *
-                100;
-
-
-            const heightPercent =
-                (
-                    bubbleHeight /
-                    window.innerHeight
-                )
-                *
-                100;
-
-
-            const maxX =
-                Math.max(
-                    20,
-                    92 - widthPercent
-                );
-
-
-            const maxY =
-                Math.max(
-                    25,
-                    88 - heightPercent
-                );
-
-
-            targetX =
-                8 +
-                Math.random()
-                *
-                (
-                    maxX - 8
-                );
-
-
-            targetY =
-                18 +
-                Math.random()
-                *
-                (
-                    maxY - 18
-                );
-
-        }
-
-
-
-        /* =============================================
-           GENTLE MOVEMENT
-        ============================================= */
-
-        function animate() {
-
-
-            const ease =
-                0.0045;
-
-
-            x +=
-                (
-                    targetX - x
-                )
-                *
-                ease;
-
-
-            y +=
-                (
-                    targetY - y
-                )
-                *
-                ease;
-
-
-            bubble.style.left =
-                x + "%";
-
-
-            bubble.style.top =
-                y + "%";
-
-
-            if (
-                Date.now() >
-                nextMoveTime
-            ) {
-
-                chooseNewPosition();
-
-
-                nextMoveTime =
-                    Date.now()
-                    +
-                    9000
-                    +
-                    Math.random()
-                    *
-                    5000;
-
-            }
-
-
-            requestAnimationFrame(
-                animate
-            );
-
-        }
-
-
-        chooseNewPosition();
-
-        animate();
-
-    }
-);
 
 </script>
 
