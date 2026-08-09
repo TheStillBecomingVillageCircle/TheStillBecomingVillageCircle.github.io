@@ -27,13 +27,12 @@
     padding: 0;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
+
     font-family:
         Arial,
         Helvetica,
@@ -53,7 +52,6 @@ body {
 }
 
 
-
 /* =====================================================
    NAVIGATION
 ===================================================== */
@@ -64,21 +62,11 @@ header {
         100%;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.96
-        );
+        rgba(255,255,255,0.97);
 
     border-bottom:
         1px solid
-        rgba(
-            40,
-            95,
-            97,
-            0.10
-        );
+        rgba(40,95,97,0.12);
 
     position:
         sticky;
@@ -118,7 +106,7 @@ nav {
         space-between;
 
     gap:
-        30px;
+        25px;
 }
 
 
@@ -191,7 +179,7 @@ nav ul li a:hover {
 
 
 /* =====================================================
-   SHARED FLOATING BECOMING BUBBLE
+   FLOATING BECOMING BUBBLE
 ===================================================== */
 
 .floating-bubble {
@@ -207,9 +195,6 @@ nav ul li a:hover {
 
     z-index:
         2000;
-
-    width:
-        max-content;
 
     max-width:
         min(
@@ -248,13 +233,13 @@ nav ul li a:hover {
                 255,
                 255,
                 255,
-                0.52
+                0.55
             ),
             rgba(
                 235,
                 255,
                 252,
-                0.22
+                0.23
             ) 45%,
             rgba(
                 170,
@@ -838,7 +823,7 @@ nav ul li a:hover {
 
 
 /* =====================================================
-   COMING
+   VILLAGE IS STILL BECOMING
 ===================================================== */
 
 .coming {
@@ -929,7 +914,7 @@ nav ul li a:hover {
 
 
 /* =====================================================
-   EVENT SPACE
+   WHAT'S COMING
 ===================================================== */
 
 .event-space {
@@ -1147,562 +1132,6 @@ nav ul li a:hover {
 
 
 /* =====================================================
-   VILLAGE SOUNDTRACK
-===================================================== */
-
-.music-bubble {
-
-    position:
-        fixed;
-
-    right:
-        22px;
-
-    bottom:
-        22px;
-
-    width:
-        170px;
-
-    height:
-        170px;
-
-    z-index:
-        3000;
-
-    border-radius:
-        50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(
-                255,
-                255,
-                255,
-                0.95
-            ),
-            rgba(
-                224,
-                255,
-                250,
-                0.82
-            ) 50%,
-            rgba(
-                176,
-                239,
-                233,
-                0.62
-            )
-        );
-
-    border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
-
-    box-shadow:
-
-        inset
-        8px 8px 20px
-        rgba(
-            255,
-            255,
-            255,
-            0.80
-        ),
-
-        0 15px 40px
-        rgba(
-            40,
-            120,
-            120,
-            0.15
-        );
-
-    backdrop-filter:
-        blur(5px);
-
-    -webkit-backdrop-filter:
-        blur(5px);
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    cursor:
-        pointer;
-
-    transition:
-        all 0.4s ease;
-}
-
-
-.music-bubble:hover {
-
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-        0 20px 50px
-        rgba(
-            40,
-            120,
-            120,
-            0.20
-        );
-}
-
-
-.music-closed {
-
-    width:
-        100%;
-
-    height:
-        100%;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-}
-
-
-.music-label {
-
-    position:
-        absolute;
-
-    top:
-        17px;
-
-    width:
-        100%;
-
-    text-align:
-        center;
-
-    color:
-        #285f61;
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-}
-
-
-.record-player {
-
-    width:
-        112px;
-
-    height:
-        78px;
-
-    margin-top:
-        18px;
-
-    border-radius:
-        12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ddd5ca,
-            #b8aa99
-        );
-
-    box-shadow:
-        0 7px 14px
-        rgba(
-            0,
-            0,
-            0,
-            0.16
-        );
-
-    position:
-        relative;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-}
-
-
-.record {
-
-    width:
-        61px;
-
-    height:
-        61px;
-
-    border-radius:
-        50%;
-
-    background:
-        #181818;
-
-    border:
-        4px solid
-        #101010;
-
-    position:
-        relative;
-}
-
-
-.record::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    inset:
-        8px;
-
-    border-radius:
-        50%;
-
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.13
-        );
-}
-
-
-.record::after {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    width:
-        8px;
-
-    height:
-        8px;
-
-    left:
-        50%;
-
-    top:
-        50%;
-
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
-
-    border-radius:
-        50%;
-
-    background:
-        #d5c3a2;
-
-    border:
-        2px solid
-        #111111;
-}
-
-
-.play-button {
-
-    position:
-        absolute;
-
-    left:
-        50%;
-
-    top:
-        50%;
-
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
-
-    width:
-        30px;
-
-    height:
-        30px;
-
-    border-radius:
-        50%;
-
-    background:
-        rgba(
-            22,
-            170,
-            169,
-            0.94
-        );
-
-    color:
-        #ffffff;
-
-    border:
-        2px solid
-        #ffffff;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        12px;
-
-    z-index:
-        5;
-}
-
-
-.tone-arm {
-
-    position:
-        absolute;
-
-    width:
-        35px;
-
-    height:
-        4px;
-
-    right:
-        6px;
-
-    top:
-        15px;
-
-    background:
-        #4c4842;
-
-    border-radius:
-        5px;
-
-    transform:
-        rotate(
-            28deg
-        );
-
-    transform-origin:
-        right center;
-}
-
-
-.tap-note {
-
-    position:
-        absolute;
-
-    bottom:
-        13px;
-
-    width:
-        100%;
-
-    text-align:
-        center;
-
-    color:
-        #527779;
-
-    font-size:
-        9px;
-}
-
-
-
-/* =====================================================
-   OPEN SOUNDTRACK
-===================================================== */
-
-.music-open {
-
-    width:
-        min(
-            390px,
-            calc(
-                100vw - 24px
-            )
-        );
-
-    height:
-        auto;
-
-    min-height:
-        245px;
-
-    border-radius:
-        32px;
-
-    cursor:
-        default;
-
-    padding:
-        16px;
-}
-
-
-.music-open
-.music-closed {
-
-    display:
-        none;
-}
-
-
-.music-player-content {
-
-    display:
-        none;
-
-    width:
-        100%;
-}
-
-
-.music-open
-.music-player-content {
-
-    display:
-        block;
-}
-
-
-.music-player-title {
-
-    text-align:
-        center;
-
-    color:
-        #285f61;
-
-    font-weight:
-        700;
-
-    font-size:
-        17px;
-
-    margin-bottom:
-        2px;
-}
-
-
-.music-player-song {
-
-    text-align:
-        center;
-
-    color:
-        #16aaa9;
-
-    font-size:
-        14px;
-
-    margin-bottom:
-        10px;
-}
-
-
-.soundcloud-frame {
-
-    width:
-        100%;
-
-    height:
-        166px;
-
-    border:
-        none;
-
-    border-radius:
-        16px;
-
-    overflow:
-        hidden;
-}
-
-
-.close-music {
-
-    display:
-        block;
-
-    margin:
-        9px auto 0;
-
-    border:
-        none;
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
-
-    color:
-        #285f61;
-
-    padding:
-        7px 20px;
-
-    border-radius:
-        25px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-}
-
-
-
-/* =====================================================
    FOOTER
 ===================================================== */
 
@@ -1758,7 +1187,7 @@ footer a {
 
 
 /* =====================================================
-   TABLET
+   MOBILE
 ===================================================== */
 
 @media (
@@ -1816,10 +1245,6 @@ footer a {
 }
 
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media (
     max-width: 600px
@@ -1953,37 +1378,6 @@ footer a {
             12px;
     }
 
-
-    .music-bubble {
-
-        width:
-            145px;
-
-        height:
-            145px;
-
-        right:
-            10px;
-
-        bottom:
-            10px;
-    }
-
-
-    .music-open {
-
-        width:
-            calc(
-                100vw - 20px
-            );
-
-        right:
-            10px;
-
-        bottom:
-            10px;
-    }
-
 }
 
 </style>
@@ -2041,7 +1435,7 @@ footer a {
 
 
 <li>
-<a href="experiences.html">
+<a href="events.html">
     Experiences
 </a>
 </li>
@@ -2070,7 +1464,7 @@ footer a {
 
 
 <!-- =====================================================
-     SHARED FLOATING BECOMING BUBBLE
+     FLOATING MESSAGE
 ===================================================== -->
 
 <div
@@ -2540,108 +1934,6 @@ footer a {
 
 
 <!-- =====================================================
-     VILLAGE SOUNDTRACK
-===================================================== -->
-
-<div
-    class="music-bubble"
-    id="musicBubble"
-    onclick="openMusic()"
->
-
-
-<div class="music-closed">
-
-
-<div class="music-label">
-
-    🫧 The Village Soundtrack
-
-</div>
-
-
-<div class="record-player">
-
-
-<div class="record">
-
-
-<div class="play-button">
-
-    ▶
-
-</div>
-
-
-</div>
-
-
-<div class="tone-arm"></div>
-
-
-</div>
-
-
-<div class="tap-note">
-
-    Tap the record to listen
-
-</div>
-
-
-</div>
-
-
-
-<div
-    class="music-player-content"
-    onclick="event.stopPropagation()"
->
-
-
-<div class="music-player-title">
-
-    🫧 The Village Soundtrack
-
-</div>
-
-
-<div class="music-player-song">
-
-    Bricks — Andra Day
-
-</div>
-
-
-<iframe
-    class="soundcloud-frame"
-    scrolling="no"
-    frameborder="no"
-    allow="autoplay; encrypted-media"
-    title="The Village Soundtrack"
-    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
->
-</iframe>
-
-
-<button
-    class="close-music"
-    type="button"
-    onclick="closeMusic()"
->
-
-    Close
-
-</button>
-
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
      FOOTER
 ===================================================== -->
 
@@ -2828,7 +2120,6 @@ function changeMessage() {
     setTimeout(
         function() {
 
-
             messageIndex =
                 (
                     messageIndex + 1
@@ -2849,7 +2140,6 @@ function changeMessage() {
             floatingBubble.classList.add(
                 "visible"
             );
-
 
         },
         1800
@@ -2881,46 +2171,6 @@ setInterval(
     changeMessage,
     9000
 );
-
-</script>
-
-
-
-<!-- =====================================================
-     MUSIC SYSTEM
-===================================================== -->
-
-<script>
-
-function openMusic() {
-
-    const bubble =
-        document.getElementById(
-            "musicBubble"
-        );
-
-
-    bubble.classList.add(
-        "music-open"
-    );
-
-}
-
-
-
-function closeMusic() {
-
-    const bubble =
-        document.getElementById(
-            "musicBubble"
-        );
-
-
-    bubble.classList.remove(
-        "music-open"
-    );
-
-}
 
 </script>
 
