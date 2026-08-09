@@ -4,10 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Still Becoming Village Circle</title>
+<title>Liminality | The Still Becoming Village Circle</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -46,7 +45,13 @@
     font-size: 28px;
 }
 
+
+/* =========================
+   MAIN BUBBLE
+========================= */
+
 .bubble {
+
     animation:
         homeBubbleFloat 6s ease-in-out infinite;
 }
@@ -68,32 +73,32 @@
 
 
 /* =========================
-   DEEPER ENTRY SECTION
+   LIMINALITY SECTION
 ========================= */
 
-.ingress {
+.liminality {
 
-    max-width: 950px;
+    max-width: 1000px;
 
     margin: 0 auto;
 
     padding:
-        70px 6%
-        90px;
+        80px 6%
+        95px;
 
     text-align: center;
 }
 
-.ingress-box {
+.liminality-box {
 
     background:
-        rgba(255,255,255,0.94);
+        rgba(255,255,255,0.95);
 
     padding:
-        60px 8%;
+        65px 8%;
 
     border-radius:
-        55% 45% 48% 52%
+        52% 48% 45% 55%
         /
         48% 55% 45% 52%;
 
@@ -106,46 +111,46 @@
         rgba(40,120,120,0.10);
 }
 
-.ingress-word {
+.liminality-word {
 
     color:
         #16aaa9;
 
     font-size:
-        clamp(34px,5vw,52px);
+        clamp(48px,8vw,76px);
 
     font-weight:
         700;
 
+    line-height:
+        1.05;
+
     margin-bottom:
-        12px;
+        18px;
 }
 
-.ingress-definition {
-
-    font-size:
-        15px;
-
-    letter-spacing:
-        1px;
-
-    text-transform:
-        uppercase;
+.liminality-definition {
 
     color:
         #79aaa9;
 
+    font-size:
+        16px;
+
+    letter-spacing:
+        0.5px;
+
     margin-bottom:
-        28px;
+        30px;
 }
 
-.ingress-box p {
+.liminality-box p {
 
     max-width:
-        760px;
+        800px;
 
     margin:
-        0 auto 20px;
+        0 auto 22px;
 
     color:
         #5d565f;
@@ -154,26 +159,10 @@
         19px;
 }
 
+.liminality-box strong {
 
-/* =========================
-   DEEPER BUTTON
-========================= */
-
-.welcomeButton {
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.welcomeButton:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 15px 30px
-        rgba(22,170,169,0.20);
+    color:
+        #285f61;
 }
 
 
@@ -232,6 +221,34 @@ footer a {
         700;
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .liminality {
+
+        padding:
+            60px 5%
+            75px;
+    }
+
+    .liminality-box {
+
+        padding:
+            45px 25px;
+    }
+
+    .liminality-box p {
+
+        font-size:
+            17px;
+    }
+
+}
+
 </style>
 
 </head>
@@ -241,12 +258,13 @@ footer a {
 
 
 <!-- =========================
-     HEADER / NAVIGATION
+     HEADER
 ========================= -->
 
 <header>
 
 <nav>
+
 
     <div class="logo">
 
@@ -260,6 +278,7 @@ footer a {
 
 
     <ul>
+
 
         <li>
             <a href="index.html">
@@ -302,6 +321,7 @@ footer a {
             </a>
         </li>
 
+
     </ul>
 
 </nav>
@@ -310,15 +330,11 @@ footer a {
 
 
 <!-- =========================
-     MAIN
+     HERO
 ========================= -->
 
 <main>
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -352,11 +368,6 @@ footer a {
 
     <p class="description">
 
-        You have entered The Still Becoming
-        Village Circle.
-
-        <br><br>
-
         This isn't a place where you're expected
         to have all the answers.
 
@@ -385,7 +396,7 @@ footer a {
         class="welcomeButton"
     >
 
-        🫧 Enter the Bubble
+        🫧 Step Inside the Bubble
 
     </a>
 
@@ -394,48 +405,69 @@ footer a {
 
 
 <!-- =========================
-     INGRESS
+     LIMINALITY
 ========================= -->
 
-<section class="ingress">
+<section class="liminality">
 
 
-    <div class="ingress-box">
+    <div class="liminality-box">
 
 
-        <div class="ingress-word">
-            Ingress
+        <div class="liminality-word">
+            Liminality
         </div>
 
 
-        <div class="ingress-definition">
+        <div class="liminality-definition">
 
-            noun — the act or means of entering
+            noun — the state of being between
+            one stage, condition, identity, or place
+            and another
 
         </div>
 
 
         <p>
 
-            Every village has an entrance.
-
-            This one begins with permission.
+            The space between who you were
+            and who you're becoming.
 
         </p>
 
 
         <p>
 
-            You do not have to arrive polished,
-            certain, healed, or finished.
+            Sometimes an old version of your life
+            no longer fits, while the next version
+            hasn't fully taken shape.
 
         </p>
 
 
         <p>
 
-            You only have to decide that you're
-            willing to enter honestly.
+            That space can feel uncertain.
+
+            Strange.
+
+            Quiet.
+
+            Exciting.
+
+            Uncomfortable.
+
+            Liberating.
+
+        </p>
+
+
+        <p>
+
+            And sometimes it can feel like
+            nothing is happening—
+
+            while everything is changing.
 
         </p>
 
@@ -443,7 +475,22 @@ footer a {
         <p>
 
             <strong>
-                Consider this your ingress.
+
+                You may not be lost.
+
+                You may simply be in between.
+
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+
+                This Village lives in that space.
+
             </strong>
 
         </p>
@@ -508,9 +555,9 @@ footer a {
 
             <p>
 
-                Discover authenticity, belonging,
-                encouragement, and meaningful
-                connection.
+                Discover authentic conversations,
+                belonging, encouragement,
+                and meaningful connection.
 
             </p>
 
