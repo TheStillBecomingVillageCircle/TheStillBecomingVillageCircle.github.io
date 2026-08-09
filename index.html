@@ -1,705 +1,1527 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>The Still Becoming Village Circle</title>
-
-    <meta
-        name="description"
-        content="The Still Becoming Village Circle is a welcoming space for healing, curiosity, growth, connection, and becoming—one step at a time."
-    >
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #e8fffb;
-            color: #285f61;
-            line-height: 1.7;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================== */
-
-        nav {
-            background: rgba(255, 255, 255, 0.94);
-            border-bottom: 1px solid rgba(40, 95, 97, 0.12);
-            padding: 22px 4%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #285f61;
-            line-height: 1.35;
-        }
-
-        .logo span {
-            color: #57b934;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #285f61;
-            font-weight: 700;
-            font-size: 16px;
-            transition: 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #12aaa9;
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            text-align: center;
-            padding: 110px 6% 90px;
-            background:
-                radial-gradient(
-                    circle at 50% 20%,
-                    rgba(255,255,255,0.9),
-                    rgba(226,255,250,0.75) 45%,
-                    rgba(207,250,243,0.9)
-                );
-        }
-
-        .hero-bubble {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 35px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.45);
-            border: 2px solid rgba(255,255,255,0.8);
-            box-shadow:
-                inset 8px 8px 18px rgba(255,255,255,0.9),
-                inset -8px -8px 18px rgba(94,196,214,0.15),
-                0 12px 35px rgba(40, 150, 160, 0.12);
-            position: relative;
-        }
-
-        .hero-bubble::after {
-            content: "🫧";
-            position: absolute;
-            font-size: 42px;
-            left: 19px;
-            top: 18px;
-        }
-
-        .hero h1 {
-            color: #16aaa9;
-            font-size: clamp(42px, 7vw, 76px);
-            line-height: 1.1;
-            margin-bottom: 28px;
-        }
-
-        .hero h1 span {
-            display: block;
-        }
-
-        .hero p {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: clamp(19px, 2.5vw, 25px);
-            color: #285f61;
-        }
-
-        .belonging {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 12px 28px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 999px;
-            box-shadow: 0 12px 30px rgba(40, 120, 120, 0.12);
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        /* =========================
-           WELCOME
-        ========================== */
-
-        .welcome {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 80px 6%;
-            text-align: center;
-        }
-
-        .welcome-box {
-            background: rgba(255,255,255,0.92);
-            padding: 65px 8%;
-            border-radius: 45px 60px 50px 70px;
-            box-shadow:
-                0 25px 60px rgba(40, 120, 120, 0.10);
-        }
-
-        .welcome h2 {
-            color: #29212d;
-            font-size: clamp(30px, 5vw, 48px);
-            line-height: 1.2;
-            margin-bottom: 30px;
-        }
-
-        .welcome p {
-            font-size: 20px;
-            color: #5d565f;
-            margin-bottom: 22px;
-        }
-
-        .welcome .final-line {
-            margin-top: 35px;
-            font-weight: 700;
-            color: #285f61;
-        }
-
-        /* =========================
-           DISCOVER
-        ========================== */
-
-        .discover {
-            padding: 90px 5%;
-            text-align: center;
-        }
-
-        .discover h2 {
-            color: #16aaa9;
-            font-size: clamp(34px, 5vw, 52px);
-            margin-bottom: 60px;
-        }
-
-        .bubble-grid {
-            max-width: 1250px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 45px;
-            align-items: stretch;
-        }
-
-        /* =========================
-           BUBBLE CARDS
-        ========================== */
-
-        .bubble-card {
-            min-height: 330px;
-            padding: 45px 35px;
-            background: rgba(255,255,255,0.86);
-            border: 2px solid rgba(255,255,255,0.85);
-
-            border-radius:
-                55% 45% 60% 40%
-                / 45% 55% 45% 55%;
-
-            box-shadow:
-                0 20px 45px rgba(40, 130, 135, 0.12),
-                inset 8px 8px 18px rgba(255,255,255,0.9);
-
-            transition:
-                transform 0.35s ease,
-                box-shadow 0.35s ease;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .bubble-card:nth-child(2) {
-            border-radius:
-                45% 55% 40% 60%
-                / 55% 45% 60% 40%;
-            transform: translateY(25px);
-        }
-
-        .bubble-card:nth-child(3) {
-            border-radius:
-                60% 40% 55% 45%
-                / 45% 60% 40% 55%;
-        }
-
-        .bubble-card:hover {
-            transform: translateY(-8px);
-            box-shadow:
-                0 28px 55px rgba(40, 130, 135, 0.17),
-                inset 8px 8px 18px rgba(255,255,255,0.95);
-        }
-
-        .bubble-card:nth-child(2):hover {
-            transform: translateY(15px);
-        }
-
-        .bubble-card h3 {
-            color: #16aaa9;
-            font-size: 25px;
-            margin-bottom: 22px;
-        }
-
-        .bubble-card p {
-            color: #285f61;
-            font-size: 18px;
-        }
-
-        /* =========================
-           MESSAGE SECTION
-        ========================== */
-
-        .messages {
-            padding: 100px 5%;
-            text-align: center;
-        }
-
-        .messages h2 {
-            color: #16aaa9;
-            font-size: clamp(34px, 5vw, 50px);
-            margin-bottom: 50px;
-        }
-
-        .message-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
-        .message {
-            background: rgba(255,255,255,0.78);
-            padding: 18px 30px;
-            border-radius: 50% 45% 55% 40%;
-            box-shadow: 0 12px 30px rgba(40, 120, 120, 0.10);
-            font-weight: 600;
-            color: #285f61;
-        }
-
-        .message:nth-child(even) {
-            border-radius: 45% 55% 40% 60%;
-        }
-
-        /* =========================
-           ROOM SECTION
-        ========================== */
-
-        .room {
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 90px 6% 110px;
-            text-align: center;
-        }
-
-        .room h2 {
-            color: #16aaa9;
-            font-size: clamp(35px, 5vw, 52px);
-            margin-bottom: 35px;
-        }
-
-        .room p {
-            font-size: 20px;
-            color: #285f61;
-            margin-bottom: 22px;
-        }
-
-        .closing {
-            margin-top: 45px;
-            font-size: 22px !important;
-            font-weight: 600;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        footer {
-            background: rgba(255,255,255,0.92);
-            border-top: 1px solid rgba(40,95,97,0.10);
-            text-align: center;
-            padding: 55px 6%;
-            color: #5d565f;
-        }
-
-        footer p {
-            margin-bottom: 12px;
-        }
-
-        footer a {
-            color: #16aaa9;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* =========================
-           MOBILE
-        ========================== */
-
-        @media (max-width: 900px) {
-
-            nav {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav ul {
-                justify-content: center;
-                gap: 15px 20px;
-            }
-
-            .bubble-grid {
-                grid-template-columns: 1fr;
-                max-width: 600px;
-            }
-
-            .bubble-card:nth-child(2) {
-                transform: none;
-            }
-
-            .bubble-card:nth-child(2):hover {
-                transform: translateY(-8px);
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            nav {
-                padding: 18px 5%;
-            }
-
-            .logo {
-                font-size: 21px;
-            }
-
-            nav ul {
-                gap: 10px 15px;
-            }
-
-            nav a {
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 75px 6% 65px;
-            }
-
-            .welcome {
-                padding: 55px 5%;
-            }
-
-            .welcome-box {
-                padding: 45px 25px;
-            }
-
-            .welcome p {
-                font-size: 17px;
-            }
-
-            .discover,
-            .messages,
-            .room {
-                padding-top: 65px;
-                padding-bottom: 65px;
-            }
-
-            .bubble-card {
-                min-height: 280px;
-                padding: 40px 28px;
-            }
-
-            .bubble-card p {
-                font-size: 17px;
-            }
-
-            .message {
-                width: 90%;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Liminality | The Still Becoming Village Circle</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        #e8fffb;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+
+    background:
+        rgba(255,255,255,0.97);
+
+    border-bottom:
+        1px solid rgba(40,95,97,0.12);
+
+    padding:
+        22px 4%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        25px;
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.logo {
+
+    font-size:
+        24px;
+
+    font-weight:
+        700;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.3;
+}
+
+
+nav ul {
+
+    list-style:
+        none;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        28px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+nav a {
+
+    text-decoration:
+        none;
+
+    color:
+        #285f61;
+
+    font-weight:
+        700;
+
+    font-size:
+        16px;
+}
+
+
+nav a:hover {
+
+    color:
+        #16aaa9;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height:
+        720px;
+
+    padding:
+        90px 6% 100px;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,255,255,0.99),
+            rgba(226,255,250,0.86) 45%,
+            rgba(207,250,243,0.96)
+        );
+}
+
+
+/* =========================
+   FLOATING BUBBLES
+========================= */
+
+.hero-bubble {
+
+    position:
+        absolute;
+
+    border-radius:
+        50%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.95),
+            rgba(193,247,242,0.42)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+
+        inset
+        5px 5px 12px
+        rgba(255,255,255,0.85),
+
+        0 10px 25px
+        rgba(40,130,135,0.08);
+
+    pointer-events:
+        none;
+}
+
+
+.bubble-one {
+
+    width:
+        80px;
+
+    height:
+        80px;
+
+    top:
+        16%;
+
+    left:
+        9%;
+
+    animation:
+        bubbleFloatOne 7s ease-in-out infinite;
+}
+
+
+.bubble-two {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    top:
+        32%;
+
+    right:
+        12%;
+
+    animation:
+        bubbleFloatTwo 6s ease-in-out infinite;
+}
+
+
+.bubble-three {
+
+    width:
+        25px;
+
+    height:
+        25px;
+
+    bottom:
+        20%;
+
+    left:
+        18%;
+
+    animation:
+        bubbleFloatThree 5s ease-in-out infinite;
+}
+
+
+.bubble-four {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+    bottom:
+        17%;
+
+    right:
+        20%;
+
+    animation:
+        bubbleFloatFour 8s ease-in-out infinite;
+}
+
+
+@keyframes bubbleFloatOne {
+
+    0%, 100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-18px);
+    }
+}
+
+
+@keyframes bubbleFloatTwo {
+
+    0%, 100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(14px);
+    }
+}
+
+
+@keyframes bubbleFloatThree {
+
+    0%, 100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+@keyframes bubbleFloatFour {
+
+    0%, 100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(16px);
+    }
+}
+
+
+/* =========================
+   MAIN BUBBLE
+========================= */
+
+.main-bubble {
+
+    width:
+        210px;
+
+    height:
+        210px;
+
+    margin-bottom:
+        38px;
+
+    border-radius:
+        52% 48% 55% 45%
+        /
+        46% 55% 45% 54%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.98),
+            rgba(210,251,246,0.70)
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.94);
+
+    box-shadow:
+
+        inset
+        12px 12px 28px
+        rgba(255,255,255,0.92),
+
+        inset
+        -12px -12px 28px
+        rgba(72,181,196,0.12),
+
+        0 25px 60px
+        rgba(40,130,135,0.14);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    animation:
+        mainBubbleFloat 7s ease-in-out infinite;
+}
+
+
+@keyframes mainBubbleFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+    }
+}
+
+
+.main-bubble::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,0.72);
+
+    top:
+        35px;
+
+    left:
+        42px;
+
+    filter:
+        blur(1px);
+}
+
+
+.main-bubble-text {
+
+    font-size:
+        46px;
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero h1 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(58px,10vw,105px);
+
+    line-height:
+        0.95;
+
+    margin-bottom:
+        20px;
+
+    letter-spacing:
+        -2px;
+}
+
+
+.definition {
+
+    max-width:
+        820px;
+
+    font-size:
+        clamp(19px,3vw,25px);
+
+    color:
+        #285f61;
+
+    margin-bottom:
+        20px;
+}
+
+
+.definition strong {
+
+    color:
+        #16aaa9;
+}
+
+
+.hero-subtitle {
+
+    max-width:
+        760px;
+
+    font-size:
+        18px;
+
+    color:
+        #5d565f;
+
+    margin-bottom:
+        15px;
+}
+
+
+.village-statement {
+
+    max-width:
+        700px;
+
+    margin-top:
+        12px;
+
+    font-size:
+        21px;
+
+    color:
+        #285f61;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================
+   EXPLANATION
+========================= */
+
+.explanation {
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        90px 6%;
+
+    text-align:
+        center;
+}
+
+
+.explanation-box {
+
+    background:
+        rgba(255,255,255,0.95);
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        50% 50% 45% 55%
+        /
+        48% 52% 55% 45%;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 25px 60px
+        rgba(40,120,120,0.10);
+}
+
+
+.explanation h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,52px);
+
+    margin-bottom:
+        28px;
+}
+
+
+.explanation p {
+
+    max-width:
+        820px;
+
+    margin:
+        0 auto 22px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+.definition-word {
+
+    display:
+        inline-block;
+
+    margin:
+        12px 0 28px;
+
+    padding:
+        10px 20px;
+
+    border-radius:
+        30px;
+
+    background:
+        #e8fffb;
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    font-size:
+        18px;
+}
+
+
+/* =========================
+   VILLAGE PHILOSOPHY
+========================= */
+
+.philosophy {
+
+    max-width:
+        1100px;
+
+    margin:
+        0 auto;
+
+    padding:
+        20px 5% 100px;
+
+    text-align:
+        center;
+}
+
+
+.philosophy-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        28px;
+}
+
+
+.philosophy-card {
+
+    background:
+        rgba(255,255,255,0.92);
+
+    padding:
+        42px 28px;
+
+    min-height:
+        250px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 18px 40px
+        rgba(40,120,120,0.09);
+
+    border-radius:
+        45px 55px 40px 60px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.philosophy-card:nth-child(2) {
+
+    border-radius:
+        55px 40px 60px 45px;
+}
+
+
+.philosophy-card:nth-child(3) {
+
+    border-radius:
+        40px 60px 45px 55px;
+}
+
+
+.philosophy-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 25px 50px
+        rgba(40,120,120,0.14);
+}
+
+
+.philosophy-icon {
+
+    font-size:
+        38px;
+
+    margin-bottom:
+        15px;
+}
+
+
+.philosophy-card h3 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        14px;
+}
+
+
+.philosophy-card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        17px;
+}
+
+
+/* =========================
+   INVITATION
+========================= */
+
+.invitation {
+
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        20px 6% 110px;
+
+    text-align:
+        center;
+}
+
+
+.invitation-box {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(220,255,251,0.92),
+            rgba(255,255,255,0.97)
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        60px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(40,120,120,0.10);
+}
+
+
+.invitation h2 {
+
+    color:
+        #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom:
+        25px;
+}
+
+
+.invitation p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        20px;
+}
+
+
+.invitation strong {
+
+    color:
+        #285f61;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button {
+
+    display:
+        inline-block;
+
+    margin-top:
+        18px;
+
+    padding:
+        14px 30px;
+
+    border-radius:
+        35px;
+
+    background:
+        #ffffff;
+
+    color:
+        #16aaa9;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 10px 25px
+        rgba(40,120,120,0.10);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(40,120,120,0.15);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border-top:
+        1px solid
+        rgba(40,95,97,0.10);
+
+    text-align:
+        center;
+
+    padding:
+        55px 6%;
+
+    color:
+        #5d565f;
+}
+
+
+footer p {
+
+    margin-bottom:
+        12px;
+}
+
+
+footer a {
+
+    color:
+        #16aaa9;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+    }
+
+
+    nav ul {
+
+        justify-content:
+            center;
+
+        gap:
+            15px 20px;
+    }
+
+
+    .philosophy-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    nav {
+
+        padding:
+            18px 5%;
+    }
+
+
+    .logo {
+
+        font-size:
+            20px;
+    }
+
+
+    nav ul {
+
+        gap:
+            10px 15px;
+    }
+
+
+    nav a {
+
+        font-size:
+            14px;
+    }
+
+
+    .hero {
+
+        min-height:
+            650px;
+
+        padding:
+            70px 5%
+            75px;
+    }
+
+
+    .main-bubble {
+
+        width:
+            165px;
+
+        height:
+            165px;
+    }
+
+
+    .main-bubble-text {
+
+        font-size:
+            38px;
+    }
+
+
+    .bubble-one {
+
+        width:
+            50px;
+
+        height:
+            50px;
+
+        left:
+            5%;
+    }
+
+
+    .bubble-two {
+
+        width:
+            30px;
+
+        height:
+            30px;
+
+        right:
+            5%;
+    }
+
+
+    .explanation {
+
+        padding:
+            60px 5%;
+    }
+
+
+    .explanation-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .explanation p {
+
+        font-size:
+            17px;
+    }
+
+
+    .philosophy {
+
+        padding:
+            10px 5%
+            80px;
+    }
+
+
+    .philosophy-card {
+
+        min-height:
+            220px;
+
+        padding:
+            35px 25px;
+    }
+
+
+    .invitation {
+
+        padding:
+            10px 5%
+            80px;
+    }
+
+
+    .invitation-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .invitation p {
+
+        font-size:
+            17px;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
 
-    <nav>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-        <div class="logo">
-            <span>🌱</span> The Still Becoming Village Circle
-        </div>
+<nav>
 
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Inside the Bubble</a></li>
-            <li><a href="unknown.html">The Unknown</a></li>
-            <li><a href="experiences.html">Experiences</a></li>
-            <li><a href="contact.html">Connect</a></li>
-            <li><a href="support.html">Support</a></li>
-        </ul>
+    <div class="logo">
+        🌱 The Still Becoming Village Circle
+    </div>
 
-    </nav>
 
+    <ul>
 
-    <!-- =========================
-         HERO
-    ========================== -->
-
-    <section class="hero">
-
-        <div class="hero-bubble"></div>
-
-        <h1>
-            🌱 Trying to Find Your Way?
-        </h1>
-
-        <p>
-            Every journey into The Still Becoming Village Circle begins differently.
-            Whether you found a book, followed curiosity, or simply needed a place
-            to begin... you are welcome here.
-        </p>
-
-        <div class="belonging">
-            ✨ You belong before you bloom.
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         WELCOME
-    ========================== -->
-
-    <section class="welcome">
-
-        <div class="welcome-box">
-
-            <h2>
-                🌱 Welcome to The Still Becoming Village Circle
-            </h2>
-
-            <p>
-                Every journey into the Village begins differently.
-            </p>
-
-            <p>
-                Maybe a book found you.
-            </p>
-
-            <p>
-                Maybe curiosity brought you here.
-            </p>
-
-            <p>
-                Maybe you simply needed somewhere to breathe.
-            </p>
-
-            <p>
-                However you arrived...
-            </p>
-
-            <p>
-                I'm grateful you're here.
-            </p>
-
-            <p class="final-line">
-                Let's begin. 🫧
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         DISCOVER
-    ========================== -->
-
-    <section class="discover">
-
-        <h2>
-            What You'll Discover Inside the Bubble
-        </h2>
-
-        <div class="bubble-grid">
-
-            <div class="bubble-card">
-
-                <h3>
-                    📚 Learning the Unknown
-                </h3>
-
-                <p>
-                    Explore books, journals, worksheets,
-                    and resources created to support your
-                    healing and becoming.
-                </p>
-
-            </div>
-
-
-            <div class="bubble-card">
-
-                <h3>
-                    💬 Real Conversations
-                </h3>
-
-                <p>
-                    Explore stories, reflections, and
-                    conversations that create space for
-                    curiosity, connection, and understanding
-                    instead of judgment.
-                </p>
-
-            </div>
-
-
-            <div class="bubble-card">
-
-                <h3>
-                    🌱 Growing Together
-                </h3>
-
-                <p>
-                    Workshops, virtual gatherings,
-                    experiences, and community moments
-                    that support your growth one step
-                    at a time.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         BECOMING MESSAGES
-    ========================== -->
-
-    <section class="messages">
-
-        <h2>
-            Today's Becoming Messages
-        </h2>
-
-        <div class="message-grid">
-
-            <div class="message">
-                🫧 You belong before you bloom.
-            </div>
-
-            <div class="message">
-                🫧 Healing isn't linear.
-            </div>
-
-            <div class="message">
-                🫧 Rest is productive.
-            </div>
-
-            <div class="message">
-                🫧 Curiosity creates connection.
-            </div>
-
-            <div class="message">
-                🫧 Becoming takes courage.
-            </div>
-
-            <div class="message">
-                🫧 It's okay to begin again.
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         ROOM FOR YOU
-    ========================== -->
-
-    <section class="room">
-
-        <h2>
-            There Is Room for You Here
-        </h2>
-
-        <p>
-            Whether you're beginning your healing journey,
-            supporting someone you love, rediscovering yourself,
-            or simply searching for a place where authenticity
-            is welcomed—
-        </p>
-
-        <p>
-            there is room for you here.
-        </p>
-
-        <p class="closing">
-            Take what you need.<br>
-            Leave what you don't.<br>
-            Come back whenever you need to.
-        </p>
-
-        <p class="closing">
-            Healing isn't a destination.<br>
-            It's a circle we grow through together. 🫧
-        </p>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        <p>
-            📧
-            <a href="mailto:thestillbecomingvillagecircle@gmail.com">
-                thestillbecomingvillagecircle@gmail.com
+        <li>
+            <a href="index.html">
+                Home
             </a>
-        </p>
+        </li>
+
+        <li>
+            <a href="about.html">
+                Inside the Bubble
+            </a>
+        </li>
+
+        <li>
+            <a href="unknown.html">
+                The Unknown
+            </a>
+        </li>
+
+        <li>
+            <a href="experiences.html">
+                Experiences
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Connect
+            </a>
+        </li>
+
+        <li>
+            <a href="coaching.html">
+                Support
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+
+    <div class="hero-bubble bubble-one"></div>
+
+    <div class="hero-bubble bubble-two"></div>
+
+    <div class="hero-bubble bubble-three"></div>
+
+    <div class="hero-bubble bubble-four"></div>
+
+
+    <div class="main-bubble">
+
+        <div class="main-bubble-text">
+            🫧
+        </div>
+
+    </div>
+
+
+    <h1>
+        Liminality
+    </h1>
+
+
+    <p class="definition">
+
+        <strong>liminality</strong>
+
+        — the state of being in between
+        one stage, condition, identity, or place
+        and another.
+
+    </p>
+
+
+    <p class="hero-subtitle">
+
+        The space between who you were
+        and who you're becoming.
+
+    </p>
+
+
+    <p class="village-statement">
+
+        This Village lives in that space.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     EXPLANATION
+========================= -->
+
+<section class="explanation">
+
+
+    <div class="explanation-box">
+
+
+        <h2>
+            What Is Liminality?
+        </h2>
+
+
+        <div class="definition-word">
+            liminality
+        </div>
+
 
         <p>
-            © 2026 The Still Becoming Village Circle
+
+            Liminality describes the space between
+            what was and what comes next.
+
         </p>
 
-    </footer>
+
+        <p>
+
+            It can happen when an old identity no longer
+            fits, but the new one hasn't fully taken shape.
+
+        </p>
+
+
+        <p>
+
+            It can feel uncertain.
+
+            Strange.
+
+            Quiet.
+
+            Exciting.
+
+            Uncomfortable.
+
+            Liberating.
+
+        </p>
+
+
+        <p>
+
+            And sometimes it can feel like
+            absolutely nothing is happening—
+
+            while everything is changing.
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                You may not be lost.
+                You may simply be in between.
+            </strong>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     VILLAGE PHILOSOPHY
+========================= -->
+
+<section class="philosophy">
+
+
+    <div class="philosophy-grid">
+
+
+        <!-- BEING -->
+
+        <div class="philosophy-card">
+
+            <div class="philosophy-icon">
+                🪞
+            </div>
+
+
+            <h3>
+                Being
+            </h3>
+
+
+            <p>
+
+                Who are you when you stop performing
+                the version of yourself that everyone
+                else became comfortable with?
+
+            </p>
+
+        </div>
+
+
+        <!-- BECOMING -->
+
+        <div class="philosophy-card">
+
+            <div class="philosophy-icon">
+                🌱
+            </div>
+
+
+            <h3>
+                Becoming
+            </h3>
+
+
+            <p>
+
+                What begins to emerge when you give
+                yourself permission to grow beyond
+                what you have always known?
+
+            </p>
+
+        </div>
+
+
+        <!-- BETWEEN -->
+
+        <div class="philosophy-card">
+
+            <div class="philosophy-icon">
+                🫧
+            </div>
+
+
+            <h3>
+                The In-Between
+            </h3>
+
+
+            <p>
+
+                What if this uncertain space isn't
+                something you need to escape—
+
+                but something you need to experience?
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INVITATION
+========================= -->
+
+<section class="invitation">
+
+
+    <div class="invitation-box">
+
+
+        <h2>
+            You Don't Have to Rush the Becoming.
+        </h2>
+
+
+        <p>
+
+            The world will often ask you
+            what you're doing next.
+
+        </p>
+
+
+        <p>
+
+            The Village asks something different:
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Who are you becoming while
+                you're figuring out what comes next?
+            </strong>
+
+        </p>
+
+
+        <a
+            class="button"
+            href="about.html"
+        >
+            Step Inside the Bubble
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+    <p>
+
+        Take what you need.
+        Leave what you don't.
+        Come back whenever you need to.
+
+    </p>
+
+
+    <p>
+
+        Healing isn't a destination.
+        It's a circle we grow through together.
+
+    </p>
+
+
+    <p>
+
+        📧
+
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+
+            thestillbecomingvillagecircle@gmail.com
+
+        </a>
+
+    </p>
+
+
+    <p>
+        © 2026 The Still Becoming Village Circle
+    </p>
+
+
+</footer>
+
 
 </body>
+
 </html>
