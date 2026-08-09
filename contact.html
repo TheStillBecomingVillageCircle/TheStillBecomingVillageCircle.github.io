@@ -8,7 +8,686 @@
 
 <title>Connect | The Still Becoming Village Circle</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e8fffb;
+    color: #285f61;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    background: rgba(255,255,255,0.97);
+
+    border-bottom:
+        1px solid rgba(40,95,97,0.12);
+
+    padding: 22px 4%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #285f61;
+
+    line-height: 1.3;
+}
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+
+    color: #285f61;
+
+    font-weight: 700;
+
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #16aaa9;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 560px;
+
+    padding:
+        90px 6%
+        75px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(255,255,255,0.98),
+            rgba(226,255,250,0.82) 48%,
+            rgba(207,250,243,0.95)
+        );
+}
+
+
+/* =========================
+   CONNECT BUBBLE
+========================= */
+
+.connect-bubble {
+
+    width: 145px;
+    height: 145px;
+
+    margin-bottom: 35px;
+
+    border-radius:
+        48% 52% 55% 45%
+        /
+        55% 45% 52% 48%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,0.98),
+            rgba(210,251,246,0.70)
+        );
+
+    border:
+        2px solid rgba(255,255,255,0.92);
+
+    box-shadow:
+
+        inset
+        10px 10px 25px
+        rgba(255,255,255,0.90),
+
+        inset
+        -10px -10px 25px
+        rgba(72,181,196,0.12),
+
+        0 20px 45px
+        rgba(40,130,135,0.13);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 55px;
+
+    animation:
+        connectFloat 6s ease-in-out infinite;
+}
+
+@keyframes connectFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px)
+            rotate(3deg);
+    }
+}
+
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero h1 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(45px,8vw,76px);
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+}
+
+.hero p {
+
+    max-width: 820px;
+
+    font-size: 21px;
+
+    color: #5d565f;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding:
+        80px 6%
+        55px;
+
+    text-align: center;
+}
+
+.intro h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,50px);
+
+    margin-bottom: 25px;
+}
+
+.intro p {
+
+    max-width: 800px;
+
+    margin:
+        0 auto 20px;
+
+    font-size: 19px;
+
+    color: #5d565f;
+}
+
+
+/* =========================
+   CONNECT OPTIONS
+========================= */
+
+.connect-options {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+        10px 5%
+        90px;
+}
+
+.connect-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 35px;
+}
+
+.connect-card {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    padding:
+        48px 38px;
+
+    min-height: 280px;
+
+    text-align: center;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.90);
+
+    box-shadow:
+        0 20px 45px
+        rgba(40,120,120,0.09);
+
+    border-radius:
+        55px 40px 60px 45px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.connect-card:nth-child(2) {
+
+    border-radius:
+        40px 60px 45px 55px;
+}
+
+.connect-card:nth-child(3) {
+
+    border-radius:
+        60px 45px 55px 40px;
+}
+
+.connect-card:nth-child(4) {
+
+    border-radius:
+        45px 55px 40px 60px;
+}
+
+.connect-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 28px 55px
+        rgba(40,120,120,0.14);
+}
+
+.connect-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 18px;
+}
+
+.connect-card h3 {
+
+    color: #16aaa9;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.connect-card p {
+
+    color: #5d565f;
+
+    font-size: 17px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.connect-button {
+
+    display: inline-block;
+
+    padding:
+        13px 26px;
+
+    border-radius:
+        35px;
+
+    background:
+        #ffffff;
+
+    color:
+        #16aaa9;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 10px 25px
+        rgba(40,120,120,0.10);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.connect-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(40,120,120,0.15);
+}
+
+
+/* =========================
+   EMAIL SECTION
+========================= */
+
+.email-section {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding:
+        0 6%
+        100px;
+
+    text-align: center;
+}
+
+.email-box {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(220,255,251,0.90),
+            rgba(255,255,255,0.96)
+        );
+
+    padding:
+        60px 8%;
+
+    border-radius:
+        65px 45px 60px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(40,120,120,0.10);
+}
+
+.email-box h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(32px,5vw,46px);
+
+    margin-bottom: 22px;
+}
+
+.email-box p {
+
+    color: #5d565f;
+
+    font-size: 18px;
+
+    margin-bottom: 22px;
+}
+
+.email-address {
+
+    display: inline-block;
+
+    color: #16aaa9;
+
+    font-weight: 700;
+
+    font-size:
+        clamp(16px,3vw,21px);
+
+    text-decoration: none;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   CLOSING
+========================= */
+
+.closing {
+
+    padding:
+        10px 6%
+        100px;
+
+    text-align: center;
+}
+
+.closing h2 {
+
+    color: #16aaa9;
+
+    font-size:
+        clamp(34px,5vw,52px);
+
+    margin-bottom: 18px;
+}
+
+.closing p {
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    color: #5d565f;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border-top:
+        1px solid
+        rgba(40,95,97,0.10);
+
+    text-align: center;
+
+    padding:
+        55px 6%;
+
+    color: #5d565f;
+}
+
+footer p {
+
+    margin-bottom: 12px;
+}
+
+footer a {
+
+    color: #16aaa9;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+    }
+
+    nav ul {
+
+        justify-content:
+            center;
+
+        gap:
+            15px 20px;
+    }
+
+    .connect-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    nav {
+
+        padding:
+            18px 5%;
+    }
+
+    .logo {
+
+        font-size:
+            20px;
+    }
+
+    nav ul {
+
+        gap:
+            10px 15px;
+    }
+
+    nav a {
+
+        font-size:
+            14px;
+    }
+
+    .hero {
+
+        min-height:
+            510px;
+
+        padding:
+            70px 6%
+            60px;
+    }
+
+    .connect-bubble {
+
+        width:
+            120px;
+
+        height:
+            120px;
+
+        font-size:
+            45px;
+    }
+
+    .intro {
+
+        padding:
+            60px 5%
+            40px;
+    }
+
+    .connect-card {
+
+        padding:
+            40px 25px;
+
+        min-height:
+            250px;
+    }
+
+    .email-box {
+
+        padding:
+            45px 25px;
+    }
+
+    .email-box p {
+
+        font-size:
+            17px;
+    }
+
+    .closing {
+
+        padding:
+            10px 5%
+            80px;
+    }
+
+    .closing p {
+
+        font-size:
+            18px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -16,160 +695,376 @@
 <body>
 
 
-<header>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
-<div class="logo">
-<a href="index.html">🌱 The Still Becoming Village Circle</a>
-</div>
+    <div class="logo">
+        🌱 The Still Becoming Village Circle
+    </div>
 
 
-<ul>
+    <ul>
 
-<li><a href="index.html">Home</a></li>
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
 
-<li><a href="about.html">Inside the Bubble</a></li>
+        <li>
+            <a href="about.html">
+                Inside the Bubble
+            </a>
+        </li>
 
-<li><a href="LearningtheUnknown.html">The Unknown</a></li>
+        <li>
+            <a href="unknown.html">
+                The Unknown
+            </a>
+        </li>
 
-<li><a href="events.html">Experiences</a></li>
+        <li>
+            <a href="experiences.html">
+                Experiences
+            </a>
+        </li>
 
-<li><a href="contact.html">Connect</a></li>
+        <li>
+            <a href="contact.html">
+                Connect
+            </a>
+        </li>
 
-<li><a href="coaching.html">Support</a></li>
-</ul>
+        <li>
+            <a href="coaching.html">
+                Support
+            </a>
+        </li>
+
+    </ul>
 
 </nav>
 
-</header>
 
-
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-<div class="bubble">🫧</div>
+
+    <div class="connect-bubble">
+        💌
+    </div>
 
 
-<h1>Did Curiosity Bring You Here?</h1>
+    <h1>
+        Connect
+    </h1>
 
 
-<p class="description">
+    <p>
 
-Curiosity often arrives before clarity.
+        Sometimes the first step is simply
+        saying hello.
 
-<br><br>
-
-Maybe you're searching for answers.
-
-<br><br>
-
-Maybe you're looking for a different way forward.
-
-<br><br>
-
-Maybe you simply needed somewhere to breathe.
-
-<br><br>
-
-However you arrived...
-
-<br><br>
-
-I'm grateful you're here.
-
-<br><br>
-
-Let's begin. 🫧
-
-</p>
-
+    </p>
 
 </section>
 
 
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+    <h2>
+        Come As You Are.
+    </h2>
 
 
-<section class="section">
+    <p>
+
+        Whether you have a question, an idea,
+        a creative project, a coaching question,
+        or simply want to know more about the Village,
+        there's room for the conversation to begin.
+
+    </p>
 
 
-<h2>🌱 Trying to Find Your Way?</h2>
+    <p>
 
+        You don't have to have the perfect words.
+        Just start where you are.
 
-<p class="description">
-
-Every journey into The Still Becoming Village Circle begins differently.
-
-Whether you found a book, followed curiosity, or simply needed a place to begin...
-
-you are welcome here.
-
-</p>
-
-
-
-<!-- Typeform begins -->
-
-<div data-tf-live="01KZFHN3ZXK3WXAR3XWPFCYJ1X"></div>
-
-<script src="//embed.typeform.com/next/embed.js"></script>
-
-<!-- Typeform ends -->
-
+    </p>
 
 </section>
 
 
+<!-- =========================
+     CONNECT OPTIONS
+========================= -->
+
+<section class="connect-options">
 
 
+    <div class="connect-grid">
+
+
+        <!-- COACHING -->
+
+        <div class="connect-card">
+
+            <div class="connect-icon">
+                🌱
+            </div>
+
+
+            <h3>
+                Coaching
+            </h3>
+
+
+            <p>
+
+                Want to sit down with Kendra and
+                talk through something you're navigating,
+                questioning, or becoming?
+
+            </p>
+
+
+            <a
+                class="connect-button"
+                href="coaching.html"
+            >
+                Explore Coaching
+            </a>
+
+        </div>
+
+
+        <!-- CREATIVE -->
+
+        <div class="connect-card">
+
+            <div class="connect-icon">
+                🎨
+            </div>
+
+
+            <h3>
+                Creative Requests
+            </h3>
+
+
+            <p>
+
+                Have an idea for a personalized piece,
+                gift basket, event décor, or another
+                creative project?
+
+            </p>
+
+
+            <a
+                class="connect-button"
+                href="kitta.html"
+            >
+                Explore Creative Work
+            </a>
+
+        </div>
+
+
+        <!-- GENERAL -->
+
+        <div class="connect-card">
+
+            <div class="connect-icon">
+                💬
+            </div>
+
+
+            <h3>
+                General Questions
+            </h3>
+
+
+            <p>
+
+                Curious about the Village,
+                something you've seen here,
+                or simply want to reach out?
+
+            </p>
+
+
+            <a
+                class="connect-button"
+                href="mailto:thestillbecomingvillagecircle@gmail.com"
+            >
+                Send an Email
+            </a>
+
+        </div>
+
+
+        <!-- VILLAGE -->
+
+        <div class="connect-card">
+
+            <div class="connect-icon">
+                🫧
+            </div>
+
+
+            <h3>
+                Step Inside
+            </h3>
+
+
+            <p>
+
+                Not sure where you belong yet?
+
+                That's okay.
+
+                You can start by exploring
+                the Village.
+
+            </p>
+
+
+            <a
+                class="connect-button"
+                href="about.html"
+            >
+                Enter the Bubble
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EMAIL
+========================= -->
+
+<section class="email-section">
+
+
+    <div class="email-box">
+
+
+        <h2>
+            📬 The Door Is Open
+        </h2>
+
+
+        <p>
+
+            For questions, collaborations,
+            speaking opportunities, creative
+            conversations, or anything else
+            that needs a real human response:
+
+        </p>
+
+
+        <a
+            class="email-address"
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+
+            thestillbecomingvillagecircle@gmail.com
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CLOSING
+========================= -->
+
+<section class="closing">
+
+
+    <h2>
+        No Perfect Introduction Required.
+    </h2>
+
+
+    <p>
+
+        You don't need to know exactly what to say.
+
+        You don't need to know exactly where
+        you're headed.
+
+        Sometimes connection starts with
+        one honest sentence.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
+    <p>
 
-<p>
+        Take what you need.
+        Leave what you don't.
+        Come back whenever you need to.
 
-Take what you need.
-
-<br><br>
-
-Leave what you don't.
-
-<br><br>
-
-Come back whenever you need to.
-
-</p>
+    </p>
 
 
-<br>
+    <p>
+
+        Healing isn't a destination.
+        It's a circle we grow through together.
+
+    </p>
 
 
-<p>
+    <p>
 
-Healing isn't a destination.
+        📧
 
-<br><br>
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+            thestillbecomingvillagecircle@gmail.com
+        </a>
 
-It's a circle we grow through together.
-
-</p>
+    </p>
 
 
-<br>
-
-
-<p>
-
-© 2026 The Still Becoming Village Circle
-
-</p>
-
+    <p>
+        © 2026 The Still Becoming Village Circle
+    </p>
 
 </footer>
-
-
-
-<script src="script.js"></script>
 
 
 </body>
