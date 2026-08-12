@@ -149,3 +149,44 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("page-ready");
 });
+
+/* =========================================================
+   HOME BOOKING LINK
+
+   The home page's "Find Your Moment" button should always
+   lead directly to the Village Calendly booking page.
+   This intentionally changes only that booking destination.
+========================================================= */
+(function () {
+    'use strict';
+
+    const calendlyUrl = "https://calendly.com/thestillbecomingvillagecircle/new-meeting";
+
+    function restoreHomeCalendlyLink() {
+        const links = document.querySelectorAll("a, button");
+
+        links.forEach(function (element) {
+            const text = (element.textContent || "").trim();
+
+            if (text.includes("Find Your Moment")) {
+                if (element.tagName.toLowerCase() === "a") {
+                    element.href = calendlyUrl;
+                    element.target = "_blank";
+                    element.rel = "noopener";
+                } else {
+                    element.addEventListener("click", function () {
+                        window.location.href = calendlyUrl;
+                    }, { once: true });
+                }
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", restoreHomeCalendlyLink, { once: true });
+    } else {
+        restoreHomeCalendlyLink();
+    }
+
+    window.addEventListener("village:pagechange", restoreHomeCalendlyLink);
+})();
