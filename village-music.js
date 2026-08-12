@@ -1,11 +1,24 @@
 /* The Still Becoming Village Circle — persistent soundtrack */
 (function () {
-    const MUSIC_SRC = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
+    'use strict';
+
     const PLAYER_ID = 'villageSoundtrack';
-    const NAV_PAGES = new Set(['index.html','about.html','LearningtheUnknown.html','experiences.html','contact.html','coaching.html','kitta.html']);
+    const NAV_PAGES = new Set([
+        'index.html',
+        'about.html',
+        'LearningtheUnknown.html',
+        'experiences.html',
+        'events.html',
+        'contact.html',
+        'coaching.html',
+        'kitta.html'
+    ]);
+
+    const MUSIC_SRC = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
 
     function addStyles() {
         if (document.getElementById('village-music-styles')) return;
+
         const style = document.createElement('style');
         style.id = 'village-music-styles';
         style.textContent = `
@@ -34,66 +47,90 @@
 
     function createPlayer() {
         if (document.getElementById(PLAYER_ID)) return;
+
         const el = document.createElement('div');
         el.id = PLAYER_ID;
         el.innerHTML = `<div class="closed"><div class="label">🫧 The Village Soundtrack</div><div class="deck"><div class="record"><div class="play">▶</div></div><div class="arm"></div></div><div class="tap">Tap the record to listen</div></div><div class="content" onclick="event.stopPropagation()"><div class="title">🫧 The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
         document.body.appendChild(el);
+
         el.querySelector('.closed').addEventListener('click', () => el.classList.add('open'));
         el.querySelector('.close').addEventListener('click', () => el.classList.remove('open'));
     }
 
     function runPageScripts(root) {
         root.querySelectorAll('script').forEach(oldScript => {
-            if (oldScript.src && oldScript.src.endsWith('/village-music.js')) return;
-            const s = document.createElement('script');
-            if (oldScript.src) s.src = oldScript.src;
-            else s.textContent = oldScript.textContent;
-            oldScript.replaceWith(s);
+            if (oldScript.src && oldScript.src.includes('village-music.js')) return;
+            if (oldScript.src && oldScript.src.includes('village-persistence.js')) return;
+
+            const script = document.createElement('script');
+            [...oldScript.attributes].forEach(attr => script.setAttribute(attr.name, attr.value));
+            if (!oldScript.src) script.textContent = oldScript.textContent;
+            document.body.appendChild(script);
         });
     }
 
     async function navigate(url, push) {
         const target = new URL(url, location.href);
-        if (target.origin !== location.origin || !NAV_PAGES.has(target.pathname.split('/').pop())) return false;
+        const page = target.pathname.split('/').pop() || 'index.html';
+
+        if (target.origin !== location.origin || !NAV_PAGES.has(page)) return false;
+
         const response = await fetch(target.href, { credentials: 'same-origin' });
-        if (!response.ok) return false;
+        if (!response.ok) throw new Error('Navigation failed: ' + response.status);
+
         const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
-
-        // Keep the SAME player element and live SoundCloud iframe.
-        // Recreating the iframe causes SoundCloud to stop playback.
         const player = document.getElementById(PLAYER_ID);
-        const wasOpen = !!(player && player.classList.contains('open'));
+        if (!player) return false;
 
-        document.head.innerHTML = parsed.head.innerHTML;
-        document.body.innerHTML = parsed.body.innerHTML;
-        document.body.className = parsed.body.className;
-        addStyles();
+        document.title = parsed.title || document.title;
 
-        if (player) {
-            document.body.appendChild(player);
-            if (wasOpen) player.classList.add('open');
-        } else {
-            createPlayer();
-        }
+        /* Keep the live SoundCloud iframe connected to the DOM. */
+        [...document.body.children].forEach(child => {
+            if (child !== player) child.remove();
+        });
+
+        const incoming = [...parsed.body.children].filter(child => {
+            return child.id !== PLAYER_ID &&
+                   child.id !== 'soundtrack' &&
+                   !child.classList.contains('soundtrack') &&
+                   !child.classList.contains('music-bubble');
+        });
+
+        incoming.forEach(child => document.body.insertBefore(document.importNode(child, true), player));
 
         runPageScripts(document.body);
+
         if (push) history.pushState({ village: true }, '', target.href);
-        window.scrollTo(0, 0);
-        window.dispatchEvent(new Event('resize'));
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        window.dispatchEvent(new CustomEvent('village:pagechange', { detail: { url: target.href } }));
         return true;
     }
 
     document.addEventListener('click', function (event) {
-        const link = event.target.closest('a[href]');
+        const link = event.target.closest && event.target.closest('a[href]');
         if (!link || link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
         const target = new URL(link.href, location.href);
-        if (!NAV_PAGES.has(target.pathname.split('/').pop()) || target.origin !== location.origin) return;
+        const page = target.pathname.split('/').pop() || 'index.html';
+
+        if (target.origin !== location.origin || !NAV_PAGES.has(page) || target.pathname === location.pathname) return;
+
         event.preventDefault();
         navigate(target.href, true).catch(() => { location.href = target.href; });
     });
 
-    window.addEventListener('popstate', function () { navigate(location.href, false).catch(() => {}); });
+    window.addEventListener('popstate', function () {
+        navigate(location.href, false).catch(() => {});
+    });
 
-    function init() { addStyles(); createPlayer(); }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
+    function init() {
+        addStyles();
+        createPlayer();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+        init();
+    }
 })();
