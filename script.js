@@ -5,6 +5,53 @@
 
 
 /* =========================================================
+   FIRST-LOAD LAYOUT STABILIZATION
+
+   Safari/iOS can occasionally paint the page before its
+   final responsive layout has settled. A normal refresh then
+   appears to "fix" the page because the browser recalculates
+   the layout from an already-loaded state.
+
+   We intentionally do not change the design here. We simply
+   force one clean layout/reflow after the complete page load.
+========================================================= */
+
+function stabilizePageLayout() {
+
+    /* Force the browser to calculate the document dimensions. */
+    void document.documentElement.offsetHeight;
+    void document.body.offsetHeight;
+
+    /* Ask the browser to recalculate responsive layout. */
+    window.dispatchEvent(new Event("resize"));
+
+    requestAnimationFrame(function () {
+        void document.documentElement.offsetHeight;
+        void document.body.offsetHeight;
+    });
+}
+
+
+window.addEventListener(
+    "load",
+    function () {
+
+        stabilizePageLayout();
+
+        /*
+           A second pass catches late Safari/iOS viewport
+           settling without changing the visual design.
+        */
+        setTimeout(
+            stabilizePageLayout,
+            150
+        );
+
+    }
+);
+
+
+/* =========================================================
    FLOATING BECOMING MESSAGES
 ========================================================= */
 
@@ -100,7 +147,7 @@ document.addEventListener(
 
         /* =====================================================
            CHANGE MESSAGE
-           
+
            Slowly.
            No frantic motivational-speaker behavior. 😂
         ===================================================== */
