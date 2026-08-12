@@ -1,0 +1,49 @@
+name: Fix Journey Anchor
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix Journey CTA
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('about.html')
+          text = p.read_text(encoding='utf-8')
+
+          old = '<a class="conversation-link" href="#booking">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
+          new = '<a class="conversation-link" href="#booking" onclick="event.preventDefault(); document.getElementById(\'booking\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
+
+          if old not in text:
+              raise SystemExit('Expected Journey CTA was not found; no change made.')
+
+          text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
+          print('Journey CTA now scrolls directly to the booking section.')
+
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add about.html
+          if git diff --cached --quiet; then
+            echo "No changes needed."
+            exit 0
+          fi
+          git commit -m "Fix Journey CTA scroll destination"
+          git push
