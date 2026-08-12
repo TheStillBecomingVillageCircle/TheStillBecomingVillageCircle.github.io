@@ -3,1813 +3,1716 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>
-    The Still Becoming Village Circle
-</title>
+    <title>
+        The Still Becoming Village Circle
+    </title>
 
+    <style>
 
-<style>
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-/* =====================================================
-   RESET
-===================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-html {
-    scroll-behavior: smooth;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body {
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    background:
-        #e8fffb;
+            background:
+                #e8fffb;
 
-    color:
-        #285f61;
+            color:
+                #285f61;
 
-    line-height:
-        1.7;
+            line-height:
+                1.7;
 
-    overflow-x:
-        hidden;
-}
+            overflow-x:
+                hidden;
+        }
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
 
-header {
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
-    width:
-        100%;
+        header {
+            width: 100%;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.96
-        );
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
 
-    border-bottom:
-        1px solid
-        rgba(
-            40,
-            95,
-            97,
-            0.10
-        );
+            border-bottom:
+                1px solid
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.10
+                );
 
-    position:
-        sticky;
+            position:
+                sticky;
 
-    top:
-        0;
+            top:
+                0;
 
-    z-index:
-        1000;
+            z-index:
+                1000;
 
-    backdrop-filter:
-        blur(10px);
+            backdrop-filter:
+                blur(10px);
 
-    -webkit-backdrop-filter:
-        blur(10px);
-}
+            -webkit-backdrop-filter:
+                blur(10px);
+        }
 
 
-nav {
+        nav {
+            max-width:
+                1500px;
 
-    max-width:
-        1500px;
+            margin:
+                0 auto;
 
-    margin:
-        0 auto;
+            padding:
+                22px 4%;
 
-    padding:
-        22px 4%;
+            display:
+                flex;
 
-    display:
-        flex;
+            align-items:
+                center;
 
-    align-items:
-        center;
+            justify-content:
+                space-between;
 
-    justify-content:
-        space-between;
+            gap:
+                30px;
+        }
 
-    gap:
-        30px;
-}
 
+        .logo a {
+            color:
+                #285f61;
 
-.logo a {
+            text-decoration:
+                none;
 
-    color:
-        #285f61;
+            font-size:
+                22px;
 
-    text-decoration:
-        none;
+            font-weight:
+                700;
 
-    font-size:
-        22px;
+            white-space:
+                nowrap;
+        }
 
-    font-weight:
-        700;
 
-    white-space:
-        nowrap;
-}
+        nav ul {
+            list-style:
+                none;
 
+            display:
+                flex;
 
-nav ul {
+            align-items:
+                center;
 
-    list-style:
-        none;
+            justify-content:
+                flex-end;
 
-    display:
-        flex;
+            gap:
+                28px;
 
-    align-items:
-        center;
+            flex-wrap:
+                wrap;
+        }
 
-    justify-content:
-        flex-end;
 
-    gap:
-        28px;
+        nav ul li {
+            margin:
+                0;
+        }
 
-    flex-wrap:
-        wrap;
-}
 
+        nav ul li a {
+            color:
+                #285f61;
 
-nav ul li {
-    margin:
-        0;
-}
+            text-decoration:
+                none;
 
+            font-size:
+                16px;
 
-nav ul li a {
+            font-weight:
+                600;
 
-    color:
-        #285f61;
+            transition:
+                color 0.25s ease;
+        }
 
-    text-decoration:
-        none;
 
-    font-size:
-        16px;
+        nav ul li a:hover {
+            color:
+                #16aaa9;
+        }
 
-    font-weight:
-        600;
 
-    transition:
-        color 0.25s ease;
-}
 
+        /* =====================================================
+           FLOATING BECOMING BUBBLE
+           
+           This is the shared Village bubble.
+           It is NOT a pill.
+           It is NOT a stationary message box.
+        ===================================================== */
 
-nav ul li a:hover {
+        .floating-bubble {
 
-    color:
-        #16aaa9;
-}
+            position:
+                fixed;
 
+            left:
+                12vw;
 
+            top:
+                62vh;
 
-/* =====================================================
-   FLOATING BECOMING BUBBLE
+            z-index:
+                2000;
 
-   Shared across the Village.
-   Slow.
-   Transparent.
-   Moves freely around the page.
-===================================================== */
+            width:
+                max-content;
 
-.floating-bubble {
+            max-width:
+                min(
+                    250px,
+                    42vw
+                );
 
-    position:
-        fixed;
+            min-height:
+                48px;
 
-    left:
-        12vw;
+            padding:
+                12px 22px;
 
-    top:
-        62vh;
+            display:
+                flex;
 
-    z-index:
-        2000;
+            align-items:
+                center;
 
-    width:
-        max-content;
+            justify-content:
+                center;
 
-    max-width:
-        min(
-            250px,
-            42vw
-        );
+            text-align:
+                center;
 
-    min-height:
-        48px;
+            pointer-events:
+                none;
 
-    padding:
-        12px 22px;
+            border-radius:
+                50%;
 
-    display:
-        flex;
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.52
+                    ),
+                    rgba(
+                        235,
+                        255,
+                        252,
+                        0.22
+                    ) 45%,
+                    rgba(
+                        170,
+                        239,
+                        232,
+                        0.13
+                    )
+                );
 
-    align-items:
-        center;
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.75
+                );
 
-    justify-content:
-        center;
+            box-shadow:
 
-    text-align:
-        center;
+                inset
+                5px 5px 15px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.60
+                ),
 
-    pointer-events:
-        none;
+                inset
+                -5px -5px 15px
+                rgba(
+                    78,
+                    190,
+                    194,
+                    0.08
+                ),
 
-    border-radius:
-        50%;
+                0 12px 30px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.07
+                );
 
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(
-                255,
-                255,
-                255,
-                0.52
-            ),
-            rgba(
-                235,
-                255,
-                252,
-                0.22
-            ) 45%,
-            rgba(
-                170,
-                239,
-                232,
-                0.13
-            )
-        );
+            backdrop-filter:
+                blur(4px);
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.75
-        );
+            -webkit-backdrop-filter:
+                blur(4px);
 
-    box-shadow:
+            opacity:
+                0;
 
-        inset
-        5px 5px 15px
-        rgba(
-            255,
-            255,
-            255,
-            0.60
-        ),
+            transform:
+                scale(0.96);
 
-        inset
-        -5px -5px 15px
-        rgba(
-            78,
-            190,
-            194,
-            0.08
-        ),
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
 
-        0 12px 30px
-        rgba(
-            40,
-            120,
-            120,
-            0.07
-        );
 
-    backdrop-filter:
-        blur(4px);
+        .floating-bubble.visible {
 
-    -webkit-backdrop-filter:
-        blur(4px);
+            opacity:
+                0.76;
 
-    opacity:
-        0;
+            transform:
+                scale(1);
+        }
 
-    transform:
-        scale(0.96);
 
-    transition:
-        opacity 2s ease,
-        transform 2s ease;
-}
+        .floating-bubble span {
 
+            color:
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.78
+                );
 
-.floating-bubble.visible {
+            font-size:
+                13px;
 
-    opacity:
-        0.76;
+            font-weight:
+                600;
 
-    transform:
-        scale(1);
-}
+            line-height:
+                1.4;
 
+            white-space:
+                normal;
+        }
 
-.floating-bubble span {
 
-    color:
-        rgba(
-            40,
-            95,
-            97,
-            0.78
-        );
 
-    font-size:
-        13px;
+        /* =====================================================
+           HOME HERO
+           
+           IMPORTANT:
+           The title does NOT move.
+        ===================================================== */
+
+        .hero {
+
+            min-height:
+                720px;
 
-    font-weight:
-        600;
+            padding:
+                95px 6%
+                85px;
+
+            text-align:
+                center;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.98
+                    ),
+                    rgba(
+                        226,
+                        255,
+                        250,
+                        0.84
+                    ) 48%,
+                    rgba(
+                        207,
+                        250,
+                        243,
+                        0.96
+                    )
+                );
+        }
+
+
+
+        /* =====================================================
+           LARGE HERO BUBBLE
+           
+           This is separate from the floating message bubble.
+        ===================================================== */
+
+        .hero-bubble {
+
+            width:
+                175px;
+
+            height:
+                175px;
+
+            margin:
+                0 auto 38px;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.96
+                    ),
+                    rgba(
+                        215,
+                        253,
+                        248,
+                        0.62
+                    ) 48%,
+                    rgba(
+                        177,
+                        239,
+                        233,
+                        0.36
+                    )
+                );
 
-    line-height:
-        1.4;
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
 
-    white-space:
-        normal;
-}
+            box-shadow:
 
+                inset
+                12px 12px 28px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.88
+                ),
 
+                inset
+                -10px -10px 24px
+                rgba(
+                    69,
+                    181,
+                    193,
+                    0.10
+                ),
 
-/* =====================================================
-   HOME HERO
-===================================================== */
+                0 25px 60px
+                rgba(
+                    40,
+                    130,
+                    135,
+                    0.12
+                );
 
-.hero {
+            display:
+                flex;
 
-    min-height:
-        720px;
+            align-items:
+                center;
 
-    padding:
-        95px 6%
-        85px;
+            justify-content:
+                center;
 
-    text-align:
-        center;
+            font-size:
+                68px;
+        }
 
-    display:
-        flex;
 
-    flex-direction:
-        column;
 
-    align-items:
-        center;
+        /* =====================================================
+           HERO TEXT
+        ===================================================== */
 
-    justify-content:
-        center;
+        .hero h1 {
 
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(
-                255,
-                255,
-                255,
-                0.98
-            ),
-            rgba(
-                226,
-                255,
-                250,
-                0.84
-            ) 48%,
-            rgba(
-                207,
-                250,
-                243,
-                0.96
-            )
-        );
-}
+            color:
+                #16aaa9;
 
+            font-size:
+                clamp(
+                    42px,
+                    7vw,
+                    76px
+                );
 
+            line-height:
+                1.08;
 
-/* =====================================================
-   LARGE HERO BUBBLE
-===================================================== */
+            margin-bottom:
+                22px;
 
-.hero-bubble {
+            font-weight:
+                700;
+        }
 
-    width:
-        175px;
 
-    height:
-        175px;
+        .hero h2 {
 
-    margin:
-        0 auto 38px;
+            max-width:
+                900px;
 
-    border-radius:
-        50%;
+            margin:
+                0 auto 24px;
 
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(
-                255,
-                255,
-                255,
-                0.96
-            ),
-            rgba(
-                215,
-                253,
-                248,
-                0.62
-            ) 48%,
-            rgba(
-                177,
-                239,
-                233,
-                0.36
-            )
-        );
+            color:
+                #285f61;
 
-    border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+            font-size:
+                clamp(
+                    20px,
+                    3vw,
+                    28px
+                );
 
-    box-shadow:
+            line-height:
+                1.4;
 
-        inset
-        12px 12px 28px
-        rgba(
-            255,
-            255,
-            255,
-            0.88
-        ),
+            font-weight:
+                600;
+        }
 
-        inset
-        -10px -10px 24px
-        rgba(
-            69,
-            181,
-            193,
-            0.10
-        ),
 
-        0 25px 60px
-        rgba(
-            40,
-            130,
-            135,
-            0.12
-        );
+        .quote {
 
-    display:
-        flex;
+            margin-bottom:
+                30px;
 
-    align-items:
-        center;
+            color:
+                #16aaa9;
 
-    justify-content:
-        center;
+            font-size:
+                20px;
 
-    font-size:
-        68px;
-}
+            font-style:
+                italic;
 
+            font-weight:
+                600;
+        }
 
 
-/* =====================================================
-   HERO TEXT
-===================================================== */
+        .description {
 
-.hero h1 {
+            max-width:
+                850px;
 
-    color:
-        #16aaa9;
+            margin:
+                0 auto 30px;
 
-    font-size:
-        clamp(
-            42px,
-            7vw,
-            76px
-        );
+            color:
+                #5d565f;
 
-    line-height:
-        1.08;
+            font-size:
+                18px;
+        }
 
-    margin-bottom:
-        22px;
 
-    font-weight:
-        700;
-}
+        .welcome-button {
 
+            display:
+                inline-block;
 
-.hero h2 {
+            padding:
+                14px 30px;
 
-    max-width:
-        900px;
+            border-radius:
+                40px;
 
-    margin:
-        0 auto 24px;
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
 
-    color:
-        #285f61;
+            color:
+                #16aaa9;
 
-    font-size:
-        clamp(
-            20px,
-            3vw,
-            28px
-        );
+            text-decoration:
+                none;
 
-    line-height:
-        1.4;
+            font-size:
+                17px;
 
-    font-weight:
-        600;
-}
+            font-weight:
+                700;
 
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
 
-.quote {
+            box-shadow:
+                0 12px 28px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.10
+                );
 
-    margin-bottom:
-        30px;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
 
-    color:
-        #16aaa9;
 
-    font-size:
-        20px;
+        .welcome-button:hover {
 
-    font-style:
-        italic;
+            transform:
+                translateY(-3px);
 
-    font-weight:
-        600;
-}
+            box-shadow:
+                0 16px 35px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.15
+                );
+        }
 
 
-.description {
 
-    max-width:
-        850px;
+        /* =====================================================
+           DISCOVERY SECTION
+        ===================================================== */
 
-    margin:
-        0 auto 30px;
+        .inside {
 
-    color:
-        #5d565f;
+            max-width:
+                1150px;
 
-    font-size:
-        18px;
-}
+            margin:
+                0 auto;
 
+            padding:
+                85px 5%
+                100px;
 
-.welcome-button {
+            text-align:
+                center;
+        }
 
-    display:
-        inline-block;
 
-    padding:
-        14px 30px;
+        .inside h2 {
 
-    border-radius:
-        40px;
+            color:
+                #16aaa9;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    52px
+                );
 
-    color:
-        #16aaa9;
+            margin-bottom:
+                48px;
+        }
 
-    text-decoration:
-        none;
 
-    font-size:
-        17px;
+        .cards {
 
-    font-weight:
-        700;
+            display:
+                grid;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
 
-    box-shadow:
-        0 12px 28px
-        rgba(
-            40,
-            120,
-            120,
-            0.10
-        );
+            gap:
+                30px;
+        }
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
 
+        .card {
 
-.welcome-button:hover {
+            min-height:
+                290px;
 
-    transform:
-        translateY(-3px);
+            padding:
+                45px 30px;
 
-    box-shadow:
-        0 16px 35px
-        rgba(
-            40,
-            120,
-            120,
-            0.15
-        );
-}
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
 
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
 
+            box-shadow:
+                0 20px 45px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.09
+                );
 
-/* =====================================================
-   DISCOVERY SECTION
-===================================================== */
+            border-radius:
+                55px 40px 60px 45px;
+        }
 
-.inside {
 
-    max-width:
-        1150px;
+        .card:nth-child(2) {
 
-    margin:
-        0 auto;
+            border-radius:
+                40px 60px 45px 55px;
+        }
 
-    padding:
-        85px 5%
-        100px;
 
-    text-align:
-        center;
-}
+        .card:nth-child(3) {
 
+            border-radius:
+                60px 45px 55px 40px;
+        }
 
-.inside h2 {
 
-    color:
-        #16aaa9;
+        .card h3 {
 
-    font-size:
-        clamp(
-            34px,
-            5vw,
-            52px
-        );
+            color:
+                #16aaa9;
 
-    margin-bottom:
-        48px;
-}
+            font-size:
+                25px;
 
+            margin-bottom:
+                20px;
+        }
 
-.cards {
 
-    display:
-        grid;
+        .card p {
 
-    grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
+            color:
+                #5d565f;
 
-    gap:
-        30px;
-}
+            font-size:
+                17px;
 
+            margin-bottom:
+                16px;
+        }
 
-.card {
 
-    min-height:
-        290px;
 
-    padding:
-        45px 30px;
+        /* =====================================================
+           THERE IS ROOM SECTION
+        ===================================================== */
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.94
-        );
+        .welcome {
 
-    border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+            max-width:
+                1000px;
 
-    box-shadow:
-        0 20px 45px
-        rgba(
-            40,
-            120,
-            120,
-            0.09
-        );
+            margin:
+                0 auto;
 
-    border-radius:
-        55px 40px 60px 45px;
-}
+            padding:
+                0 6%
+                110px;
 
+            text-align:
+                center;
+        }
 
-.card:nth-child(2) {
 
-    border-radius:
-        40px 60px 45px 55px;
-}
+        .welcome-box {
 
+            padding:
+                65px 8%;
 
-.card:nth-child(3) {
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
 
-    border-radius:
-        60px 45px 55px 40px;
-}
+            border-radius:
+                60px 45px 65px 40px;
 
+            box-shadow:
+                0 25px 55px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.10
+                );
+        }
 
-.card h3 {
 
-    color:
-        #16aaa9;
+        .welcome h2 {
 
-    font-size:
-        25px;
+            color:
+                #16aaa9;
 
-    margin-bottom:
-        20px;
-}
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    50px
+                );
 
+            margin-bottom:
+                24px;
+        }
 
-.card p {
 
-    color:
-        #5d565f;
+        .welcome p {
 
-    font-size:
-        17px;
+            max-width:
+                780px;
 
-    margin-bottom:
-        16px;
-}
+            margin:
+                0 auto;
 
+            color:
+                #5d565f;
 
+            font-size:
+                19px;
+        }
 
-/* =====================================================
-   THERE IS ROOM SECTION
-===================================================== */
 
-.welcome {
 
-    max-width:
-        1000px;
+        /* =====================================================
+           VILLAGE SOUNDTRACK
+           
+           Same component will be used on every page.
+        ===================================================== */
 
-    margin:
-        0 auto;
+        .soundtrack {
 
-    padding:
-        0 6%
-        110px;
+            position:
+                fixed;
 
-    text-align:
-        center;
-}
+            right:
+                22px;
 
+            bottom:
+                22px;
 
-.welcome-box {
+            width:
+                170px;
 
-    padding:
-        65px 8%;
+            height:
+                170px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.94
-        );
+            z-index:
+                3000;
 
-    border-radius:
-        60px 45px 65px 40px;
+            border-radius:
+                50%;
 
-    box-shadow:
-        0 25px 55px
-        rgba(
-            40,
-            120,
-            120,
-            0.10
-        );
-}
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.95
+                    ),
+                    rgba(
+                        224,
+                        255,
+                        250,
+                        0.82
+                    ) 50%,
+                    rgba(
+                        176,
+                        239,
+                        233,
+                        0.62
+                    )
+                );
 
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.90
+                );
 
-.welcome h2 {
+            box-shadow:
 
-    color:
-        #16aaa9;
+                inset
+                8px 8px 20px
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.80
+                ),
 
-    font-size:
-        clamp(
-            34px,
-            5vw,
-            50px
-        );
+                0 15px 40px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.15
+                );
 
-    margin-bottom:
-        24px;
-}
+            backdrop-filter:
+                blur(5px);
 
+            -webkit-backdrop-filter:
+                blur(5px);
 
-.welcome p {
+            display:
+                flex;
 
-    max-width:
-        780px;
+            align-items:
+                center;
 
-    margin:
-        0 auto;
+            justify-content:
+                center;
 
-    color:
-        #5d565f;
+            cursor:
+                pointer;
 
-    font-size:
-        19px;
-}
+            transition:
+                all 0.4s ease;
+        }
 
 
+        .soundtrack:hover {
 
-/* =====================================================
-   PERSISTENT VILLAGE SOUNDTRACK
+            transform:
+                translateY(-4px);
 
-   IMPORTANT:
-   This player lives in the index shell.
-   It is NOT destroyed when Village content changes.
-===================================================== */
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    40,
+                    120,
+                    120,
+                    0.20
+                );
+        }
 
-.soundtrack {
 
-    position:
-        fixed;
+        .soundtrack-label {
 
-    right:
-        22px;
+            position:
+                absolute;
 
-    bottom:
-        22px;
+            top:
+                17px;
 
-    width:
-        170px;
+            left:
+                0;
 
-    height:
-        170px;
+            width:
+                100%;
 
-    z-index:
-        3000;
+            text-align:
+                center;
 
-    border-radius:
-        50%;
+            color:
+                #285f61;
 
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(
-                255,
-                255,
-                255,
-                0.95
-            ),
-            rgba(
-                224,
-                255,
-                250,
-                0.82
-            ) 50%,
-            rgba(
-                176,
-                239,
-                233,
-                0.62
-            )
-        );
+            font-size:
+                11px;
 
-    border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+            font-weight:
+                700;
+        }
 
-    box-shadow:
 
-        inset
-        8px 8px 20px
-        rgba(
-            255,
-            255,
-            255,
-            0.80
-        ),
+        .record-player {
 
-        0 15px 40px
-        rgba(
-            40,
-            120,
-            120,
-            0.15
-        );
+            width:
+                112px;
 
-    backdrop-filter:
-        blur(5px);
+            height:
+                78px;
 
-    -webkit-backdrop-filter:
-        blur(5px);
+            margin-top:
+                20px;
 
-    display:
-        flex;
+            border-radius:
+                12px;
 
-    align-items:
-        center;
+            background:
+                linear-gradient(
+                    145deg,
+                    #ddd5ca,
+                    #b8aa99
+                );
 
-    justify-content:
-        center;
+            box-shadow:
+                0 7px 14px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.16
+                );
 
-    cursor:
-        pointer;
+            position:
+                relative;
 
-    transition:
-        all 0.4s ease;
-}
+            display:
+                flex;
 
+            align-items:
+                center;
 
-.soundtrack:hover {
+            justify-content:
+                center;
+        }
 
-    transform:
-        translateY(-4px);
 
-    box-shadow:
-        0 20px 50px
-        rgba(
-            40,
-            120,
-            120,
-            0.20
-        );
-}
+        .record {
 
+            width:
+                61px;
 
-.soundtrack-label {
+            height:
+                61px;
 
-    position:
-        absolute;
+            border-radius:
+                50%;
 
-    top:
-        17px;
+            background:
+                #181818;
 
-    left:
-        0;
+            border:
+                4px solid
+                #101010;
 
-    width:
-        100%;
+            position:
+                relative;
 
-    text-align:
-        center;
+            box-shadow:
+                0 3px 9px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.30
+                );
+        }
 
-    color:
-        #285f61;
 
-    font-size:
-        11px;
+        .record::before {
 
-    font-weight:
-        700;
-}
+            content:
+                "";
 
+            position:
+                absolute;
 
-.record-player {
+            inset:
+                8px;
 
-    width:
-        112px;
+            border-radius:
+                50%;
 
-    height:
-        78px;
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.13
+                );
+        }
 
-    margin-top:
-        20px;
 
-    border-radius:
-        12px;
+        .record::after {
 
-    background:
-        linear-gradient(
-            145deg,
-            #ddd5ca,
-            #b8aa99
-        );
+            content:
+                "";
 
-    box-shadow:
-        0 7px 14px
-        rgba(
-            0,
-            0,
-            0,
-            0.16
-        );
+            position:
+                absolute;
 
-    position:
-        relative;
+            width:
+                8px;
 
-    display:
-        flex;
+            height:
+                8px;
 
-    align-items:
-        center;
+            left:
+                50%;
 
-    justify-content:
-        center;
-}
+            top:
+                50%;
 
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
 
-.record {
+            border-radius:
+                50%;
 
-    width:
-        61px;
+            background:
+                #d5c3a2;
 
-    height:
-        61px;
+            border:
+                2px solid
+                #111111;
+        }
 
-    border-radius:
-        50%;
 
-    background:
-        #181818;
+        .play-button {
 
-    border:
-        4px solid
-        #101010;
+            position:
+                absolute;
 
-    position:
-        relative;
+            left:
+                50%;
 
-    box-shadow:
-        0 3px 9px
-        rgba(
-            0,
-            0,
-            0,
-            0.30
-        );
-}
+            top:
+                50%;
 
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
 
-.record::before {
+            width:
+                30px;
 
-    content:
-        "";
+            height:
+                30px;
 
-    position:
-        absolute;
+            border-radius:
+                50%;
 
-    inset:
-        8px;
+            background:
+                rgba(
+                    22,
+                    170,
+                    169,
+                    0.94
+                );
 
-    border-radius:
-        50%;
+            color:
+                #ffffff;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.13
-        );
-}
+            border:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
 
+            display:
+                flex;
 
-.record::after {
+            align-items:
+                center;
 
-    content:
-        "";
+            justify-content:
+                center;
 
-    position:
-        absolute;
+            font-size:
+                12px;
 
-    width:
-        8px;
+            z-index:
+                5;
+        }
 
-    height:
-        8px;
 
-    left:
-        50%;
+        .tone-arm {
 
-    top:
-        50%;
+            position:
+                absolute;
 
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
+            width:
+                35px;
 
-    border-radius:
-        50%;
+            height:
+                4px;
 
-    background:
-        #d5c3a2;
+            right:
+                6px;
 
-    border:
-        2px solid
-        #111111;
-}
+            top:
+                15px;
 
+            background:
+                #4c4842;
 
-.play-button {
+            border-radius:
+                5px;
 
-    position:
-        absolute;
+            transform:
+                rotate(
+                    28deg
+                );
 
-    left:
-        50%;
+            transform-origin:
+                right center;
+        }
 
-    top:
-        50%;
 
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
+        .soundtrack-note {
 
-    width:
-        30px;
+            position:
+                absolute;
 
-    height:
-        30px;
+            bottom:
+                13px;
 
-    border-radius:
-        50%;
+            width:
+                100%;
 
-    background:
-        rgba(
-            22,
-            170,
-            169,
-            0.94
-        );
+            text-align:
+                center;
 
-    color:
-        #ffffff;
+            color:
+                #527779;
 
-    border:
-        2px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+            font-size:
+                9px;
+        }
 
-    display:
-        flex;
 
-    align-items:
-        center;
+        /* OPEN PLAYER */
 
-    justify-content:
-        center;
+        .soundtrack.open {
 
-    font-size:
-        12px;
+            width:
+                min(
+                    390px,
+                    calc(
+                        100vw - 24px
+                    )
+                );
 
-    z-index:
-        5;
-}
+            height:
+                auto;
 
+            min-height:
+                235px;
 
-.tone-arm {
+            border-radius:
+                30px;
 
-    position:
-        absolute;
+            padding:
+                18px;
 
-    width:
-        35px;
+            cursor:
+                default;
+        }
 
-    height:
-        4px;
 
-    right:
-        6px;
+        .soundtrack.open
+        .soundtrack-closed {
 
-    top:
-        15px;
+            display:
+                none;
+        }
 
-    background:
-        #4c4842;
 
-    border-radius:
-        5px;
+        .soundtrack-player {
 
-    transform:
-        rotate(
-            28deg
-        );
+            display:
+                none;
 
-    transform-origin:
-        right center;
-}
+            width:
+                100%;
+        }
 
 
-.soundtrack-note {
+        .soundtrack.open
+        .soundtrack-player {
 
-    position:
-        absolute;
+            display:
+                block;
+        }
 
-    bottom:
-        13px;
 
-    width:
-        100%;
+        .soundtrack-title {
 
-    text-align:
-        center;
+            text-align:
+                center;
 
-    color:
-        #527779;
+            color:
+                #285f61;
 
-    font-size:
-        9px;
-}
+            font-size:
+                16px;
 
+            font-weight:
+                700;
 
+            margin-bottom:
+                3px;
+        }
 
-/* =====================================================
-   OPEN PLAYER
-===================================================== */
 
-.soundtrack.open {
+        .soundtrack-song {
 
-    width:
-        min(
-            390px,
-            calc(
-                100vw - 24px
-            )
-        );
+            text-align:
+                center;
 
-    height:
-        auto;
+            color:
+                #16aaa9;
 
-    min-height:
-        235px;
+            font-size:
+                13px;
 
-    border-radius:
-        30px;
+            margin-bottom:
+                10px;
+        }
 
-    padding:
-        18px;
 
-    cursor:
-        default;
-}
+        .soundcloud-frame {
 
+            display:
+                block;
 
-.soundtrack.open
-.soundtrack-closed {
+            width:
+                100%;
 
-    display:
-        none;
-}
+            height:
+                166px;
 
+            border:
+                none;
 
-.soundtrack-player {
+            border-radius:
+                15px;
 
-    display:
-        none;
+            overflow:
+                hidden;
+        }
 
-    width:
-        100%;
-}
 
+        .close-soundtrack {
 
-.soundtrack.open
-.soundtrack-player {
+            display:
+                block;
 
-    display:
-        block;
-}
+            margin:
+                9px auto 0;
 
+            padding:
+                7px 18px;
 
-.soundtrack-title {
+            border:
+                none;
 
-    text-align:
-        center;
+            border-radius:
+                25px;
 
-    color:
-        #285f61;
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
 
-    font-size:
-        16px;
+            color:
+                #285f61;
 
-    font-weight:
-        700;
+            font-weight:
+                700;
 
-    margin-bottom:
-        3px;
-}
+            cursor:
+                pointer;
+        }
 
 
-.soundtrack-song {
 
-    text-align:
-        center;
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
-    color:
-        #16aaa9;
+        footer {
 
-    font-size:
-        13px;
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.95
+                );
 
-    margin-bottom:
-        10px;
-}
+            border-top:
+                1px solid
+                rgba(
+                    40,
+                    95,
+                    97,
+                    0.10
+                );
 
+            text-align:
+                center;
 
-.soundcloud-frame {
+            padding:
+                55px 6%;
 
-    display:
-        block;
+            color:
+                #5d565f;
+        }
 
-    width:
-        100%;
 
-    height:
-        166px;
+        footer p {
 
-    border:
-        none;
+            margin-bottom:
+                18px;
+        }
 
-    border-radius:
-        15px;
 
-    overflow:
-        hidden;
-}
+        footer a {
 
+            color:
+                #16aaa9;
 
-.close-soundtrack {
+            font-weight:
+                700;
 
-    display:
-        block;
+            text-decoration:
+                none;
+        }
 
-    margin:
-        9px auto 0;
 
-    padding:
-        7px 18px;
 
-    border:
-        none;
+        /* =====================================================
+           TABLET
+        ===================================================== */
 
-    border-radius:
-        25px;
+        @media (
+            max-width: 900px
+        ) {
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.92
-        );
+            nav {
 
-    color:
-        #285f61;
+                flex-direction:
+                    column;
 
-    font-weight:
-        700;
+                text-align:
+                    center;
+            }
 
-    cursor:
-        pointer;
-}
 
+            nav ul {
 
+                justify-content:
+                    center;
+            }
 
-/* =====================================================
-   FOOTER
-===================================================== */
 
-footer {
+            .cards {
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+                grid-template-columns:
+                    1fr;
 
-    border-top:
-        1px solid
-        rgba(
-            40,
-            95,
-            97,
-            0.10
-        );
+                max-width:
+                    650px;
 
-    text-align:
-        center;
+                margin:
+                    0 auto;
+            }
 
-    padding:
-        55px 6%;
+        }
 
-    color:
-        #5d565f;
-}
 
 
-footer p {
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
-    margin-bottom:
-        18px;
-}
+        @media (
+            max-width: 600px
+        ) {
 
+            nav {
 
-footer a {
+                padding:
+                    18px 5%;
+            }
 
-    color:
-        #16aaa9;
 
-    font-weight:
-        700;
+            .logo a {
 
-    text-decoration:
-        none;
-}
+                font-size:
+                    20px;
 
+                white-space:
+                    normal;
+            }
 
 
-/* =====================================================
-   PAGE LOADING
-===================================================== */
+            nav ul {
 
-#pageLoading {
+                gap:
+                    10px 15px;
+            }
 
-    position:
-        fixed;
 
-    inset:
-        0;
+            nav ul li a {
 
-    z-index:
-        5000;
+                font-size:
+                    14px;
+            }
 
-    display:
-        none;
 
-    align-items:
-        center;
+            .hero {
 
-    justify-content:
-        center;
+                min-height:
+                    650px;
 
-    background:
-        rgba(
-            232,
-            255,
-            251,
-            0.82
-        );
+                padding:
+                    70px 5%
+                    65px;
+            }
 
-    backdrop-filter:
-        blur(6px);
 
-    -webkit-backdrop-filter:
-        blur(6px);
-}
+            .hero-bubble {
 
+                width:
+                    145px;
 
-#pageLoading.visible {
+                height:
+                    145px;
 
-    display:
-        flex;
-}
+                font-size:
+                    55px;
+            }
 
 
-.loading-bubble {
+            .hero h1 {
 
-    padding:
-        18px 25px;
+                font-size:
+                    42px;
+            }
 
-    border-radius:
-        50%;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.76
-        );
+            .hero h2 {
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.90
-        );
+                font-size:
+                    20px;
+            }
 
-    color:
-        #285f61;
 
-    font-weight:
-        600;
+            .description {
 
-    box-shadow:
-        0 15px 35px
-        rgba(
-            40,
-            120,
-            120,
-            0.10
-        );
-}
+                font-size:
+                    17px;
+            }
 
 
+            .inside {
 
-/* =====================================================
-   TABLET
-===================================================== */
+                padding:
+                    65px 5%
+                    80px;
+            }
 
-@media (
-    max-width: 900px
-) {
 
-    nav {
+            .card {
 
-        flex-direction:
-            column;
+                padding:
+                    40px 25px;
+            }
 
-        text-align:
-            center;
-    }
 
+            .welcome {
 
-    nav ul {
+                padding:
+                    0 5%
+                    80px;
+            }
 
-        justify-content:
-            center;
-    }
 
+            .welcome-box {
 
-    .cards {
+                padding:
+                    45px 25px;
+            }
 
-        grid-template-columns:
-            1fr;
 
-        max-width:
-            650px;
+            .welcome p {
 
-        margin:
-            0 auto;
-    }
+                font-size:
+                    17px;
+            }
 
-}
 
+            .floating-bubble {
 
+                max-width:
+                    190px;
 
-/* =====================================================
-   MOBILE
-===================================================== */
+                padding:
+                    10px 17px;
+            }
 
-@media (
-    max-width: 600px
-) {
 
-    nav {
+            .floating-bubble span {
 
-        padding:
-            18px 5%;
-    }
+                font-size:
+                    12px;
+            }
 
 
-    .logo a {
+            .soundtrack {
 
-        font-size:
-            20px;
+                width:
+                    145px;
 
-        white-space:
-            normal;
-    }
+                height:
+                    145px;
 
+                right:
+                    10px;
 
-    nav ul {
+                bottom:
+                    10px;
+            }
 
-        gap:
-            10px 15px;
-    }
 
+            .record-player {
 
-    nav ul li a {
+                transform:
+                    scale(
+                        0.78
+                    );
+            }
 
-        font-size:
-            14px;
-    }
 
+            .soundtrack.open {
 
-    .hero {
+                width:
+                    calc(
+                        100vw - 20px
+                    );
 
-        min-height:
-            650px;
+                right:
+                    10px;
 
-        padding:
-            70px 5%
-            65px;
-    }
+                bottom:
+                    10px;
+            }
 
+        }
 
-    .hero-bubble {
-
-        width:
-            145px;
-
-        height:
-            145px;
-
-        font-size:
-            55px;
-    }
-
-
-    .hero h1 {
-
-        font-size:
-            42px;
-    }
-
-
-    .hero h2 {
-
-        font-size:
-            20px;
-    }
-
-
-    .description {
-
-        font-size:
-            17px;
-    }
-
-
-    .inside {
-
-        padding:
-            65px 5%
-            80px;
-    }
-
-
-    .card {
-
-        padding:
-            40px 25px;
-    }
-
-
-    .welcome {
-
-        padding:
-            0 5%
-            80px;
-    }
-
-
-    .welcome-box {
-
-        padding:
-            45px 25px;
-    }
-
-
-    .welcome p {
-
-        font-size:
-            17px;
-    }
-
-
-    .floating-bubble {
-
-        max-width:
-            190px;
-
-        padding:
-            10px 17px;
-    }
-
-
-    .floating-bubble span {
-
-        font-size:
-            12px;
-    }
-
-
-    .soundtrack {
-
-        width:
-            145px;
-
-        height:
-            145px;
-
-        right:
-            10px;
-
-        bottom:
-            10px;
-    }
-
-
-    .record-player {
-
-        transform:
-            scale(
-                0.78
-            );
-    }
-
-
-    .soundtrack.open {
-
-        width:
-            calc(
-                100vw - 20px
-            );
-
-        right:
-            10px;
-
-        bottom:
-            10px;
-    }
-
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -1824,97 +1727,70 @@ footer a {
 
 <header>
 
-<nav>
+    <nav>
+
+        <div class="logo">
+
+            <a href="index.html">
+                🌱 The Still Becoming Village Circle
+            </a>
+
+        </div>
 
 
-<div class="logo">
+        <ul>
 
-<a href="index.html">
-
-    🌱 The Still Becoming Village Circle
-
-</a>
-
-</div>
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
 
 
-<ul>
-
-<li>
-
-<a href="index.html">
-
-    Home
-
-</a>
-
-</li>
+            <li>
+                <a href="about.html">
+                    Inside the Bubble
+                </a>
+            </li>
 
 
-<li>
-
-<a href="about.html">
-
-    Inside the Bubble
-
-</a>
-
-</li>
+            <li>
+                <a href="LearningtheUnknown.html">
+                    The Unknown
+                </a>
+            </li>
 
 
-<li>
-
-<a href="LearningtheUnknown.html">
-
-    The Unknown
-
-</a>
-
-</li>
+            <li>
+                <a href="events.html">
+                    Experiences
+                </a>
+            </li>
 
 
-<li>
-
-<a href="events.html">
-
-    Experiences
-
-</a>
-
-</li>
+            <li>
+                <a href="contact.html">
+                    Connect
+                </a>
+            </li>
 
 
-<li>
+            <li>
+                <a href="coaching.html">
+                    Support
+                </a>
+            </li>
 
-<a href="contact.html">
+        </ul>
 
-    Connect
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="coaching.html">
-
-    Support
-
-</a>
-
-</li>
-
-</ul>
-
-</nav>
+    </nav>
 
 </header>
 
 
 
 <!-- =====================================================
-     FLOATING BECOMING BUBBLE
+     SHARED FLOATING BECOMING BUBBLE
 ===================================================== -->
 
 <div
@@ -1923,243 +1799,214 @@ footer a {
     aria-hidden="true"
 >
 
-<span id="floatingMessage">
-
-    🫧 You belong before you bloom.
-
-</span>
+    <span id="floatingMessage">
+        🫧 You belong before you bloom.
+    </span>
 
 </div>
 
 
 
 <!-- =====================================================
-     PAGE LOADING
+     HOME HERO
 ===================================================== -->
 
-<div id="pageLoading">
+<main>
 
-<div class="loading-bubble">
 
-    🫧 One moment...
+    <section class="hero">
 
-</div>
 
-</div>
+        <div class="hero-bubble">
+            🫧
+        </div>
 
 
+        <h1>
+            The Still Becoming Village Circle
+        </h1>
 
-<!-- =====================================================
-     HOME CONTENT
 
-     This is the existing Home page content.
-===================================================== -->
+        <h2>
+            A place where healing, curiosity, growth,
+            and belonging are welcomed—one step at a time.
+        </h2>
 
-<main id="pageContent">
 
+        <p class="quote">
+            "You don't have to have it all together to belong here."
+        </p>
 
-<section class="hero">
 
+        <p class="description">
 
-<div class="hero-bubble">
+            Welcome.
 
-    🫧
+            You've just stepped inside
+            The Still Becoming Village Circle.
 
-</div>
+            This isn't a place where you're expected
+            to have all the answers.
 
+            It's a place where questions are welcomed,
+            healing happens at your own pace,
+            and becoming is honored instead of rushed.
 
-<h1>
+            Whether you're beginning again,
+            discovering something new about yourself,
+            or simply looking for a place where you
+            can breathe without pretending...
 
-    The Still Becoming Village Circle
+            there's room for you here.
 
-</h1>
+            Step inside the bubble.
 
+            It's okay.
 
-<h2>
+        </p>
 
-    A place where healing, curiosity, growth,
-    and belonging are welcomed—one step at a time.
 
-</h2>
+        <a
+            href="about.html"
+            class="welcome-button"
+        >
 
+            🫧 Step Inside the Bubble. It's Okay.
 
-<p class="quote">
+        </a>
 
-    "You don't have to have it all together to belong here."
 
-</p>
+    </section>
 
 
-<p class="description">
 
-    Welcome.
+    <!-- =================================================
+         DISCOVER
+    ================================================== -->
 
-    You've just stepped inside
-    The Still Becoming Village Circle.
+    <section class="inside">
 
-    This isn't a place where you're expected
-    to have all the answers.
 
-    It's a place where questions are welcomed,
-    healing happens at your own pace,
-    and becoming is honored instead of rushed.
+        <h2>
+            What You'll Discover Inside the Bubble
+        </h2>
 
-    Whether you're beginning again,
-    discovering something new about yourself,
-    or simply looking for a place where you
-    can breathe without pretending...
 
-    there's room for you here.
+        <div class="cards">
 
-    Step inside the bubble.
 
-    It's okay.
+            <div class="card">
 
-</p>
+                <h3>
+                    📚 Learning the Unknown
+                </h3>
 
 
-<a
-    href="about.html"
-    class="welcome-button"
->
+                <p>
 
-    🫧 Step Inside the Bubble. It's Okay.
+                    Explore books, journals, worksheets,
+                    and resources created to support your
+                    healing and becoming.
 
-</a>
+                </p>
 
+            </div>
 
-</section>
 
 
+            <div class="card">
 
-<section class="inside">
+                <h3>
+                    💬 Real Conversations
+                </h3>
 
 
-<h2>
+                <p>
 
-    What You'll Discover Inside the Bubble
+                    Explore stories, reflections,
+                    and conversations that create
+                    space for curiosity instead of judgment.
 
-</h2>
+                </p>
 
 
-<div class="cards">
+                <p>
 
+                    Discover authentic conversations,
+                    belonging, encouragement,
+                    and meaningful connection.
 
-<div class="card">
+                </p>
 
-<h3>
+            </div>
 
-    📚 Learning the Unknown
 
-</h3>
 
+            <div class="card">
 
-<p>
+                <h3>
+                    🌱 Growing Together
+                </h3>
 
-    Explore books, journals, worksheets,
-    and resources created to support your
-    healing and becoming.
 
-</p>
+                <p>
 
-</div>
+                    Workshops, books, experiences,
+                    and community moments that support
+                    your growth one step at a time.
 
+                </p>
 
 
-<div class="card">
+                <p>
 
-<h3>
+                    Workshops, virtual gatherings,
+                    discussions, and opportunities
+                    to grow together.
 
-    💬 Real Conversations
+                </p>
 
-</h3>
+            </div>
 
 
-<p>
+        </div>
 
-    Explore stories, reflections,
-    and conversations that create
-    space for curiosity instead of judgment.
+    </section>
 
-</p>
 
 
-<p>
+    <!-- =================================================
+         THERE IS ROOM
+    ================================================== -->
 
-    Discover authentic conversations,
-    belonging, encouragement,
-    and meaningful connection.
+    <section class="welcome">
 
-</p>
 
-</div>
+        <div class="welcome-box">
 
 
+            <h2>
+                There Is Room for You Here
+            </h2>
 
-<div class="card">
 
-<h3>
+            <p>
 
-    🌱 Growing Together
+                Whether you're beginning your healing journey,
+                supporting someone you love,
+                rediscovering yourself,
+                or simply searching for a place where
+                authenticity is welcomed—
 
-</h3>
+                there is room for you here.
 
+            </p>
 
-<p>
 
-    Workshops, books, experiences,
-    and community moments that support
-    your growth one step at a time.
+        </div>
 
-</p>
 
-
-<p>
-
-    Workshops, virtual gatherings,
-    discussions, and opportunities
-    to grow together.
-
-</p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<section class="welcome">
-
-
-<div class="welcome-box">
-
-
-<h2>
-
-    There Is Room for You Here
-
-</h2>
-
-
-<p>
-
-    Whether you're beginning your healing journey,
-    supporting someone you love,
-    rediscovering yourself,
-    or simply searching for a place where
-    authenticity is welcomed—
-
-    there is room for you here.
-
-</p>
-
-
-</div>
-
-</section>
+    </section>
 
 
 </main>
@@ -2167,9 +2014,7 @@ footer a {
 
 
 <!-- =====================================================
-     PERSISTENT VILLAGE SOUNDTRACK
-
-     THIS NEVER GETS REPLACED WHEN PAGE CONTENT CHANGES.
+     VILLAGE SOUNDTRACK
 ===================================================== -->
 
 <div
@@ -2179,92 +2024,84 @@ footer a {
 >
 
 
-<div class="soundtrack-closed">
+    <!-- CLOSED -->
+
+    <div class="soundtrack-closed">
 
 
-<div class="soundtrack-label">
-
-    🫧 The Village Soundtrack
-
-</div>
+        <div class="soundtrack-label">
+            🫧 The Village Soundtrack
+        </div>
 
 
-<div class="record-player">
+        <div class="record-player">
 
 
-<div class="record">
+            <div class="record">
 
-<div class="play-button">
+                <div class="play-button">
+                    ▶
+                </div>
 
-    ▶
-
-</div>
-
-</div>
+            </div>
 
 
-<div class="tone-arm"></div>
+            <div class="tone-arm"></div>
 
 
-</div>
+        </div>
 
 
-<div class="soundtrack-note">
-
-    Tap the record to listen
-
-</div>
+        <div class="soundtrack-note">
+            Tap the record to listen
+        </div>
 
 
-</div>
+    </div>
 
 
 
-<div
-    class="soundtrack-player"
-    onclick="event.stopPropagation()"
->
+    <!-- OPEN -->
+
+    <div
+        class="soundtrack-player"
+        onclick="event.stopPropagation()"
+    >
 
 
-<div class="soundtrack-title">
-
-    🫧 The Village Soundtrack
-
-</div>
+        <div class="soundtrack-title">
+            🫧 The Village Soundtrack
+        </div>
 
 
-<div class="soundtrack-song">
-
-    Bricks — Andra Day
-
-</div>
+        <div class="soundtrack-song">
+            Bricks — Andra Day
+        </div>
 
 
-<iframe
-    class="soundcloud-frame"
-    id="soundcloudFrame"
-    title="The Village Soundtrack"
-    scrolling="no"
-    frameborder="no"
-    allow="autoplay; encrypted-media"
-    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
->
-
-</iframe>
+        <iframe
+            class="soundcloud-frame"
+            title="The Village Soundtrack"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay; encrypted-media"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+        >
+        </iframe>
 
 
-<button
-    class="close-soundtrack"
-    type="button"
-    onclick="closeSoundtrack()"
->
+        <button
+            class="close-soundtrack"
+            type="button"
+            onclick="closeSoundtrack()"
+        >
 
-    Close
+            Close
 
-</button>
+        </button>
 
 
-</div>
+    </div>
 
 
 </div>
@@ -2278,52 +2115,52 @@ footer a {
 <footer>
 
 
-<p>
+    <p>
 
-    Take what you need.
+        Take what you need.
 
-    <br><br>
+        <br><br>
 
-    Leave what you don't.
+        Leave what you don't.
 
-    <br><br>
+        <br><br>
 
-    Come back whenever you need to.
+        Come back whenever you need to.
 
-</p>
-
-
-<p>
-
-    Healing isn't a destination.
-
-    <br><br>
-
-    It's a circle we grow through together.
-
-</p>
+    </p>
 
 
-<p>
+    <p>
 
-    📧
+        Healing isn't a destination.
 
-    <a
-        href="mailto:thestillbecomingvillagecircle@gmail.com"
-    >
+        <br><br>
 
-        thestillbecomingvillagecircle@gmail.com
+        It's a circle we grow through together.
 
-    </a>
-
-</p>
+    </p>
 
 
-<p>
+    <p>
 
-    © 2026 The Still Becoming Village Circle
+        📧
 
-</p>
+        <a
+            href="mailto:thestillbecomingvillagecircle@gmail.com"
+        >
+
+            thestillbecomingvillagecircle@gmail.com
+
+        </a>
+
+    </p>
+
+
+    <p>
+
+        © 2026 The Still Becoming Village Circle
+
+    </p>
 
 
 </footer>
@@ -2336,174 +2173,174 @@ footer a {
 
 <script>
 
-const becomingMessages = [
+    const becomingMessages = [
 
-    "🫧 You belong before you bloom.",
+        "🫧 You belong before you bloom.",
 
-    "🫧 Healing isn't linear.",
+        "🫧 Healing isn't linear.",
 
-    "🫧 Rest is productive.",
+        "🫧 Rest is productive.",
 
-    "🫧 Curiosity creates connection.",
+        "🫧 Curiosity creates connection.",
 
-    "🫧 Becoming takes courage.",
+        "🫧 Becoming takes courage.",
 
-    "🫧 It's okay to begin again."
+        "🫧 It's okay to begin again."
 
-];
-
-
-const floatingBubble =
-    document.getElementById(
-        "floatingBubble"
-    );
+    ];
 
 
-const floatingMessage =
-    document.getElementById(
-        "floatingMessage"
-    );
-
-
-let messageIndex = 0;
-
-
-let currentX = 12;
-
-let currentY = 62;
-
-
-let targetX = 12;
-
-let targetY = 62;
-
-
-function chooseNewBubblePosition() {
-
-    const maxX =
-        window.innerWidth < 600
-            ? 68
-            : 78;
-
-
-    const maxY =
-        window.innerWidth < 600
-            ? 78
-            : 84;
-
-
-    targetX =
-        8 +
-        Math.random()
-        *
-        (
-            maxX - 8
+    const floatingBubble =
+        document.getElementById(
+            "floatingBubble"
         );
 
 
-    targetY =
-        14 +
-        Math.random()
-        *
-        (
-            maxY - 14
+    const floatingMessage =
+        document.getElementById(
+            "floatingMessage"
         );
 
-}
+
+    let messageIndex = 0;
 
 
-function moveBubble() {
+    let currentX = 12;
 
-    currentX +=
-        (
-            targetX - currentX
-        )
-        *
-        0.0028;
+    let currentY = 62;
 
 
-    currentY +=
-        (
-            targetY - currentY
-        )
-        *
-        0.0028;
+    let targetX = 12;
+
+    let targetY = 62;
 
 
-    floatingBubble.style.left =
-        currentX + "%";
+    function chooseNewBubblePosition() {
+
+        const maxX =
+            window.innerWidth < 600
+                ? 68
+                : 78;
 
 
-    floatingBubble.style.top =
-        currentY + "%";
+        const maxY =
+            window.innerWidth < 600
+                ? 78
+                : 84;
 
 
-    requestAnimationFrame(
-        moveBubble
-    );
+        targetX =
+            8 +
+            Math.random()
+            *
+            (
+                maxX - 8
+            );
 
-}
+
+        targetY =
+            14 +
+            Math.random()
+            *
+            (
+                maxY - 14
+            );
+
+    }
 
 
-function changeMessage() {
+    function moveBubble() {
 
-    floatingBubble.classList.remove(
-        "visible"
-    );
+        currentX +=
+            (
+                targetX - currentX
+            )
+            *
+            0.0028;
+
+
+        currentY +=
+            (
+                targetY - currentY
+            )
+            *
+            0.0028;
+
+
+        floatingBubble.style.left =
+            currentX + "%";
+
+
+        floatingBubble.style.top =
+            currentY + "%";
+
+
+        requestAnimationFrame(
+            moveBubble
+        );
+
+    }
+
+
+    function changeMessage() {
+
+        floatingBubble.classList.remove(
+            "visible"
+        );
+
+
+        setTimeout(
+            function () {
+
+                messageIndex =
+                    (
+                        messageIndex + 1
+                    )
+                    %
+                    becomingMessages.length;
+
+
+                floatingMessage.textContent =
+                    becomingMessages[
+                        messageIndex
+                    ];
+
+
+                floatingBubble.classList.add(
+                    "visible"
+                );
+
+
+                chooseNewBubblePosition();
+
+            },
+            1800
+        );
+
+    }
 
 
     setTimeout(
         function () {
 
-            messageIndex =
-                (
-                    messageIndex + 1
-                )
-                %
-                becomingMessages.length;
-
-
-            floatingMessage.textContent =
-                becomingMessages[
-                    messageIndex
-                ];
-
-
             floatingBubble.classList.add(
                 "visible"
             );
-
-
-            chooseNewBubblePosition();
 
         },
         1800
     );
 
-}
+
+    chooseNewBubblePosition();
+
+    moveBubble();
 
 
-setTimeout(
-    function () {
-
-        floatingBubble.classList.add(
-            "visible"
-        );
-
-    },
-    1800
-);
-
-
-chooseNewBubblePosition();
-
-moveBubble();
-
-
-setInterval(
-    changeMessage,
-    9000
-);
+    setInterval(
+        changeMessage,
+        9000
+    );
 
 </script>
 
@@ -2515,391 +2352,37 @@ setInterval(
 
 <script>
 
-function openSoundtrack() {
+    function openSoundtrack() {
 
-    const player =
-        document.getElementById(
-            "soundtrack"
+        const player =
+            document.getElementById(
+                "soundtrack"
+            );
+
+
+        player.classList.add(
+            "open"
         );
-
-
-    player.classList.add(
-        "open"
-    );
-
-}
-
-
-function closeSoundtrack() {
-
-    const player =
-        document.getElementById(
-            "soundtrack"
-        );
-
-
-    player.classList.remove(
-        "open"
-    );
-
-}
-
-
-
-/* =====================================================
-   WHICH PAGES SHOW THE RECORD?
-
-   The record remains alive on every page.
-
-   Visually, it is shown on:
-   Home
-   Inside the Bubble
-   The Unknown
-   Connect
-
-   Music can continue while visiting the other pages.
-===================================================== */
-
-function updateSoundtrackVisibility(
-    path
-) {
-
-    const player =
-        document.getElementById(
-            "soundtrack"
-        );
-
-
-    const filename =
-        path
-            .split("/")
-            .pop()
-            .split("?")[0]
-            .split("#")[0];
-
-
-    const recordPages = [
-
-        "",
-        "index.html",
-        "about.html",
-        "LearningtheUnknown.html",
-        "contact.html"
-
-    ];
-
-
-    if (
-        recordPages.includes(
-            filename
-        )
-    ) {
-
-        player.style.display =
-            "flex";
-
-    } else {
-
-        player.style.display =
-            "none";
-
-    }
-
-}
-
-
-
-/* =====================================================
-   PAGE NAVIGATION
-
-   Clicking Village links now loads the <main>
-   from the destination page without destroying:
-
-   - SoundCloud
-   - record player
-   - floating bubble
-   - navigation
-===================================================== */
-
-const pageContent =
-    document.getElementById(
-        "pageContent"
-    );
-
-
-const pageLoading =
-    document.getElementById(
-        "pageLoading"
-    );
-
-
-function isInternalVillageLink(
-    link
-) {
-
-    if (
-        !link ||
-        !link.href
-    ) {
-
-        return false;
 
     }
 
 
-    const url =
-        new URL(
-            link.href,
-            window.location.href
-        );
+    function closeSoundtrack() {
 
-
-    return (
-        url.origin ===
-        window.location.origin
-        &&
-        (
-            url.pathname.endsWith(
-                ".html"
-            )
-            ||
-            url.pathname ===
-            "/"
-        )
-    );
-
-}
-
-
-
-async function loadVillagePage(
-    url,
-    addHistory = true
-) {
-
-    try {
-
-        pageLoading.classList.add(
-            "visible"
-        );
-
-
-        const response =
-            await fetch(
-                url,
-                {
-                    cache:
-                        "no-cache"
-                }
+        const player =
+            document.getElementById(
+                "soundtrack"
             );
 
 
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Page could not be loaded."
-            );
-
-        }
-
-
-        const html =
-            await response.text();
-
-
-        const parser =
-            new DOMParser();
-
-
-        const documentPage =
-            parser.parseFromString(
-                html,
-                "text/html"
-            );
-
-
-        const newMain =
-            documentPage.querySelector(
-                "main"
-            );
-
-
-        if (!newMain) {
-
-            throw new Error(
-                "The destination page does not contain a main section."
-            );
-
-        }
-
-
-        pageContent.innerHTML =
-            newMain.innerHTML;
-
-
-        document.title =
-            documentPage.title
-            ||
-            "The Still Becoming Village Circle";
-
-
-        if (
-            addHistory
-        ) {
-
-            history.pushState(
-                {
-                    page:
-                        url
-                },
-                "",
-                url
-            );
-
-        }
-
-
-        window.scrollTo(
-            {
-                top:
-                    0,
-                behavior:
-                    "smooth"
-            }
-        );
-
-
-        updateSoundtrackVisibility(
-            url
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            error
-        );
-
-
-        /*
-         * If something cannot be loaded through
-         * the persistent shell, fall back to the
-         * normal page navigation instead of leaving
-         * the visitor stuck.
-         */
-
-        window.location.href =
-            url;
-
-
-        return;
-
-    } finally {
-
-        setTimeout(
-            function () {
-
-                pageLoading.classList.remove(
-                    "visible"
-                );
-
-            },
-            250
+        player.classList.remove(
+            "open"
         );
 
     }
-
-}
-
-
-
-/* =====================================================
-   INTERCEPT NAVIGATION
-
-   Event delegation means links that were loaded
-   into <main> also continue to work.
-===================================================== */
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const link =
-            event.target.closest(
-                "a"
-            );
-
-
-        if (
-            !isInternalVillageLink(
-                link
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            link.target ===
-            "_blank"
-        ) {
-
-            return;
-
-        }
-
-
-        const url =
-            new URL(
-                link.href,
-                window.location.href
-            );
-
-
-        event.preventDefault();
-
-
-        loadVillagePage(
-            url.href,
-            true
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   BROWSER BACK / FORWARD
-===================================================== */
-
-window.addEventListener(
-    "popstate",
-    function () {
-
-        loadVillagePage(
-            window.location.href,
-            false
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   INITIAL RECORD VISIBILITY
-===================================================== */
-
-updateSoundtrackVisibility(
-    window.location.href
-);
 
 </script>
+
 
 
 </body>
