@@ -1,0 +1,146 @@
+name: Restore Calendly
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  restore-calendly:
+    if: ${{ !contains(github.event.head_commit.message, 'Restore Calendly in Footprints') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore Calendly and footprint path
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('about.html')
+          text = p.read_text(encoding='utf-8')
+
+          old_trail = '''.footprint-trail {
+
+    min-height:
+        85px;'''
+          new_trail = '''.footprint-trail {
+
+    min-height:
+        120px;
+
+    position:
+        relative;'''
+          text = text.replace(old_trail, new_trail, 1)
+
+          old_steps = '''.foot-one {
+    transform:
+        rotate(8deg)
+        translateY(5px);
+}
+
+.foot-two {
+    transform:
+        rotate(-7deg)
+        translateY(-7px);
+}
+
+.foot-three {
+    transform:
+        rotate(10deg)
+        translateY(4px);
+}
+
+.foot-four {
+    transform:
+        rotate(-8deg)
+        translateY(-6px);
+}
+
+.foot-five {
+    transform:
+        rotate(7deg)
+        translateY(3px);
+}'''
+          new_steps = '''.foot-one {
+    transform:
+        rotate(8deg)
+        translate(-90px, -12px);
+}
+
+.foot-two {
+    transform:
+        rotate(-7deg)
+        translate(-45px, 2px);
+}
+
+.foot-three {
+    transform:
+        rotate(10deg)
+        translate(0, 18px);
+}
+
+.foot-four {
+    transform:
+        rotate(-8deg)
+        translate(45px, 34px);
+}
+
+.foot-five {
+    transform:
+        rotate(7deg)
+        translate(90px, 50px);
+}'''
+          text = text.replace(old_steps, new_steps, 1)
+
+          marker = '<div class="calendly-wrapper">'
+          if 'class="calendly-link"' not in text:
+              cta = '''<p class="calendly-link-wrap">
+<a class="calendly-link" href="https://calendly.com/thestillbecomingvillagecircle/30min?hide_gdpr_banner=1" target="_blank" rel="noopener">
+    🫧 Choose Your Time
+</a>
+</p>
+
+'''
+              text = text.replace(marker, cta + marker, 1)
+
+          script = '<script src="https://assets.calendly.com/assets/external/widget.js" async></script>'
+          if script not in text:
+              text = text.replace('</body>', script + '\n\n</body>', 1)
+
+          style = '''
+.calendly-link-wrap {
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.calendly-link {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 40px;
+    background: rgba(255,255,255,0.94);
+    color: #16aaa9;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 12px 28px rgba(40,120,120,0.10);
+}
+'''
+          if '.calendly-link-wrap {' not in text:
+              text = text.replace('</style>', style + '\n</style>', 1)
+
+          p.write_text(text, encoding='utf-8')
+
+      - name: Remove one-time workflow
+        run: rm -f .github/workflows/restore-calendly.yml
+
+      - name: Commit changes
+        run: |
+          git config user.name "TheStillBecomingVillageCircle"
+          git config user.email "waterwinewednesday@gmail.com"
+          git add about.html .github/workflows/restore-calendly.yml
+          git commit -m "Restore Calendly in Footprints"
+          git push
