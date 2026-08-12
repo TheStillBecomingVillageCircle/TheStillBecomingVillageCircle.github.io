@@ -6,28 +6,15 @@
     window.__TSBVC_MUSIC__ = true;
 
     const PLAYER_ID = 'villageSoundtrack';
-    const NAV_PAGES = new Set([
-        'index.html',
-        'about.html',
-        'LearningtheUnknown.html',
-        'experiences.html',
-        'events.html',
-        'contact.html',
-        'coaching.html',
-        'kitta.html'
-    ]);
-
+    const NAV_PAGES = new Set(['index.html','about.html','LearningtheUnknown.html','experiences.html','events.html','contact.html','coaching.html','kitta.html']);
     const MUSIC_SRC = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
 
     function removeLegacyPlayers() {
-        document.querySelectorAll('#soundtrack, .soundtrack, #musicBubble, .music-bubble').forEach(function (el) {
-            el.remove();
-        });
+        document.querySelectorAll('#soundtrack, .soundtrack, #musicBubble, .music-bubble').forEach(function (el) { el.remove(); });
     }
 
     function addStyles() {
         if (document.getElementById('village-music-styles')) return;
-
         const style = document.createElement('style');
         style.id = 'village-music-styles';
         style.textContent = `
@@ -57,44 +44,22 @@
 
     function createPlayer() {
         if (document.getElementById(PLAYER_ID)) return;
-
         const el = document.createElement('div');
         el.id = PLAYER_ID;
         el.innerHTML = `<div class="closed"><div class="label">🫧 The Village Soundtrack</div><div class="deck"><div class="record"><div class="play">▶</div></div><div class="arm"></div></div><div class="tap">Tap the record to listen</div></div><div class="content" onclick="event.stopPropagation()"><div class="title">🫧 The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
         document.body.appendChild(el);
-
-        el.querySelector('.closed').addEventListener('click', function () {
-            el.classList.add('open');
-        });
-
-        el.querySelector('.close').addEventListener('click', function () {
-            el.classList.remove('open');
-        });
+        el.querySelector('.closed').addEventListener('click', function () { el.classList.add('open'); });
+        el.querySelector('.close').addEventListener('click', function () { el.classList.remove('open'); });
     }
 
     function initFloatingBubble(root) {
         const bubble = root.querySelector ? root.querySelector('#floatingBubble') : document.getElementById('floatingBubble');
         const message = root.querySelector ? root.querySelector('#floatingMessage') : document.getElementById('floatingMessage');
         if (!bubble || !message || bubble.dataset.villageBubbleInitialized === 'true') return;
-
         bubble.dataset.villageBubbleInitialized = 'true';
 
-        const messages = [
-            '🫧 You belong before you bloom.',
-            "🫧 Healing isn't linear.",
-            '🫧 Rest is productive.',
-            '🫧 Curiosity creates connection.',
-            '🫧 Becoming takes courage.',
-            "🫧 It's okay to begin again.",
-            '🫧 You are allowed to change.',
-            "🫧 You don't have to rush becoming."
-        ];
-
-        let index = 0;
-        let x = 12;
-        let y = 62;
-        let targetX = 12;
-        let targetY = 62;
+        const messages = ['🫧 You belong before you bloom.',"🫧 Healing isn't linear.",'🫧 Rest is productive.','🫧 Curiosity creates connection.','🫧 Becoming takes courage.',"🫧 It's okay to begin again.",'🫧 You are allowed to change.',"🫧 You don't have to rush becoming."];
+        let index = 0, x = 12, y = 62, targetX = 12, targetY = 62;
 
         function choosePosition() {
             const maxX = window.innerWidth < 600 ? 68 : 78;
@@ -102,7 +67,6 @@
             targetX = 8 + Math.random() * (maxX - 8);
             targetY = 14 + Math.random() * (maxY - 14);
         }
-
         function animate() {
             if (!document.body.contains(bubble)) return;
             x += (targetX - x) * 0.0028;
@@ -111,7 +75,6 @@
             bubble.style.top = y + '%';
             requestAnimationFrame(animate);
         }
-
         function change() {
             if (!document.body.contains(bubble)) return;
             bubble.classList.remove('visible');
@@ -123,11 +86,8 @@
                 bubble.classList.add('visible');
             }, 1800);
         }
-
         choosePosition();
-        setTimeout(function () {
-            if (document.body.contains(bubble)) bubble.classList.add('visible');
-        }, 1200);
+        setTimeout(function () { if (document.body.contains(bubble)) bubble.classList.add('visible'); }, 1200);
         setInterval(change, 9000);
         animate();
     }
@@ -135,7 +95,6 @@
     function applyVillageFixes() {
         const journey = document.querySelector('.conversation-link');
         const footprints = document.getElementById('conversation');
-
         if (journey && footprints) {
             journey.textContent = '🌱 Let’s Take a Journey Into Your Becoming  →';
             journey.onclick = function (event) {
@@ -148,10 +107,15 @@
         if (word && /Epistemic Humility/i.test(word.textContent)) {
             word.textContent = 'Liminality';
             const definition = document.querySelector('.word-definition');
-            if (definition) {
-                definition.textContent = 'noun — the state of being between one stage, condition, identity, or place and another';
-            }
+            if (definition) definition.textContent = 'noun — the state of being between one stage, condition, identity, or place and another';
         }
+    }
+
+    function replacePageStyles(parsed) {
+        document.head.querySelectorAll('style:not(#village-music-styles)').forEach(function (style) { style.remove(); });
+        parsed.head.querySelectorAll('style').forEach(function (style) {
+            document.head.insertBefore(document.importNode(style, true), document.getElementById('village-music-styles'));
+        });
     }
 
     async function navigate(url, push) {
@@ -164,33 +128,23 @@
 
         const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
         const player = document.getElementById(PLAYER_ID);
-
         if (!player) return false;
 
         document.title = parsed.title || document.title;
+        replacePageStyles(parsed);
 
         const incoming = [...parsed.body.children].filter(function (child) {
-            return child.id !== PLAYER_ID &&
-                child.id !== 'soundtrack' &&
-                child.id !== 'musicBubble' &&
-                !child.classList.contains('soundtrack') &&
-                !child.classList.contains('music-bubble');
+            return child.id !== PLAYER_ID && child.id !== 'soundtrack' && child.id !== 'musicBubble' && !child.classList.contains('soundtrack') && !child.classList.contains('music-bubble');
         });
 
-        [...document.body.children].forEach(function (child) {
-            if (child !== player) child.remove();
-        });
-
-        incoming.forEach(function (child) {
-            document.body.insertBefore(document.importNode(child, true), player);
-        });
+        [...document.body.children].forEach(function (child) { if (child !== player) child.remove(); });
+        incoming.forEach(function (child) { document.body.insertBefore(document.importNode(child, true), player); });
 
         removeLegacyPlayers();
         applyVillageFixes();
         initFloatingBubble(document);
 
         if (push) history.pushState({ village: true }, '', target.href);
-
         window.scrollTo({ top: 0, behavior: 'instant' });
         window.dispatchEvent(new CustomEvent('village:pagechange', { detail: { url: target.href } }));
         return true;
@@ -199,21 +153,14 @@
     document.addEventListener('click', function (event) {
         const link = event.target.closest && event.target.closest('a[href]');
         if (!link || link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
         const target = new URL(link.href, location.href);
         const page = target.pathname.split('/').pop() || 'index.html';
-
         if (target.origin !== location.origin || !NAV_PAGES.has(page) || target.pathname === location.pathname) return;
-
         event.preventDefault();
-        navigate(target.href, true).catch(function () {
-            location.href = target.href;
-        });
+        navigate(target.href, true).catch(function () { location.href = target.href; });
     });
 
-    window.addEventListener('popstate', function () {
-        navigate(location.href, false).catch(function () {});
-    });
+    window.addEventListener('popstate', function () { navigate(location.href, false).catch(function () {}); });
 
     function init() {
         removeLegacyPlayers();
@@ -223,9 +170,6 @@
         initFloatingBubble(document);
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init, { once: true });
-    } else {
-        init();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
 })();
