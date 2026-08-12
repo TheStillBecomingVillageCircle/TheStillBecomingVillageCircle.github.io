@@ -21,18 +21,19 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
+          import re
 
           p = Path('about.html')
           text = p.read_text(encoding='utf-8')
 
-          old = '<a class="conversation-link" href="#booking">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
-          new = '<a class="conversation-link" href="#booking" onclick="event.preventDefault(); document.getElementById(\'booking\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
+          pattern = r'<a\s+class="conversation-link"[^>]*>.*?</a>'
+          replacement = '<a class="conversation-link" href="#booking" onclick="event.preventDefault(); document.getElementById(\'booking\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
 
-          if old not in text:
-              raise SystemExit('Expected Journey CTA was not found; no change made.')
+          updated, count = re.subn(pattern, replacement, text, count=1, flags=re.DOTALL)
+          if count != 1:
+              raise SystemExit('Journey CTA anchor was not found; no change made.')
 
-          text = text.replace(old, new, 1)
-          p.write_text(text, encoding='utf-8')
+          p.write_text(updated, encoding='utf-8')
           print('Journey CTA now scrolls directly to the booking section.')
 
       - name: Commit
@@ -48,4 +49,4 @@ jobs:
           git commit -m "Fix Journey CTA scroll destination"
           git push
 
-# Keep this workflow active for the next booking-flow fix.
+# Keep this workflow active for the booking-flow fixes.
