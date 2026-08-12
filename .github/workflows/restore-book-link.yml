@@ -1,0 +1,43 @@
+name: Restore Village Library book link
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore-book-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore book link only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("LearningtheUnknown.html")
+          text = path.read_text(encoding="utf-8")
+
+          pattern = r'(<h3>\s*📖 The Village Library\s*</h3>\s*<p>.*?</p>\s*<a\s+class="resource-button"\s+href=")[^"]+("\s*>)'
+          replacement = r'\g<1>https://a.co/d/01fMrrkq\g<2>'
+
+          updated, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
+
+          if count != 1:
+              raise SystemExit(f"Expected exactly one Village Library link, found {count}")
+
+          path.write_text(updated, encoding="utf-8")
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add LearningtheUnknown.html
+          git diff --cached --quiet || git commit -m "Restore book link in Village Library"
+          git push
