@@ -58,16 +58,25 @@
         const response = await fetch(target.href, { credentials: 'same-origin' });
         if (!response.ok) return false;
         const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
-        const musicStyle = document.getElementById('village-music-styles');
+
+        // Keep the SAME player element and live SoundCloud iframe.
+        // Recreating the iframe causes SoundCloud to stop playback.
         const player = document.getElementById(PLAYER_ID);
-        if (player) player.remove();
+        const wasOpen = !!(player && player.classList.contains('open'));
+
         document.head.innerHTML = parsed.head.innerHTML;
-        if (musicStyle) document.head.appendChild(musicStyle);
         document.body.innerHTML = parsed.body.innerHTML;
         document.body.className = parsed.body.className;
         addStyles();
+
+        if (player) {
+            document.body.appendChild(player);
+            if (wasOpen) player.classList.add('open');
+        } else {
+            createPlayer();
+        }
+
         runPageScripts(document.body);
-        createPlayer();
         if (push) history.pushState({ village: true }, '', target.href);
         window.scrollTo(0, 0);
         window.dispatchEvent(new Event('resize'));
