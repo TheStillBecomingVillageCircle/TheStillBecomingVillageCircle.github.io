@@ -34,14 +34,16 @@ jobs:
           pattern = r'<a\s+class="conversation-link"[^>]*>.*?</a>'
           replacement = '<button type="button" class="conversation-link" onclick="document.getElementById(\'find-your-moment\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</button>'
           updated, count = re.subn(pattern, replacement, text, count=1, flags=re.DOTALL)
-
-          if count == 0:
-              print('Journey CTA already converted; continuing.')
-          else:
+          if count:
               text = updated
 
+          # Keep the button visually identical to the Village's soft pill links.
+          old_css = '.conversation-link { margin-top: 10px !important; padding: 13px 24px; border-radius: 35px; background: rgba(22,170,169,0.10); box-shadow: 0 10px 24px rgba(40,120,120,0.08); }'
+          new_css = '.conversation-link { margin-top: 10px !important; padding: 13px 24px; border: 0; border-radius: 35px; background: rgba(22,170,169,0.10); color: #16aaa9; font-family: inherit; font-size: inherit; font-weight: 700; line-height: 1.4; cursor: pointer; appearance: none; -webkit-appearance: none; box-shadow: 0 10px 24px rgba(40,120,120,0.08); transition: transform 0.25s ease, background 0.25s ease; }'
+          text = text.replace(old_css, new_css, 1)
+
           p.write_text(text, encoding='utf-8')
-          print('Journey CTA targets the unique Find Your Moment section.')
+          print('Journey CTA target and styling fixed.')
 
       - name: Commit
         shell: bash
@@ -53,5 +55,5 @@ jobs:
             echo "No changes needed."
             exit 0
           fi
-          git commit -m "Fix Journey CTA target"
+          git commit -m "Style Journey CTA to match Village design"
           git push
