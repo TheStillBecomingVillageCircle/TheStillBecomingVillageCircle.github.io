@@ -23,14 +23,14 @@ jobs:
           path = Path("LearningtheUnknown.html")
           text = path.read_text(encoding="utf-8")
 
-          pattern = r'(<h3>\s*📖 The Village Library\s*</h3>\s*<p>.*?</p>\s*<a\s+class="resource-button"\s+href=")[^"]+("\s*>)(.*?)(</a>)'
-          replacement = r'\g<1>https://a.co/d/01fMrrkq\g<2>\n\n    Read The Audacity of You\n\n\g<4>'
-
+          pattern = r'(<h3>\s*📖 The Village Library\s*</h3>\s*<p>.*?</p>\s*<a\s+class="resource-button"\s+href=")[^"]+("\s*>)'
+          replacement = r'\g<1>https://a.co/d/01fMrrkq\g<2>'
           updated, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
 
           if count != 1:
               raise SystemExit(f"Expected exactly one Village Library link, found {count}")
 
+          updated = updated.replace("Return to the Village", "Read The Audacity of You", 1)
           path.write_text(updated, encoding="utf-8")
           PY
 
@@ -39,5 +39,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add LearningtheUnknown.html
-          git diff --cached --quiet || git commit -m "Label Village Library book link"
+          git diff --cached --quiet || git commit -m "Set Village Library book label"
           git push
