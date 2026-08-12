@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,20 +44,22 @@ nav ul li a:hover { color: #16aaa9; }
 .footprints { padding: 20px 6% 100px; text-align: center; overflow: hidden; }
 .footprints h2 { color: #16aaa9; font-size: clamp(32px,5vw,50px); margin-bottom: 8px; }
 .footprints-subtitle { color: #527779; font-size: 18px; margin-bottom: 35px; }
-.footprint-trail { min-height: 120px; max-width: 700px; margin: 0 auto 35px; display: flex; align-items: center; justify-content: space-around; transform: rotate(-4deg); }
-.foot { display: inline-block; font-size: 34px; opacity: 0.60; }
-.foot-one { transform: rotate(8deg) translate(-90px,-12px); }
-.foot-two { transform: rotate(-7deg) translate(-45px,2px); }
-.foot-three { transform: rotate(10deg) translate(0,18px); }
-.foot-four { transform: rotate(-8deg) translate(45px,34px); }
-.foot-five { transform: rotate(7deg) translate(90px,50px); }
+
+/* The footprints now form an actual path toward the next step: Calendly. */
+.footprint-trail { position: relative; min-height: 190px; max-width: 700px; margin: 0 auto 25px; display: block; }
+.foot { position: absolute; display: block; font-size: 34px; opacity: 0.60; }
+.foot-one { left: 9%; top: 0; transform: rotate(12deg); }
+.foot-two { left: 27%; top: 35px; transform: rotate(-10deg); }
+.foot-three { left: 45%; top: 72px; transform: rotate(10deg); }
+.foot-four { left: 62%; top: 108px; transform: rotate(-9deg); }
+.foot-five { left: 76%; top: 145px; transform: rotate(8deg); }
 .calendly-link-wrap { margin: 0 auto 28px; text-align: center; }
 .calendly-link { display: inline-block; padding: 14px 30px; border-radius: 40px; background: rgba(255,255,255,0.94); color: #16aaa9; text-decoration: none; font-weight: 700; box-shadow: 0 12px 28px rgba(40,120,120,0.10); }
 .calendly-link:hover { transform: translateY(-2px); }
 .calendly-wrapper { max-width: 1000px; margin: 0 auto; background: rgba(255,255,255,0.92); border-radius: 35px; overflow: hidden; box-shadow: 0 20px 50px rgba(40,120,120,0.10); }
 .calendly-inline-widget { min-width: 320px; height: 700px; }
 @media (max-width:900px) { nav { flex-direction: column; text-align: center; } nav ul { justify-content: center; } .person-grid { grid-template-columns: 1fr; max-width: 650px; } }
-@media (max-width:600px) { nav { padding: 18px 5%; } .logo a { font-size: 20px; white-space: normal; } nav ul { gap: 10px 15px; } nav ul li a { font-size: 14px; } .page-intro { padding: 70px 5% 55px; } .bubble-icon { width: 90px; height: 90px; font-size: 40px; } .page-intro h1 { font-size: 42px; } .page-intro p { font-size: 17px; } .section { padding: 60px 5%; } .section-box { padding: 45px 25px; } .section-box p { font-size: 17px; } .people { padding: 10px 5% 70px; } .person { padding: 38px 25px; } .mission { padding: 10px 5% 70px; } .mission-box { padding: 45px 25px; } .footprints { padding: 10px 5% 80px; } .footprint-trail { gap: 4px; } .foot { font-size: 25px; } .calendly-link { padding: 13px 22px; } }
+@media (max-width:600px) { nav { padding: 18px 5%; } .logo a { font-size: 20px; white-space: normal; } nav ul { gap: 10px 15px; } nav ul li a { font-size: 14px; } .page-intro { padding: 70px 5% 55px; } .bubble-icon { width: 90px; height: 90px; font-size: 40px; } .page-intro h1 { font-size: 42px; } .page-intro p { font-size: 17px; } .section { padding: 60px 5%; } .section-box { padding: 45px 25px; } .section-box p { font-size: 17px; } .people { padding: 10px 5% 70px; } .person { padding: 38px 25px; } .mission { padding: 10px 5% 70px; } .mission-box { padding: 45px 25px; } .footprints { padding: 10px 5% 80px; } .footprint-trail { min-height: 175px; } .foot { font-size: 25px; } .foot-one { left: 5%; } .foot-two { left: 24%; } .foot-three { left: 43%; } .foot-four { left: 62%; } .foot-five { left: 77%; } .calendly-link { padding: 13px 22px; } }
 </style>
 </head>
 <body>
