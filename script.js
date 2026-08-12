@@ -190,3 +190,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("village:pagechange", restoreHomeCalendlyLink);
 })();
+
+/* =========================================================
+   HOME DISCOVERY CARD LINKS
+
+   Keep the existing card design and wording intact.
+   Only make the discovery cards clickable destinations.
+========================================================= */
+(function () {
+    'use strict';
+
+    const destinations = {
+        "Learning the Unknown": "LearningtheUnknown.html",
+        "Real Conversations": "coaching.html",
+        "Real Exploration": "coaching.html",
+        "Growing Together": "experiences.html"
+    };
+
+    function linkDiscoveryCards() {
+        document.querySelectorAll(".cards .card").forEach(function (card) {
+            if (card.dataset.discoveryLinked === "true") return;
+
+            const heading = card.querySelector("h3");
+            if (!heading) return;
+
+            const title = (heading.textContent || "")
+                .replace(/^[^A-Za-z]+/, "")
+                .trim();
+
+            const destination = destinations[title];
+            if (!destination) return;
+
+            card.dataset.discoveryLinked = "true";
+            card.setAttribute("role", "link");
+            card.setAttribute("tabindex", "0");
+            card.style.cursor = "pointer";
+
+            function goToDestination() {
+                window.location.href = destination;
+            }
+
+            card.addEventListener("click", goToDestination);
+            card.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    goToDestination();
+                }
+            });
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", linkDiscoveryCards, { once: true });
+    } else {
+        linkDiscoveryCards();
+    }
+
+    window.addEventListener("village:pagechange", linkDiscoveryCards);
+})();
