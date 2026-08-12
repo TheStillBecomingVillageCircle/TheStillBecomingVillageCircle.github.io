@@ -26,15 +26,22 @@ jobs:
           p = Path('about.html')
           text = p.read_text(encoding='utf-8')
 
+          # Give the visible Find Your Moment link and the Calendly widget unique IDs.
+          text = text.replace('<p class="calendly-link-wrap" id="booking">', '<p class="calendly-link-wrap" id="find-your-moment">', 1)
+          text = text.replace('<div class="calendly-wrapper" id="booking">', '<div class="calendly-wrapper" id="booking-widget">', 1)
+
+          # Make the Journey CTA a real button so no anchor/navigation handler can hijack it.
           pattern = r'<a\s+class="conversation-link"[^>]*>.*?</a>'
-          replacement = '<a class="conversation-link" href="#booking" onclick="event.preventDefault(); document.getElementById(\'booking\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</a>'
-
+          replacement = '<button type="button" class="conversation-link" onclick="document.getElementById(\'find-your-moment\').scrollIntoView({behavior:\'smooth\', block:\'start\'});">🌱 Let’s Take a Journey Into Your Becoming &nbsp;→</button>'
           updated, count = re.subn(pattern, replacement, text, count=1, flags=re.DOTALL)
-          if count != 1:
-              raise SystemExit('Journey CTA anchor was not found; no change made.')
 
-          p.write_text(updated, encoding='utf-8')
-          print('Journey CTA now scrolls directly to the booking section.')
+          if count == 0:
+              print('Journey CTA already converted; continuing.')
+          else:
+              text = updated
+
+          p.write_text(text, encoding='utf-8')
+          print('Journey CTA targets the unique Find Your Moment section.')
 
       - name: Commit
         shell: bash
@@ -46,7 +53,5 @@ jobs:
             echo "No changes needed."
             exit 0
           fi
-          git commit -m "Fix Journey CTA scroll destination"
+          git commit -m "Fix Journey CTA target"
           git push
-
-# Keep this workflow active for the booking-flow fixes.
