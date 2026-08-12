@@ -45,6 +45,41 @@
         document.head.appendChild(style);
     }
 
+    function setupSoundtrackLoop() {
+        const iframe = document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
+        if (!iframe || iframe.dataset.loopBound === 'true') return;
+
+        function bindWidget() {
+            if (!window.SC || !window.SC.Widget) return;
+            const widget = window.SC.Widget(iframe);
+            widget.bind(window.SC.Widget.Events.READY, function () {
+                if (iframe.dataset.loopBound === 'true') return;
+                iframe.dataset.loopBound = 'true';
+                widget.bind(window.SC.Widget.Events.FINISH, function () {
+                    widget.seekTo(0);
+                    widget.play();
+                });
+            });
+        }
+
+        if (window.SC && window.SC.Widget) {
+            bindWidget();
+            return;
+        }
+
+        let api = document.getElementById('soundcloud-widget-api');
+        if (!api) {
+            api = document.createElement('script');
+            api.id = 'soundcloud-widget-api';
+            api.src = 'https://w.soundcloud.com/player/api.js';
+            api.async = true;
+            api.onload = bindWidget;
+            document.head.appendChild(api);
+        } else {
+            api.addEventListener('load', bindWidget, { once: true });
+        }
+    }
+
     function createPlayer() {
         if (document.getElementById(PLAYER_ID)) return;
         const el = document.createElement('div');
@@ -53,6 +88,7 @@
         document.body.appendChild(el);
         el.querySelector('.closed').addEventListener('click', function () { el.classList.add('open'); });
         el.querySelector('.close').addEventListener('click', function () { el.classList.remove('open'); });
+        setupSoundtrackLoop();
     }
 
     function initFloatingBubble(root) {
