@@ -26,8 +26,8 @@
             #${PLAYER_ID} .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid white;background:rgba(22,170,169,.94);color:white;display:flex;align-items:center;justify-content:center;font:16px Arial;z-index:5}
             #${PLAYER_ID} .arm{width:42px;height:5px;background:#4e4942;position:absolute;right:7px;top:17px;transform:rotate(28deg);transform-origin:right center;border-radius:5px;z-index:3}
             #${PLAYER_ID} .tap{text-align:center;font:11px Arial,sans-serif;color:#527779;margin-top:7px}
-            #${PLAYER_ID} .content{display:none;width:100%}
-            #${PLAYER_ID}.open .content{display:block}
+            #${PLAYER_ID} .content{position:absolute;left:1px;top:1px;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
+            #${PLAYER_ID}.open .content{position:static;width:100%;height:auto;opacity:1;pointer-events:auto;overflow:visible}
             #${PLAYER_ID} .title{text-align:center;color:#285f61;font:700 17px Arial,sans-serif;margin-bottom:2px}
             #${PLAYER_ID} .song{text-align:center;color:#16aaa9;font:14px Arial,sans-serif;margin-bottom:10px}
             #${PLAYER_ID} iframe{width:100%;height:166px;border:0;border-radius:16px;overflow:hidden}
@@ -74,6 +74,9 @@
         incoming.forEach(child => document.body.insertBefore(document.importNode(child, true), player));
         removeLegacyPlayers();
         runPageScripts(document.body);
+        // Keep the music playing, but close the large player after navigation
+        // so it never covers the new page.
+        player.classList.remove('open');
         if (push) history.pushState({ village: true }, '', target.href);
         window.scrollTo({ top: 0, behavior: 'instant' });
         window.dispatchEvent(new CustomEvent('village:pagechange', { detail: { url: target.href } }));
