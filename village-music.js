@@ -11,11 +11,11 @@
         style.textContent = `
             #${PLAYER_ID}{position:fixed;right:22px;bottom:22px;width:185px;height:185px;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.98),rgba(220,255,251,.92) 48%,rgba(177,239,233,.78));border:2px solid rgba(255,255,255,.95);box-shadow:0 18px 45px rgba(40,120,120,.20),inset 8px 8px 18px rgba(255,255,255,.90);z-index:99999;display:flex;align-items:center;justify-content:center;animation:villageFloat 5s ease-in-out infinite;}
             #${PLAYER_ID}.open{width:min(390px,calc(100vw - 24px));height:auto;min-height:245px;border-radius:32px;animation:none;padding:16px;}
-            #${PLAYER_ID} .closed{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;cursor:pointer;}
+            #${PLAYER_ID} .closed{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;cursor:pointer}
             #${PLAYER_ID}.open .closed{display:none}
             #${PLAYER_ID} .label{text-align:center;font:700 12px Arial,sans-serif;color:#285f61;margin-bottom:8px}
             #${PLAYER_ID} .deck{width:130px;height:88px;background:linear-gradient(145deg,#ded6ca,#b7aa99);border-radius:13px;box-shadow:0 8px 16px rgba(0,0,0,.18);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-            #${PLAYER_ID} .record{width:70px;height:70px;border-radius:50%;background:url('bricks-cover.jpeg') center/cover;position:relative;z-index:2;border:5px solid #171717;box-shadow:0 3px 10px rgba(0,0,0,.35);}
+            #${PLAYER_ID} .record{width:70px;height:70px;border-radius:50%;background:url('bricks-cover.jpeg') center/cover;position:relative;z-index:2;border:5px solid #171717;box-shadow:0 3px 10px rgba(0,0,0,.35)}
             #${PLAYER_ID} .record:after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#d7c6a4;border:2px solid #111;left:50%;top:50%;transform:translate(-50%,-50%)}
             #${PLAYER_ID} .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid white;background:rgba(22,170,169,.94);color:white;display:flex;align-items:center;justify-content:center;font:16px Arial;z-index:5}
             #${PLAYER_ID} .arm{width:42px;height:5px;background:#4e4942;position:absolute;right:7px;top:17px;transform:rotate(28deg);transform-origin:right center;border-radius:5px;z-index:3}
@@ -57,12 +57,13 @@
         if (target.origin !== location.origin || !NAV_PAGES.has(target.pathname.split('/').pop())) return false;
         const response = await fetch(target.href, { credentials: 'same-origin' });
         if (!response.ok) return false;
-        const html = await response.text();
-        const parsed = new DOMParser().parseFromString(html, 'text/html');
+        const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
+        const musicStyle = document.getElementById('village-music-styles');
         const player = document.getElementById(PLAYER_ID);
         if (player) player.remove();
+        document.head.innerHTML = parsed.head.innerHTML;
+        if (musicStyle) document.head.appendChild(musicStyle);
         document.body.innerHTML = parsed.body.innerHTML;
-        document.title = parsed.title;
         document.body.className = parsed.body.className;
         addStyles();
         runPageScripts(document.body);
