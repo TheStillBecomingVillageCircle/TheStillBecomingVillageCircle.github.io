@@ -1,0 +1,69 @@
+name: Add Kitta Calendly
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: ${{ !contains(github.event.head_commit.message, 'Add Kitta Calendly booking') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add Kitta booking section
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('kitta.html')
+          text = p.read_text(encoding='utf-8')
+
+          marker = '''<a
+    href=\\"contact.html\\"
+    class=\\"cta-button\\"
+>
+
+    🎨 Explore Creative Work
+
+</a>'''
+
+          replacement = '''<a
+    href=\\"https://calendly.com/thestillbecomingvillagecircle/new-meeting\\"
+    class=\\"cta-button\\"
+    target=\\"_blank\\"
+    rel=\\"noopener\\"
+>
+
+    🎨 Allow Becoming to Create Your Vision
+
+</a>
+
+<p style=\\"margin-top: 18px; color: #5d565f; font-size: 16px;\\">
+
+    Bring your idea, vision, or creative need into the space. Whether you're imagining personalized artwork, a memorial piece, a gift basket, care package, event décor, or something entirely your own, this is a space to talk it through and explore what it can become.
+
+</p>'''
+
+          if 'https://calendly.com/thestillbecomingvillagecircle/new-meeting' not in text:
+              if marker not in text:
+                  raise SystemExit('Expected Kitta CTA was not found')
+              text = text.replace(marker, replacement, 1)
+
+          p.write_text(text, encoding='utf-8')
+
+      - name: Remove temporary workflow
+        run: rm -f .github/workflows/add-kitta-calendly.yml
+
+      - name: Commit booking link
+        run: |
+          git config user.name "TheStillBecomingVillageCircle"
+          git config user.email "waterwinewednesday@gmail.com"
+          git add kitta.html .github/workflows/add-kitta-calendly.yml
+          git commit -m "Add Kitta Calendly booking"
+          git push
