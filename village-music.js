@@ -7,6 +7,10 @@
 
     const PLAYER_ID = 'villageSoundtrack';
     const NAV_PAGES = new Set(['index.html','about.html','LearningtheUnknown.html','experiences.html','events.html','contact.html','coaching.html','kitta.html']);
+    const CANONICAL_PAGES = {
+        'events.html': 'experiences.html'
+    };
+    const BOOKING_URL = 'https://calendly.com/thestillbecomingvillagecircle/30min';
     const MUSIC_SRC = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
 
     function removeLegacyPlayers() {
@@ -92,16 +96,75 @@
         animate();
     }
 
+    function normalizeNavigation() {
+        document.querySelectorAll('a[href]').forEach(function (link) {
+            const raw = link.getAttribute('href');
+            if (!raw || raw.startsWith('#') || raw.startsWith('mailto:') || raw.startsWith('tel:')) return;
+            try {
+                const target = new URL(raw, location.href);
+                if (target.origin !== location.origin) return;
+                const page = target.pathname.split('/').pop() || 'index.html';
+                if (CANONICAL_PAGES[page]) {
+                    target.pathname = target.pathname.replace(page, CANONICAL_PAGES[page]);
+                    link.setAttribute('href', target.href);
+                }
+            } catch (error) {}
+        });
+    }
+
+    function normalizeBookingLinks() {
+        document.querySelectorAll('a[href*="calendly.com"]').forEach(function (link) {
+            link.href = BOOKING_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+        });
+    }
+
+    function cleanLegacyLanguage(root) {
+        const replacements = [
+            [/honest conversations/gi, 'honest reflection'],
+            [/creative conversations/gi, 'creative exploration'],
+            [/the conversation to begin/gi, 'the connection to begin'],
+            [/start the conversation here/gi, 'start here'],
+            [/A conversation\./g, 'An exploration.'],
+            [/conversations/gi, 'exploration'],
+            [/conversation/gi, 'exploration']
+        ];
+
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        let node;
+        while ((node = walker.nextNode())) nodes.push(node);
+
+        nodes.forEach(function (textNode) {
+            if (!textNode.nodeValue.trim()) return;
+            let value = textNode.nodeValue;
+            replacements.forEach(function (pair) {
+                value = value.replace(pair[0], pair[1]);
+            });
+            if (value !== textNode.nodeValue) textNode.nodeValue = value;
+        });
+    }
+
     function applyVillageFixes() {
+        normalizeNavigation();
+        normalizeBookingLinks();
+        cleanLegacyLanguage(document.body);
+
         const journey = document.querySelector('.conversation-link');
         const footprints = document.getElementById('conversation');
         if (journey && footprints) {
             journey.textContent = '🌱 Let’s Take a Journey Into Your Becoming  →';
+            journey.classList.remove('conversation-link');
+            journey.classList.add('becoming-journey-link');
             journey.onclick = function (event) {
                 event.preventDefault();
                 footprints.scrollIntoView({ behavior: 'smooth', block: 'start' });
             };
         }
+
+        const footprintSection = document.getElementById('conversation');
+        if (footprintSection) footprintSection.id = 'journey';
 
         const word = document.querySelector('.word-box h2');
         if (word && /Epistemic Humility/i.test(word.textContent)) {
@@ -120,10 +183,14 @@
 
     async function navigate(url, push) {
         const target = new URL(url, location.href);
-        const page = target.pathname.split('/').pop() || 'index.html';
+        let page = target.pathname.split('/').pop() || 'index.html';
+        if (CANONICAL_PAGES[page]) {
+            page = CANONICAL_PAGES[page];
+            target.pathname = target.pathname.replace(target.pathname.split('/').pop(), page);
+        }
         if (target.origin !== location.origin || !NAV_PAGES.has(page)) return false;
 
-        const response = await fetch(target.href, { credentials: 'same-origin' });
+        const response = await fetch(target.href, { credentials: 'same-origin', cache: 'no-store' });
         if (!response.ok) throw new Error('Navigation failed: ' + response.status);
 
         const parsed = new DOMParser().parseFromString(await response.text(), 'text/html');
