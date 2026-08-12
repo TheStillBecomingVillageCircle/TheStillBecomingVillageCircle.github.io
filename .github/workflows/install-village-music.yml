@@ -1,0 +1,36 @@
+name: Install persistent Village soundtrack
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add soundtrack script to Village pages
+        shell: python
+        run: |
+          from pathlib import Path
+          pages = ['index.html','about.html','LearningtheUnknown.html','experiences.html','contact.html','coaching.html','kitta.html']
+          tag = '<script src="village-music.js"></script>'
+          for name in pages:
+              p = Path(name)
+              if not p.exists():
+                  continue
+              text = p.read_text(encoding='utf-8')
+              if tag not in text:
+                  text = text.replace('</body>', f'{tag}\n</body>', 1)
+                  p.write_text(text, encoding='utf-8')
+      - name: Commit installation and remove workflow
+        run: |
+          rm -f .github/workflows/install-village-music.yml
+          git config user.name "TheStillBecomingVillageCircle"
+          git config user.email "waterwinewednesday@gmail.com"
+          git add index.html about.html LearningtheUnknown.html experiences.html contact.html coaching.html kitta.html .github/workflows/install-village-music.yml
+          git diff --cached --quiet || git commit -m "Enable persistent Village soundtrack on all pages"
+          git push
