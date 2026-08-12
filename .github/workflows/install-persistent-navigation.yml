@@ -1,0 +1,54 @@
+name: Install Persistent Village Navigation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add persistent navigation to HTML pages
+        shell: python
+        run: |
+          from pathlib import Path
+
+          marker = 'village-persistence.js'
+          tag = '<script src="village-persistence.js"></script>'
+          changed = []
+
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if marker in text:
+                  continue
+              lower = text.lower()
+              pos = lower.rfind('</body>')
+              if pos == -1:
+                  continue
+              text = text[:pos] + '\n' + tag + '\n' + text[pos:]
+              path.write_text(text, encoding='utf-8')
+              changed.append(str(path))
+
+          print('Updated:', ', '.join(changed) if changed else 'none')
+
+      - name: Commit injected navigation
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html'
+          if git diff --cached --quiet; then
+            echo "No HTML changes needed."
+            exit 0
+          fi
+          git commit -m "Install persistent Village navigation"
+          git push
