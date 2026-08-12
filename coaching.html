@@ -698,7 +698,7 @@ nav a:hover {
 
 
 /* =====================================================
-   BOUNDARY
+   BOUNDARY / FINE PRINT
 ===================================================== */
 
 .boundary {
@@ -711,7 +711,7 @@ nav a:hover {
 
     padding:
         10px 6%
-        100px;
+        45px;
 
     text-align:
         center;
@@ -720,41 +720,50 @@ nav a:hover {
 .boundary-box {
 
     background:
-        rgba(255,255,255,0.94);
+        rgba(255,255,255,0.55);
 
     padding:
-        50px 8%;
+        22px 6%;
 
     border-radius:
-        50px;
+        30px;
 
     box-shadow:
-        0 20px 45px
-        rgba(40,120,120,0.09);
+        none;
+
+    border:
+        1px solid
+        rgba(40,95,97,0.07);
 }
 
 .boundary h2 {
 
     color:
-        #16aaa9;
+        #6f9998;
 
     font-size:
-        clamp(30px,5vw,44px);
+        13px;
+
+    font-weight:
+        600;
 
     margin-bottom:
-        20px;
+        8px;
 }
 
 .boundary p {
 
     color:
-        #5d565f;
+        #78908f;
 
     font-size:
-        18px;
+        11px;
+
+    line-height:
+        1.55;
 
     margin-bottom:
-        15px;
+        5px;
 }
 
 
@@ -1238,7 +1247,7 @@ footer a {
 
     Coaching inside The Still Becoming
     Village Circle creates space for
-    honest conversation, curiosity,
+    honest presence, curiosity,
     reflection, and intentional movement.
 
 </p>
@@ -1271,14 +1280,14 @@ footer a {
 
 <h2>
 
-    What Can We Talk About?
+    What Can We Explore?
 
 </h2>
 
 
 <p>
 
-    Your conversation doesn't have to fit
+    Your becoming doesn't have to fit
     into one perfect category.
 
 </p>
@@ -1337,7 +1346,7 @@ footer a {
 <p>
 
     You don't have to know exactly what
-    the conversation is before you schedule it.
+    you're becoming before you begin.
 
 </p>
 
@@ -1357,7 +1366,7 @@ footer a {
 
 <h2>
 
-    The Conversation
+    Eudaimonia &amp; Liminality
 
 </h2>
 
@@ -1455,7 +1464,7 @@ footer a {
 
 
 <!-- =====================================================
-     BOUNDARY
+     BOUNDARY / FINE PRINT
 ===================================================== -->
 
 <section class="boundary">
@@ -1466,7 +1475,7 @@ footer a {
 
 <h2>
 
-    A Conversation Is Not a Diagnosis.
+    Eudaimonia &amp; Liminality Are Not a Diagnosis.
 
 </h2>
 
@@ -1474,8 +1483,7 @@ footer a {
 <p>
 
     Coaching is a space for reflection,
-    conversation, personal development,
-    and exploring possibilities.
+    personal development, and exploring possibilities.
 
 </p>
 
@@ -1516,15 +1524,15 @@ footer a {
 
 <h2>
 
-    Ready to Have the Conversation?
+    Ready to Step Into Your Becoming?
 
 </h2>
 
 
 <p>
 
-    Schedule a 30-minute conversation
-    with LeSheAnn Hargro.
+    Schedule a 30-minute space with
+    LeSheAnn Hargro.
 
 </p>
 
@@ -1546,7 +1554,7 @@ footer a {
     rel="noopener noreferrer"
 >
 
-    🌱 Schedule a Conversation
+    🌱 Enter Your Becoming
 
 </a>
 
@@ -1697,105 +1705,84 @@ function chooseNewBubblePosition() {
 function moveBubble() {
 
     currentX +=
-        (
-            targetX - currentX
-        )
+        (targetX - currentX)
         *
-        0.0028;
-
+        0.012;
 
     currentY +=
-        (
-            targetY - currentY
-        )
+        (targetY - currentY)
         *
-        0.0028;
+        0.012;
 
 
     floatingBubble.style.left =
-        currentX + "%";
-
+        currentX + "vw";
 
     floatingBubble.style.top =
-        currentY + "%";
+        currentY + "vh";
 
 
     requestAnimationFrame(
         moveBubble
     );
-
 }
 
 
 
-function changeMessage() {
+function rotateMessage() {
 
     floatingBubble.classList.remove(
         "visible"
     );
 
 
-    setTimeout(
-        function() {
+    setTimeout(() => {
 
-            messageIndex =
-                (
-                    messageIndex + 1
-                )
-                %
-                becomingMessages.length;
+        messageIndex =
+            (messageIndex + 1)
+            %
+            becomingMessages.length;
 
+        floatingMessage.textContent =
+            becomingMessages[
+                messageIndex
+            ];
 
-            floatingMessage.textContent =
-                becomingMessages[
-                    messageIndex
-                ];
-
-
-            chooseNewBubblePosition();
-
-
-            floatingBubble.classList.add(
-                "visible"
-            );
-
-        },
-        1800
-    );
-
-}
-
-
-
-chooseNewBubblePosition();
-
-
-setTimeout(
-    function() {
+        chooseNewBubblePosition();
 
         floatingBubble.classList.add(
             "visible"
         );
 
-    },
-    1800
+    }, 1200);
+
+}
+
+
+chooseNewBubblePosition();
+
+requestAnimationFrame(
+    moveBubble
 );
 
 
-moveBubble();
+setTimeout(() => {
+
+    floatingBubble.classList.add(
+        "visible"
+    );
+
+}, 1200);
 
 
 setInterval(
-    changeMessage,
-    9000
+    rotateMessage,
+    7000
 );
 
 </script>
 
 
-<script src="village-music.js"></script>
-
-<script src="village-persistence.js"></script>
 </body>
 
 </html>
