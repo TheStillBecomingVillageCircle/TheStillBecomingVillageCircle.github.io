@@ -4,6 +4,7 @@
   window.__TSBVC_PERSISTENT_NAV__ = true;
 
   const PLAYER_SELECTOR = '.soundtrack';
+  const MUSIC_PLAYER_ID = 'villageSoundtrack';
   const MARK = 'data-village-page-style';
 
   function markStyles() {
@@ -15,6 +16,10 @@
   }
 
   function shouldHandle(a, url) {
+    // The dedicated village-music navigation must own page changes while
+    // its persistent SoundCloud player is present. Competing navigation
+    // destroys the live iframe and stops playback.
+    if (document.getElementById(MUSIC_PLAYER_ID)) return false;
     return a && sameSite(url) && !a.hasAttribute('download') && !a.target &&
       url.pathname.endsWith('.html') && url.pathname !== location.pathname;
   }
@@ -66,6 +71,7 @@
   });
 
   window.addEventListener('popstate', function () {
+    if (document.getElementById(MUSIC_PLAYER_ID)) return;
     navigate(new URL(location.href), false).catch(() => {});
   });
 
