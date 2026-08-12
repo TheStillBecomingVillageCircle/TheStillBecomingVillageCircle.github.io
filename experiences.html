@@ -1,0 +1,2930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Experiences | The Still Becoming Village Circle
+</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #e8fffb;
+
+    color:
+        #285f61;
+
+    line-height:
+        1.7;
+
+    overflow-x:
+        hidden;
+}
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+header {
+
+    width:
+        100%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.96
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            40,
+            95,
+            97,
+            0.10
+        );
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+nav {
+
+    max-width:
+        1500px;
+
+    margin:
+        0 auto;
+
+    padding:
+        22px 4%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
+}
+
+
+.logo a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
+
+    font-size:
+        22px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+}
+
+
+nav ul {
+
+    list-style:
+        none;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        28px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+nav ul li a {
+
+    color:
+        #285f61;
+
+    text-decoration:
+        none;
+
+    font-size:
+        16px;
+
+    font-weight:
+        600;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+nav ul li a:hover {
+
+    color:
+        #16aaa9;
+}
+
+
+
+/* =====================================================
+   SHARED FLOATING BECOMING BUBBLE
+===================================================== */
+
+.floating-bubble {
+
+    position:
+        fixed;
+
+    left:
+        12vw;
+
+    top:
+        62vh;
+
+    z-index:
+        2000;
+
+    width:
+        max-content;
+
+    max-width:
+        min(
+            250px,
+            42vw
+        );
+
+    min-height:
+        48px;
+
+    padding:
+        12px 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    pointer-events:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                0.52
+            ),
+            rgba(
+                235,
+                255,
+                252,
+                0.22
+            ) 45%,
+            rgba(
+                170,
+                239,
+                232,
+                0.13
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.75
+        );
+
+    box-shadow:
+
+        inset
+        5px 5px 15px
+        rgba(
+            255,
+            255,
+            255,
+            0.60
+        ),
+
+        inset
+        -5px -5px 15px
+        rgba(
+            78,
+            190,
+            194,
+            0.08
+        ),
+
+        0 12px 30px
+        rgba(
+            40,
+            120,
+            120,
+            0.07
+        );
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    opacity:
+        0;
+
+    transform:
+        scale(0.96);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+.floating-bubble.visible {
+
+    opacity:
+        0.76;
+
+    transform:
+        scale(1);
+}
+
+
+.floating-bubble span {
+
+    color:
+        rgba(
+            40,
+            95,
+            97,
+            0.78
+        );
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.4;
+}
+
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height:
+        650px;
+
+    padding:
+        95px 6%
+        85px;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(
+                255,
+                255,
+                255,
+                0.98
+            ),
+            rgba(
+                226,
+                255,
+                250,
+                0.84
+            ) 48%,
+            rgba(
+                207,
+                250,
+                243,
+                0.96
+            )
+        );
+}
+
+
+
+/* =====================================================
+   HERO BUBBLE
+===================================================== */
+
+.hero-bubble {
+
+    width:
+        170px;
+
+    height:
+        170px;
+
+    margin-bottom:
+        38px;
+
+    border-radius:
+        50% 46% 54% 48%
+        /
+        48% 54% 46% 52%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                0.98
+            ),
+            rgba(
+                210,
+                251,
+                246,
+                0.72
+            )
+        );
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    box-shadow:
+
+        inset
+        12px 12px 28px
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        ),
+
+        inset
+        -12px -12px 28px
+        rgba(
+            72,
+            181,
+            196,
+            0.12
+        ),
+
+        0 25px 60px
+        rgba(
+            40,
+            130,
+            135,
+            0.13
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        65px;
+
+    animation:
+        floatBubble
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes floatBubble {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(3deg);
+    }
+}
+
+
+
+/* =====================================================
+   HERO TEXT
+===================================================== */
+
+.hero h1 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            50px,
+            8vw,
+            82px
+        );
+
+    line-height:
+        1.05;
+
+    margin-bottom:
+        20px;
+}
+
+
+.hero .subtitle {
+
+    color:
+        #285f61;
+
+    font-size:
+        clamp(
+            21px,
+            3vw,
+            29px
+        );
+
+    font-weight:
+        600;
+
+    margin-bottom:
+        25px;
+}
+
+
+.hero p {
+
+    max-width:
+        850px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        20px;
+}
+
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        85px 6%
+        70px;
+
+    text-align:
+        center;
+}
+
+
+.intro-box {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        55px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(
+            40,
+            120,
+            120,
+            0.10
+        );
+}
+
+
+.intro h2 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            52px
+        );
+
+    margin-bottom:
+        28px;
+}
+
+
+.intro p {
+
+    max-width:
+        820px;
+
+    margin:
+        0 auto 22px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+.intro strong {
+
+    color:
+        #285f61;
+}
+
+
+
+/* =====================================================
+   EXPERIENCE TYPES
+===================================================== */
+
+.experiences {
+
+    max-width:
+        1150px;
+
+    margin:
+        0 auto;
+
+    padding:
+        10px 5%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.experiences h2 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            52px
+        );
+
+    margin-bottom:
+        45px;
+}
+
+
+.experience-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        30px;
+}
+
+
+.experience-card {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    padding:
+        45px 32px;
+
+    min-height:
+        300px;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(
+            40,
+            120,
+            120,
+            0.09
+        );
+
+    border-radius:
+        55px 40px 60px 45px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.experience-card:nth-child(2) {
+
+    border-radius:
+        40px 60px 45px 55px;
+}
+
+
+.experience-card:nth-child(3) {
+
+    border-radius:
+        60px 45px 55px 40px;
+}
+
+
+.experience-card:nth-child(4) {
+
+    border-radius:
+        45px 55px 40px 60px;
+}
+
+
+.experience-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 28px 55px
+        rgba(
+            40,
+            120,
+            120,
+            0.14
+        );
+}
+
+
+.experience-icon {
+
+    font-size:
+        45px;
+
+    margin-bottom:
+        18px;
+}
+
+
+.experience-card h3 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        27px;
+
+    margin-bottom:
+        16px;
+}
+
+
+.experience-card p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        18px;
+}
+
+
+
+/* =====================================================
+   COMING
+===================================================== */
+
+.coming {
+
+    max-width:
+        950px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.coming-box {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                220,
+                255,
+                251,
+                0.92
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.97
+            )
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        65px 45px 60px 40px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(
+            40,
+            120,
+            120,
+            0.10
+        );
+}
+
+
+.coming-box h2 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            50px
+        );
+
+    margin-bottom:
+        22px;
+}
+
+
+.coming-box p {
+
+    max-width:
+        780px;
+
+    margin:
+        0 auto 20px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+
+/* =====================================================
+   EVENT SPACE
+===================================================== */
+
+.event-space {
+
+    max-width:
+        1000px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 6%
+        100px;
+
+    text-align:
+        center;
+}
+
+
+.event-space-box {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    padding:
+        55px 8%;
+
+    border-radius:
+        50px;
+
+    box-shadow:
+        0 20px 45px
+        rgba(
+            40,
+            120,
+            120,
+            0.08
+        );
+}
+
+
+.event-space-box h2 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            45px
+        );
+
+    margin-bottom:
+        18px;
+}
+
+
+.event-space-box p {
+
+    color:
+        #5d565f;
+
+    font-size:
+        18px;
+
+    margin-bottom:
+        15px;
+}
+
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta {
+
+    max-width:
+        1050px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 5%
+        115px;
+
+    text-align:
+        center;
+}
+
+
+.cta-box {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.96
+        );
+
+    padding:
+        65px 8%;
+
+    border-radius:
+        60px 45px 65px 40px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(
+            40,
+            120,
+            120,
+            0.12
+        );
+}
+
+
+.cta h2 {
+
+    color:
+        #16a9ae;
+
+    font-size:
+        clamp(
+            36px,
+            6vw,
+            55px
+        );
+
+    margin-bottom:
+        20px;
+}
+
+
+.cta p {
+
+    max-width:
+        780px;
+
+    margin:
+        0 auto 25px;
+
+    color:
+        #5d565f;
+
+    font-size:
+        19px;
+}
+
+
+.cta-button {
+
+    display:
+        inline-block;
+
+    padding:
+        15px 32px;
+
+    border-radius:
+        40px;
+
+    background:
+        #16a9ae;
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    font-size:
+        18px;
+
+    box-shadow:
+        0 12px 28px
+        rgba(
+            22,
+            169,
+            174,
+            0.22
+        );
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.cta-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 17px 35px
+        rgba(
+            22,
+            169,
+            174,
+            0.28
+        );
+}
+
+
+
+/* =====================================================
+   VILLAGE SOUNDTRACK
+===================================================== */
+
+.music-bubble {
+
+    position:
+        fixed;
+
+    right:
+        22px;
+
+    bottom:
+        22px;
+
+    width:
+        170px;
+
+    height:
+        170px;
+
+    z-index:
+        3000;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                0.95
+            ),
+            rgba(
+                224,
+                255,
+                250,
+                0.82
+            ) 50%,
+            rgba(
+                176,
+                239,
+                233,
+                0.62
+            )
+        );
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        );
+
+    box-shadow:
+
+        inset
+        8px 8px 20px
+        rgba(
+            255,
+            255,
+            255,
+            0.80
+        ),
+
+        0 15px 40px
+        rgba(
+            40,
+            120,
+            120,
+            0.15
+        );
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    transition:
+        all 0.4s ease;
+}
+
+
+.music-bubble:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            40,
+            120,
+            120,
+            0.20
+        );
+}
+
+
+.music-closed {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+
+.music-label {
+
+    position:
+        absolute;
+
+    top:
+        17px;
+
+    width:
+        100%;
+
+    text-align:
+        center;
+
+    color:
+        #285f61;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+
+.record-player {
+
+    width:
+        112px;
+
+    height:
+        78px;
+
+    margin-top:
+        18px;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ddd5ca,
+            #b8aa99
+        );
+
+    box-shadow:
+        0 7px 14px
+        rgba(
+            0,
+            0,
+            0,
+            0.16
+        );
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+
+.record {
+
+    width:
+        61px;
+
+    height:
+        61px;
+
+    border-radius:
+        50%;
+
+    background:
+        #181818;
+
+    border:
+        4px solid
+        #101010;
+
+    position:
+        relative;
+}
+
+
+.record::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        8px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.13
+        );
+}
+
+
+.record::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    border-radius:
+        50%;
+
+    background:
+        #d5c3a2;
+
+    border:
+        2px solid
+        #111111;
+}
+
+
+.play-button {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            22,
+            170,
+            169,
+            0.94
+        );
+
+    color:
+        #ffffff;
+
+    border:
+        2px solid
+        #ffffff;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        12px;
+
+    z-index:
+        5;
+}
+
+
+.tone-arm {
+
+    position:
+        absolute;
+
+    width:
+        35px;
+
+    height:
+        4px;
+
+    right:
+        6px;
+
+    top:
+        15px;
+
+    background:
+        #4c4842;
+
+    border-radius:
+        5px;
+
+    transform:
+        rotate(
+            28deg
+        );
+
+    transform-origin:
+        right center;
+}
+
+
+.tap-note {
+
+    position:
+        absolute;
+
+    bottom:
+        13px;
+
+    width:
+        100%;
+
+    text-align:
+        center;
+
+    color:
+        #527779;
+
+    font-size:
+        9px;
+}
+
+
+
+/* =====================================================
+   OPEN SOUNDTRACK
+===================================================== */
+
+.music-open {
+
+    width:
+        min(
+            390px,
+            calc(
+                100vw - 24px
+            )
+        );
+
+    height:
+        auto;
+
+    min-height:
+        245px;
+
+    border-radius:
+        32px;
+
+    cursor:
+        default;
+
+    padding:
+        16px;
+}
+
+
+.music-open
+.music-closed {
+
+    display:
+        none;
+}
+
+
+.music-player-content {
+
+    display:
+        none;
+
+    width:
+        100%;
+}
+
+
+.music-open
+.music-player-content {
+
+    display:
+        block;
+}
+
+
+.music-player-title {
+
+    text-align:
+        center;
+
+    color:
+        #285f61;
+
+    font-weight:
+        700;
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        2px;
+}
+
+
+.music-player-song {
+
+    text-align:
+        center;
+
+    color:
+        #16aaa9;
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        10px;
+}
+
+
+.soundcloud-frame {
+
+    width:
+        100%;
+
+    height:
+        166px;
+
+    border:
+        none;
+
+    border-radius:
+        16px;
+
+    overflow:
+        hidden;
+}
+
+
+.close-music {
+
+    display:
+        block;
+
+    margin:
+        9px auto 0;
+
+    border:
+        none;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.90
+        );
+
+    color:
+        #285f61;
+
+    padding:
+        7px 20px;
+
+    border-radius:
+        25px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+}
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            40,
+            95,
+            97,
+            0.10
+        );
+
+    text-align:
+        center;
+
+    padding:
+        55px 6%;
+
+    color:
+        #5d565f;
+}
+
+
+footer p {
+
+    margin-bottom:
+        12px;
+}
+
+
+footer a {
+
+    color:
+        #16a9ae;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+}
+
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (
+    max-width: 900px
+) {
+
+    nav {
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+
+        gap:
+            18px;
+    }
+
+
+    .logo a {
+
+        white-space:
+            normal;
+
+        display:
+            block;
+    }
+
+
+    nav ul {
+
+        justify-content:
+            center;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            12px 18px;
+    }
+
+
+    .experience-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        margin:
+            0 auto;
+    }
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    nav {
+
+        padding:
+            18px 5%;
+    }
+
+
+    .logo a {
+
+        font-size:
+            20px;
+    }
+
+
+    nav ul {
+
+        gap:
+            10px 15px;
+    }
+
+
+    nav ul li a {
+
+        font-size:
+            14px;
+    }
+
+
+    .hero {
+
+        min-height:
+            560px;
+
+        padding:
+            70px 5%
+            65px;
+    }
+
+
+    .hero-bubble {
+
+        width:
+            140px;
+
+        height:
+            140px;
+
+        font-size:
+            52px;
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            46px;
+    }
+
+
+    .hero p {
+
+        font-size:
+            17px;
+    }
+
+
+    .intro {
+
+        padding:
+            60px 5%;
+    }
+
+
+    .intro-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .intro p {
+
+        font-size:
+            17px;
+    }
+
+
+    .experience-card {
+
+        padding:
+            40px 25px;
+    }
+
+
+    .coming-box,
+    .event-space-box,
+    .cta-box {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .coming-box p,
+    .event-space-box p,
+    .cta p {
+
+        font-size:
+            17px;
+    }
+
+
+    .floating-bubble {
+
+        max-width:
+            190px;
+
+        padding:
+            10px 17px;
+    }
+
+
+    .floating-bubble span {
+
+        font-size:
+            12px;
+    }
+
+
+    .music-bubble {
+
+        width:
+            145px;
+
+        height:
+            145px;
+
+        right:
+            10px;
+
+        bottom:
+            10px;
+    }
+
+
+    .music-open {
+
+        width:
+            calc(
+                100vw - 20px
+            );
+
+        right:
+            10px;
+
+        bottom:
+            10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header>
+
+<nav>
+
+
+<div class="logo">
+
+<a href="index.html">
+
+    🌱 The Still Becoming Village Circle
+
+</a>
+
+</div>
+
+
+
+<ul>
+
+
+<li>
+<a href="index.html">
+    Home
+</a>
+</li>
+
+
+<li>
+<a href="about.html">
+    Inside the Bubble
+</a>
+</li>
+
+
+<li>
+<a href="LearningtheUnknown.html">
+    The Unknown
+</a>
+</li>
+
+
+<li>
+<a href="experiences.html">
+    Experiences
+</a>
+</li>
+
+
+<li>
+<a href="contact.html">
+    Connect
+</a>
+</li>
+
+
+<li>
+<a href="coaching.html">
+    Support
+</a>
+</li>
+
+
+</ul>
+
+</nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     SHARED FLOATING BECOMING BUBBLE
+===================================================== -->
+
+<div
+    class="floating-bubble"
+    id="floatingBubble"
+    aria-hidden="true"
+>
+
+<span id="floatingMessage">
+
+    🫧 You belong before you bloom.
+
+</span>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+
+<div class="hero-bubble">
+
+    ✨
+
+</div>
+
+
+<h1>
+
+    Experiences
+
+</h1>
+
+
+<div class="subtitle">
+
+    Becoming is something you experience.
+
+</div>
+
+
+<p>
+
+    The Still Becoming Village Circle isn't
+    meant to live only on a screen.
+
+    Some things are meant to be felt,
+    explored, shared, created, and remembered.
+
+</p>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+
+<div class="intro-box">
+
+
+<h2>
+
+    More Than Something to Look At.
+
+</h2>
+
+
+<p>
+
+    Experiences are opportunities to step
+    outside of simply consuming information
+    and actually participate in something.
+
+</p>
+
+
+<p>
+
+    A conversation.
+
+    A gathering.
+
+    A workshop.
+
+    A creative moment.
+
+    A reflection.
+
+    A room full of people discovering that
+    they aren't the only ones figuring life out.
+
+</p>
+
+
+<p>
+
+    Some experiences will happen virtually.
+
+    Some may happen in person.
+
+    Some may be quiet.
+
+    Some may be loud.
+
+</p>
+
+
+<p>
+
+    The common thread is simple:
+
+    <strong>
+
+        you get to experience the Village,
+        not just read about it.
+
+    </strong>
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EXPERIENCE TYPES
+===================================================== -->
+
+<section class="experiences">
+
+
+<h2>
+
+    What Might Happen Here
+
+</h2>
+
+
+<div class="experience-grid">
+
+
+
+<!-- =================================================
+     WORKSHOPS
+================================================== -->
+
+<div class="experience-card">
+
+
+<div class="experience-icon">
+
+    🧠
+
+</div>
+
+
+<h3>
+
+    Workshops
+
+</h3>
+
+
+<p>
+
+    Interactive spaces for learning,
+    reflection, conversation, and
+    practical exploration.
+
+</p>
+
+
+<p>
+
+    Come ready to question something,
+    learn something, or see something
+    differently.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =================================================
+     VILLAGE GATHERINGS
+================================================== -->
+
+<div class="experience-card">
+
+
+<div class="experience-icon">
+
+    🫂
+
+</div>
+
+
+<h3>
+
+    Village Gatherings
+
+</h3>
+
+
+<p>
+
+    Spaces to connect with other people
+    who are also navigating the beautiful,
+    complicated process of becoming.
+
+</p>
+
+
+<p>
+
+    No performance required.
+
+    Just presence.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =================================================
+     CREATIVE EXPERIENCES
+================================================== -->
+
+<div class="experience-card">
+
+
+<div class="experience-icon">
+
+    🎨
+
+</div>
+
+
+<h3>
+
+    Creative Experiences
+
+</h3>
+
+
+<p>
+
+    Art, writing, décor, storytelling,
+    books, visual experiences, and
+    other ways of making an idea tangible.
+
+</p>
+
+
+<p>
+
+    Sometimes creativity says what
+    ordinary conversation cannot.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =================================================
+     REAL CONVERSATIONS
+================================================== -->
+
+<div class="experience-card">
+
+
+<div class="experience-icon">
+
+    💬
+
+</div>
+
+
+<h3>
+
+    Real Conversations
+
+</h3>
+
+
+<p>
+
+    Conversations about the things
+    people don't always know how to
+    say out loud.
+
+</p>
+
+
+<p>
+
+    Curiosity belongs here.
+
+    So does honesty.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THE VILLAGE IS STILL BECOMING
+===================================================== -->
+
+<section class="coming">
+
+
+<div class="coming-box">
+
+
+<h2>
+
+    The Village Is Still Becoming.
+
+</h2>
+
+
+<p>
+
+    Some experiences are already taking shape.
+
+    Others haven't been created yet.
+
+</p>
+
+
+<p>
+
+    That's intentional.
+
+</p>
+
+
+<p>
+
+    This Village is allowed to grow organically.
+
+    New conversations can become new gatherings.
+
+    New ideas can become new experiences.
+
+    And something that doesn't exist today
+    may become exactly what someone needs tomorrow.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHAT'S COMING
+===================================================== -->
+
+<section class="event-space">
+
+
+<div class="event-space-box">
+
+
+<h2>
+
+    🗓️ What's Coming
+
+</h2>
+
+
+<p>
+
+    Upcoming Village experiences,
+    workshops, gatherings, and special
+    events will live here as they are created.
+
+</p>
+
+
+<p>
+
+    Check back as the Village continues
+    to take shape.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+
+<div class="cta-box">
+
+
+<h2>
+
+    Maybe Your Experience Starts Here.
+
+</h2>
+
+
+<p>
+
+    If you're curious about the Village,
+    have an idea for an experience,
+    or simply want to begin exploring,
+    there's a place to start.
+
+</p>
+
+
+<a
+    href="contact.html"
+    class="cta-button"
+>
+
+    🫧 Connect With the Village
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VILLAGE SOUNDTRACK
+===================================================== -->
+
+<div
+    class="music-bubble"
+    id="musicBubble"
+    onclick="openMusic()"
+>
+
+
+<div class="music-closed">
+
+
+<div class="music-label">
+
+    🫧 The Village Soundtrack
+
+</div>
+
+
+<div class="record-player">
+
+
+<div class="record">
+
+
+<div class="play-button">
+
+    ▶
+
+</div>
+
+
+</div>
+
+
+<div class="tone-arm"></div>
+
+
+</div>
+
+
+<div class="tap-note">
+
+    Tap the record to listen
+
+</div>
+
+
+</div>
+
+
+
+<div
+    class="music-player-content"
+    onclick="event.stopPropagation()"
+>
+
+
+<div class="music-player-title">
+
+    🫧 The Village Soundtrack
+
+</div>
+
+
+<div class="music-player-song">
+
+    Bricks — Andra Day
+
+</div>
+
+
+<iframe
+    class="soundcloud-frame"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay; encrypted-media"
+    title="The Village Soundtrack"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"
+>
+</iframe>
+
+
+<button
+    class="close-music"
+    type="button"
+    onclick="closeMusic()"
+>
+
+    Close
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+<p>
+
+    Take what you need.
+
+    <br><br>
+
+    Leave what you don't.
+
+    <br><br>
+
+    Come back whenever you need to.
+
+</p>
+
+
+<p>
+
+    Healing isn't a destination.
+
+    <br><br>
+
+    It's a circle we grow through together.
+
+</p>
+
+
+<p>
+
+    📧
+
+    <a
+        href="mailto:thestillbecomingvillagecircle@gmail.com"
+    >
+
+        thestillbecomingvillagecircle@gmail.com
+
+    </a>
+
+</p>
+
+
+<p>
+
+    © 2026 The Still Becoming Village Circle
+
+</p>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     FLOATING MESSAGE SYSTEM
+===================================================== -->
+
+<script>
+
+const becomingMessages = [
+
+    "🫧 You belong before you bloom.",
+
+    "🫧 Healing isn't linear.",
+
+    "🫧 Rest is productive.",
+
+    "🫧 Curiosity creates connection.",
+
+    "🫧 Becoming takes courage.",
+
+    "🫧 It's okay to begin again."
+
+];
+
+
+const floatingBubble =
+    document.getElementById(
+        "floatingBubble"
+    );
+
+
+const floatingMessage =
+    document.getElementById(
+        "floatingMessage"
+    );
+
+
+let messageIndex = 0;
+
+
+let currentX = 12;
+
+let currentY = 62;
+
+
+let targetX = 12;
+
+let targetY = 62;
+
+
+
+function chooseNewBubblePosition() {
+
+    const maxX =
+        window.innerWidth < 600
+            ? 68
+            : 78;
+
+
+    const maxY =
+        window.innerWidth < 600
+            ? 78
+            : 84;
+
+
+    targetX =
+        8 +
+        Math.random()
+        *
+        (
+            maxX - 8
+        );
+
+
+    targetY =
+        14 +
+        Math.random()
+        *
+        (
+            maxY - 14
+        );
+
+}
+
+
+
+function moveBubble() {
+
+    currentX +=
+        (
+            targetX - currentX
+        )
+        *
+        0.0028;
+
+
+    currentY +=
+        (
+            targetY - currentY
+        )
+        *
+        0.0028;
+
+
+    floatingBubble.style.left =
+        currentX + "%";
+
+
+    floatingBubble.style.top =
+        currentY + "%";
+
+
+    requestAnimationFrame(
+        moveBubble
+    );
+
+}
+
+
+
+function changeMessage() {
+
+    floatingBubble.classList.remove(
+        "visible"
+    );
+
+
+    setTimeout(
+        function() {
+
+
+            messageIndex =
+                (
+                    messageIndex + 1
+                )
+                %
+                becomingMessages.length;
+
+
+            floatingMessage.textContent =
+                becomingMessages[
+                    messageIndex
+                ];
+
+
+            chooseNewBubblePosition();
+
+
+            floatingBubble.classList.add(
+                "visible"
+            );
+
+
+        },
+        1800
+    );
+
+}
+
+
+
+chooseNewBubblePosition();
+
+
+setTimeout(
+    function() {
+
+        floatingBubble.classList.add(
+            "visible"
+        );
+
+    },
+    1800
+);
+
+
+moveBubble();
+
+
+setInterval(
+    changeMessage,
+    9000
+);
+
+</script>
+
+
+
+<!-- =====================================================
+     MUSIC SYSTEM
+===================================================== -->
+
+<script>
+
+function openMusic() {
+
+    const bubble =
+        document.getElementById(
+            "musicBubble"
+        );
+
+
+    bubble.classList.add(
+        "music-open"
+    );
+
+}
+
+
+
+function closeMusic() {
+
+    const bubble =
+        document.getElementById(
+            "musicBubble"
+        );
+
+
+    bubble.classList.remove(
+        "music-open"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
