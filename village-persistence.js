@@ -39,9 +39,9 @@
 
         const emailButton = document.createElement('a');
         emailButton.className = 'payment-button';
-        emailButton.href = 'mailto:thestillbecomingvillagecircle@gmail.com?subject=The%20Audacity%20of%20You%20-%20Welcome%20Session%20Claim&body=Hello%20The%20Still%20Becoming%20Village%20Circle%2C%0A%0AI%27d%20like%20to%20claim%20my%20complimentary%20Still%20Becoming%20Welcome%20Session.%0A%0AName%3A%20%0AAmazon%20Order%20Number%3A%20%0APurchase%20Date%3A%20%0A%0AI%27ve%20attached%20my%20Amazon%20purchase%20confirmation.%0A%0AThank%20you!';
+        emailButton.href = 'mailto:thestillbecomingvillagecircle@gmail.com?subject=The%20Audacity%20of%20You%20-%20Welcome%20Session%20Verification&body=Hello%20The%20Still%20Becoming%20Village%20Circle%2C%0A%0AI%27d%20like%20to%20verify%20my%20purchase%20of%20The%20Audacity%20of%20You%20and%20begin%20the%20process%20of%20accessing%20my%20complimentary%20Still%20Becoming%20Welcome%20Session.%0A%0AName%3A%20%0AAmazon%20Order%20Number%3A%20%0APurchase%20Date%3A%20%0A%0AI%27ve%20attached%20my%20Amazon%20purchase%20confirmation.%0A%0AThank%20you!';
         emailButton.textContent = '📧 Email My Purchase Confirmation';
-        emailButton.setAttribute('aria-label', 'Email my Amazon purchase confirmation to claim the complimentary Welcome Session');
+        emailButton.setAttribute('aria-label', 'Email my Amazon purchase confirmation to begin the process of accessing the complimentary Welcome Session');
 
         const instruction = document.createElement('p');
         instruction.textContent = 'After you purchase, tap the button below, attach your Amazon purchase confirmation, and send it. That’s it. 🫶🏾';
@@ -49,13 +49,30 @@
         instruction.style.color = '#5d565f';
         instruction.style.marginTop = '18px';
 
+        const catalystHeading = document.createElement('h3');
+        catalystHeading.textContent = '🌱 Ready to Catalyze Your Embrace of Becoming?';
+        catalystHeading.style.color = '#16aaa9';
+        catalystHeading.style.fontSize = '24px';
+        catalystHeading.style.marginTop = '28px';
+        catalystHeading.style.marginBottom = '10px';
+
+        const catalystText = document.createElement('p');
+        catalystText.textContent = 'Once your purchase has been verified, you’ll receive instructions to begin your complimentary Still Becoming Welcome Session.';
+        catalystText.style.fontSize = '16px';
+        catalystText.style.color = '#5d565f';
+        catalystText.style.marginBottom = '12px';
+
         const purchaseLink = card.querySelector('a[href*="a.co"]');
         if (purchaseLink) {
             purchaseLink.insertAdjacentElement('afterend', instruction);
             instruction.insertAdjacentElement('afterend', emailButton);
+            emailButton.insertAdjacentElement('afterend', catalystHeading);
+            catalystHeading.insertAdjacentElement('afterend', catalystText);
         } else {
             card.appendChild(instruction);
             card.appendChild(emailButton);
+            card.appendChild(catalystHeading);
+            card.appendChild(catalystText);
         }
     }
 
