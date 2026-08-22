@@ -37,42 +37,39 @@
 
         card.dataset.launchExperienceUpdated = 'true';
 
-        const emailButton = document.createElement('a');
-        emailButton.className = 'payment-button';
-        emailButton.href = 'mailto:thestillbecomingvillagecircle@gmail.com?subject=The%20Audacity%20of%20You%20-%20Welcome%20Session%20Verification&body=Hello%20The%20Still%20Becoming%20Village%20Circle%2C%0A%0AI%27d%20like%20to%20verify%20my%20purchase%20of%20The%20Audacity%20of%20You%20and%20begin%20the%20process%20of%20accessing%20my%20complimentary%20Still%20Becoming%20Welcome%20Session.%0A%0AName%3A%20%0AAmazon%20Order%20Number%3A%20%0APurchase%20Date%3A%20%0A%0AI%27ve%20attached%20my%20Amazon%20purchase%20confirmation.%0A%0AThank%20you!';
-        emailButton.textContent = '📧 Email My Purchase Confirmation';
-        emailButton.setAttribute('aria-label', 'Email my Amazon purchase confirmation to begin the process of accessing the complimentary Welcome Session');
+        const oldEmailButton = card.querySelector('.launch-email');
+        if (oldEmailButton) oldEmailButton.remove();
 
-        const instruction = document.createElement('p');
-        instruction.textContent = 'After you purchase, tap the button below, attach your Amazon purchase confirmation, and send it. That’s it. 🫶🏾';
-        instruction.style.fontSize = '15px';
-        instruction.style.color = '#5d565f';
-        instruction.style.marginTop = '18px';
-
-        const catalystHeading = document.createElement('h3');
-        catalystHeading.textContent = '🌱 Ready to Catalyze Your Embrace of Becoming?';
-        catalystHeading.style.color = '#16aaa9';
-        catalystHeading.style.fontSize = '24px';
-        catalystHeading.style.marginTop = '28px';
-        catalystHeading.style.marginBottom = '10px';
-
-        const catalystText = document.createElement('p');
-        catalystText.textContent = 'Once your purchase has been verified, you’ll receive instructions to begin your complimentary Still Becoming Welcome Session.';
-        catalystText.style.fontSize = '16px';
-        catalystText.style.color = '#5d565f';
-        catalystText.style.marginBottom = '12px';
-
-        const purchaseLink = card.querySelector('a[href*="a.co"]');
-        if (purchaseLink) {
-            purchaseLink.insertAdjacentElement('afterend', instruction);
-            instruction.insertAdjacentElement('afterend', emailButton);
-            emailButton.insertAdjacentElement('afterend', catalystHeading);
-            catalystHeading.insertAdjacentElement('afterend', catalystText);
-        } else {
-            card.appendChild(instruction);
-            card.appendChild(emailButton);
-            card.appendChild(catalystHeading);
-            card.appendChild(catalystText);
+        const catalystParagraph = Array.from(card.querySelectorAll('p')).find(p => /Catalyze My Embrace of Becoming/i.test(p.textContent));
+        if (catalystParagraph) {
+            const bubble = document.createElement('a');
+            bubble.className = 'catalyze-bubble';
+            bubble.href = 'mailto:thestillbecomingvillagecircle@gmail.com?subject=The%20Audacity%20of%20You%20-%20Welcome%20Session%20Verification&body=Hello%20The%20Still%20Becoming%20Village%20Circle%2C%0A%0AI%20purchased%20The%20Audacity%20of%20You%20through%20Amazon%20Kindle.%20I%20have%20attached%20my%20Amazon%20purchase%20confirmation%20for%20verification.%0A%0AThank%20you!';
+            bubble.textContent = '🌱 Catalyze My Embrace of Becoming';
+            bubble.setAttribute('aria-label', 'Catalyze my embrace of becoming and email my Amazon purchase confirmation');
+            bubble.style.display = 'flex';
+            bubble.style.alignItems = 'center';
+            bubble.style.justifyContent = 'center';
+            bubble.style.maxWidth = '340px';
+            bubble.style.minHeight = '88px';
+            bubble.style.margin = '18px auto 6px';
+            bubble.style.padding = '18px 28px';
+            bubble.style.textAlign = 'center';
+            bubble.style.borderRadius = '50%';
+            bubble.style.background = 'radial-gradient(circle at 30% 25%,rgba(255,255,255,.96),rgba(210,251,246,.76) 55%,rgba(170,239,232,.28))';
+            bubble.style.border = '2px solid rgba(255,255,255,.92)';
+            bubble.style.boxShadow = 'inset 8px 8px 18px rgba(255,255,255,.82), inset -8px -8px 18px rgba(78,190,194,.08), 0 14px 30px rgba(40,120,120,.10)';
+            bubble.style.backdropFilter = 'blur(5px)';
+            bubble.style.webkitBackdropFilter = 'blur(5px)';
+            bubble.style.color = '#285f61';
+            bubble.style.fontSize = '18px';
+            bubble.style.fontWeight = '700';
+            bubble.style.lineHeight = '1.35';
+            bubble.style.textDecoration = 'none';
+            bubble.style.transition = 'transform .25s ease, box-shadow .25s ease';
+            bubble.addEventListener('mouseenter', () => { bubble.style.transform = 'translateY(-3px)'; });
+            bubble.addEventListener('mouseleave', () => { bubble.style.transform = 'translateY(0)'; });
+            catalystParagraph.replaceWith(bubble);
         }
     }
 
