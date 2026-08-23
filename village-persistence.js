@@ -1,9 +1,28 @@
-/* The Still Becoming Village Circle — music bootstrap + page-specific resource enhancement */
+/* The Still Becoming Village Circle — shared page enhancements */
 (function () {
     'use strict';
 
     if (window.__TSBVC_MUSIC_BOOTSTRAP__) return;
     window.__TSBVC_MUSIC_BOOTSTRAP__ = true;
+
+    function addWebspaceNavigation() {
+        const navList = document.querySelector('nav ul');
+        if (!navList || navList.querySelector('a[href="web-design.html"]')) return;
+
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = 'web-design.html';
+        link.textContent = 'Webspace';
+        link.setAttribute('aria-label', 'Webspace for Intentional Becoming');
+        item.appendChild(link);
+
+        const experienceLink = Array.from(navList.querySelectorAll('a')).find(a => /Experiences/i.test(a.textContent));
+        if (experienceLink && experienceLink.parentElement) {
+            experienceLink.parentElement.insertAdjacentElement('afterend', item);
+        } else {
+            navList.appendChild(item);
+        }
+    }
 
     function addMetanoiaBookResource() {
         if (!/LearningtheUnknown\.html$/.test(location.pathname)) return;
@@ -74,6 +93,8 @@
     }
 
     function init() {
+        addWebspaceNavigation();
+
         if (!document.getElementById('villageSoundtrack') && !document.querySelector('script[src*="village-music.js"]')) {
             const script = document.createElement('script');
             script.src = 'village-music.js';
