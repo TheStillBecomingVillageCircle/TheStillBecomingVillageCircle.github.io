@@ -13,7 +13,6 @@
 
     let soundtrackWidget = null;
     let soundtrackReady = false;
-    let pendingScrollPlay = false;
     let soundtrackPlaying = false;
 
     function removeLegacyPlayers() {
@@ -25,40 +24,28 @@
         const style = document.createElement('style');
         style.id = 'village-music-styles';
         style.textContent = `
-            #${PLAYER_ID}{position:fixed;right:22px;bottom:22px;width:178px;height:178px;border-radius:50%;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.96),rgba(225,255,251,.58) 42%,rgba(173,238,232,.28) 70%,rgba(143,226,220,.16));border:2px solid rgba(255,255,255,.82);box-shadow:0 18px 45px rgba(40,120,120,.16),inset 10px 10px 24px rgba(255,255,255,.82),inset -8px -8px 22px rgba(68,180,187,.10);z-index:99999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:villageFloat 5s ease-in-out infinite;cursor:pointer;overflow:hidden}
-            #${PLAYER_ID}::before,#${PLAYER_ID}::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.62);pointer-events:none}
-            #${PLAYER_ID}::before{width:28px;height:28px;left:18px;top:24px;background:rgba(255,255,255,.20)}
-            #${PLAYER_ID}::after{width:13px;height:13px;right:24px;top:36px;background:rgba(255,255,255,.28)}
-            #${PLAYER_ID}.open{width:min(390px,calc(100vw - 24px));height:auto;min-height:245px;border-radius:32px;animation:none;padding:16px;cursor:default}
-            #${PLAYER_ID} .closed{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;cursor:pointer;text-align:center}
-            #${PLAYER_ID}.open .closed{display:none}
-            #${PLAYER_ID} .label{text-align:center;font:700 12px Arial,sans-serif;color:#285f61;margin-bottom:5px;text-shadow:0 1px 1px rgba(255,255,255,.75)}
-            #${PLAYER_ID} .music-orb{width:104px;height:104px;display:flex;align-items:center;justify-content:center;position:relative;background:transparent;border:0;box-shadow:none}
-            #${PLAYER_ID} .sax{width:72px;height:72px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 4px 8px rgba(40,120,120,.12));transform:none;position:relative}
-            .sax-bubble{width:70px;height:70px;display:block;overflow:visible}
-            .sax-bubble .body{fill:url(#saxGlass);stroke:rgba(255,255,255,.86);stroke-width:1.5}
-            .sax-bubble .edge{fill:none;stroke:rgba(40,120,120,.28);stroke-width:1.5}
-            .sax-bubble .shine{fill:none;stroke:rgba(255,255,255,.92);stroke-width:2.2;stroke-linecap:round}
-            .sax-bubble .key{fill:rgba(255,255,255,.48);stroke:rgba(40,120,120,.22);stroke-width:1}
-            .sax-bubble .bubble-highlight{fill:rgba(255,255,255,.34);stroke:rgba(255,255,255,.72);stroke-width:1}
-            #${PLAYER_ID} .play{position:absolute;right:-2px;bottom:-2px;width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.95);background:rgba(22,170,169,.92);color:white;display:flex;align-items:center;justify-content:center;font:15px Arial,sans-serif;box-shadow:0 5px 12px rgba(40,120,120,.18)}
-            #${PLAYER_ID}.playing .play::after{content:'❚❚';font-size:12px;letter-spacing:-1px}
+            #${PLAYER_ID}{position:fixed;right:24px;bottom:24px;width:92px;height:92px;background:transparent;border:0;box-shadow:none;z-index:99999;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:visible}
+            #${PLAYER_ID} .closed{position:relative;width:92px;height:92px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:0;box-shadow:none}
+            #${PLAYER_ID} .music-orb{width:88px;height:88px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;box-shadow:none}
+            #${PLAYER_ID} .sax{width:86px;height:86px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 5px 10px rgba(40,120,120,.12));position:relative}
+            .sax-bubble{width:86px;height:86px;display:block;overflow:visible}
+            .sax-bubble .body{fill:url(#saxGlass);stroke:rgba(255,255,255,.90);stroke-width:1.4}
+            .sax-bubble .edge{fill:none;stroke:rgba(40,120,120,.24);stroke-width:1.3}
+            .sax-bubble .shine{fill:none;stroke:rgba(255,255,255,.94);stroke-width:2.1;stroke-linecap:round}
+            .sax-bubble .key{fill:rgba(255,255,255,.46);stroke:rgba(40,120,120,.20);stroke-width:1}
+            .sax-bubble .bubble-highlight{fill:rgba(255,255,255,.30);stroke:rgba(255,255,255,.70);stroke-width:1}
+            #${PLAYER_ID} .play{position:absolute;right:0;bottom:0;width:29px;height:29px;border-radius:50%;border:1.5px solid rgba(255,255,255,.95);background:rgba(22,170,169,.82);color:white;display:flex;align-items:center;justify-content:center;font:13px Arial,sans-serif;box-shadow:0 4px 10px rgba(40,120,120,.14)}
+            #${PLAYER_ID}.playing .play::after{content:'❚❚';font-size:10px;letter-spacing:-1px}
             #${PLAYER_ID}.playing .play{font-size:0}
-            #${PLAYER_ID} .tap{text-align:center;font:11px Arial,sans-serif;color:#527779;margin-top:6px}
-            #${PLAYER_ID} .tap::after{content:' • Tap to pause';display:none}
-            #${PLAYER_ID}.playing .tap::after{display:inline}
-            #${PLAYER_ID}.playing .tap{font-weight:600}
-            #${PLAYER_ID}.open .tap{display:none}
-            #${PLAYER_ID} .content{position:absolute;left:1px;top:1px;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
-            #${PLAYER_ID}.open .content{position:static;width:100%;height:auto;opacity:1;pointer-events:auto;overflow:visible}
+            #${PLAYER_ID} .content{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
+            #${PLAYER_ID}.open .content{position:fixed;left:auto;top:auto;right:20px;bottom:20px;width:min(390px,calc(100vw - 40px));height:auto;opacity:1;pointer-events:auto;overflow:visible;background:rgba(235,255,252,.94);border:1px solid rgba(255,255,255,.85);border-radius:24px;padding:16px;box-shadow:0 18px 45px rgba(40,120,120,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
             #${PLAYER_ID} .title{text-align:center;color:#285f61;font:700 17px Arial,sans-serif;margin-bottom:2px}
             #${PLAYER_ID} .song{text-align:center;color:#16aaa9;font:14px Arial,sans-serif;margin-bottom:10px}
             #${PLAYER_ID} iframe{width:100%;height:166px;border:0;border-radius:16px;overflow:hidden}
             #${PLAYER_ID} .close{display:block;margin:9px auto 0;border:0;background:rgba(255,255,255,.9);color:#285f61;padding:7px 20px;border-radius:25px;font-weight:700;cursor:pointer}
             .conversation-link,.becoming-journey-link{margin-top:10px!important;padding:13px 24px;border:0;border-radius:52% 48% 45% 55% / 48% 55% 45% 52%;background:rgba(22,170,169,.10);color:#16aaa9;font-family:inherit;font-size:inherit;font-weight:700;line-height:1.4;cursor:pointer;appearance:none;-webkit-appearance:none;box-shadow:0 10px 24px rgba(40,120,120,.08);transition:transform .25s ease,background .25s ease}
             .conversation-link:hover,.becoming-journey-link:hover{background:rgba(22,170,169,.16);text-decoration:none!important;transform:translateY(-2px)}
-            @keyframes villageFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-            @media(max-width:600px){#${PLAYER_ID}{width:150px;height:150px;right:10px;bottom:10px}#${PLAYER_ID}.open{width:calc(100vw - 20px);min-height:240px;right:10px;bottom:10px}#${PLAYER_ID} .music-orb{width:90px;height:90px}#${PLAYER_ID} .sax{width:64px;height:64px}.sax-bubble{width:62px;height:62px}}
+            @media(max-width:600px){#${PLAYER_ID}{width:84px;height:84px;right:8px;bottom:10px}#${PLAYER_ID} .closed{width:84px;height:84px}#${PLAYER_ID} .music-orb{width:80px;height:80px}#${PLAYER_ID} .sax{width:80px;height:80px}.sax-bubble{width:80px;height:80px}#${PLAYER_ID} .play{width:27px;height:27px;right:-1px;bottom:-1px}}
         `;
         document.head.appendChild(style);
     }
@@ -70,18 +57,12 @@
     }
 
     function playSoundtrack() {
-        if (!soundtrackWidget || !soundtrackReady) {
-            pendingScrollPlay = true;
-            return;
-        }
-        try { soundtrackWidget.play(); } catch (error) {}
+        if (!soundtrackWidget || !soundtrackReady) return false;
+        try { soundtrackWidget.play(); return true; } catch (error) { return false; }
     }
 
-    function playFromGesture() {
-        pendingScrollPlay = false;
-        if (soundtrackWidget && soundtrackReady) {
-            try { soundtrackWidget.play(); return; } catch (error) {}
-        }
+    function playFromUserGesture() {
+        if (playSoundtrack()) return;
         const iframe = document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
         if (!iframe) return;
         try {
@@ -107,23 +88,16 @@
             soundtrackWidget.bind(window.SC.Widget.Events.READY, function () {
                 soundtrackReady = true;
                 iframe.dataset.loopBound = 'true';
-
                 soundtrackWidget.bind(window.SC.Widget.Events.PLAY, function () { setPlayingState(true); });
                 soundtrackWidget.bind(window.SC.Widget.Events.PAUSE, function () { setPlayingState(false); });
                 soundtrackWidget.bind(window.SC.Widget.Events.FINISH, function () {
                     soundtrackWidget.seekTo(0);
                     soundtrackWidget.play();
                 });
-
-                if (pendingScrollPlay) {
-                    pendingScrollPlay = false;
-                    playSoundtrack();
-                }
             });
         }
 
         if (window.SC && window.SC.Widget) { bindWidget(); return; }
-
         let api = document.getElementById('soundcloud-widget-api');
         if (!api) {
             api = document.createElement('script');
@@ -140,41 +114,39 @@
     function initializeScrollPlayback() {
         if (window.__TSBVC_SCROLL_MUSIC__) return;
         window.__TSBVC_SCROLL_MUSIC__ = true;
+        let attempted = false;
 
-        let startedByScroll = false;
-
-        function startFromUserScroll() {
-            if (startedByScroll) return;
-            startedByScroll = true;
-            playFromGesture();
-            window.removeEventListener('touchstart', startFromUserScroll);
-            window.removeEventListener('pointerdown', startFromUserScroll);
-            window.removeEventListener('touchmove', startFromUserScroll);
-            window.removeEventListener('wheel', startFromUserScroll);
-            window.removeEventListener('pointermove', startFromUserScroll);
-            window.removeEventListener('scroll', startFromUserScroll);
+        function startFromFirstGesture() {
+            if (attempted) return;
+            attempted = true;
+            playFromUserGesture();
+            window.removeEventListener('touchstart', startFromFirstGesture);
+            window.removeEventListener('pointerdown', startFromFirstGesture);
+            window.removeEventListener('wheel', startFromFirstGesture);
+            window.removeEventListener('touchmove', startFromFirstGesture);
+            window.removeEventListener('pointermove', startFromFirstGesture);
+            window.removeEventListener('scroll', startFromFirstGesture);
         }
 
-        window.addEventListener('touchstart', startFromUserScroll, { passive:true, once:true });
-        window.addEventListener('pointerdown', startFromUserScroll, { passive:true, once:true });
-        window.addEventListener('touchmove', startFromUserScroll, { passive:true, once:true });
-        window.addEventListener('wheel', startFromUserScroll, { passive:true, once:true });
-        window.addEventListener('pointermove', startFromUserScroll, { passive:true, once:true });
-        window.addEventListener('scroll', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('touchstart', startFromFirstGesture, { passive:true });
+        window.addEventListener('pointerdown', startFromFirstGesture, { passive:true });
+        window.addEventListener('wheel', startFromFirstGesture, { passive:true });
+        window.addEventListener('touchmove', startFromFirstGesture, { passive:true });
+        window.addEventListener('pointermove', startFromFirstGesture, { passive:true });
+        window.addEventListener('scroll', startFromFirstGesture, { passive:true });
     }
 
     function createPlayer() {
         if (document.getElementById(PLAYER_ID)) return;
         const el = document.createElement('div');
         el.id = PLAYER_ID;
-        el.innerHTML = `<div class="closed" aria-label="The Village Soundtrack"><div class="label">🫧 The Village Soundtrack</div><div class="music-orb"><span class="sax" aria-hidden="true"><svg class="sax-bubble" viewBox="0 0 80 80" role="img" aria-label="Translucent bubble saxophone"><defs><radialGradient id="saxGlass" cx="28%" cy="18%" r="92%"><stop offset="0" stop-color="rgba(255,255,255,.78)"/><stop offset=".38" stop-color="rgba(213,255,250,.42)"/><stop offset=".75" stop-color="rgba(142,225,220,.20)"/><stop offset="1" stop-color="rgba(255,255,255,.06)"/></radialGradient></defs><path class="body" d="M48 10c-3 7-5 14-5 22v19c0 9-5 17-14 17-7 0-12-4-12-10 0-6 5-10 11-10h10V30c0-9 3-15 8-20z"/><path class="edge" d="M48 10c7 1 13 6 16 12M17 58c-3 2-5 6-5 10 0 7 6 12 14 12 10 0 18-9 18-19"/><circle class="key" cx="37" cy="33" r="3"/><circle class="key" cx="37" cy="42" r="3"/><circle class="key" cx="37" cy="51" r="3"/><path class="shine" d="M23 22c4-8 10-12 18-14"/><path class="shine" d="M55 56c5-5 8-11 9-17"/><circle class="bubble-highlight" cx="60" cy="17" r="5"/><circle class="bubble-highlight" cx="67" cy="26" r="2.5"/></svg></span><div class="play" aria-hidden="true">▶</div></div><div class="tap">Tap to listen</div></div><div class="content" onclick="event.stopPropagation()"><div class="title">🫧 The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
+        el.innerHTML = `<div class="closed" aria-label="The Village Soundtrack"><div class="music-orb"><span class="sax" aria-hidden="true"><svg class="sax-bubble" viewBox="0 0 80 80" role="img" aria-label="Translucent bubble saxophone"><defs><radialGradient id="saxGlass" cx="28%" cy="18%" r="92%"><stop offset="0" stop-color="rgba(255,255,255,.82)"/><stop offset=".38" stop-color="rgba(213,255,250,.46)"/><stop offset=".75" stop-color="rgba(142,225,220,.22)"/><stop offset="1" stop-color="rgba(255,255,255,.05)"/></radialGradient></defs><path class="body" d="M48 10c-3 7-5 14-5 22v19c0 9-5 17-14 17-7 0-12-4-12-10 0-6 5-10 11-10h10V30c0-9 3-15 8-20z"/><path class="edge" d="M48 10c7 1 13 6 16 12M17 58c-3 2-5 6-5 10 0 7 6 12 14 12 10 0 18-9 18-19"/><circle class="key" cx="37" cy="33" r="3"/><circle class="key" cx="37" cy="42" r="3"/><circle class="key" cx="37" cy="51" r="3"/><path class="shine" d="M23 22c4-8 10-12 18-14"/><path class="shine" d="M55 56c5-5 8-11 9-17"/><circle class="bubble-highlight" cx="60" cy="17" r="5"/><circle class="bubble-highlight" cx="67" cy="26" r="2.5"/></svg></span><div class="play" aria-hidden="true">▶</div></div></div><div class="content" onclick="event.stopPropagation()"><div class="title">The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
         document.body.appendChild(el);
 
         el.querySelector('.closed').addEventListener('click', function () {
-            if (soundtrackPlaying) { pauseSoundtrack(); }
-            else { playFromGesture(); }
+            if (soundtrackPlaying) pauseSoundtrack();
+            else playFromUserGesture();
         });
-
         el.querySelector('.close').addEventListener('click', function () { el.classList.remove('open'); });
         setupSoundtrackLoop();
         initializeScrollPlayback();
@@ -214,25 +186,12 @@
     }
 
     function cleanLegacyLanguage(root) {
-        const replacements = [
-            [/honest conversations/gi, 'honest reflection'],
-            [/creative conversations/gi, 'creative exploration'],
-            [/the conversation to begin/gi, 'the connection to begin'],
-            [/start the conversation here/gi, 'start here'],
-            [/A conversation\./g, 'An exploration.'],
-            [/conversations/gi, 'exploration'],
-            [/conversation/gi, 'exploration']
-        ];
+        const replacements = [[/honest conversations/gi, 'honest reflection'],[/creative conversations/gi, 'creative exploration'],[/the conversation to begin/gi, 'the connection to begin'],[/start the conversation here/gi, 'start here'],[/A conversation\./g, 'An exploration.'],[/conversations/gi, 'exploration'],[/conversation/gi, 'exploration']];
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         const nodes = [];
         let node;
         while ((node = walker.nextNode())) nodes.push(node);
-        nodes.forEach(function (textNode) {
-            if (!textNode.nodeValue.trim()) return;
-            let value = textNode.nodeValue;
-            replacements.forEach(function (pair) { value = value.replace(pair[0], pair[1]); });
-            if (value !== textNode.nodeValue) textNode.nodeValue = value;
-        });
+        nodes.forEach(function (textNode) { if (!textNode.nodeValue.trim()) return; let value = textNode.nodeValue; replacements.forEach(function (pair) { value = value.replace(pair[0], pair[1]); }); if (value !== textNode.nodeValue) textNode.nodeValue = value; });
     }
 
     function applyVillageFixes() {
