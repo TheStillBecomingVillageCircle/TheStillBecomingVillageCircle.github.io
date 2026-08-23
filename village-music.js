@@ -77,6 +77,20 @@
         try { soundtrackWidget.play(); } catch (error) {}
     }
 
+    function playFromGesture() {
+        pendingScrollPlay = false;
+        if (soundtrackWidget && soundtrackReady) {
+            try { soundtrackWidget.play(); return; } catch (error) {}
+        }
+        const iframe = document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
+        if (!iframe) return;
+        try {
+            const src = new URL(iframe.src);
+            src.searchParams.set('auto_play', 'true');
+            iframe.src = src.toString();
+        } catch (error) {}
+    }
+
     function pauseSoundtrack() {
         if (!soundtrackWidget || !soundtrackReady) return;
         try { soundtrackWidget.pause(); } catch (error) {}
@@ -115,7 +129,7 @@
             api = document.createElement('script');
             api.id = 'soundcloud-widget-api';
             api.src = 'https://w.soundcloud.com/player/api.js';
-            api.async = true;
+            api.async = false;
             api.onload = bindWidget;
             document.head.appendChild(api);
         } else {
@@ -132,14 +146,17 @@
         function startFromUserScroll() {
             if (startedByScroll) return;
             startedByScroll = true;
-            pendingScrollPlay = true;
-            playSoundtrack();
-            window.removeEventListener('scroll', startFromUserScroll);
-            window.removeEventListener('wheel', startFromUserScroll);
+            playFromGesture();
+            window.removeEventListener('touchstart', startFromUserScroll);
+            window.removeEventListener('pointerdown', startFromUserScroll);
             window.removeEventListener('touchmove', startFromUserScroll);
+            window.removeEventListener('wheel', startFromUserScroll);
             window.removeEventListener('pointermove', startFromUserScroll);
+            window.removeEventListener('scroll', startFromUserScroll);
         }
 
+        window.addEventListener('touchstart', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('pointerdown', startFromUserScroll, { passive:true, once:true });
         window.addEventListener('touchmove', startFromUserScroll, { passive:true, once:true });
         window.addEventListener('wheel', startFromUserScroll, { passive:true, once:true });
         window.addEventListener('pointermove', startFromUserScroll, { passive:true, once:true });
@@ -155,7 +172,7 @@
 
         el.querySelector('.closed').addEventListener('click', function () {
             if (soundtrackPlaying) { pauseSoundtrack(); }
-            else { pendingScrollPlay = false; playSoundtrack(); }
+            else { playFromGesture(); }
         });
 
         el.querySelector('.close').addEventListener('click', function () { el.classList.remove('open'); });
