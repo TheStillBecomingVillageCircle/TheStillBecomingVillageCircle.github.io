@@ -1,0 +1,51 @@
+name: Enable Village Soundtrack Autoplay
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-village-music.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-music:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v6
+
+      - name: Strengthen soundtrack autoplay
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('village-music.js')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              "let widget=null,ready=false,playing=false,playRequested=false;",
+              "let widget=null,ready=false,playing=false,playRequested=true;"
+          )
+
+          text = text.replace(
+              "function init(){removeLegacy();styles();player();fixes();floating(document)}",
+              "function init(){removeLegacy();styles();player();playRequested=true;requestPlay();fixes();floating(document)}"
+          )
+
+          text = text.replace(
+              "['touchstart','pointerdown','wheel','touchmove','pointermove','scroll']",
+              "['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll']"
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit soundtrack fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add village-music.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix Village soundtrack autoplay and looping'
+          git push
