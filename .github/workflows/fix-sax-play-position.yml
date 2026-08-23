@@ -1,0 +1,42 @@
+name: One-time sax play-button fix
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, '[sax-fix]') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Put play button inside saxophone
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('village-music.js')
+          s = p.read_text(encoding='utf-8')
+          old = "#${PLAYER_ID} .play{position:absolute;right:0;bottom:0;width:29px;height:29px;"
+          new = "#${PLAYER_ID} .play{position:absolute;left:40%;top:67%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:29px;height:29px;"
+          if old not in s:
+              raise SystemExit('Expected play-button CSS was not found; no changes made.')
+          s = s.replace(old, new, 1)
+          old_mobile = "#${PLAYER_ID} .play{width:27px;height:27px;right:-1px;bottom:-1px}"
+          new_mobile = "#${PLAYER_ID} .play{width:27px;height:27px;left:40%;top:67%;right:auto;bottom:auto;transform:translate(-50%,-50%)}"
+          if old_mobile not in s:
+              raise SystemExit('Expected mobile play-button CSS was not found; no changes made.')
+          s = s.replace(old_mobile, new_mobile, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit fix and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add village-music.js
+          git rm .github/workflows/fix-sax-play-position.yml
+          git commit -m "[sax-fix] Put play button inside sax bubble"
+          git push
