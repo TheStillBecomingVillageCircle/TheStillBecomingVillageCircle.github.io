@@ -33,8 +33,14 @@
             #${PLAYER_ID} .closed{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;cursor:pointer;text-align:center}
             #${PLAYER_ID}.open .closed{display:none}
             #${PLAYER_ID} .label{text-align:center;font:700 12px Arial,sans-serif;color:#285f61;margin-bottom:5px;text-shadow:0 1px 1px rgba(255,255,255,.75)}
-            #${PLAYER_ID} .music-orb{width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.92),rgba(216,255,250,.54) 48%,rgba(166,235,229,.22));border:2px solid rgba(255,255,255,.82);box-shadow:inset 7px 7px 16px rgba(255,255,255,.82),inset -6px -6px 14px rgba(55,170,177,.10),0 10px 24px rgba(40,120,120,.10)}
-            #${PLAYER_ID} .sax{width:58px;height:58px;display:flex;align-items:center;justify-content:center;filter:none;transform:none;position:relative}.sax-bubble{width:54px;height:54px;display:block;filter:drop-shadow(0 3px 6px rgba(40,120,120,.10))}.sax-bubble .glass{fill:url(#saxGlass);stroke:rgba(255,255,255,.78);stroke-width:1.4}.sax-bubble .shine{fill:none;stroke:rgba(255,255,255,.88);stroke-width:2;stroke-linecap:round}.sax-bubble .body{fill:rgba(203,250,246,.30);stroke:rgba(40,120,120,.34);stroke-width:1.7}.sax-bubble .key{fill:rgba(255,255,255,.52);stroke:rgba(40,120,120,.28);stroke-width:1}.sax-bubble .rim{fill:rgba(255,255,255,.18);stroke:rgba(255,255,255,.70);stroke-width:1.2}
+            #${PLAYER_ID} .music-orb{width:104px;height:104px;display:flex;align-items:center;justify-content:center;position:relative;background:transparent;border:0;box-shadow:none}
+            #${PLAYER_ID} .sax{width:72px;height:72px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 4px 8px rgba(40,120,120,.12));transform:none;position:relative}
+            .sax-bubble{width:70px;height:70px;display:block;overflow:visible}
+            .sax-bubble .body{fill:url(#saxGlass);stroke:rgba(255,255,255,.86);stroke-width:1.5}
+            .sax-bubble .edge{fill:none;stroke:rgba(40,120,120,.28);stroke-width:1.5}
+            .sax-bubble .shine{fill:none;stroke:rgba(255,255,255,.92);stroke-width:2.2;stroke-linecap:round}
+            .sax-bubble .key{fill:rgba(255,255,255,.48);stroke:rgba(40,120,120,.22);stroke-width:1}
+            .sax-bubble .bubble-highlight{fill:rgba(255,255,255,.34);stroke:rgba(255,255,255,.72);stroke-width:1}
             #${PLAYER_ID} .play{position:absolute;right:-2px;bottom:-2px;width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.95);background:rgba(22,170,169,.92);color:white;display:flex;align-items:center;justify-content:center;font:15px Arial,sans-serif;box-shadow:0 5px 12px rgba(40,120,120,.18)}
             #${PLAYER_ID}.playing .play::after{content:'❚❚';font-size:12px;letter-spacing:-1px}
             #${PLAYER_ID}.playing .play{font-size:0}
@@ -52,7 +58,7 @@
             .conversation-link,.becoming-journey-link{margin-top:10px!important;padding:13px 24px;border:0;border-radius:52% 48% 45% 55% / 48% 55% 45% 52%;background:rgba(22,170,169,.10);color:#16aaa9;font-family:inherit;font-size:inherit;font-weight:700;line-height:1.4;cursor:pointer;appearance:none;-webkit-appearance:none;box-shadow:0 10px 24px rgba(40,120,120,.08);transition:transform .25s ease,background .25s ease}
             .conversation-link:hover,.becoming-journey-link:hover{background:rgba(22,170,169,.16);text-decoration:none!important;transform:translateY(-2px)}
             @keyframes villageFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-            @media(max-width:600px){#${PLAYER_ID}{width:150px;height:150px;right:10px;bottom:10px}#${PLAYER_ID}.open{width:calc(100vw - 20px);min-height:240px;right:10px;bottom:10px}#${PLAYER_ID} .music-orb{width:78px;height:78px}#${PLAYER_ID} .sax{font-size:40px}}
+            @media(max-width:600px){#${PLAYER_ID}{width:150px;height:150px;right:10px;bottom:10px}#${PLAYER_ID}.open{width:calc(100vw - 20px);min-height:240px;right:10px;bottom:10px}#${PLAYER_ID} .music-orb{width:90px;height:90px}#${PLAYER_ID} .sax{width:64px;height:64px}.sax-bubble{width:62px;height:62px}}
         `;
         document.head.appendChild(style);
     }
@@ -124,25 +130,27 @@
         let startedByScroll = false;
 
         function startFromUserScroll() {
-            if (startedByScroll || window.scrollY <= 4) return;
+            if (startedByScroll) return;
             startedByScroll = true;
             pendingScrollPlay = true;
             playSoundtrack();
             window.removeEventListener('scroll', startFromUserScroll);
             window.removeEventListener('wheel', startFromUserScroll);
             window.removeEventListener('touchmove', startFromUserScroll);
+            window.removeEventListener('pointermove', startFromUserScroll);
         }
 
-        window.addEventListener('scroll', startFromUserScroll, { passive:true });
-        window.addEventListener('wheel', startFromUserScroll, { passive:true });
-        window.addEventListener('touchmove', startFromUserScroll, { passive:true });
+        window.addEventListener('touchmove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('wheel', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('pointermove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('scroll', startFromUserScroll, { passive:true, once:true });
     }
 
     function createPlayer() {
         if (document.getElementById(PLAYER_ID)) return;
         const el = document.createElement('div');
         el.id = PLAYER_ID;
-        el.innerHTML = `<div class="closed" aria-label="The Village Soundtrack"><div class="label">🫧 The Village Soundtrack</div><div class="music-orb"><span class="sax" aria-hidden="true"><svg class="sax-bubble" viewBox="0 0 64 64" role="img" aria-label="Translucent bubble saxophone"><defs><radialGradient id="saxGlass" cx="30%" cy="22%" r="78%"><stop offset="0" stop-color="rgba(255,255,255,.82)"/><stop offset=".45" stop-color="rgba(213,255,250,.36)"/><stop offset="1" stop-color="rgba(142,225,220,.14)"/></radialGradient></defs><circle class="glass" cx="32" cy="32" r="25"/><path class="body" d="M39 13c-2 4-3 8-3 13v11c0 7-4 12-10 12-5 0-8-3-8-7 0-4 3-7 7-7h7V24c0-5 2-9 5-12z"/><path class="rim" d="M40 12c5 1 9 5 10 10"/><circle class="key" cx="28" cy="28" r="2.7"/><circle class="key" cx="28" cy="35" r="2.7"/><circle class="key" cx="28" cy="42" r="2.7"/><path class="shine" d="M17 20c3-7 8-11 14-12"/><path class="shine" d="M44 45c3-3 5-6 6-10"/></svg></span><div class="play" aria-hidden="true">▶</div></div><div class="tap">Tap to listen</div></div><div class="content" onclick="event.stopPropagation()"><div class="title">🫧 The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
+        el.innerHTML = `<div class="closed" aria-label="The Village Soundtrack"><div class="label">🫧 The Village Soundtrack</div><div class="music-orb"><span class="sax" aria-hidden="true"><svg class="sax-bubble" viewBox="0 0 80 80" role="img" aria-label="Translucent bubble saxophone"><defs><radialGradient id="saxGlass" cx="28%" cy="18%" r="92%"><stop offset="0" stop-color="rgba(255,255,255,.78)"/><stop offset=".38" stop-color="rgba(213,255,250,.42)"/><stop offset=".75" stop-color="rgba(142,225,220,.20)"/><stop offset="1" stop-color="rgba(255,255,255,.06)"/></radialGradient></defs><path class="body" d="M48 10c-3 7-5 14-5 22v19c0 9-5 17-14 17-7 0-12-4-12-10 0-6 5-10 11-10h10V30c0-9 3-15 8-20z"/><path class="edge" d="M48 10c7 1 13 6 16 12M17 58c-3 2-5 6-5 10 0 7 6 12 14 12 10 0 18-9 18-19"/><circle class="key" cx="37" cy="33" r="3"/><circle class="key" cx="37" cy="42" r="3"/><circle class="key" cx="37" cy="51" r="3"/><path class="shine" d="M23 22c4-8 10-12 18-14"/><path class="shine" d="M55 56c5-5 8-11 9-17"/><circle class="bubble-highlight" cx="60" cy="17" r="5"/><circle class="bubble-highlight" cx="67" cy="26" r="2.5"/></svg></span><div class="play" aria-hidden="true">▶</div></div><div class="tap">Tap to listen</div></div><div class="content" onclick="event.stopPropagation()"><div class="title">🫧 The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;
         document.body.appendChild(el);
 
         el.querySelector('.closed').addEventListener('click', function () {
