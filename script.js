@@ -124,11 +124,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* =========================================================
    VILLAGE SOUNDTRACK — SCROLL-TO-START
+
+   On iPhone/iPad, a plain scroll event is often too late to
+   satisfy the browser's media-gesture policy. So the first
+   touch/pointer that begins the scroll is used as the user's
+   gesture, with scroll/wheel kept as fallbacks. For the
+   SoundCloud player, control the existing iframe widget rather
+   than looking for an <audio> element that does not exist.
 ========================================================= */
 (function () {
     'use strict';
     let soundtrackStarted = false;
     let soundtrackInitialized = false;
+    let soundtrackWidget = null;
+    let waitingForWidget = false;
 
     function getSoundtrackAudio() {
         const selectors = [
@@ -144,43 +153,99 @@ document.addEventListener("DOMContentLoaded", function () {
         return null;
     }
 
+    function getSoundCloudWidget() {
+        const iframe = document.querySelector('#villageSoundtrack .soundcloud-frame');
+        if (!iframe || !window.SC || !window.SC.Widget) return null;
+        try {
+            if (!soundtrackWidget) soundtrackWidget = window.SC.Widget(iframe);
+            return soundtrackWidget;
+        } catch (error) {
+            return null;
+        }
+    }
+
     function tryStartSoundtrack() {
         if (soundtrackStarted) return true;
+
         const audio = getSoundtrackAudio();
-        if (!audio) return false;
-        audio.volume = Number.isFinite(audio.volume) ? audio.volume : 0.35;
-        const playPromise = audio.play();
-        if (playPromise && typeof playPromise.then === 'function') {
-            playPromise.then(function () { soundtrackStarted = true; }).catch(function () {});
-        } else soundtrackStarted = true;
-        return true;
+        if (audio) {
+            audio.volume = Number.isFinite(audio.volume) ? audio.volume : 0.35;
+            const playPromise = audio.play();
+            if (playPromise && typeof playPromise.then === 'function') {
+                playPromise.then(function () {
+                    soundtrackStarted = true;
+                }).catch(function () {});
+            } else {
+                soundtrackStarted = true;
+            }
+            return true;
+        }
+
+        const widget = getSoundCloudWidget();
+        if (widget) {
+            try {
+                widget.play();
+                soundtrackStarted = true;
+                return true;
+            } catch (error) {}
+        }
+
+        return false;
+    }
+
+    function waitForSoundCloudThenPlay() {
+        if (waitingForWidget || soundtrackStarted) return;
+        waitingForWidget = true;
+
+        let attempts = 0;
+        const timer = setInterval(function () {
+            attempts += 1;
+            if (tryStartSoundtrack() || attempts >= 30) {
+                clearInterval(timer);
+                waitingForWidget = false;
+            }
+        }, 100);
+    }
+
+    function startFromUserGesture() {
+        if (soundtrackStarted) return;
+        if (!tryStartSoundtrack()) waitForSoundCloudThenPlay();
     }
 
     function initializeSoundtrack() {
         if (soundtrackInitialized) return;
         soundtrackInitialized = true;
-        const startOnScroll = function () {
-            if (window.scrollY <= 0) return;
-            tryStartSoundtrack();
+
+        const gestureEvents = ['touchstart', 'pointerdown', 'wheel', 'scroll'];
+        const startOnInteraction = function () {
+            startFromUserGesture();
             if (soundtrackStarted) {
-                window.removeEventListener('scroll', startOnScroll);
-                window.removeEventListener('wheel', startOnScroll);
-                window.removeEventListener('touchmove', startOnScroll);
+                gestureEvents.forEach(function (type) {
+                    window.removeEventListener(type, startOnInteraction);
+                });
             }
         };
-        window.addEventListener('scroll', startOnScroll, { passive: true });
-        window.addEventListener('wheel', startOnScroll, { passive: true });
-        window.addEventListener('touchmove', startOnScroll, { passive: true });
-        if (window.scrollY > 0) tryStartSoundtrack();
+
+        // touchstart/pointerdown happen at the beginning of a finger
+        // scroll, which is the important part for iOS autoplay rules.
+        gestureEvents.forEach(function (type) {
+            window.addEventListener(type, startOnInteraction, { passive: true });
+        });
+
+        // If someone lands on a page already scrolled down, try once.
+        if (window.scrollY > 0) startFromUserGesture();
     }
 
     function initialize() { initializeSoundtrack(); }
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initialize, { once: true });
     } else initialize();
+
     window.addEventListener('village:pagechange', function () {
         soundtrackInitialized = false;
         soundtrackStarted = false;
+        soundtrackWidget = null;
+        waitingForWidget = false;
         initializeSoundtrack();
     });
 })();
@@ -264,8 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (window.__TSBVC_SINGLE_TAP_FIX__) return;
         window.__TSBVC_SINGLE_TAP_FIX__ = true;
 
-        // Disable the old first-gesture scroll fallback. We still
-        // allow the browser's normal autoplay rules to apply.
+        // Do not install another competing scroll fallback.
         window.__TSBVC_SCROLL_MUSIC__ = true;
 
         let pendingPlay = false;
@@ -282,9 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 try { widget.play(); } catch (error) {}
             };
 
-            // If the widget is already ready, play immediately.
             widget.bind(window.SC.Widget.Events.READY, playOnce);
-            try { widget.isPaused(function (paused) { if (!paused) return; }); } catch (error) {}
             setTimeout(playOnce, 80);
             setTimeout(playOnce, 350);
             return true;
@@ -294,14 +356,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const control = event.target.closest && event.target.closest('#villageSoundtrack .closed');
             if (!control) return;
 
-            // Stop the old bubble click handler from also firing.
             event.stopImmediatePropagation();
             event.preventDefault();
 
             const player = document.getElementById('villageSoundtrack');
             if (player && player.classList.contains('playing')) {
-                // A second tap intentionally pauses; this is not the
-                // accidental second-tap-to-start behavior anymore.
                 try {
                     const iframe = player.querySelector('.soundcloud-frame');
                     if (iframe && window.SC && window.SC.Widget) window.SC.Widget(iframe).pause();
