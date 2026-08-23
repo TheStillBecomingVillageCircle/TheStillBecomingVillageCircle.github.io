@@ -151,6 +151,110 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* =========================================================
+   VILLAGE SOUNDTRACK — SCROLL-TO-START
+
+   Start the existing page audio after the visitor begins
+   scrolling. Browsers may block audible autoplay; that is
+   handled quietly so the site never throws an error.
+
+   The soundtrack bubble itself remains the manual fallback:
+   a visitor can tap/click the music control to start playback.
+========================================================= */
+(function () {
+    'use strict';
+
+    let soundtrackStarted = false;
+    let soundtrackInitialized = false;
+
+    function getSoundtrackAudio() {
+        const selectors = [
+            '#villageSoundtrack',
+            '#soundtrackAudio',
+            '#backgroundMusic',
+            '.soundtrack audio',
+            'audio[data-village-soundtrack]'
+        ];
+
+        for (const selector of selectors) {
+            const audio = document.querySelector(selector);
+            if (audio && typeof audio.play === 'function') {
+                return audio;
+            }
+        }
+
+        return null;
+    }
+
+    function tryStartSoundtrack() {
+        if (soundtrackStarted) return true;
+
+        const audio = getSoundtrackAudio();
+        if (!audio) return false;
+
+        audio.volume = Number.isFinite(audio.volume) ? audio.volume : 0.35;
+
+        const playPromise = audio.play();
+
+        if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.then(function () {
+                soundtrackStarted = true;
+            }).catch(function () {
+                // Safari/iOS and other browsers may require a direct tap.
+                // The manual soundtrack control remains available.
+            });
+        } else {
+            soundtrackStarted = true;
+        }
+
+        return true;
+    }
+
+    function initializeSoundtrack() {
+        if (soundtrackInitialized) return;
+        soundtrackInitialized = true;
+
+        const startOnScroll = function () {
+            if (window.scrollY <= 0) return;
+            tryStartSoundtrack();
+
+            if (soundtrackStarted) {
+                window.removeEventListener('scroll', startOnScroll);
+                window.removeEventListener('wheel', startOnScroll);
+                window.removeEventListener('touchmove', startOnScroll);
+            }
+        };
+
+        window.addEventListener('scroll', startOnScroll, { passive: true });
+        window.addEventListener('wheel', startOnScroll, { passive: true });
+        window.addEventListener('touchmove', startOnScroll, { passive: true });
+
+        // If the visitor has already scrolled when a page is swapped in,
+        // give the soundtrack one immediate chance to begin.
+        if (window.scrollY > 0) {
+            tryStartSoundtrack();
+        }
+    }
+
+    function initialize() {
+        initializeSoundtrack();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize, { once: true });
+    } else {
+        initialize();
+    }
+
+    window.addEventListener('village:pagechange', function () {
+        // A page swap can replace the audio element, so allow the
+        // initializer to look for the new element once more.
+        soundtrackInitialized = false;
+        soundtrackStarted = false;
+        initializeSoundtrack();
+    });
+})();
+
+/* =========================================================
    HOME BOOKING LINK
 
    The home page's "Find Your Moment" button should always
