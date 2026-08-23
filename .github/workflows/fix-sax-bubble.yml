@@ -2,8 +2,6 @@ name: Make soundtrack saxophone a bubble
 
 on:
   push:
-    paths-ignore:
-      - '.github/workflows/fix-sax-bubble.yml'
 
 permissions:
   contents: write
