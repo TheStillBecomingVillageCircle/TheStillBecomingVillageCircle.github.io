@@ -1,0 +1,90 @@
+name: Apply scroll audio compatibility fix
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/workflows/apply-scroll-audio-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch soundtrack gesture handling
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('village-music.js')
+          s = p.read_text()
+          old = '''        let startedByScroll = false;
+
+        function startFromUserScroll() {
+            if (startedByScroll) return;
+            startedByScroll = true;
+            pendingScrollPlay = true;
+            playSoundtrack();
+            window.removeEventListener('scroll', startFromUserScroll);
+            window.removeEventListener('wheel', startFromUserScroll);
+            window.removeEventListener('touchmove', startFromUserScroll);
+            window.removeEventListener('pointermove', startFromUserScroll);
+        }
+
+        window.addEventListener('touchmove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('wheel', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('pointermove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('scroll', startFromUserScroll, { passive:true, once:true });'''
+          new = '''        let startedByScroll = false;
+
+        function startFromUserScroll() {
+            if (startedByScroll) return;
+            startedByScroll = true;
+            pendingScrollPlay = false;
+
+            // iOS/Safari requires the playback request to originate in the
+            // user-gesture handler. Do not wait for the iframe READY callback.
+            if (soundtrackWidget && soundtrackReady) {
+                try { soundtrackWidget.play(); } catch (error) {}
+            } else {
+                const iframe = document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
+                if (iframe) {
+                    try {
+                        const src = new URL(iframe.src);
+                        src.searchParams.set('auto_play', 'true');
+                        iframe.src = src.toString();
+                    } catch (error) {}
+                }
+            }
+
+            window.removeEventListener('scroll', startFromUserScroll);
+            window.removeEventListener('wheel', startFromUserScroll);
+            window.removeEventListener('touchstart', startFromUserScroll);
+            window.removeEventListener('touchmove', startFromUserScroll);
+            window.removeEventListener('pointerdown', startFromUserScroll);
+            window.removeEventListener('pointermove', startFromUserScroll);
+        }
+
+        // touchstart is the important iPhone trigger: it happens inside the
+        // user's gesture, before the browser turns that gesture into scrolling.
+        window.addEventListener('touchstart', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('pointerdown', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('touchmove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('wheel', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('pointermove', startFromUserScroll, { passive:true, once:true });
+        window.addEventListener('scroll', startFromUserScroll, { passive:true, once:true });'''
+          if old not in s:
+              raise SystemExit('Expected soundtrack gesture block was not found')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+      - name: Commit patched soundtrack
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add village-music.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix soundtrack playback on first scroll gesture'
+          git push
