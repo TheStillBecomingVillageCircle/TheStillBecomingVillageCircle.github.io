@@ -8,6 +8,7 @@
     "splash": {"backgroundColor": "#F7FCF9"},
     "ios": {"supportsTablet": true, "bundleIdentifier": "org.stillbecomingvillagecircle.app"},
     "android": {"package": "org.stillbecomingvillagecircle.app"},
+    "plugins": ["expo-notifications"],
     "web": {"bundler": "metro"}
   }
 }
