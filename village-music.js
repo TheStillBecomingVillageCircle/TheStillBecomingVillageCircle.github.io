@@ -20,26 +20,73 @@ function pause(){if(widget&&ready)try{widget.pause()}catch(e){}}
 function setup(){const f=document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);if(!f||f.dataset.bound==='1')return;function bind(){if(!window.SC||!window.SC.Widget)return;widget=window.SC.Widget(f);widget.bind(window.SC.Widget.Events.READY,function(){ready=true;f.dataset.bound='1';widget.bind(window.SC.Widget.Events.PLAY,()=>state(true));widget.bind(window.SC.Widget.Events.PAUSE,()=>state(false));widget.bind(window.SC.Widget.Events.FINISH,function(){try{widget.seekTo(0);widget.play()}catch(e){setTimeout(play,250)}});if(playRequested)play()})}if(window.SC&&window.SC.Widget)bind();else{let a=document.getElementById('soundcloud-widget-api');if(!a){a=document.createElement('script');a.id='soundcloud-widget-api';a.src='https://w.soundcloud.com/player/api.js';a.onload=bind;document.head.appendChild(a)}else a.addEventListener('load',bind,{once:true})}}
 function gesture(){if(window.__TSBVC_SCROLL_MUSIC__)return;window.__TSBVC_SCROLL_MUSIC__=true;let done=false;function go(){if(done)return;done=true;requestPlay();['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.removeEventListener(t,go))}['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.addEventListener(t,go,{passive:true}))}
 function player(){if(document.getElementById(PLAYER_ID))return;const e=document.createElement('div');e.id=PLAYER_ID;e.innerHTML=`<div class="closed" aria-label="The Village Soundtrack"><div class="music-orb"><span class="sax" aria-hidden="true"><svg class="sax-bubble" viewBox="0 0 120 120"><defs><clipPath id="saxClip"><path d="M77 10 C67 12 61 18 61 27 C61 34 66 38 68 44 L72 67 C74 79 68 91 58 99 C49 106 35 108 24 103 C16 99 12 92 15 85 C18 78 25 75 33 77 L43 80 C49 82 53 78 52 72 L47 40 C45 29 48 18 57 11 C63 6 71 5 77 10 Z"/></clipPath></defs><image class="cover" href="${COVER}" x="0" y="0" width="120" height="120" preserveAspectRatio="xMidYMid slice" clip-path="url(#saxClip)"/><path class="glass" d="M77 10 C67 12 61 18 61 27 C61 34 66 38 68 44 L72 67 C74 79 68 91 58 99 C49 106 35 108 24 103 C16 99 12 92 15 85 C18 78 25 75 33 77 L43 80 C49 82 53 78 52 72 L47 40 C45 29 48 18 57 11 C63 6 71 5 77 10 Z"/><path class="tube" d="M77 10 C85 9 93 13 98 19 C102 24 101 29 97 31 C93 33 89 30 89 26 C89 22 86 20 81 21"/><path class="tube" d="M93 19 L104 15 L108 18 L98 23"/><path class="tube" d="M58 38 L49 42 M60 49 L51 53 M62 60 L53 64"/><circle class="key" cx="55" cy="38" r="3"/><circle class="key" cx="57" cy="49" r="3"/><circle class="key" cx="59" cy="60" r="3"/><path class="shine" d="M26 80 C20 82 18 87 20 91"/><circle class="bubble-highlight" cx="103" cy="31" r="6"/></svg></span><div class="play">▶</div></div></div><div class="content" onclick="event.stopPropagation()"><img class="cover-open" src="${COVER}" alt="Bricks — Andra Day cover art"><div class="title">The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;document.body.appendChild(e);e.querySelector('.closed').addEventListener('click',()=>playing?pause():requestPlay());e.querySelector('.close').addEventListener('click',()=>e.classList.remove('open'));setup();gesture()}
-function ensureWebspaceNavigation(){
+function normalizeNavigation(){
     const navList=document.querySelector('nav ul');
     if(!navList)return;
-    let link=navList.querySelector('a[href="web-design.html"]');
-    if(!link){
+
+    let webspace=null;
+    let support=null;
+
+    Array.from(navList.querySelectorAll('li')).forEach(item=>{
+        const link=item.querySelector('a');
+        if(!link)return;
+        const text=(link.textContent||'').trim();
+        const href=link.getAttribute('href')||'';
+
+        if(/^(Connect|Contact)$/i.test(text)){
+            item.remove();
+            return;
+        }
+
+        if(/^Support$/i.test(text)||/contact\.html(?:$|#)/i.test(href)){
+            if(support){item.remove();return;}
+            support=link;
+            support.href='contact.html';
+            support.textContent='Support';
+            return;
+        }
+
+        if(/^Webspace$/i.test(text)||/^Website Design$/i.test(text)||/web-design\.html(?:$|#)/i.test(href)){
+            if(webspace){item.remove();return;}
+            webspace=link;
+            webspace.href='web-design.html';
+            webspace.textContent='Webspace';
+            return;
+        }
+    });
+
+    if(!webspace){
         const item=document.createElement('li');
-        link=document.createElement('a');
-        link.href='web-design.html';
-        item.appendChild(link);
+        webspace=document.createElement('a');
+        webspace.href='web-design.html';
+        webspace.textContent='Webspace';
+        item.appendChild(webspace);
         const experienceLink=Array.from(navList.querySelectorAll('a')).find(a=>/Experiences/i.test(a.textContent));
         if(experienceLink&&experienceLink.parentElement)experienceLink.parentElement.insertAdjacentElement('afterend',item);
         else navList.appendChild(item);
     }
-    link.textContent='Webspace';
-    link.setAttribute('aria-label','Webspace for Intentional Becoming');
+
+    if(!support){
+        const item=document.createElement('li');
+        support=document.createElement('a');
+        support.href='contact.html';
+        support.textContent='Support';
+        item.appendChild(support);
+        navList.appendChild(item);
+    }
 }
-function normalize(){ensureWebspaceNavigation();document.querySelectorAll('a[href]').forEach(l=>{const raw=l.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:'))return;try{const u=new URL(raw,location.href);if(u.origin!==location.origin)return;const p=u.pathname.split('/').pop()||'index.html';if(CANONICAL_PAGES[p])u.pathname=u.pathname.replace(p,CANONICAL_PAGES[p]);l.href=u.href}catch(e){}});document.querySelectorAll('a[href*="calendly.com"]').forEach(l=>{l.href=BOOKING_URL;l.target='_blank';l.rel='noopener noreferrer'})}
+function watchNavigation(){
+    if(window.__TSBVC_NAV_WATCH__)return;
+    window.__TSBVC_NAV_WATCH__=true;
+    const run=()=>normalizeNavigation();
+    run();
+    const observer=new MutationObserver(run);
+    observer.observe(document.body,{childList:true,subtree:true});
+}
+function normalize(){normalizeNavigation();document.querySelectorAll('a[href]').forEach(l=>{const raw=l.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:'))return;try{const u=new URL(raw,location.href);if(u.origin!==location.origin)return;const p=u.pathname.split('/').pop()||'index.html';if(CANONICAL_PAGES[p])u.pathname=u.pathname.replace(p,CANONICAL_PAGES[p]);l.href=u.href}catch(e){}});document.querySelectorAll('a[href*="calendly.com"]').forEach(l=>{l.href=BOOKING_URL;l.target='_blank';l.rel='noopener noreferrer'})}
 async function nav(url,push){const u=new URL(url,location.href);let p=u.pathname.split('/').pop()||'index.html';if(CANONICAL_PAGES[p]){p=CANONICAL_PAGES[p];u.pathname=u.pathname.replace(u.pathname.split('/').pop(),p)}if(u.origin!==location.origin||!NAV_PAGES.has(p))return false;const r=await fetch(u.href,{credentials:'same-origin',cache:'no-store'});if(!r.ok)throw Error(r.status);const parsed=new DOMParser().parseFromString(await r.text(),'text/html');const player=document.getElementById(PLAYER_ID);if(!player)return false;document.title=parsed.title||document.title;parsed.head.querySelectorAll('style').forEach(s=>document.head.appendChild(document.importNode(s,true)));[...document.body.children].forEach(c=>{if(c!==player)c.remove()});[...parsed.body.children].filter(c=>c.id!==PLAYER_ID&&!c.classList.contains('soundtrack')&&!c.classList.contains('music-bubble')).forEach(c=>document.body.insertBefore(document.importNode(c,true),player));normalize();if(push)history.pushState({village:true},'',u.href);scrollTo({top:0,behavior:'instant'});return true}
 document.addEventListener('click',e=>{const l=e.target.closest?.('a[href]');if(!l||l.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const u=new URL(l.href,location.href),p=u.pathname.split('/').pop()||'index.html';if(u.origin!==location.origin||!NAV_PAGES.has(p)||u.pathname===location.pathname)return;e.preventDefault();nav(u.href,true).catch(()=>location.href=u.href)});
 window.addEventListener('popstate',()=>nav(location.href,false).catch(()=>{}));
-function init(){removeLegacy();styles();player();normalize();requestPlay()}
+function init(){removeLegacy();styles();player();normalize();watchNavigation();requestPlay()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
