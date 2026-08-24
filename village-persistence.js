@@ -5,18 +5,57 @@
     if (window.__TSBVC_MUSIC_BOOTSTRAP__) return;
     window.__TSBVC_MUSIC_BOOTSTRAP__ = true;
 
-    function addWebspaceNavigation() {
+    function normalizeVillageNavigation() {
         const navList = document.querySelector('nav ul');
         if (!navList) return;
 
-        // Keep the Webspace destination present and consistently named on every page.
-        let webspaceLink = navList.querySelector('a[href="web-design.html"]');
+        const links = Array.from(navList.querySelectorAll('a'));
+        let seenWebspace = false;
+        let seenSupport = false;
 
-        if (!webspaceLink) {
+        links.forEach(link => {
+            const text = (link.textContent || '').trim();
+            const href = link.getAttribute('href') || '';
+            const item = link.closest('li');
+
+            if (/^(Webspace|Website Design)$/i.test(text) || /web-design\.html(?:$|#)/i.test(href)) {
+                if (seenWebspace) {
+                    if (item) item.remove();
+                    return;
+                }
+                seenWebspace = true;
+                link.href = 'web-design.html';
+                link.textContent = 'Webspace';
+                link.setAttribute('aria-label', 'Webspace for Intentional Becoming');
+                return;
+            }
+
+            // Support is the single visitor-facing contact destination.
+            // Remove redundant Connect and Contact navigation items.
+            if (/^(Connect|Contact)$/i.test(text)) {
+                if (item) item.remove();
+                return;
+            }
+
+            if (/^Support$/i.test(text) || /contact\.html(?:$|#)/i.test(href)) {
+                if (seenSupport) {
+                    if (item) item.remove();
+                    return;
+                }
+                seenSupport = true;
+                link.href = 'contact.html';
+                link.textContent = 'Support';
+                link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
+            }
+        });
+
+        if (!seenWebspace) {
             const item = document.createElement('li');
-            webspaceLink = document.createElement('a');
-            webspaceLink.href = 'web-design.html';
-            item.appendChild(webspaceLink);
+            const link = document.createElement('a');
+            link.href = 'web-design.html';
+            link.textContent = 'Webspace';
+            link.setAttribute('aria-label', 'Webspace for Intentional Becoming');
+            item.appendChild(link);
 
             const experienceLink = Array.from(navList.querySelectorAll('a')).find(a => /Experiences/i.test(a.textContent));
             if (experienceLink && experienceLink.parentElement) {
@@ -26,46 +65,7 @@
             }
         }
 
-        webspaceLink.textContent = 'Webspace';
-        webspaceLink.setAttribute('aria-label', 'Webspace for Intentional Becoming');
-    }
-
-    function normalizeSupportNavigation() {
-        const navList = document.querySelector('nav ul');
-        if (!navList) return;
-
-        // There is one clear path for people who need to reach the Village:
-        // Support → contact.html. Remove the duplicate Connect navigation item.
-        const links = Array.from(navList.querySelectorAll('a'));
-        links.forEach(link => {
-            const text = (link.textContent || '').trim();
-            const href = link.getAttribute('href') || '';
-
-            if (/^Connect$/i.test(text)) {
-                const item = link.closest('li');
-                if (item) item.remove();
-                return;
-            }
-
-            if (/^Support$/i.test(text)) {
-                link.href = 'contact.html';
-                link.textContent = 'Support';
-                link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
-                return;
-            }
-
-            // If an older page still has the contact destination labeled Connect,
-            // turn it into the single Support destination instead.
-            if (/contact\.html(?:$|#)/i.test(href)) {
-                link.href = 'contact.html';
-                link.textContent = 'Support';
-                link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
-            }
-        });
-
-        // If a page did not contain Support at all, add it at the end.
-        const hasSupport = Array.from(navList.querySelectorAll('a')).some(a => /^Support$/i.test((a.textContent || '').trim()));
-        if (!hasSupport) {
+        if (!seenSupport) {
             const item = document.createElement('li');
             const link = document.createElement('a');
             link.href = 'contact.html';
@@ -76,40 +76,25 @@
         }
     }
 
-    function normalizeVillageNavigation() {
-        addWebspaceNavigation();
-        normalizeSupportNavigation();
-    }
-
-    // Expose this so the persistent SPA-style navigation can keep the menu
-    // correct after another page is loaded into the current document.
     window.TSBVCNormalizeNavigation = normalizeVillageNavigation;
 
     function watchNavigationChanges() {
         if (window.__TSBVC_NAV_WATCHER__) return;
         window.__TSBVC_NAV_WATCHER__ = true;
-
-        const observer = new MutationObserver(() => {
-            normalizeVillageNavigation();
-        });
-
+        const observer = new MutationObserver(() => normalizeVillageNavigation());
         observer.observe(document.body, { childList: true, subtree: true });
     }
 
     function addMetanoiaBookResource() {
         if (!/LearningtheUnknown\.html$/.test(location.pathname)) return;
-
         const cards = document.querySelectorAll('.learning-card');
         const card = cards[cards.length - 1];
         if (!card || card.dataset.metanoiaUpdated === 'true') return;
-
         card.dataset.metanoiaUpdated = 'true';
-
         const title = card.querySelector('h3');
         const paragraph = card.querySelector('p');
         if (title) title.textContent = 'Metanoia';
         if (paragraph) paragraph.textContent = 'A transformative change in the way you see, understand, question, and move through what you thought you already knew.';
-
         const button = document.createElement('a');
         button.className = 'resource-button';
         button.href = 'https://a.co/d/01fMrrkq';
@@ -121,16 +106,12 @@
 
     function addLaunchExperienceVerification() {
         if (!/coaching\.html$/.test(location.pathname)) return;
-
         const cards = document.querySelectorAll('.price-card');
         const card = cards[1];
         if (!card || card.dataset.launchExperienceUpdated === 'true') return;
-
         card.dataset.launchExperienceUpdated = 'true';
-
         const oldEmailButton = card.querySelector('.launch-email');
         if (oldEmailButton) oldEmailButton.remove();
-
         const catalystParagraph = Array.from(card.querySelectorAll('p')).find(p => /Catalyze My Embrace of Becoming/i.test(p.textContent));
         if (catalystParagraph) {
             const bubble = document.createElement('a');
@@ -167,14 +148,11 @@
     function addHomeCoachingCTA() {
         const isHome = location.pathname === '/' || /index\.html$/.test(location.pathname);
         if (!isHome) return;
-
         const hero = document.querySelector('.hero');
         if (!hero || hero.querySelector('.home-coaching-cta')) return;
-
         const description = hero.querySelector('.description');
         const existingButton = hero.querySelector('.welcome-button');
         if (!description) return;
-
         const cta = document.createElement('a');
         cta.className = 'home-coaching-cta';
         cta.href = 'https://calendly.com/thestillbecomingvillagecircle/30min';
@@ -182,53 +160,18 @@
         cta.rel = 'noopener noreferrer';
         cta.setAttribute('aria-label', 'Schedule a 30-minute coaching session with The Still Becoming Village Circle');
         cta.innerHTML = '<span>🌱 Enter Your Becoming</span><small>Schedule a 30-minute coaching session</small>';
-
-        Object.assign(cta.style, {
-            display: 'inline-flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '2px',
-            minWidth: 'min(360px, 88vw)',
-            margin: '6px auto 16px',
-            padding: '16px 28px',
-            borderRadius: '38px',
-            background: '#16aaa9',
-            color: '#ffffff',
-            textDecoration: 'none',
-            fontSize: '18px',
-            fontWeight: '700',
-            lineHeight: '1.25',
-            border: '2px solid rgba(255,255,255,.82)',
-            boxShadow: '0 14px 32px rgba(22,170,169,.24)',
-            transition: 'transform .25s ease, box-shadow .25s ease'
-        });
-
+        Object.assign(cta.style, { display:'inline-flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'2px', minWidth:'min(360px, 88vw)', margin:'6px auto 16px', padding:'16px 28px', borderRadius:'38px', background:'#16aaa9', color:'#ffffff', textDecoration:'none', fontSize:'18px', fontWeight:'700', lineHeight:'1.25', border:'2px solid rgba(255,255,255,.82)', boxShadow:'0 14px 32px rgba(22,170,169,.24)', transition:'transform .25s ease, box-shadow .25s ease' });
         const subtext = cta.querySelector('small');
-        Object.assign(subtext.style, {
-            fontSize: '13px',
-            fontWeight: '600',
-            opacity: '0.92'
-        });
-
-        cta.addEventListener('mouseenter', () => {
-            cta.style.transform = 'translateY(-3px)';
-            cta.style.boxShadow = '0 18px 38px rgba(22,170,169,.30)';
-        });
-        cta.addEventListener('mouseleave', () => {
-            cta.style.transform = 'translateY(0)';
-            cta.style.boxShadow = '0 14px 32px rgba(22,170,169,.24)';
-        });
-
+        Object.assign(subtext.style, { fontSize:'13px', fontWeight:'600', opacity:'0.92' });
+        cta.addEventListener('mouseenter', () => { cta.style.transform='translateY(-3px)'; cta.style.boxShadow='0 18px 38px rgba(22,170,169,.30)'; });
+        cta.addEventListener('mouseleave', () => { cta.style.transform='translateY(0)'; cta.style.boxShadow='0 14px 32px rgba(22,170,169,.24)'; });
         description.insertAdjacentElement('afterend', cta);
-
         if (existingButton) existingButton.style.marginTop = '4px';
     }
 
     function init() {
         normalizeVillageNavigation();
         watchNavigationChanges();
-
         if (!document.getElementById('villageSoundtrack') && !document.querySelector('script[src*="village-music.js"]')) {
             const script = document.createElement('script');
             script.src = 'village-music.js';
