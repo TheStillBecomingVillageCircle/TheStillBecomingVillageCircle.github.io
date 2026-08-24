@@ -17,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Add persistent navigation to HTML pages
+      - name: Add persistent navigation to every HTML page
         shell: python
         run: |
           from pathlib import Path
@@ -50,5 +50,5 @@ jobs:
             echo "No HTML changes needed."
             exit 0
           fi
-          git commit -m "Install persistent Village navigation"
+          git commit -m "Install persistent Village navigation on every page"
           git push
