@@ -12,41 +12,39 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Webspace navigation on every HTML page
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install persistent Village navigation everywhere
         shell: python
         run: |
           from pathlib import Path
-          import re
 
-          webspace_li = '<li><a href="web-design.html">Webspace</a></li>'
-          persistence_tag = '<script src="village-persistence.js"></script>'
+          script_tag = '<script src="village-persistence.js"></script>'
+          webspace_item = '<li><a href="web-design.html">Webspace</a></li>'
           changed = []
 
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
               original = text
 
-              # Add Webspace directly to every page's actual navigation.
+              # Make Webspace a real link in the HTML, not something that
+              # depends on JavaScript successfully running first.
               if 'href="web-design.html"' not in text:
-                  nav_match = re.search(r'<nav\b[\s\S]*?</nav>', text, re.IGNORECASE)
-                  if nav_match:
-                      nav = nav_match.group(0)
-                      ul_match = re.search(r'<ul\b[^>]*>[\s\S]*?</ul>', nav, re.IGNORECASE)
-                      if ul_match:
-                          ul = ul_match.group(0)
-                          experience = re.search(r'<li\b[^>]*>[\s\S]*?Experiences[\s\S]*?</li>', ul, re.IGNORECASE)
-                          if experience:
-                              new_ul = ul[:experience.end()] + '\n' + webspace_li + ul[experience.end():]
-                          else:
-                              new_ul = ul.replace('</ul>', '\n' + webspace_li + '\n</ul>')
-                          nav = nav[:ul_match.start()] + new_ul + nav[ul_match.end():]
-                          text = text[:nav_match.start()] + nav + text[nav_match.end():]
+                  marker = '<li><a href="events.html">Experiences</a></li>'
+                  if marker in text:
+                      text = text.replace(marker, marker + '\n' + webspace_item, 1)
+                  else:
+                      marker = '<li><a href="contact.html">Connect</a></li>'
+                      if marker in text:
+                          text = text.replace(marker, webspace_item + '\n' + marker, 1)
 
-              # Keep the shared Village mobile navigation and other enhancements.
               if 'village-persistence.js' not in text:
                   pos = text.lower().rfind('</body>')
                   if pos != -1:
-                      text = text[:pos] + '\n' + persistence_tag + '\n' + text[pos:]
+                      text = text[:pos] + '\n' + script_tag + '\n' + text[pos:]
 
               if text != original:
                   path.write_text(text, encoding='utf-8')
@@ -54,15 +52,15 @@ jobs:
 
           print('Updated:', ', '.join(changed) if changed else 'none')
 
-      - name: Commit navigation fixes
+      - name: Commit injected navigation
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html' .github/workflows/install-persistent-navigation.yml
+          git add '*.html'
           if git diff --cached --quiet; then
-            echo "No navigation changes needed."
+            echo "No HTML changes needed."
             exit 0
           fi
-          git commit -m "Fix Webspace navigation across Village pages"
+          git commit -m "Make Webspace navigation explicit on every page"
           git push
