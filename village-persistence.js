@@ -77,6 +77,63 @@
         document.body.appendChild(script);
     }
 
+    function replaceHomeDestinationIllustration() {
+        const isHome = location.pathname === '/' || /index\.html$/.test(location.pathname);
+        if (!isHome) return;
+        const scene = document.querySelector('.home-scene');
+        if (!scene || scene.dataset.homeIllustrationUpdated === 'true') return;
+        scene.dataset.homeIllustrationUpdated = 'true';
+
+        scene.innerHTML = `
+            <svg viewBox="0 0 240 200" role="img" aria-label="An elegant little house floating gently above a cloud">
+                <defs>
+                    <linearGradient id="newHomeCloud" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#ffffff"/>
+                        <stop offset="1" stop-color="#dff5f0"/>
+                    </linearGradient>
+                    <linearGradient id="newHomeWall" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#fffaf0"/>
+                        <stop offset="1" stop-color="#ead9c3"/>
+                    </linearGradient>
+                    <linearGradient id="newHomeRoof" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#88a9a0"/>
+                        <stop offset="1" stop-color="#5f817a"/>
+                    </linearGradient>
+                    <filter id="newHomeShadow" x="-30%" y="-30%" width="160%" height="170%">
+                        <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#4f8d87" flood-opacity=".13"/>
+                    </filter>
+                </defs>
+                <g class="new-home-float" filter="url(#newHomeShadow)">
+                    <path d="M37 151c0-14 12-25 28-25 3-19 22-31 40-25 10-17 34-22 49-9 8-7 20-10 31-5 12 5 19 15 19 27 13 1 23 9 23 21 0 14-13 25-30 25H66c-17 0-29-4-29-9Z" fill="url(#newHomeCloud)" stroke="#ffffff" stroke-width="2.5"/>
+                    <path d="M76 91 119 51l44 40v52H76Z" fill="url(#newHomeWall)" stroke="#cdbda8" stroke-width="1.3"/>
+                    <path d="M65 92 119 42l55 50-10 7-45-41-45 41Z" fill="url(#newHomeRoof)"/>
+                    <path d="M142 58h10v25h-10z" fill="#b89a7e"/>
+                    <path d="M111 143v-28c0-8 6-14 14-14s14 6 14 14v28Z" fill="#6f8780"/>
+                    <path d="M87 101h20v21H87zM144 101h20v21h-20z" fill="#d9f6f1" stroke="#ffffff" stroke-width="4"/>
+                    <path d="M92 106h10v11H92zM149 106h10v11h-10z" fill="#bde8e0" opacity=".7"/>
+                    <path d="M118 51 127 43l9 8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+                </g>
+                <path d="M57 171c35-8 89-8 127 0" fill="none" stroke="#6fa9a0" stroke-opacity=".16" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+        `;
+
+        if (!document.getElementById('new-home-destination-style')) {
+            const style = document.createElement('style');
+            style.id = 'new-home-destination-style';
+            style.textContent = `
+                .home-scene .new-home-float { transform-origin: 50% 72%; animation: newHomeFloat 6.5s ease-in-out infinite; }
+                @keyframes newHomeFloat {
+                    0%,100% { transform: translateY(2px); }
+                    50% { transform: translateY(-7px); }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .home-scene .new-home-float { animation: none; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
     function addMetanoiaBookResource() {
         if (!/LearningtheUnknown\.html$/.test(location.pathname)) return;
         const cards = document.querySelectorAll('.learning-card');
@@ -147,6 +204,7 @@
         addMobileVillageNavigation();
         loadScriptOnce('village-music.js','village-music-loader');
         loadScriptOnce('village-polish.js','village-polish-loader');
+        replaceHomeDestinationIllustration();
         addMetanoiaBookResource();
         addLaunchExperienceVerification();
         addHomeCoachingCTA();
