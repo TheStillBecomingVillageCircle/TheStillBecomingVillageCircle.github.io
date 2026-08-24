@@ -92,6 +92,68 @@
         }
     }
 
+    function addHomeCoachingCTA() {
+        const isHome = location.pathname === '/' || /index\.html$/.test(location.pathname);
+        if (!isHome) return;
+
+        const hero = document.querySelector('.hero');
+        if (!hero || hero.querySelector('.home-coaching-cta')) return;
+
+        const description = hero.querySelector('.description');
+        const existingButton = hero.querySelector('.welcome-button');
+        if (!description) return;
+
+        const cta = document.createElement('a');
+        cta.className = 'home-coaching-cta';
+        cta.href = 'https://calendly.com/thestillbecomingvillagecircle/30min';
+        cta.target = '_blank';
+        cta.rel = 'noopener noreferrer';
+        cta.setAttribute('aria-label', 'Schedule a 30-minute coaching session with The Still Becoming Village Circle');
+        cta.innerHTML = '<span>🌱 Enter Your Becoming</span><small>Schedule a 30-minute coaching session</small>';
+
+        Object.assign(cta.style, {
+            display: 'inline-flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '2px',
+            minWidth: 'min(360px, 88vw)',
+            margin: '6px auto 16px',
+            padding: '16px 28px',
+            borderRadius: '38px',
+            background: '#16aaa9',
+            color: '#ffffff',
+            textDecoration: 'none',
+            fontSize: '18px',
+            fontWeight: '700',
+            lineHeight: '1.25',
+            border: '2px solid rgba(255,255,255,.82)',
+            boxShadow: '0 14px 32px rgba(22,170,169,.24)',
+            transition: 'transform .25s ease, box-shadow .25s ease'
+        });
+
+        const subtext = cta.querySelector('small');
+        Object.assign(subtext.style, {
+            fontSize: '13px',
+            fontWeight: '600',
+            opacity: '0.92'
+        });
+
+        cta.addEventListener('mouseenter', () => {
+            cta.style.transform = 'translateY(-3px)';
+            cta.style.boxShadow = '0 18px 38px rgba(22,170,169,.30)';
+        });
+        cta.addEventListener('mouseleave', () => {
+            cta.style.transform = 'translateY(0)';
+            cta.style.boxShadow = '0 14px 32px rgba(22,170,169,.24)';
+        });
+
+        description.insertAdjacentElement('afterend', cta);
+
+        // Keep the existing "Step Inside the Bubble" invitation underneath.
+        if (existingButton) existingButton.style.marginTop = '4px';
+    }
+
     function init() {
         addWebspaceNavigation();
 
@@ -103,6 +165,7 @@
         }
         addMetanoiaBookResource();
         addLaunchExperienceVerification();
+        addHomeCoachingCTA();
     }
 
     if (document.readyState === 'loading') {
