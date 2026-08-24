@@ -24,14 +24,14 @@ jobs:
 
           script_tag = '<script src="village-persistence.js"></script>'
           webspace_item = '<li><a href="web-design.html">Webspace</a></li>'
+          webspace_standalone = '<a href="web-design.html" aria-label="Webspace for Intentional Becoming" style="color:#285f61;text-decoration:none;font-size:14px;font-weight:700;white-space:nowrap;">Webspace</a>'
           changed = []
 
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
               original = text
 
-              # Make Webspace a real link in the HTML, not something that
-              # depends on JavaScript successfully running first.
+              # Webspace must exist in the actual HTML. Do not depend on JS.
               if 'href="web-design.html"' not in text:
                   marker = '<li><a href="events.html">Experiences</a></li>'
                   if marker in text:
@@ -40,7 +40,10 @@ jobs:
                       marker = '<li><a href="contact.html">Connect</a></li>'
                       if marker in text:
                           text = text.replace(marker, webspace_item + '\n' + marker, 1)
+                      elif '</nav>' in text:
+                          text = text.replace('</nav>', webspace_standalone + '\n</nav>', 1)
 
+              # Keep the shared enhancement script on every page too.
               if 'village-persistence.js' not in text:
                   pos = text.lower().rfind('</body>')
                   if pos != -1:
@@ -62,5 +65,5 @@ jobs:
             echo "No HTML changes needed."
             exit 0
           fi
-          git commit -m "Make Webspace navigation explicit on every page"
+          git commit -m "Make Webspace navigation explicit everywhere"
           git push
