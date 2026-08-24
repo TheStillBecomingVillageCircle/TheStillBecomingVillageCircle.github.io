@@ -7,21 +7,27 @@
 
     function addWebspaceNavigation() {
         const navList = document.querySelector('nav ul');
-        if (!navList || navList.querySelector('a[href="web-design.html"]')) return;
+        if (!navList) return;
 
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = 'web-design.html';
-        link.textContent = 'Webspace';
-        link.setAttribute('aria-label', 'Webspace for Intentional Becoming');
-        item.appendChild(link);
+        // Keep the Webspace destination present and consistently named on every page.
+        let webspaceLink = navList.querySelector('a[href="web-design.html"]');
 
-        const experienceLink = Array.from(navList.querySelectorAll('a')).find(a => /Experiences/i.test(a.textContent));
-        if (experienceLink && experienceLink.parentElement) {
-            experienceLink.parentElement.insertAdjacentElement('afterend', item);
-        } else {
-            navList.appendChild(item);
+        if (!webspaceLink) {
+            const item = document.createElement('li');
+            webspaceLink = document.createElement('a');
+            webspaceLink.href = 'web-design.html';
+            item.appendChild(webspaceLink);
+
+            const experienceLink = Array.from(navList.querySelectorAll('a')).find(a => /Experiences/i.test(a.textContent));
+            if (experienceLink && experienceLink.parentElement) {
+                experienceLink.parentElement.insertAdjacentElement('afterend', item);
+            } else {
+                navList.appendChild(item);
+            }
         }
+
+        webspaceLink.textContent = 'Webspace';
+        webspaceLink.setAttribute('aria-label', 'Webspace for Intentional Becoming');
     }
 
     function addMetanoiaBookResource() {
@@ -150,7 +156,6 @@
 
         description.insertAdjacentElement('afterend', cta);
 
-        // Keep the existing "Step Inside the Bubble" invitation underneath.
         if (existingButton) existingButton.style.marginTop = '4px';
     }
 
