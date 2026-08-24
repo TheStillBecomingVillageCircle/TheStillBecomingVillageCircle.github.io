@@ -21,6 +21,151 @@
         }
     }
 
+    function addMobileVillageNavigation() {
+        const nav = document.querySelector('nav');
+        const navList = nav ? nav.querySelector('ul') : null;
+        if (!nav || !navList || nav.querySelector('.village-mobile-menu-button')) return;
+
+        const style = document.createElement('style');
+        style.id = 'village-responsive-navigation';
+        style.textContent = `
+            .village-mobile-menu-button {
+                display: none !important;
+            }
+
+            @media (max-width: 768px) {
+                header {
+                    position: sticky !important;
+                    top: 0 !important;
+                    z-index: 10000 !important;
+                }
+
+                nav {
+                    position: relative !important;
+                    width: 100% !important;
+                    max-width: none !important;
+                    margin: 0 !important;
+                    padding: 12px 16px !important;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    align-items: center !important;
+                    justify-content: space-between !important;
+                    gap: 10px !important;
+                }
+
+                nav .logo {
+                    flex: 1 1 auto !important;
+                    min-width: 0 !important;
+                    max-width: calc(100% - 62px) !important;
+                    font-size: 17px !important;
+                    line-height: 1.25 !important;
+                    white-space: normal !important;
+                }
+
+                nav .logo a {
+                    white-space: normal !important;
+                    font-size: 17px !important;
+                    line-height: 1.25 !important;
+                }
+
+                .village-mobile-menu-button {
+                    display: inline-flex !important;
+                    flex: 0 0 46px !important;
+                    width: 46px !important;
+                    height: 46px !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    border: 1px solid rgba(22,170,169,.18) !important;
+                    border-radius: 50% !important;
+                    background: rgba(255,255,255,.88) !important;
+                    color: #16aaa9 !important;
+                    box-shadow: 0 6px 18px rgba(40,120,120,.12) !important;
+                    font-size: 23px !important;
+                    line-height: 1 !important;
+                    cursor: pointer !important;
+                    padding: 0 !important;
+                    -webkit-tap-highlight-color: transparent !important;
+                }
+
+                nav ul,
+                nav ul.village-mobile-menu {
+                    display: none !important;
+                    position: absolute !important;
+                    left: 12px !important;
+                    right: 12px !important;
+                    top: calc(100% + 8px) !important;
+                    margin: 0 !important;
+                    padding: 14px !important;
+                    flex-direction: column !important;
+                    align-items: stretch !important;
+                    justify-content: flex-start !important;
+                    gap: 2px !important;
+                    list-style: none !important;
+                    background: rgba(255,255,255,.97) !important;
+                    border: 1px solid rgba(22,170,169,.12) !important;
+                    border-radius: 24px !important;
+                    box-shadow: 0 18px 45px rgba(40,120,120,.16) !important;
+                    backdrop-filter: blur(16px) !important;
+                    -webkit-backdrop-filter: blur(16px) !important;
+                    z-index: 10001 !important;
+                }
+
+                nav.village-menu-open ul,
+                nav.village-menu-open ul.village-mobile-menu {
+                    display: flex !important;
+                }
+
+                nav ul li {
+                    width: 100% !important;
+                    margin: 0 !important;
+                    text-align: left !important;
+                }
+
+                nav ul li a {
+                    display: block !important;
+                    width: 100% !important;
+                    padding: 12px 14px !important;
+                    border-radius: 14px !important;
+                    font-size: 16px !important;
+                    line-height: 1.3 !important;
+                }
+
+                nav ul li a:hover,
+                nav ul li a:focus {
+                    background: rgba(22,170,169,.08) !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        navList.classList.add('village-mobile-menu');
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'village-mobile-menu-button';
+        button.setAttribute('aria-label', 'Open Village navigation');
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = '☰';
+
+        button.addEventListener('click', () => {
+            const open = nav.classList.toggle('village-menu-open');
+            button.textContent = open ? '×' : '☰';
+            button.setAttribute('aria-expanded', String(open));
+            button.setAttribute('aria-label', open ? 'Close Village navigation' : 'Open Village navigation');
+        });
+
+        nav.appendChild(button);
+
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('village-menu-open');
+                button.textContent = '☰';
+                button.setAttribute('aria-expanded', 'false');
+                button.setAttribute('aria-label', 'Open Village navigation');
+            });
+        });
+    }
+
     function addMetanoiaBookResource() {
         if (!/LearningtheUnknown\.html$/.test(location.pathname)) return;
 
@@ -147,12 +292,12 @@
 
         description.insertAdjacentElement('afterend', cta);
 
-        // Keep the existing "Step Inside the Bubble" invitation underneath.
         if (existingButton) existingButton.style.marginTop = '4px';
     }
 
     function init() {
         addWebspaceNavigation();
+        addMobileVillageNavigation();
 
         if (!document.getElementById('villageSoundtrack') && !document.querySelector('script[src*="village-music.js"]')) {
             const script = document.createElement('script');
