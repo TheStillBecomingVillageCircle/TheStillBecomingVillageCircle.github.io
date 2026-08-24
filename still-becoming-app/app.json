@@ -5,10 +5,24 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
-    "splash": {"backgroundColor": "#F7FCF9"},
-    "ios": {"supportsTablet": true, "bundleIdentifier": "org.stillbecomingvillagecircle.app"},
-    "android": {"package": "org.stillbecomingvillagecircle.app"},
+    "splash": {
+      "backgroundColor": "#F7FCF9"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.stillbecomingvillagecircle.app"
+    },
+    "android": {
+      "package": "org.stillbecomingvillagecircle.app"
+    },
     "plugins": ["expo-notifications"],
-    "web": {"bundler": "metro"}
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8ee13b36-71b8-4c47-9a7e-543d7547a391"
+      }
+    }
   }
 }
