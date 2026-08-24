@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Still Becoming Village Circle",
+    "slug": "still-becoming-village-circle",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "splash": {"backgroundColor": "#F7FCF9"},
+    "ios": {"supportsTablet": true, "bundleIdentifier": "org.stillbecomingvillagecircle.app"},
+    "android": {"package": "org.stillbecomingvillagecircle.app"},
+    "web": {"bundler": "metro"}
+  }
+}
