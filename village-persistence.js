@@ -30,6 +30,72 @@
         webspaceLink.setAttribute('aria-label', 'Webspace for Intentional Becoming');
     }
 
+    function normalizeSupportNavigation() {
+        const navList = document.querySelector('nav ul');
+        if (!navList) return;
+
+        // There is one clear path for people who need to reach the Village:
+        // Support → contact.html. Remove the duplicate Connect navigation item.
+        const links = Array.from(navList.querySelectorAll('a'));
+        links.forEach(link => {
+            const text = (link.textContent || '').trim();
+            const href = link.getAttribute('href') || '';
+
+            if (/^Connect$/i.test(text)) {
+                const item = link.closest('li');
+                if (item) item.remove();
+                return;
+            }
+
+            if (/^Support$/i.test(text)) {
+                link.href = 'contact.html';
+                link.textContent = 'Support';
+                link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
+                return;
+            }
+
+            // If an older page still has the contact destination labeled Connect,
+            // turn it into the single Support destination instead.
+            if (/contact\.html(?:$|#)/i.test(href)) {
+                link.href = 'contact.html';
+                link.textContent = 'Support';
+                link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
+            }
+        });
+
+        // If a page did not contain Support at all, add it at the end.
+        const hasSupport = Array.from(navList.querySelectorAll('a')).some(a => /^Support$/i.test((a.textContent || '').trim()));
+        if (!hasSupport) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = 'contact.html';
+            link.textContent = 'Support';
+            link.setAttribute('aria-label', 'Contact The Still Becoming Village Circle for support');
+            item.appendChild(link);
+            navList.appendChild(item);
+        }
+    }
+
+    function normalizeVillageNavigation() {
+        addWebspaceNavigation();
+        normalizeSupportNavigation();
+    }
+
+    // Expose this so the persistent SPA-style navigation can keep the menu
+    // correct after another page is loaded into the current document.
+    window.TSBVCNormalizeNavigation = normalizeVillageNavigation;
+
+    function watchNavigationChanges() {
+        if (window.__TSBVC_NAV_WATCHER__) return;
+        window.__TSBVC_NAV_WATCHER__ = true;
+
+        const observer = new MutationObserver(() => {
+            normalizeVillageNavigation();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
     function addMetanoiaBookResource() {
         if (!/LearningtheUnknown\.html$/.test(location.pathname)) return;
 
@@ -160,7 +226,8 @@
     }
 
     function init() {
-        addWebspaceNavigation();
+        normalizeVillageNavigation();
+        watchNavigationChanges();
 
         if (!document.getElementById('villageSoundtrack') && !document.querySelector('script[src*="village-music.js"]')) {
             const script = document.createElement('script');
