@@ -2,9 +2,6 @@
 (function () {
     'use strict';
 
-    if (window.__TSBVC_MUSIC_BOOTSTRAP__) return;
-    window.__TSBVC_MUSIC_BOOTSTRAP__ = true;
-
     function addWebspaceNavigation() {
         const navList = document.querySelector('nav ul');
         if (!navList || navList.querySelector('a[href="web-design.html"]')) return;
