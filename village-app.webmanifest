@@ -1,0 +1,20 @@
+{
+  "name": "The Still Becoming Village Circle",
+  "short_name": "Still Becoming",
+  "description": "A place to remember that becoming is a process, not a deadline.",
+  "start_url": "/village-app.html",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone"],
+  "orientation": "portrait",
+  "background_color": "#F7FCF9",
+  "theme_color": "#16AAA9",
+  "icons": [
+    {
+      "src": "/village-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
