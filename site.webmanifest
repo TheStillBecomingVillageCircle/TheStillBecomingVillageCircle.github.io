@@ -1,0 +1,17 @@
+{
+  "name": "The Still Becoming Village Circle",
+  "short_name": "Still Becoming",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#effffb",
+  "theme_color": "#eafff9",
+  "icons": [
+    {
+      "src": "/sb-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
