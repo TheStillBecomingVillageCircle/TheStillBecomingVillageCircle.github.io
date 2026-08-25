@@ -4,6 +4,49 @@
 ========================================================= */
 
 /* =========================================================
+   BRANDED HOME-SCREEN ICON
+   Keep the website's Home Screen identity as SB. The house
+   remains the visual Home destination inside the website.
+========================================================= */
+(function () {
+    'use strict';
+
+    function installSiteBranding() {
+        if (!document.head) return;
+
+        if (!document.querySelector('link[data-tsbvc-manifest]')) {
+            const manifest = document.createElement('link');
+            manifest.rel = 'manifest';
+            manifest.href = '/site.webmanifest';
+            manifest.dataset.tsbvcManifest = 'true';
+            document.head.appendChild(manifest);
+        }
+
+        if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) {
+            const title = document.createElement('meta');
+            title.name = 'apple-mobile-web-app-title';
+            title.content = 'Still Becoming';
+            document.head.appendChild(title);
+        }
+
+        if (!document.querySelector('link[data-tsbvc-icon]')) {
+            const icon = document.createElement('link');
+            icon.rel = 'icon';
+            icon.type = 'image/svg+xml';
+            icon.href = '/sb-icon.svg';
+            icon.dataset.tsbvcIcon = 'true';
+            document.head.appendChild(icon);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', installSiteBranding, { once: true });
+    } else {
+        installSiteBranding();
+    }
+})();
+
+/* =========================================================
    FIRST-LOAD LAYOUT STABILIZATION
 ========================================================= */
 function stabilizePageLayout() {
@@ -124,13 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* =========================================================
    VILLAGE SOUNDTRACK — SCROLL-TO-START
-
-   On iPhone/iPad, a plain scroll event is often too late to
-   satisfy the browser's media-gesture policy. So the first
-   touch/pointer that begins the scroll is used as the user's
-   gesture, with scroll/wheel kept as fallbacks. For the
-   SoundCloud player, control the existing iframe widget rather
-   than looking for an <audio> element that does not exist.
 ========================================================= */
 (function () {
     'use strict';
@@ -140,12 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let waitingForWidget = false;
 
     function getSoundtrackAudio() {
-        const selectors = [
-            '#soundtrackAudio',
-            '#backgroundMusic',
-            '.soundtrack audio',
-            'audio[data-village-soundtrack]'
-        ];
+        const selectors = ['#soundtrackAudio','#backgroundMusic','.soundtrack audio','audio[data-village-soundtrack]'];
         for (const selector of selectors) {
             const audio = document.querySelector(selector);
             if (audio && typeof audio.play === 'function') return audio;
@@ -159,44 +190,29 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             if (!soundtrackWidget) soundtrackWidget = window.SC.Widget(iframe);
             return soundtrackWidget;
-        } catch (error) {
-            return null;
-        }
+        } catch (error) { return null; }
     }
 
     function tryStartSoundtrack() {
         if (soundtrackStarted) return true;
-
         const audio = getSoundtrackAudio();
         if (audio) {
             audio.volume = Number.isFinite(audio.volume) ? audio.volume : 0.35;
             const playPromise = audio.play();
-            if (playPromise && typeof playPromise.then === 'function') {
-                playPromise.then(function () {
-                    soundtrackStarted = true;
-                }).catch(function () {});
-            } else {
-                soundtrackStarted = true;
-            }
+            if (playPromise && typeof playPromise.then === 'function') playPromise.then(function () { soundtrackStarted = true; }).catch(function () {});
+            else soundtrackStarted = true;
             return true;
         }
-
         const widget = getSoundCloudWidget();
         if (widget) {
-            try {
-                widget.play();
-                soundtrackStarted = true;
-                return true;
-            } catch (error) {}
+            try { widget.play(); soundtrackStarted = true; return true; } catch (error) {}
         }
-
         return false;
     }
 
     function waitForSoundCloudThenPlay() {
         if (waitingForWidget || soundtrackStarted) return;
         waitingForWidget = true;
-
         let attempts = 0;
         const timer = setInterval(function () {
             attempts += 1;
@@ -215,32 +231,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function initializeSoundtrack() {
         if (soundtrackInitialized) return;
         soundtrackInitialized = true;
-
-        const gestureEvents = ['touchstart', 'pointerdown', 'wheel', 'scroll'];
+        const gestureEvents = ['touchstart','pointerdown','wheel','scroll'];
         const startOnInteraction = function () {
             startFromUserGesture();
-            if (soundtrackStarted) {
-                gestureEvents.forEach(function (type) {
-                    window.removeEventListener(type, startOnInteraction);
-                });
-            }
+            if (soundtrackStarted) gestureEvents.forEach(function (type) { window.removeEventListener(type, startOnInteraction); });
         };
-
-        // touchstart/pointerdown happen at the beginning of a finger
-        // scroll, which is the important part for iOS autoplay rules.
-        gestureEvents.forEach(function (type) {
-            window.addEventListener(type, startOnInteraction, { passive: true });
-        });
-
-        // If someone lands on a page already scrolled down, try once.
+        gestureEvents.forEach(function (type) { window.addEventListener(type, startOnInteraction, { passive: true }); });
         if (window.scrollY > 0) startFromUserGesture();
     }
 
     function initialize() { initializeSoundtrack(); }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initialize, { once: true });
-    } else initialize();
-
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize, { once: true });
+    else initialize();
     window.addEventListener('village:pagechange', function () {
         soundtrackInitialized = false;
         soundtrackStarted = false;
@@ -301,10 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
             function goToDestination() { window.location.href = destination; }
             card.addEventListener("click", goToDestination);
             card.addEventListener("keydown", function (event) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    goToDestination();
-                }
+                if (event.key === "Enter" || event.key === " ") { event.preventDefault(); goToDestination(); }
             });
         });
     }
@@ -315,50 +314,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* =========================================================
    SOUNDTRACK — SINGLE-TAP FIX
-
-   The floating sax is the music control. The previous handler
-   could fire before the SoundCloud widget was READY and then
-   reload the iframe, forcing a second tap. Intercept the first
-   user tap and wait for the existing widget to become ready,
-   then issue exactly one PLAY command. No iframe reload.
 ========================================================= */
 (function () {
     'use strict';
-
     function installSingleTapFix() {
         if (window.__TSBVC_SINGLE_TAP_FIX__) return;
         window.__TSBVC_SINGLE_TAP_FIX__ = true;
-
-        // Do not install another competing scroll fallback.
         window.__TSBVC_SCROLL_MUSIC__ = true;
-
         let pendingPlay = false;
-
         function playWhenReady() {
             const iframe = document.querySelector('#villageSoundtrack .soundcloud-frame');
             if (!iframe || !window.SC || !window.SC.Widget) return false;
-
             const widget = window.SC.Widget(iframe);
             let played = false;
-            const playOnce = function () {
-                if (played) return;
-                played = true;
-                try { widget.play(); } catch (error) {}
-            };
-
+            const playOnce = function () { if (played) return; played = true; try { widget.play(); } catch (error) {} };
             widget.bind(window.SC.Widget.Events.READY, playOnce);
             setTimeout(playOnce, 80);
             setTimeout(playOnce, 350);
             return true;
         }
-
         document.addEventListener('click', function (event) {
             const control = event.target.closest && event.target.closest('#villageSoundtrack .closed');
             if (!control) return;
-
             event.stopImmediatePropagation();
             event.preventDefault();
-
             const player = document.getElementById('villageSoundtrack');
             if (player && player.classList.contains('playing')) {
                 try {
@@ -367,27 +346,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 } catch (error) {}
                 return;
             }
-
             pendingPlay = true;
             if (!playWhenReady()) {
                 const waitForApi = setInterval(function () {
                     if (!pendingPlay) { clearInterval(waitForApi); return; }
-                    if (playWhenReady()) {
-                        pendingPlay = false;
-                        clearInterval(waitForApi);
-                    }
+                    if (playWhenReady()) { pendingPlay = false; clearInterval(waitForApi); }
                 }, 60);
                 setTimeout(function () { clearInterval(waitForApi); }, 2500);
-            } else {
-                pendingPlay = false;
-            }
+            } else pendingPlay = false;
         }, true);
     }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', installSingleTapFix, { once: true });
-    } else {
-        installSingleTapFix();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installSingleTapFix, { once: true });
+    else installSingleTapFix();
     window.addEventListener('village:pagechange', installSingleTapFix);
 })();
