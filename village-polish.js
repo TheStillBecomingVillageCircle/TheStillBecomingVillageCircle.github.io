@@ -23,8 +23,31 @@
       .logo .village-inline-icon{width:1.1em;height:1.1em}
       .bubble-icon .village-inline-icon{width:100%;height:100%}
       .foot .village-inline-icon{width:1.25em;height:1.25em}
+      .tsbvc-grace-home{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:58px!important;height:42px!important;padding:0!important;margin:0!important;border-radius:12px!important;overflow:hidden!important;background:rgba(234,255,249,.92)!important;border:1px solid rgba(49,95,93,.14)!important;box-shadow:0 7px 18px rgba(49,95,93,.10)!important;vertical-align:middle!important;transition:transform .25s ease,box-shadow .25s ease!important}
+      .tsbvc-grace-home:hover,.tsbvc-grace-home:focus-visible{transform:translateY(-2px);box-shadow:0 10px 22px rgba(49,95,93,.16);outline:none}
+      .tsbvc-grace-home img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+      .grace-home-place .place-name,.grace-home-place>a>span{display:none!important}
+      @media(max-width:760px){.tsbvc-grace-home{width:52px!important;height:38px!important;border-radius:10px!important}}
     `;
     document.head.appendChild(s);
+  }
+
+  function addGraceHome(){
+    const homeImage='/assets/grace-home-exact.jpg';
+    document.querySelectorAll('a[href="index.html"]').forEach(link=>{
+      if(!link.closest('nav')) return;
+      if(link.dataset.graceHomeInstalled==='true') return;
+      link.dataset.graceHomeInstalled='true';
+      link.classList.add('tsbvc-grace-home');
+      link.setAttribute('aria-label','Home');
+      link.title='Home';
+      link.innerHTML='<img src="'+homeImage+'" alt="Grace’s home — Home">';
+    });
+    const place=document.querySelector('.grace-home-place');
+    if(place){
+      const label=place.querySelector('.place-name');
+      if(label) label.remove();
+    }
   }
 
   function replaceText(root){
@@ -52,6 +75,6 @@
     });
   }
 
-  function run(){style();replaceText(document.body)}
+  function run(){style();addGraceHome();replaceText(document.body)}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true}); else run();
 })();
