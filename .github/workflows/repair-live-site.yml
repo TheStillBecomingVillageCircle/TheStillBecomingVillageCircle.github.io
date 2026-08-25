@@ -1,6 +1,8 @@
 name: Repair Live Village Site
 
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ["Install Persistent Village Navigation"]
     types: [completed]
@@ -11,7 +13,7 @@ permissions:
 
 jobs:
   repair:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
