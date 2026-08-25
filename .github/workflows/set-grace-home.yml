@@ -22,7 +22,7 @@ jobs:
           path = Path('index.html')
           html = path.read_text(encoding='utf-8')
 
-          pattern = r'<div class="place"><a href="index\\.html" aria-label="Home">.*?</a></div>'
+          pattern = r'<div class="place"><a href="index.html" aria-label="Home">.*?</a></div>'
           replacement = r'''<div class="place grace-home-place"><a href="index.html" aria-label="Home"><div class="scene grace-home-scene"><svg viewBox="0 0 420 300" role="img" aria-label="Grace's elegant modern floating home with pool and golden arc"><defs>
             <linearGradient id="ghCloud" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#d8f5ef"/></linearGradient>
             <linearGradient id="ghWall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#edf8f5"/></linearGradient>
@@ -62,7 +62,17 @@ jobs:
           if count != 1:
               raise SystemExit('Home destination block not found; no change made.')
 
-          css = '''\n/* Grace's Home destination */\n.grace-home-place { min-height: 330px; }\n.grace-home-scene { width: min(420px, 96vw); height: 300px; }\n.grace-home-scene svg { width: 100%; height: 100%; }\n.grace-house-float { transform-origin: 50% 70%; animation: graceHouseFloat 6.5s ease-in-out infinite; }\n@keyframes graceHouseFloat { 0%,100% { transform: translateY(2px); } 50% { transform: translateY(-7px); } }\n@media (max-width:760px) { .grace-home-place { min-height: 295px; } .grace-home-scene { width: min(420px, 94vw); height: 275px; } }\n@media (max-width:480px) { .grace-home-place { min-height: 300px; } .grace-home-scene { width: 100%; height: 280px; } }\n@media (prefers-reduced-motion:reduce) { .grace-house-float { animation:none; } }\n'''
+          css = '''
+/* Grace's Home destination */
+.grace-home-place { min-height: 330px; }
+.grace-home-scene { width: min(420px, 96vw); height: 300px; }
+.grace-home-scene svg { width: 100%; height: 100%; }
+.grace-house-float { transform-origin: 50% 70%; animation: graceHouseFloat 6.5s ease-in-out infinite; }
+@keyframes graceHouseFloat { 0%,100% { transform: translateY(2px); } 50% { transform: translateY(-7px); } }
+@media (max-width:760px) { .grace-home-place { min-height: 295px; } .grace-home-scene { width: min(420px, 94vw); height: 275px; } }
+@media (max-width:480px) { .grace-home-place { min-height: 300px; } .grace-home-scene { width: 100%; height: 280px; } }
+@media (prefers-reduced-motion:reduce) { .grace-house-float { animation:none; } }
+'''
           html = updated.replace('</style>', css + '</style>', 1)
           path.write_text(html, encoding='utf-8')
       - name: Commit website change
