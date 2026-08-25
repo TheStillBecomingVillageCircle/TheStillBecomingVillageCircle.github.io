@@ -1,14 +1,299 @@
-import React,{useState}from'react';import{SafeAreaView,ScrollView,View,Text,Pressable,StyleSheet,Modal,TextInput,Alert}from'react-native';
-const places=['Home','Inside the Bubble','The Unknown','Experiences','Webspace','Connect','Support'];
-const emotions=['Calm','Okay','Uneasy','Frustrated','Angry','Overwhelmed'];
-const grace='https://raw.githubusercontent.com/TheStillBecomingVillageCircle/TheStillBecomingVillageCircle.github.io/main/still-becoming-app/grace-village.svg';
-export default function App(){const[tab,setTab]=useState('Home'),[emotion,setEmotion]=useState(null),[notReady,setNotReady]=useState(false),[addOpen,setAddOpen]=useState(false),[reflection,setReflection]=useState('');const[title,setTitle]=useState(''),[date,setDate]=useState(''),[time,setTime]=useState('');const[appointments,setAppointments]=useState([{title:'Therapy Appointment',date:'Wednesday, August 26, 2026',time:'2:00 PM',type:'Therapy'}]);const add=()=>{if(!title||!date||!time){Alert.alert('Almost there','Add the appointment name, date, and time.');return}setAppointments([...appointments,{title,date,time,type:'Personal'}]);setTitle('');setDate('');setTime('');setAddOpen(false)};return <SafeAreaView style={s.safe}><ScrollView contentContainerStyle={s.page}>
-<View style={s.header}><View><Text style={s.brand}>THE STILL BECOMING</Text><Text style={s.heading}>Reminder Circle</Text></View><View style={s.graceFrame}><Grace/></View></View>
-{tab==='Home'&&<><View style={s.hero}><Text style={s.eyebrow}>YOUR NEXT STEP</Text><Text style={s.motivation}>You do not have to become everything today. Just take this next step.</Text><Text style={s.muted}>Your reminders, your moments, your becoming.</Text></View><View style={s.reminder}><Text style={s.label}>UP NEXT</Text><Text style={s.title}>{appointments[0].title}</Text><Text style={s.muted}>{appointments[0].date} · {appointments[0].time}</Text><Text style={s.tag}>{appointments[0].type}</Text><View style={s.row}><Pressable style={s.primary} onPress={()=>setNotReady(false)}><Text style={s.white}>I’m Ready</Text></Pressable><Pressable style={s.secondary} onPress={()=>setNotReady(true)}><Text style={s.dark}>Not Ready Yet</Text></Pressable></View>{notReady&&<View style={s.pause}><Text style={s.title}>Take your moment.</Text><Text style={s.muted}>You can pause without abandoning yourself. Gather yourself. Then take the next step when you’re ready.</Text></View>}</View><View style={s.card}><Text style={s.label}>HOW ARE YOU FEELING?</Text><View style={s.emotions}>{emotions.map(n=><Pressable key={n} onPress={()=>setEmotion(n)} style={[s.emotion,emotion===n&&s.selected]}><Text style={s.emotionText}>{n}</Text></Pressable>)}</View>{emotion&&<View style={s.pause}><Text style={s.title}>{emotion==='Angry'?'Let’s come back to center.':'Thank you for checking in.'}</Text><Text style={s.muted}>{emotion==='Angry'?'You do not have to respond from the hottest version of yourself.':'Notice where you are. You do not have to force the next moment.'}</Text></View>}</View></>}
-{tab==='Calendar'&&<View style={s.card}><Text style={s.label}>MY REMINDERS</Text>{appointments.map((a,i)=><View key={i} style={s.appointment}><View style={s.dot}/><View style={{flex:1}}><Text style={s.title}>{a.title}</Text><Text style={s.muted}>{a.date} · {a.time}</Text><Text style={s.tag}>{a.type}</Text></View></View>)}<Pressable style={s.primary} onPress={()=>setAddOpen(true)}><Text style={s.white}>＋ Add Reminder</Text></Pressable></View>}
-{tab==='Becoming'&&<View style={s.card}><Text style={s.label}>MY BECOMING</Text><Text style={s.title}>What are you carrying forward?</Text><TextInput value={reflection} onChangeText={setReflection} multiline placeholder="Write a thought, realization, or next step…" style={s.textArea}/><Pressable style={s.primary} onPress={()=>Alert.alert('Saved','Your reflection is saved.')}><Text style={s.white}>Save Reflection</Text></Pressable></View>}
-{tab==='Profile'&&<View style={s.card}><Text style={s.label}>YOUR VILLAGE COMPANION</Text><Grace large/><Text style={s.title}>Grace gives you room to become.</Text><Text style={s.muted}>The app is your reminder and motivation companion. The Village website is the wider world around it.</Text></View>}
-</ScrollView><View style={s.nav}>{['Home','Calendar','Becoming','Profile'].map(n=><Pressable key={n} onPress={()=>setTab(n)}><Text style={[s.navText,tab===n&&s.active]}>{n}</Text></Pressable>)}</View>
-<Modal visible={addOpen} transparent animationType="slide"><View style={s.backdrop}><View style={s.modal}><Text style={s.modalTitle}>Add Reminder</Text><TextInput style={s.input} placeholder="What do you need to remember?" value={title} onChangeText={setTitle}/><TextInput style={s.input} placeholder="Date" value={date} onChangeText={setDate}/><TextInput style={s.input} placeholder="Time" value={time} onChangeText={setTime}/><Pressable style={s.primary} onPress={add}><Text style={s.white}>Save Reminder</Text></Pressable><Pressable style={s.secondary} onPress={()=>setAddOpen(false)}><Text style={s.dark}>Cancel</Text></Pressable></View></View></Modal></SafeAreaView>}
-function Grace({large=false}){return <View style={[s.grace,large&&s.graceLarge]}><View style={s.hair}/><View style={s.face}/><View style={s.glasses}><View/><View/></View><View style={s.neck}/><View style={s.body}/><View style={s.gold}/></View>}
-const s=StyleSheet.create({safe:{flex:1,backgroundColor:'#EAF7F3'},page:{padding:20,paddingBottom:105},header:{flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:12},brand:{fontSize:10,letterSpacing:2,fontWeight:'800',color:'#68827C'},heading:{fontSize:29,fontWeight:'800',color:'#244744',marginTop:4},graceFrame:{width:74,height:74,borderRadius:37,overflow:'hidden',backgroundColor:'#DDF4EF',alignItems:'center',justifyContent:'center'},grace:{width:70,height:74,position:'relative'},graceLarge:{width:210,height:225,alignSelf:'center',marginVertical:5},hair:{position:'absolute',top:2,left:'19%',width:'62%',height:'55%',backgroundColor:'#241F23',borderRadius:45},face:{position:'absolute',top:'24%',left:'25%',width:'50%',height:'47%',backgroundColor:'#9B654A',borderRadius:50},glasses:{position:'absolute',top:'38%',left:'23%',width:'54%',height:'18%',flexDirection:'row',justifyContent:'space-between'},glasses:{position:'absolute',top:'38%',left:'21%',width:'58%',height:18,flexDirection:'row',justifyContent:'space-between'},neck:{position:'absolute',top:'67%',left:'42%',width:'16%',height:'15%',backgroundColor:'#9B654A'},body:{position:'absolute',bottom:0,left:'14%',width:'72%',height:'30%',backgroundColor:'#377D76',borderTopLeftRadius:40,borderTopRightRadius:40},gold:{position:'absolute',top:'47%',left:'47%',width:7,height:7,borderRadius:5,backgroundColor:'#D3B36A'},hero:{paddingVertical:16},eyebrow:{fontSize:10,letterSpacing:2,fontWeight:'800',color:'#66817A',marginBottom:10},motivation:{fontSize:27,lineHeight:35,fontWeight:'800',color:'#244744'},muted:{color:'#637773',fontSize:14,lineHeight:21,marginTop:7},reminder:{backgroundColor:'#FFFDFC',borderRadius:28,padding:20,marginBottom:14,borderWidth:1,borderColor:'rgba(36,71,68,.08)'},card:{backgroundColor:'rgba(255,255,255,.9)',borderRadius:24,padding:18,marginBottom:14},label:{fontSize:10,letterSpacing:1.8,fontWeight:'900',color:'#648079',marginBottom:9},title:{fontSize:19,fontWeight:'800',color:'#244744'},tag:{alignSelf:'flex-start',backgroundColor:'#EFF5F2',color:'#496760',borderRadius:20,paddingHorizontal:10,paddingVertical:5,marginTop:8,fontSize:10,fontWeight:'800'},row:{flexDirection:'row',flexWrap:'wrap',gap:8,marginTop:10},primary:{backgroundColor:'#244744',paddingHorizontal:16,paddingVertical:13,borderRadius:14,alignItems:'center',marginTop:12},secondary:{backgroundColor:'#E6F0EC',paddingHorizontal:16,paddingVertical:13,borderRadius:14,alignItems:'center',marginTop:8},white:{color:'#fff',fontWeight:'800'},dark:{color:'#244744',fontWeight:'800'},pause:{backgroundColor:'#F1F7F4',borderRadius:18,padding:15,marginTop:14},emotions:{flexDirection:'row',flexWrap:'wrap',gap:8},emotion:{width:'31%',minWidth:90,paddingVertical:13,borderRadius:15,backgroundColor:'#F1F6F3',alignItems:'center'},selected:{borderWidth:2,borderColor:'#244744',backgroundColor:'#E2F0EB'},emotionText:{fontSize:12,fontWeight:'800',color:'#49625D'},appointment:{flexDirection:'row',gap:12,alignItems:'center',paddingVertical:12,borderBottomWidth:1,borderBottomColor:'#E6EEEB'},dot:{width:11,height:11,borderRadius:99,backgroundColor:'#6F9D8D'},textArea:{minHeight:140,marginTop:15,borderWidth:1,borderColor:'#CBDDD7',borderRadius:14,padding:13,textAlignVertical:'top',backgroundColor:'#fff',fontSize:16},nav:{position:'absolute',left:12,right:12,bottom:12,height:68,borderRadius:24,backgroundColor:'rgba(255,255,255,.96)',flexDirection:'row',justifyContent:'space-around',alignItems:'center'},navText:{fontSize:12,color:'#82918D',fontWeight:'700'},active:{color:'#244744',fontWeight:'900'},backdrop:{flex:1,backgroundColor:'rgba(18,43,40,.35)',justifyContent:'flex-end'},modal:{backgroundColor:'#F7FCF9',borderTopLeftRadius:30,borderTopRightRadius:30,padding:20},modalTitle:{fontSize:23,fontWeight:'800',color:'#244744',marginBottom:15},input:{borderWidth:1,borderColor:'#CBDDD7',borderRadius:13,padding:13,marginBottom:9,backgroundColor:'#fff',fontSize:16}});
+import React, { useMemo, useState } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  Modal,
+  TextInput,
+  Alert,
+} from 'react-native';
+
+const emotions = ['Calm', 'Okay', 'Uneasy', 'Frustrated', 'Angry', 'Overwhelmed'];
+
+const starterReminder = {
+  title: 'Therapy Appointment',
+  date: 'Wednesday, August 26, 2026',
+  time: '2:00 PM',
+  type: 'Therapy',
+};
+
+export default function App() {
+  const [tab, setTab] = useState('Home');
+  const [emotion, setEmotion] = useState(null);
+  const [notReady, setNotReady] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
+  const [reflection, setReflection] = useState('');
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [appointments, setAppointments] = useState([starterReminder]);
+
+  const nextReminder = useMemo(() => appointments[0] || starterReminder, [appointments]);
+
+  const addReminder = () => {
+    if (!title.trim() || !date.trim() || !time.trim()) {
+      Alert.alert('Almost there', 'Add the reminder name, date, and time.');
+      return;
+    }
+
+    setAppointments((current) => [
+      ...current,
+      { title: title.trim(), date: date.trim(), time: time.trim(), type: 'Personal' },
+    ]);
+    setTitle('');
+    setDate('');
+    setTime('');
+    setAddOpen(false);
+  };
+
+  const saveReflection = () => {
+    if (!reflection.trim()) {
+      Alert.alert('A little something first', 'Write whatever is sitting on your heart.');
+      return;
+    }
+    Alert.alert('Saved ✨', 'Your reflection is part of your becoming.');
+  };
+
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.brand}>THE STILL BECOMING</Text>
+            <Text style={styles.heading}>Reminder Circle</Text>
+          </View>
+          <View style={styles.graceFrame}>
+            <Grace />
+          </View>
+        </View>
+
+        {tab === 'Home' && (
+          <>
+            <View style={styles.hero}>
+              <Text style={styles.eyebrow}>YOUR NEXT STEP</Text>
+              <Text style={styles.motivation}>
+                You do not have to become everything today. Just take this next step.
+              </Text>
+              <Text style={styles.muted}>Your reminders. Your moments. Your becoming.</Text>
+            </View>
+
+            <View style={styles.reminder}>
+              <Text style={styles.label}>UP NEXT</Text>
+              <Text style={styles.title}>{nextReminder.title}</Text>
+              <Text style={styles.muted}>{nextReminder.date} · {nextReminder.time}</Text>
+              <Text style={styles.tag}>{nextReminder.type}</Text>
+
+              <View style={styles.row}>
+                <Pressable style={styles.primary} onPress={() => setNotReady(false)}>
+                  <Text style={styles.white}>I'm Ready</Text>
+                </Pressable>
+                <Pressable style={styles.secondary} onPress={() => setNotReady(true)}>
+                  <Text style={styles.dark}>Not Ready Yet</Text>
+                </Pressable>
+              </View>
+
+              {notReady && (
+                <View style={styles.pause}>
+                  <Text style={styles.title}>Take your moment.</Text>
+                  <Text style={styles.muted}>
+                    You can pause without abandoning yourself. Gather yourself. Then take the next step when you're ready.
+                  </Text>
+                </View>
+              )}
+            </View>
+
+            <View style={styles.card}>
+              <Text style={styles.label}>HOW ARE YOU FEELING?</Text>
+              <View style={styles.emotions}>
+                {emotions.map((name) => (
+                  <Pressable
+                    key={name}
+                    onPress={() => setEmotion(name)}
+                    style={[styles.emotion, emotion === name && styles.selected]}
+                  >
+                    <Text style={styles.emotionText}>{name}</Text>
+                  </Pressable>
+                ))}
+              </View>
+
+              {emotion && (
+                <View style={styles.pause}>
+                  <Text style={styles.title}>
+                    {emotion === 'Angry' ? "Let's come back to center." : 'Thank you for checking in.'}
+                  </Text>
+                  <Text style={styles.muted}>
+                    {emotion === 'Angry'
+                      ? 'You do not have to respond from the hottest version of yourself.'
+                      : 'Notice where you are. You do not have to force the next moment.'}
+                  </Text>
+                </View>
+              )}
+            </View>
+
+            <View style={styles.quoteCard}>
+              <Text style={styles.quoteMark}>“</Text>
+              <Text style={styles.quote}>Still becoming is not a failure to arrive.</Text>
+              <Text style={styles.quoteSmall}>It is permission to keep growing.</Text>
+            </View>
+          </>
+        )}
+
+        {tab === 'Calendar' && (
+          <View style={styles.card}>
+            <Text style={styles.label}>MY REMINDERS</Text>
+            {appointments.map((appointment, index) => (
+              <View key={`${appointment.title}-${index}`} style={styles.appointment}>
+                <View style={styles.dot} />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.title}>{appointment.title}</Text>
+                  <Text style={styles.muted}>{appointment.date} · {appointment.time}</Text>
+                  <Text style={styles.tag}>{appointment.type}</Text>
+                </View>
+              </View>
+            ))}
+            <Pressable style={styles.primaryFull} onPress={() => setAddOpen(true)}>
+              <Text style={styles.white}>＋ Add Reminder</Text>
+            </Pressable>
+          </View>
+        )}
+
+        {tab === 'Becoming' && (
+          <View style={styles.card}>
+            <Text style={styles.label}>MY BECOMING</Text>
+            <Text style={styles.title}>What are you carrying forward?</Text>
+            <Text style={styles.muted}>
+              Not a performance. Not a perfect answer. Just a place to tell the truth.
+            </Text>
+            <TextInput
+              value={reflection}
+              onChangeText={setReflection}
+              multiline
+              placeholder="Write a thought, realization, or next step…"
+              placeholderTextColor="#8CA09B"
+              style={styles.textArea}
+            />
+            <Pressable style={styles.primaryFull} onPress={saveReflection}>
+              <Text style={styles.white}>Save Reflection</Text>
+            </Pressable>
+          </View>
+        )}
+
+        {tab === 'Profile' && (
+          <View style={styles.card}>
+            <Text style={styles.label}>YOUR VILLAGE COMPANION</Text>
+            <Grace large />
+            <Text style={[styles.title, { textAlign: 'center', marginTop: 10 }]}>Grace gives you room to become.</Text>
+            <Text style={[styles.muted, { textAlign: 'center' }]}>
+              The app is your reminder and motivation companion. The Village website is the wider world around it.
+            </Text>
+          </View>
+        )}
+      </ScrollView>
+
+      <View style={styles.nav}>
+        {[
+          ['Home', '⌂'],
+          ['Calendar', '◷'],
+          ['Becoming', '✦'],
+          ['Profile', '○'],
+        ].map(([name, icon]) => (
+          <Pressable key={name} style={styles.navItem} onPress={() => setTab(name)}>
+            <Text style={[styles.navIcon, tab === name && styles.active]}>{icon}</Text>
+            <Text style={[styles.navText, tab === name && styles.active]}>{name}</Text>
+          </Pressable>
+        ))}
+      </View>
+
+      <Modal visible={addOpen} transparent animationType="slide" onRequestClose={() => setAddOpen(false)}>
+        <View style={styles.backdrop}>
+          <View style={styles.modal}>
+            <Text style={styles.modalTitle}>Add Reminder</Text>
+            <TextInput style={styles.input} placeholder="What do you need to remember?" placeholderTextColor="#8CA09B" value={title} onChangeText={setTitle} />
+            <TextInput style={styles.input} placeholder="Date" placeholderTextColor="#8CA09B" value={date} onChangeText={setDate} />
+            <TextInput style={styles.input} placeholder="Time" placeholderTextColor="#8CA09B" value={time} onChangeText={setTime} />
+            <Pressable style={styles.primaryFull} onPress={addReminder}>
+              <Text style={styles.white}>Save Reminder</Text>
+            </Pressable>
+            <Pressable style={styles.secondaryFull} onPress={() => setAddOpen(false)}>
+              <Text style={styles.dark}>Cancel</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+    </SafeAreaView>
+  );
+}
+
+function Grace({ large = false }) {
+  return (
+    <View style={[styles.grace, large && styles.graceLarge]}>
+      <View style={styles.hair} />
+      <View style={styles.face} />
+      <View style={styles.glasses}>
+        <View style={styles.glassLens} />
+        <View style={styles.glassLens} />
+      </View>
+      <View style={styles.neck} />
+      <View style={styles.body} />
+      <View style={styles.gold} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: '#F2FCF8' },
+  page: { padding: 20, paddingBottom: 120 },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 },
+  brand: { fontSize: 10, letterSpacing: 2.1, fontWeight: '900', color: '#68827C' },
+  heading: { fontSize: 30, fontWeight: '900', color: '#244744', marginTop: 4, letterSpacing: -0.7 },
+  graceFrame: { width: 78, height: 78, borderRadius: 39, overflow: 'hidden', backgroundColor: '#D9F7EF', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#C7E9DF' },
+  grace: { width: 70, height: 74, position: 'relative' },
+  graceLarge: { width: 210, height: 225, alignSelf: 'center', marginVertical: 6 },
+  hair: { position: 'absolute', top: 1, left: '17%', width: '66%', height: '57%', backgroundColor: '#241F23', borderRadius: 55 },
+  face: { position: 'absolute', top: '23%', left: '24%', width: '52%', height: '48%', backgroundColor: '#A96D50', borderRadius: 50 },
+  glasses: { position: 'absolute', top: '38%', left: '20%', width: '60%', height: 18, flexDirection: 'row', justifyContent: 'space-between' },
+  glassLens: { width: '43%', height: 16, borderRadius: 8, borderWidth: 2, borderColor: '#2D4945', backgroundColor: 'rgba(235,255,249,.24)' },
+  neck: { position: 'absolute', top: '67%', left: '42%', width: '16%', height: '15%', backgroundColor: '#A96D50' },
+  body: { position: 'absolute', bottom: 0, left: '10%', width: '80%', height: '31%', backgroundColor: '#4C9B91', borderTopLeftRadius: 44, borderTopRightRadius: 44 },
+  gold: { position: 'absolute', top: '47%', left: '47%', width: 8, height: 8, borderRadius: 5, backgroundColor: '#D8B866' },
+  hero: { paddingVertical: 18 },
+  eyebrow: { fontSize: 10, letterSpacing: 2, fontWeight: '900', color: '#66817A', marginBottom: 10 },
+  motivation: { fontSize: 28, lineHeight: 36, fontWeight: '900', color: '#244744', letterSpacing: -0.6 },
+  muted: { color: '#637773', fontSize: 14, lineHeight: 21, marginTop: 7 },
+  reminder: { backgroundColor: '#FFFDFC', borderRadius: 28, padding: 20, marginBottom: 14, borderWidth: 1, borderColor: '#DCEBE6' },
+  card: { backgroundColor: 'rgba(255,255,255,.94)', borderRadius: 25, padding: 19, marginBottom: 14, borderWidth: 1, borderColor: '#E1EFEB' },
+  label: { fontSize: 10, letterSpacing: 1.8, fontWeight: '900', color: '#648079', marginBottom: 9 },
+  title: { fontSize: 19, fontWeight: '900', color: '#244744' },
+  tag: { alignSelf: 'flex-start', backgroundColor: '#EFF7F3', color: '#496760', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 5, marginTop: 8, fontSize: 10, fontWeight: '900', overflow: 'hidden' },
+  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10 },
+  primary: { backgroundColor: '#244744', paddingHorizontal: 16, paddingVertical: 13, borderRadius: 15, alignItems: 'center', marginTop: 12 },
+  primaryFull: { backgroundColor: '#244744', paddingVertical: 14, borderRadius: 15, alignItems: 'center', marginTop: 14 },
+  secondary: { backgroundColor: '#E6F3EE', paddingHorizontal: 16, paddingVertical: 13, borderRadius: 15, alignItems: 'center', marginTop: 8 },
+  secondaryFull: { backgroundColor: '#E6F3EE', paddingVertical: 14, borderRadius: 15, alignItems: 'center', marginTop: 9 },
+  white: { color: '#FFFFFF', fontWeight: '900' },
+  dark: { color: '#244744', fontWeight: '900' },
+  pause: { backgroundColor: '#F1F8F5', borderRadius: 18, padding: 15, marginTop: 14, borderWidth: 1, borderColor: '#E0EEE9' },
+  emotions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  emotion: { width: '31%', minWidth: 90, paddingVertical: 13, borderRadius: 15, backgroundColor: '#F1F7F4', alignItems: 'center' },
+  selected: { borderWidth: 2, borderColor: '#244744', backgroundColor: '#E2F0EB' },
+  emotionText: { fontSize: 12, fontWeight: '900', color: '#49625D' },
+  quoteCard: { backgroundColor: '#DDF6EF', borderRadius: 25, padding: 22, marginBottom: 14 },
+  quoteMark: { fontSize: 40, lineHeight: 35, color: '#5E968C', fontWeight: '900' },
+  quote: { fontSize: 20, lineHeight: 28, fontWeight: '900', color: '#244744', marginTop: 3 },
+  quoteSmall: { fontSize: 13, color: '#58736D', marginTop: 8 },
+  appointment: { flexDirection: 'row', gap: 12, alignItems: 'center', paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: '#E6EEEB' },
+  dot: { width: 11, height: 11, borderRadius: 99, backgroundColor: '#70A598' },
+  textArea: { minHeight: 150, marginTop: 15, borderWidth: 1, borderColor: '#CBDDD7', borderRadius: 15, padding: 13, textAlignVertical: 'top', backgroundColor: '#FFFFFF', fontSize: 16, color: '#244744' },
+  nav: { position: 'absolute', left: 12, right: 12, bottom: 12, height: 72, borderRadius: 25, backgroundColor: 'rgba(255,255,255,.98)', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', borderWidth: 1, borderColor: '#DCEBE6' },
+  navItem: { alignItems: 'center', justifyContent: 'center', minWidth: 65 },
+  navIcon: { fontSize: 18, color: '#93A39F', marginBottom: 2 },
+  navText: { fontSize: 11, color: '#82918D', fontWeight: '800' },
+  active: { color: '#244744', fontWeight: '900' },
+  backdrop: { flex: 1, backgroundColor: 'rgba(18,43,40,.38)', justifyContent: 'flex-end' },
+  modal: { backgroundColor: '#F7FCF9', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20, paddingBottom: 28 },
+  modalTitle: { fontSize: 24, fontWeight: '900', color: '#244744', marginBottom: 15 },
+  input: { borderWidth: 1, borderColor: '#CBDDD7', borderRadius: 14, padding: 14, marginBottom: 9, backgroundColor: '#FFFFFF', fontSize: 16, color: '#244744' },
+});
