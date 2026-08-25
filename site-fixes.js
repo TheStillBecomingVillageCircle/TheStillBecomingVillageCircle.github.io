@@ -42,18 +42,18 @@
         header{position:sticky!important;top:0!important;z-index:10000!important}
         nav.village-top-nav,nav.tsbvc-mobile-menu{position:relative!important;width:100%!important;min-height:64px!important;padding:10px 14px!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
         nav.village-top-nav .logo,nav.tsbvc-mobile-menu .logo{flex:1 1 auto!important;min-width:0!important;max-width:calc(100% - 54px)!important;white-space:nowrap!important;font-size:16px!important;line-height:1!important;overflow:hidden!important;text-overflow:ellipsis!important}
-        nav.village-top-nav .village-top-links,nav.tsbvc-mobile-menu ul,nav.tsbvc-mobile-menu .tsbvc-mobile-links{display:none!important;position:absolute!important;left:10px!important;right:10px!important;top:calc(100% + 8px)!important;z-index:10001!important;flex-direction:column!important;align-items:stretch!important;gap:2px!important;width:auto!important;max-height:calc(100vh - 100px)!important;overflow:auto!important;padding:10px!important;border-radius:20px!important;background:rgba(255,255,255,.97)!important;border:1px solid rgba(49,95,93,.10)!important;box-shadow:0 18px 45px rgba(49,95,93,.16)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;opacity:0!important;transform:translateY(-5px)!important;pointer-events:none!important;white-space:normal!important}
-        nav.village-top-nav .village-top-links a,nav.tsbvc-mobile-menu ul li a,nav.tsbvc-mobile-menu .tsbvc-mobile-links a{display:block!important;width:100%!important;padding:12px 14px!important;border-radius:12px!important;font:600 15px/1.25 Arial,Helvetica,sans-serif!important;text-align:left!important}
-        nav.village-top-nav .tsbvc-mobile-toggle,nav.tsbvc-mobile-menu .tsbvc-mobile-toggle{display:inline-flex!important}
+        nav.village-top-nav .village-top-links{display:none!important;position:absolute!important;left:10px!important;right:10px!important;top:calc(100% + 8px)!important;z-index:10001!important;flex-direction:column!important;align-items:stretch!important;gap:2px!important;width:auto!important;max-height:calc(100vh - 100px)!important;overflow:auto!important;padding:10px!important;border-radius:20px!important;background:rgba(255,255,255,.97)!important;border:1px solid rgba(49,95,93,.10)!important;box-shadow:0 18px 45px rgba(49,95,93,.16)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;opacity:0!important;transform:translateY(-5px)!important;pointer-events:none!important;white-space:normal!important}
+        nav.village-top-nav .village-top-links a{display:block!important;width:100%!important;padding:12px 14px!important;border-radius:12px!important;font:600 15px/1.25 Arial,Helvetica,sans-serif!important;text-align:left!important}
+        nav.village-top-nav .tsbvc-mobile-toggle{display:inline-flex!important}
         .grace-home-place{min-height:255px!important}.grace-home-scene{width:min(330px,90vw)!important;height:215px!important}
       }
-      @media(max-width:480px){nav.village-top-nav .logo,nav.tsbvc-mobile-menu .logo{font-size:15px!important}.grace-home-place{min-height:225px!important}.grace-home-scene{width:min(315px,92vw)!important;height:195px!important}}
+      @media(max-width:480px){nav.village-top-nav .logo{font-size:15px!important}.grace-home-place{min-height:225px!important}.grace-home-scene{width:min(315px,92vw)!important;height:195px!important}}
     `;
     document.head.appendChild(s);
   }
 
   function toggle(nav,links){
-    if(!nav||!links||nav.querySelector('.tsbvc-mobile-toggle')) return;
+    if(!nav||!links||nav.querySelector('.tsbvc-mobile-toggle')||nav.querySelector('.village-mobile-menu-button')) return;
     nav.classList.add('tsbvc-mobile-menu'); links.classList.add('tsbvc-mobile-links');
     const b=document.createElement('button'); b.type='button'; b.className='tsbvc-mobile-toggle';
     b.setAttribute('aria-expanded','false'); b.setAttribute('aria-label','Open Village navigation');
