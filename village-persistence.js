@@ -213,3 +213,82 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
     else init();
 })();
+
+/* =========================================================
+   GRACE'S HOUSE — GLOBAL HOME BUTTON
+   The house is the Home button everywhere. The landing page
+   does not display the word "Home" underneath the house.
+========================================================= */
+(function () {
+    'use strict';
+
+    const homeImage = '/assets/grace-home-exact.jpg';
+
+    function installGraceHomeButton() {
+        const navList = document.querySelector('nav ul');
+        if (!navList) return;
+
+        if (!document.getElementById('tsbvc-grace-home-style')) {
+            const style = document.createElement('style');
+            style.id = 'tsbvc-grace-home-style';
+            style.textContent = `
+                nav ul li.tsbvc-home-item { display:flex; align-items:center; }
+                nav ul a.tsbvc-global-home {
+                    display:inline-flex !important;
+                    align-items:center;
+                    justify-content:center;
+                    width:58px;
+                    height:42px;
+                    padding:0 !important;
+                    margin:0;
+                    border-radius:12px;
+                    overflow:hidden;
+                    background:rgba(234,255,249,.92);
+                    border:1px solid rgba(49,95,93,.14);
+                    box-shadow:0 7px 18px rgba(49,95,93,.10);
+                    vertical-align:middle;
+                    transition:transform .25s ease, box-shadow .25s ease;
+                }
+                nav ul a.tsbvc-global-home:hover,
+                nav ul a.tsbvc-global-home:focus-visible {
+                    transform:translateY(-2px);
+                    box-shadow:0 10px 22px rgba(49,95,93,.16);
+                    outline:none;
+                }
+                nav ul a.tsbvc-global-home img {
+                    display:block;
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    object-position:center;
+                }
+                .grace-home-place .place-name { display:none !important; }
+                @media (max-width:768px) {
+                    nav ul a.tsbvc-global-home { width:54px; height:40px; border-radius:10px; }
+                    nav ul.village-mobile-menu a.tsbvc-global-home { width:100% !important; height:54px !important; border-radius:14px !important; }
+                    nav ul.village-mobile-menu li.tsbvc-home-item { justify-content:stretch; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        const homeLink = Array.from(navList.querySelectorAll('a[href="index.html"]')).find(a => !a.closest('.logo'));
+        if (homeLink && !homeLink.dataset.tsbvcGraceHome) {
+            homeLink.dataset.tsbvcGraceHome = 'true';
+            homeLink.classList.add('tsbvc-global-home');
+            homeLink.setAttribute('aria-label', 'Home');
+            homeLink.title = 'Home';
+            homeLink.innerHTML = '<img src="' + homeImage + '" alt="Grace\'s house — Home">';
+            if (homeLink.parentElement) homeLink.parentElement.classList.add('tsbvc-home-item');
+        }
+
+        const landingHomeLabel = document.querySelector('.grace-home-place .place-name');
+        if (landingHomeLabel) landingHomeLabel.remove();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', installGraceHomeButton, { once:true });
+    } else {
+        installGraceHomeButton();
+    }
+})();
