@@ -16,54 +16,20 @@
 .support-light{animation:softLight 4s ease-in-out infinite}@keyframes softLight{50%{opacity:1;transform:scale(1.08)}}
 .invitation{font:16px/1.8 Arial,sans-serif;max-width:660px;margin:auto;color:#5b7471}.invitation strong{color:#269e98}footer{text-align:center;padding:60px 20px 75px;font:13px Arial,sans-serif;color:#718b88}.leafline{height:28px;margin-bottom:14px;display:flex;justify-content:center;align-items:center;gap:12px}.footer-leaf{width:20px;height:20px}.footer-dot{width:5px;height:5px;border-radius:50%;background:#9bcfc5}@media(max-width:760px){nav{min-height:70px;padding:14px 18px}.nav-hint{display:none}.logo{font-size:18px}.hero{padding:52px 18px 70px}.village{grid-template-columns:1fr 1fr;gap:20px 8px}.place{min-height:225px}.scene{transform:scale(.88)}.place-name{font-size:10px;letter-spacing:.1em}h1{font-size:44px}.lead{font-size:17px}.quote{font-size:18px;margin-bottom:30px}}@media(max-width:480px){.village{grid-template-columns:1fr}.place{min-height:235px}.scene{transform:scale(.96)}h1{font-size:42px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
 
-/* Grace's Home destination */
+
+/* Exact Grace Home image */
 .grace-home-place{min-height:330px}
-.grace-home-scene{width:min(420px,96vw);height:300px}
-.grace-home-scene svg{width:100%;height:100%}
-.grace-house-float{transform-origin:50% 70%;animation:graceHouseFloat 6.5s ease-in-out infinite}
-@keyframes graceHouseFloat{0%,100%{transform:translateY(2px)}50%{transform:translateY(-7px)}}
+.grace-home-scene{width:min(420px,96vw);height:300px;overflow:hidden;border-radius:4px;display:flex;align-items:flex-start;justify-content:center;box-shadow:0 18px 42px rgba(63,126,119,.10)}
+.grace-home-scene img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.grace-home-scene:after{display:none}
 @media(max-width:760px){.grace-home-place{min-height:295px}.grace-home-scene{width:min(420px,94vw);height:275px}}
 @media(max-width:480px){.grace-home-place{min-height:300px}.grace-home-scene{width:100%;height:280px}}
-@media(prefers-reduced-motion:reduce){.grace-house-float{animation:none}}
 </style>
 </head>
 <body>
 <header><nav><a class="logo" href="index.html" aria-label="The Still Becoming Village Circle"><svg class="logo-mark" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 25C14 16 16 8 24 4" fill="none" stroke="#5d8f5c" stroke-width="2.2" stroke-linecap="round"/><path d="M17 11C20 5 25 5 26 5c-.6 4-3.4 7-9 7Z" fill="#8ab879"/><path d="M14 16C10 10 5 10 3 11c1 4 4 7 11 7Z" fill="#79aa69"/></svg><span>The Still Becoming Village Circle</span></a><div class="nav-hint">a place to wander</div></nav></header>
 <main><section class="hero"><div class="eyebrow">Welcome to the Village</div><h1>Come wander awhile.</h1><p class="lead">You don't have to know exactly where you're going.</p><p class="quote">“You belong before you bloom.”</p><div class="village" aria-label="Village destinations">
-<div class="place grace-home-place"><a href="index.html" aria-label="Home"><div class="scene grace-home-scene"><svg viewBox="0 0 420 300" role="img" aria-label="Grace's elegant modern floating home"><defs>
-<linearGradient id="ghCloud" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#d8f5ef"/></linearGradient>
-<linearGradient id="ghWall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#edf8f5"/></linearGradient>
-<linearGradient id="ghGlass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#effffb"/><stop offset=".45" stop-color="#aee4dc"/><stop offset="1" stop-color="#e7faf6"/></linearGradient>
-<linearGradient id="ghAqua" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8ddbd1"/><stop offset="1" stop-color="#4daaa7"/></linearGradient>
-<linearGradient id="ghGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0d99d"/><stop offset="1" stop-color="#b48643"/></linearGradient>
-<filter id="ghShadow" x="-25%" y="-30%" width="150%" height="175%"><feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#397c76" flood-opacity=".18"/></filter>
-<radialGradient id="ghGlow"><stop stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#d8f7f0" stop-opacity="0"/></radialGradient>
-</defs>
-<g class="grace-house-float" filter="url(#ghShadow)">
-<ellipse cx="211" cy="273" rx="173" ry="20" fill="#bdebe4" opacity=".34"/>
-<path d="M46 235c-12-16-4-35 18-40 8-25 36-37 61-27 22-29 70-30 94 2 28-17 73-5 82 25 31-1 55 15 55 36 0 24-25 38-57 38H89c-24 0-38-12-43-34Z" fill="url(#ghCloud)" stroke="#fff" stroke-width="3"/>
-<path d="M82 171h209v66H82z" fill="url(#ghWall)" stroke="#d1ebe6" stroke-width="2"/>
-<path d="M96 117h177v56H96z" fill="url(#ghWall)" stroke="#d1ebe6" stroke-width="2"/>
-<path d="M70 119 184 49l119 70" fill="url(#ghAqua)" stroke="#4c827c" stroke-width="2.5" stroke-linejoin="round"/>
-<path d="M83 112 184 52l105 61" fill="none" stroke="#eafff9" stroke-width="4" opacity=".82"/>
-<rect x="126" y="83" width="117" height="43" rx="2" fill="url(#ghGlass)" stroke="#fff" stroke-width="5"/>
-<path d="M184 83v43M126 104h117" stroke="#6c9d98" stroke-width="2" opacity=".55"/>
-<rect x="103" y="133" width="71" height="57" rx="2" fill="url(#ghGlass)" stroke="#fff" stroke-width="5"/>
-<rect x="181" y="133" width="76" height="57" rx="2" fill="url(#ghGlass)" stroke="#fff" stroke-width="5"/>
-<path d="M138 133v57M219 133v57" stroke="#6c9d98" stroke-width="2" opacity=".55"/>
-<path d="M174 237v-38c0-11 8-19 18-19s18 8 18 19v38Z" fill="#5b7c76"/>
-<rect x="291" y="125" width="14" height="37" rx="2" fill="#b98950"/>
-<path d="M79 196h213v38H79z" fill="url(#ghGlass)" stroke="#fff" stroke-width="5" opacity=".92"/>
-<path d="M79 218h213" stroke="#67bcb5" stroke-width="2" opacity=".5"/>
-<path d="M103 238h170" stroke="url(#ghGold)" stroke-width="4" stroke-linecap="round"/>
-<path d="M55 194c-12 8-19 18-22 30M308 194c11 8 18 18 21 30" fill="none" stroke="#76b9a8" stroke-width="4" stroke-linecap="round"/>
-<circle cx="111" cy="73" r="34" fill="url(#ghGlow)"/>
-<circle cx="267" cy="78" r="3.5" fill="#efd39a"/><circle cx="302" cy="102" r="3" fill="#efd39a"/>
-<path d="M43 51C115-11 265-8 348 57" fill="none" stroke="url(#ghGold)" stroke-width="3" stroke-linecap="round" opacity=".92"/>
-<path d="M43 51C115-11 265-8 348 57" fill="none" stroke="#fff" stroke-width="1" opacity=".72"/>
-<circle cx="184" cy="20" r="3" fill="#fff1c9"/><circle cx="112" cy="36" r="2.5" fill="#fff1c9"/><circle cx="280" cy="32" r="2.5" fill="#fff1c9"/>
-<path d="M51 257c48 8 119 9 184 2" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3" stroke-linecap="round"/>
-</g></svg></div><span class="place-name">Home</span></a></div>
+<div class="place grace-home-place"><a href="index.html" aria-label="Home"><div class="scene grace-home-scene"><img src="assets/grace-home-exact.jpg" alt="Grace's elegant modern home floating among the clouds" loading="eager" decoding="async"></div><span class="place-name">Home</span></a></div>
 <div class="place"><a href="about.html" aria-label="Inside the Bubble"><div class="scene"><svg viewBox="0 0 240 210" role="img" aria-label="A real soap bubble being blown and popping"><defs><radialGradient id="soap" cx="28%" cy="20%"><stop stop-color="#fff" stop-opacity=".98"/><stop offset=".34" stop-color="#bdf8ef" stop-opacity=".24"/><stop offset=".58" stop-color="#efb6d7" stop-opacity=".18"/><stop offset=".78" stop-color="#8ed9e4" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></radialGradient><linearGradient id="goldWand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4c991"/><stop offset="1" stop-color="#a77e49"/></linearGradient></defs><g class="bubble-main"><circle cx="128" cy="79" r="61" fill="url(#soap)" stroke="#fff" stroke-opacity=".86" stroke-width="2"/><ellipse cx="109" cy="59" rx="20" ry="11" transform="rotate(-25 109 59)" fill="#fff" opacity=".42"/><path d="M90 105c17 17 39 23 61 17" fill="none" stroke="#73cbd4" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/></g><path d="M43 159 102 132" stroke="url(#goldWand)" stroke-width="7" stroke-linecap="round"/><circle cx="109" cy="129" r="20" fill="none" stroke="#b58b57" stroke-width="3"/><path d="M103 131 109 129" stroke="#b58b57" stroke-width="3" stroke-linecap="round"/><g class="bubble-glint" fill="#fff"><circle cx="183" cy="43" r="4"/><circle cx="196" cy="72" r="2.8"/><circle cx="66" cy="73" r="3"/></g><g class="bubble-fragment" fill="#fff"><circle cx="190" cy="55" r="4" style="--x:34px;--y:-22px"/><circle cx="177" cy="92" r="3" style="--x:52px;--y:18px"/><circle cx="76" cy="47" r="3" style="--x:-34px;--y:-16px"/></g></svg></div><span class="place-name">Inside the Bubble</span></a></div>
 <div class="place"><a href="LearningtheUnknown.html" aria-label="The Unknown"><div class="scene"><svg viewBox="0 0 240 210" role="img" aria-label="Elegant leafy tree with leaves blowing in the wind"><defs><linearGradient id="trunk" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#604938"/><stop offset=".5" stop-color="#9a7653"/><stop offset="1" stop-color="#684c39"/></linearGradient><radialGradient id="foliage"><stop stop-color="#b2d3a5"/><stop offset=".55" stop-color="#719c72"/><stop offset="1" stop-color="#456f5a"/></radialGradient></defs><g class="tree-crown"><path d="M119 174c-5-34-2-67 6-94" fill="none" stroke="url(#trunk)" stroke-width="19" stroke-linecap="round"/><path d="M122 112 80 78M126 104l46-38M121 132l51 11" fill="none" stroke="#72543f" stroke-width="8" stroke-linecap="round"/><g fill="url(#foliage)" stroke="#527c61" stroke-opacity=".25"><ellipse cx="74" cy="67" rx="33" ry="25" transform="rotate(-20 74 67)"/><ellipse cx="111" cy="47" rx="40" ry="29" transform="rotate(6 111 47)"/><ellipse cx="151" cy="58" rx="36" ry="27" transform="rotate(-15 151 58)"/><ellipse cx="171" cy="88" rx="31" ry="24" transform="rotate(17 171 88)"/><ellipse cx="89" cy="94" rx="36" ry="27" transform="rotate(13 89 94)"/></g><g fill="#c3dda9" opacity=".6"><path d="M55 65c9-15 20-20 31-18-4 12-14 18-31 18Z"/><path d="M102 35c11-11 23-14 33-10-6 11-17 15-33 10Z"/><path d="M142 65c12-9 22-10 31-5-8 9-18 11-31 5Z"/></g></g><g fill="#9cc69a"><path class="leaf-fall" d="M190 52c10-11 18-11 25-7-4 9-13 12-25 7Z"/><path class="leaf-fall delay" d="M57 105c9-9 17-9 23-5-4 8-11 11-23 5Z"/><path class="leaf-fall delay2" d="M177 130c9-9 17-9 23-4-4 8-11 10-23 4Z"/></g><path d="M45 177c38-7 76-7 115-1" fill="none" stroke="#77a89d" stroke-opacity=".18" stroke-width="5" stroke-linecap="round"/></svg></div><span class="place-name">The Unknown</span></a></div>
 <div class="place"><a href="events.html" aria-label="Experiences"><div class="scene"><svg viewBox="0 0 240 210" role="img" aria-label="Elegant layered photographs representing experiences"><defs><linearGradient id="memory1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c8eee6"/><stop offset=".5" stop-color="#f5d8cc"/><stop offset="1" stop-color="#a8cbd1"/></linearGradient><linearGradient id="memory2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c4dff0"/><stop offset=".5" stop-color="#f2d4bf"/><stop offset="1" stop-color="#b6d6c1"/></linearGradient></defs><g class="photo-one"><rect x="48" y="45" width="88" height="118" rx="4" fill="#fffdf7"/><rect x="57" y="54" width="70" height="78" fill="url(#memory1)"/><path d="M57 121c18-24 39-17 70-38v49H57Z" fill="#8db5a7" opacity=".55"/></g><g class="photo-two"><rect x="101" y="34" width="94" height="126" rx="4" fill="#fffdf7"/><rect x="111" y="44" width="74" height="83" fill="url(#memory2)"/><circle cx="157" cy="67" r="11" fill="#fff1d0" opacity=".85"/><path d="M111 120c21-23 41-20 74-41v48h-74Z" fill="#9bbfaa" opacity=".55"/></g><path d="M65 169c38 9 83 8 119-2" fill="none" stroke="#769d95" stroke-opacity=".18" stroke-width="5" stroke-linecap="round"/></svg></div><span class="place-name">Experiences</span></a></div>
