@@ -1,163 +1,221 @@
-/* The Still Becoming Village Circle — reference-match responsive layer */
-(function(){
+/* The Still Becoming Village Circle — site-wide reference navigation + emoji cleanup */
+(function () {
   'use strict';
 
   const css = `
-    /* Keep the header on ONE row like the reference. */
-    .home-header{
-      min-height:92px !important;
-      padding:16px 28px !important;
-      display:flex !important;
-      flex-direction:row !important;
-      align-items:center !important;
-      justify-content:space-between !important;
-      gap:24px !important;
-    }
-    .brand{
-      flex:1 1 auto !important;
-      min-width:0 !important;
-      display:flex !important;
-      align-items:center !important;
-      white-space:nowrap !important;
-      overflow:visible !important;
-      font-family:Georgia,'Times New Roman',serif !important;
-      font-weight:600 !important;
-      color:#15545b !important;
-    }
-    .brand-mark{flex:0 0 auto !important}
-    .header-menu{
-      flex:0 0 auto !important;
-      display:grid !important;
-      place-items:center !important;
-      width:58px !important;
-      height:58px !important;
-      border-radius:50% !important;
+    /* The illustrated navigation is the site's shared navigation system. */
+    .nav-band,
+    .destination-band {
+      background:#fff !important;
+      border-bottom:1px solid rgba(22,84,91,.08) !important;
+      box-shadow:0 8px 24px rgba(22,84,91,.05) !important;
     }
 
-    /* The reference has ALL seven destinations in one horizontal band.
-       Never collapse them into a 2-column/1-column stack. */
-    .destination-band{
-      overflow:hidden !important;
-      padding:18px 10px 16px !important;
-    }
-    .destinations{
-      display:flex !important;
-      flex-wrap:nowrap !important;
-      align-items:flex-end !important;
-      justify-content:space-between !important;
-      width:min(1180px,100%) !important;
-      gap:0 !important;
+    .nav-row {
+      max-width:1200px !important;
       margin:0 auto !important;
+      padding:13px 8px 17px !important;
+      display:grid !important;
+      grid-template-columns:repeat(7,minmax(0,1fr)) !important;
+      gap:3px !important;
+      align-items:end !important;
     }
-    .destination{
-      flex:1 1 0 !important;
-      width:auto !important;
+
+    .nav-item {
       min-width:0 !important;
-      margin:0 !important;
-      padding:0 4px !important;
+      text-align:center !important;
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:center !important;
+      justify-content:flex-end !important;
+      gap:7px !important;
     }
-    .dest-art{
+
+    .nav-art {
+      height:145px !important;
       width:100% !important;
-      height:128px !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
     }
-    .dest-label{
+
+    .nav-art svg {
+      width:100% !important;
+      height:100% !important;
+      overflow:visible !important;
+    }
+
+    .nav-label {
       font-family:Georgia,'Times New Roman',serif !important;
-      color:#154e56 !important;
-      font-size:clamp(12px,1.7vw,21px) !important;
-      line-height:1.08 !important;
+      font-size:clamp(15px,1.8vw,24px) !important;
+      line-height:1.04 !important;
+      color:#174f57 !important;
       text-align:center !important;
     }
 
-    /* Reference-like hero spacing. */
-    .hero{
-      min-height:1100px !important;
-      padding:32px 20px 90px !important;
+    .nav-item.active .nav-label { font-weight:700 !important; }
+    .nav-item.active:after {
+      content:"" !important;
+      width:46px !important;
+      height:3px !important;
+      border-radius:3px !important;
+      background:#b99458 !important;
+      margin-top:5px !important;
     }
-    .belong-pill{margin-bottom:18px !important}
-    .hero-bubble{margin-bottom:10px !important}
-    .hero h1{margin-bottom:30px !important}
 
-    @media(max-width:900px){
-      .home-header{padding:15px 22px !important}
-      .brand{font-size:clamp(18px,3.5vw,28px) !important}
-      .header-menu{width:54px !important;height:54px !important}
-      .dest-art{height:108px !important}
-      .dest-label{font-size:14px !important}
-      .destination{padding:0 2px !important}
+    /* Inner pages inherit the same seven-icon navigation instead of text links. */
+    body.tsbvc-shared-nav .site-header nav:not(.nav-band),
+    body.tsbvc-shared-nav header > nav:not(.nav-band) {
+      display:none !important;
+    }
+
+    /* The home reference uses a small refined divider, not the oversized gold mask shape. */
+    body.tsbvc-home .ornament {
+      width:min(430px,72vw) !important;
+      height:18px !important;
+      margin:0 auto 28px !important;
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      color:#b99458 !important;
+    }
+    body.tsbvc-home .ornament span {
+      display:block !important;
+      height:1px !important;
+      flex:1 !important;
+      background:linear-gradient(90deg,transparent,#c7ac78,transparent) !important;
+    }
+    body.tsbvc-home .ornament svg {
+      width:28px !important;
+      height:14px !important;
+      flex:0 0 28px !important;
+    }
+
+    /* No emoji characters anywhere in visible site copy. */
+    .tsbvc-no-emoji { font-variant-emoji:text !important; }
+
+    @media(max-width:800px){
+      .nav-row {
+        grid-template-columns:repeat(7,1fr) !important;
+        gap:0 !important;
+        padding:10px 2px 13px !important;
+      }
+      .nav-art { height:92px !important; }
+      .nav-label { font-size:11px !important; }
+      .nav-item { gap:5px !important; }
+      .nav-item.active:after { width:30px !important; height:2px !important; }
     }
 
     @media(max-width:650px){
-      /* Phone: still one row, matching the reference composition.
-         The destination band is allowed to scroll horizontally rather
-         than becoming a tall 2-column menu. */
-      .home-header{
-        min-height:78px !important;
-        padding:11px 16px !important;
-        gap:10px !important;
-      }
-      .brand{
-        font-size:17px !important;
-        letter-spacing:-.03em !important;
-      }
-      .brand-mark{width:31px !important;height:31px !important}
-      .header-menu{width:48px !important;height:48px !important}
-
-      .destination-band{
-        padding:13px 6px 15px !important;
+      .nav-band {
+        padding:0 !important;
         overflow-x:auto !important;
         overflow-y:hidden !important;
         -webkit-overflow-scrolling:touch !important;
         scrollbar-width:none !important;
       }
-      .destination-band::-webkit-scrollbar{display:none !important}
-      .destinations{
+      .nav-band::-webkit-scrollbar { display:none !important; }
+      .nav-row {
+        display:flex !important;
+        flex-wrap:nowrap !important;
+        justify-content:space-between !important;
         width:max(100%,700px) !important;
         min-width:700px !important;
+        gap:0 !important;
+        padding:10px 2px 13px !important;
       }
-      .destination{
+      .nav-item {
         flex:0 0 100px !important;
         width:100px !important;
         min-width:100px !important;
         padding:0 2px !important;
       }
-      .dest-art{height:92px !important}
-      .dest-label{font-size:12px !important}
-      .destination.active:after{width:34px !important;height:2px !important;margin-top:4px !important}
-
-      .hero{
-        min-height:850px !important;
-        padding:25px 17px 75px !important;
-      }
-      .belong-pill{padding:9px 17px !important;font-size:15px !important}
-      .hero-bubble{width:220px !important;height:220px !important;min-width:220px !important;min-height:220px !important}
-      .hero h1{font-size:45px !important}
-      .intro{font-size:17px !important}
-      .quote{font-size:21px !important}
-      .welcome-copy{font-size:16px !important}
+      .nav-art { height:92px !important; }
+      .nav-label { font-size:12px !important; }
+      .nav-item.active:after { width:34px !important; height:2px !important; margin-top:4px !important; }
     }
 
     @media(max-width:390px){
-      .brand{font-size:15.5px !important}
-      .destination{flex-basis:88px !important;width:88px !important;min-width:88px !important}
-      .destinations{min-width:616px !important;width:max(100%,616px) !important}
-      .dest-art{height:84px !important}
-      .dest-label{font-size:11px !important}
-      .hero h1{font-size:40px !important}
-      .hero-bubble{width:200px !important;height:200px !important;min-width:200px !important;min-height:200px !important}
+      .nav-row { width:max(100%,616px) !important; min-width:616px !important; }
+      .nav-item { flex-basis:88px !important; width:88px !important; min-width:88px !important; }
+      .nav-art { height:84px !important; }
+      .nav-label { font-size:11px !important; }
     }
   `;
 
-  function install(){
-    if(document.getElementById('tsbvc-reference-match')) return;
-    const style=document.createElement('style');
-    style.id='tsbvc-reference-match';
-    style.textContent=css;
+  const emojiPattern = /[\u{1F000}-\u{1FAFF}\u{1FC00}-\u{1FFFD}\u{2600}-\u{27BF}\u{FE0F}\u{200D}\u{20E3}]/gu;
+
+  function installStyle() {
+    if (document.getElementById('tsbvc-reference-match')) return;
+    const style = document.createElement('style');
+    style.id = 'tsbvc-reference-match';
+    style.textContent = css;
     document.head.appendChild(style);
   }
 
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',install,{once:true});
-  }else{
+  function removeEmojiText(root) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    nodes.forEach(textNode => {
+      if (textNode.parentElement && ['SCRIPT','STYLE','NOSCRIPT'].includes(textNode.parentElement.tagName)) return;
+      const cleaned = textNode.nodeValue.replace(emojiPattern, '');
+      if (cleaned !== textNode.nodeValue) textNode.nodeValue = cleaned;
+    });
+  }
+
+  function markPage() {
+    document.body.classList.add('tsbvc-no-emoji');
+    if (location.pathname === '/' || /index\.html$/i.test(location.pathname)) {
+      document.body.classList.add('tsbvc-home');
+    }
+  }
+
+  async function installSharedNavigation() {
+    if (document.querySelector('.nav-band')) return;
+
+    const response = await fetch('/index.html?tsbvc-nav=20260827', { cache: 'no-store' });
+    if (!response.ok) return;
+
+    const html = await response.text();
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const sourceNav = parsed.querySelector('.nav-band');
+    if (!sourceNav) return;
+
+    const nav = sourceNav.cloneNode(true);
+    const current = location.pathname.split('/').pop() || 'index.html';
+
+    nav.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.remove('active');
+      const link = item.getAttribute('href') || '';
+      const target = link.split('/').pop() || 'index.html';
+      if (target === current) item.classList.add('active');
+    });
+
+    const oldNav = document.querySelector('header nav');
+    if (oldNav) {
+      oldNav.replaceWith(nav);
+    } else {
+      const header = document.querySelector('header');
+      if (header) header.insertAdjacentElement('afterend', nav);
+      else document.body.insertBefore(nav, document.body.firstChild);
+    }
+
+    document.body.classList.add('tsbvc-shared-nav');
+  }
+
+  async function install() {
+    installStyle();
+    markPage();
+    removeEmojiText(document.body);
+    try { await installSharedNavigation(); } catch (error) { console.warn('Village navigation fallback:', error); }
+    removeEmojiText(document.body);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', install, { once:true });
+  } else {
     install();
   }
 })();
