@@ -17,7 +17,17 @@
   function removeEmojiText(root){const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];let node;while((node=walker.nextNode()))nodes.push(node);nodes.forEach(textNode=>{if(textNode.parentElement&&['SCRIPT','STYLE','NOSCRIPT'].includes(textNode.parentElement.tagName))return;const cleaned=textNode.nodeValue.replace(emojiPattern,'');if(cleaned!==textNode.nodeValue)textNode.nodeValue=cleaned})}
   function markPage(){document.body.classList.add('tsbvc-no-emoji');if(location.pathname==='/'||/index\.html$/i.test(location.pathname))document.body.classList.add('tsbvc-home')}
   async function installSharedNavigation(){if(document.querySelector('.nav-band'))return;const response=await fetch('/index.html?tsbvc-nav=20260827',{cache:'no-store'});if(!response.ok)return;const html=await response.text();const parsed=new DOMParser().parseFromString(html,'text/html');const sourceNav=parsed.querySelector('.nav-band');if(!sourceNav)return;const nav=sourceNav.cloneNode(true);const current=location.pathname.split('/').pop()||'index.html';nav.querySelectorAll('.nav-item').forEach(item=>{item.classList.remove('active');const link=item.getAttribute('href')||'';const target=link.split('/').pop()||'index.html';if(target===current)item.classList.add('active')});const oldNav=document.querySelector('header nav');if(oldNav)oldNav.replaceWith(nav);else{const header=document.querySelector('header');if(header)header.insertAdjacentElement('afterend',nav);else document.body.insertBefore(nav,document.body.firstChild)}document.body.classList.add('tsbvc-shared-nav')}
-  function loadRichNav(){if(document.querySelector('script[src*="rich-nav.js"]'))return;const script=document.createElement('script');script.src='/rich-nav.js?v=20260827';script.defer=true;document.head.appendChild(script)}
+  function loadRichNav(){
+    document.querySelectorAll('script[src*="rich-nav.js"]').forEach(script=>script.remove());
+    const oldStyle=document.getElementById('rich-village-nav-style');
+    if(oldStyle)oldStyle.remove();
+    const row=document.querySelector('.nav-row');
+    if(row)delete row.dataset.richNavApplied;
+    const script=document.createElement('script');
+    script.src='/rich-nav.js?v=20260827-1640';
+    script.async=false;
+    document.head.appendChild(script);
+  }
   async function install(){installStyle();markPage();removeEmojiText(document.body);try{await installSharedNavigation()}catch(error){console.warn('Village navigation fallback:',error)}loadRichNav();removeEmojiText(document.body)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })();
