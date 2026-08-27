@@ -15,7 +15,7 @@ function apply(){
   const art=document.createElement('div'); art.className='nav-art rich-art rich-'+i;
   if(i===0 || i===1){
    const img=document.createElement('img');
-   img.src=i===0 ? '/assets/home-button-exact.jpg?v=20260827' : '/assets/inside-bubble-exact.jpg?v=20260827';
+   img.src=i===0 ? '/assets/home-button-exact.jpg?v=20260827-1640' : '/assets/inside-bubble-exact.jpg?v=20260827-1640';
    img.alt=it[1].replace('<br>',' ');
    img.loading='eager';
    art.appendChild(img);
@@ -25,7 +25,7 @@ function apply(){
  });
  const s=document.createElement('style'); s.id='rich-village-nav-style'; s.textContent=`
 .nav-row{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:0!important;align-items:end!important}
-.rich-art{height:309px!important;width:100%!important;background-image:url('/assets/rich-nav-sprite.svg')!important;background-repeat:no-repeat!important;background-position-y:bottom!important;background-size:1200px 309px!important}
+.rich-art{height:309px!important;width:100%!important;background-image:url('/assets/rich-nav-sprite.svg?v=20260827-1640')!important;background-repeat:no-repeat!important;background-position-y:bottom!important;background-size:1200px 309px!important}
 .rich-0,.rich-1{background-image:none!important;background-position:0 0!important}
 .rich-0 img,.rich-1 img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important}
 .rich-0 + .nav-label{display:none!important}.rich-0.active:after{display:none!important}
