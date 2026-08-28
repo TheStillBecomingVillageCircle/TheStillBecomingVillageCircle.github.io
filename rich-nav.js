@@ -13,7 +13,8 @@ function apply(){
   row.innerHTML='';
   const wrap=document.createElement('div'); wrap.className='exact-nav-wrap';
   const img=document.createElement('img'); img.className='exact-nav-art';
-  img.src='/assets/village-navigation-exact.svg?v=20260828-1';
+  /* Use the actual PNG artwork. Do not use the SVG-with-embedded-WebP version; Safari can render that incorrectly. */
+  img.src='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-2';
   img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support';
   wrap.appendChild(img);
   ITEMS.forEach(function(item,i){
@@ -35,7 +36,8 @@ function apply(){
 .exact-nav-link:focus-visible{outline:3px solid #b99458;outline-offset:-4px;border-radius:10px}
 @media(max-width:700px){
  .nav-band{overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important}
- .exact-nav-wrap{width:147vw;min-width:630px;max-width:none;margin:0}
+ /* Keep the same smaller sizing used in the intended mobile design. */
+ .exact-nav-wrap{width:630px;min-width:630px;max-width:none;margin:0}
 }
 `;
  document.head.appendChild(s);
