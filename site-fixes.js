@@ -1,22 +1,26 @@
-/* The Still Becoming Village Circle — site-wide reference navigation + emoji cleanup */
+/* The Still Becoming Village Circle — ONE shared navigation for every page. */
 (function () {
   'use strict';
-  const css = `
-    .nav-band,.destination-band{background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important}
-    .nav-row{max-width:1200px!important;margin:0 auto!important;padding:13px 8px 17px!important;display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:3px!important;align-items:end!important}
-    .nav-item{min-width:0!important;text-align:center!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important}.nav-art{height:145px!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important}.nav-art svg{width:100%!important;height:100%!important;overflow:visible!important}
-    .nav-label{font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(15px,1.8vw,24px)!important;line-height:1.04!important;color:#174f57!important;text-align:center!important}.nav-item.active .nav-label{font-weight:700!important}.nav-item.active:after{content:""!important;width:46px!important;height:3px!important;border-radius:3px!important;background:#b99458!important;margin-top:5px!important}
-    body.tsbvc-shared-nav .site-header nav:not(.nav-band),body.tsbvc-shared-nav header>nav:not(.nav-band){display:none!important}
-    body.tsbvc-home .ornament{width:min(430px,72vw)!important;height:18px!important;margin:0 auto 28px!important;display:flex!important;align-items:center!important;gap:10px!important;color:#b99458!important}body.tsbvc-home .ornament span{display:block!important;height:1px!important;flex:1!important;background:linear-gradient(90deg,transparent,#c7ac78,transparent)!important}body.tsbvc-home .ornament svg{width:28px!important;height:14px!important;flex:0 0 28px!important}.tsbvc-no-emoji{font-variant-emoji:text!important}
-    @media(max-width:800px){.nav-row{grid-template-columns:repeat(7,1fr)!important;gap:0!important;padding:10px 2px 13px!important}.nav-art{height:92px!important}.nav-label{font-size:11px!important}.nav-item{gap:5px!important}.nav-item.active:after{width:30px!important;height:2px!important}}
-    @media(max-width:650px){.nav-band{padding:0!important;overflow:hidden!important}.nav-row{display:block!important;width:100%!important;min-width:0!important;padding:0!important}.exact-nav-wrap{position:relative;width:100%!important;min-width:0!important;max-width:none!important;margin:0 auto!important;line-height:0!important}.exact-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}.exact-nav-link{position:absolute!important;top:0!important;height:100%!important;display:block!important;z-index:10!important}}
-  `;
-  const emojiPattern=/[\u{1F000}-\u{1FAFF}\u{1FC00}-\u{1FFFD}\u{2600}-\u{27BF}\u{FE0F}\u{200D}\u{20E3}]/gu;
-  function installStyle(){if(document.getElementById('tsbvc-reference-match'))return;const style=document.createElement('style');style.id='tsbvc-reference-match';style.textContent=css;document.head.appendChild(style)}
-  function removeEmojiText(root){const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];let node;while((node=walker.nextNode()))nodes.push(node);nodes.forEach(textNode=>{if(textNode.parentElement&&['SCRIPT','STYLE','NOSCRIPT'].includes(textNode.parentElement.tagName))return;const cleaned=textNode.nodeValue.replace(emojiPattern,'');if(cleaned!==textNode.nodeValue)textNode.nodeValue=cleaned})}
-  function markPage(){document.body.classList.add('tsbvc-no-emoji');if(location.pathname==='/'||/index\.html$/i.test(location.pathname))document.body.classList.add('tsbvc-home')}
-  async function installSharedNavigation(){if(document.querySelector('.nav-band'))return;const response=await fetch('/index.html?tsbvc-nav=20260828',{cache:'no-store'});if(!response.ok)return;const html=await response.text();const parsed=new DOMParser().parseFromString(html,'text/html');const sourceNav=parsed.querySelector('.nav-band');if(!sourceNav)return;const nav=sourceNav.cloneNode(true);const current=location.pathname.split('/').pop()||'index.html';nav.querySelectorAll('.nav-item').forEach(item=>{item.classList.remove('active');const link=item.getAttribute('href')||'';const target=link.split('/').pop()||'index.html';if(target===current)item.classList.add('active')});const oldNav=document.querySelector('header nav');if(oldNav)oldNav.replaceWith(nav);else{const header=document.querySelector('header');if(header)header.insertAdjacentElement('afterend',nav);else document.body.insertBefore(nav,document.body.firstChild)}document.body.classList.add('tsbvc-shared-nav')}
-  function loadRichNav(){document.querySelectorAll('script[src*="rich-nav.js"]').forEach(script=>script.remove());const oldStyle=document.getElementById('rich-village-nav-style');if(oldStyle)oldStyle.remove();const row=document.querySelector('.nav-row');if(row)delete row.dataset.richNavApplied;const script=document.createElement('script');script.src='/rich-nav.js?v=20260828-0926';script.async=false;document.head.appendChild(script)}
-  async function install(){installStyle();markPage();removeEmojiText(document.body);try{await installSharedNavigation()}catch(error){console.warn('Village navigation fallback:',error)}loadRichNav();removeEmojiText(document.body)}
+  const ART='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-6';
+  const ITEMS=[['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],['events.html','Experiences'],['web-design.html','Webspace'],['contact.html','Connect'],['coaching.html','Support']];
+  function styles(){if(document.getElementById('tsbvc-shared-nav-style'))return;const s=document.createElement('style');s.id='tsbvc-shared-nav-style';s.textContent=`
+.tsbvc-shared-nav-band{display:block!important;width:100%!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important;overflow:hidden!important;position:relative!important;z-index:40!important}
+.tsbvc-shared-nav-row{position:relative!important;display:block!important;width:100%!important;max-width:1200px!important;min-width:0!important;margin:0 auto!important;padding:0!important;line-height:0!important}
+.tsbvc-shared-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}
+.tsbvc-shared-nav-link{position:absolute!important;top:0!important;height:100%!important;display:block!important;z-index:10!important;background:transparent!important;text-decoration:none!important}
+.tsbvc-shared-nav-link-0{left:0;width:14.3%}.tsbvc-shared-nav-link-1{left:14.3%;width:14.3%}.tsbvc-shared-nav-link-2{left:28.6%;width:14.1%}.tsbvc-shared-nav-link-3{left:42.7%;width:15.1%}.tsbvc-shared-nav-link-4{left:57.8%;width:14.3%}.tsbvc-shared-nav-link-5{left:72.1%;width:13.5%}.tsbvc-shared-nav-link-6{left:85.6%;width:14.4%}
+@media(max-width:700px){.tsbvc-shared-nav-band{overflow:hidden!important}.tsbvc-shared-nav-row{width:100%!important;max-width:none!important;min-width:0!important}.tsbvc-shared-nav-art{width:100%!important;height:auto!important}}
+`;
+  document.head.appendChild(s)}
+  function install(){if(window.__TSBVC_SHARED_NAV_DONE__)return;window.__TSBVC_SHARED_NAV_DONE__=true;styles();
+    document.querySelectorAll('.tsbvc-shared-nav-band,.nav-band,.destination-band,header>nav').forEach(function(n){n.remove()});
+    const header=document.querySelector('header');if(!header)return;
+    const band=document.createElement('nav');band.className='tsbvc-shared-nav-band';band.setAttribute('aria-label','Village destinations');
+    const row=document.createElement('div');row.className='tsbvc-shared-nav-row';
+    const img=document.createElement('img');img.className='tsbvc-shared-nav-art';img.src=ART;img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support';img.decoding='async';row.appendChild(img);
+    const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    ITEMS.forEach(function(item,i){const a=document.createElement('a');a.href=item[0];a.className='tsbvc-shared-nav-link tsbvc-shared-nav-link-'+i;a.setAttribute('aria-label',item[1]);if(item[0].toLowerCase()===current)a.setAttribute('aria-current','page');row.appendChild(a)});
+    band.appendChild(row);header.insertAdjacentElement('afterend',band);document.body.classList.add('tsbvc-shared-nav-page');
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
 })();
