@@ -1,44 +1,19 @@
-/* One shared illustrated navigation for the entire site. */
+/* Legacy entry point kept for older pages. site-fixes.js owns the shared navigation. */
 (function(){
 'use strict';
-const ITEMS=[
- ['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],
- ['events.html','Experiences'],['web-design.html','Webspace'],['contact.html','Connect'],['coaching.html','Support']
-];
-const ART='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-5';
-function addStyles(){
- if(document.getElementById('exact-village-nav-style'))return;
- const s=document.createElement('style');s.id='exact-village-nav-style';s.textContent=`
-.nav-band{width:100%!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important;overflow:hidden!important;position:relative!important;z-index:40!important}
-.nav-row{display:block!important;width:100%!important;min-width:0!important;max-width:none!important;padding:0!important;margin:0!important;overflow:hidden!important}
-.exact-nav-wrap{position:relative!important;width:100%!important;max-width:1200px!important;margin:0 auto!important;line-height:0!important}
-.exact-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}
-.exact-nav-link{position:absolute!important;top:0!important;height:100%!important;display:block!important;z-index:10!important;background:transparent!important;text-decoration:none!important}
-.exact-nav-link-0{left:0;width:14.3%}.exact-nav-link-1{left:14.3%;width:14.3%}.exact-nav-link-2{left:28.6%;width:14.1%}.exact-nav-link-3{left:42.7%;width:15.1%}.exact-nav-link-4{left:57.8%;width:14.3%}.exact-nav-link-5{left:72.1%;width:13.5%}.exact-nav-link-6{left:85.6%;width:14.4%}
-@media(max-width:700px){.nav-band{overflow:hidden!important}.exact-nav-wrap{width:100%!important;max-width:none!important;min-width:0!important}.exact-nav-art{width:100%!important;height:auto!important}}
-`;
- document.head.appendChild(s);
+function wait(){
+  /* If the new shared navigation is already installed, never create a second one. */
+  if(document.querySelector('.tsbvc-shared-nav-band')) return;
+  /* Otherwise install the same exact artwork as a compatibility fallback. */
+  const ART='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-6';
+  const ITEMS=[['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],['events.html','Experiences'],['web-design.html','Webspace'],['contact.html','Connect'],['coaching.html','Support']];
+  document.querySelectorAll('.nav-band,.destination-band,header>nav').forEach(function(n){n.remove()});
+  const header=document.querySelector('header'); if(!header)return;
+  const band=document.createElement('nav'); band.className='nav-band'; band.setAttribute('aria-label','Village destinations');
+  const row=document.createElement('div'); row.className='nav-row'; row.style.cssText='position:relative;display:block;width:100%;max-width:1200px;margin:0 auto;padding:0;line-height:0';
+  const img=document.createElement('img'); img.src=ART; img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support'; img.style.cssText='display:block;width:100%;height:auto;margin:0;padding:0;border:0'; row.appendChild(img);
+  ITEMS.forEach(function(item,i){const a=document.createElement('a');a.href=item[0];a.setAttribute('aria-label',item[1]);a.style.cssText='position:absolute;top:0;height:100%;display:block;z-index:10;left:'+([0,14.3,28.6,42.7,57.8,72.1,85.6][i])+'%;width:'+([14.3,14.3,14.1,15.1,14.3,13.5,14.4][i])+'%';row.appendChild(a)});
+  band.appendChild(row); header.insertAdjacentElement('afterend',band);
 }
-function makeNav(){
- addStyles();
- /* Remove duplicate nav bands left by older versions. Keep the first one. */
- const bands=Array.from(document.querySelectorAll('.nav-band'));
- let band=bands[0]||null;
- bands.slice(1).forEach(b=>b.remove());
- if(!band){
-  const header=document.querySelector('header');
-  if(!header)return;
-  band=document.createElement('nav');band.className='nav-band';band.setAttribute('aria-label','Village destinations');
-  header.insertAdjacentElement('afterend',band);
- }
- let row=band.querySelector('.nav-row');
- if(!row){row=document.createElement('div');row.className='nav-row';band.appendChild(row)}
- row.innerHTML='';
- const wrap=document.createElement('div');wrap.className='exact-nav-wrap';
- const img=document.createElement('img');img.className='exact-nav-art';img.src=ART;img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support';img.decoding='async';
- wrap.appendChild(img);
- ITEMS.forEach(function(item,i){const a=document.createElement('a');a.href=item[0];a.className='exact-nav-link exact-nav-link-'+i;a.setAttribute('aria-label',item[1]);wrap.appendChild(a)});
- row.appendChild(wrap);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',makeNav,{once:true});else makeNav();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wait,{once:true});else wait();
 })();
