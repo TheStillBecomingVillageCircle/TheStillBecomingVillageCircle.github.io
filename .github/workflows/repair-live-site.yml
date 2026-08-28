@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install shared live navigation on every page
+      - name: Install and refresh shared live navigation on every page
         shell: python
         run: |
           from pathlib import Path
@@ -29,15 +29,18 @@ jobs:
           changed = []
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
+              original = text
               if 'site-fixes.js' in text:
-                  continue
-              pos = text.lower().rfind('</body>')
-              if pos == -1:
-                  continue
-              text = text[:pos] + '\n' + tag + '\n' + text[pos:]
-              path.write_text(text, encoding='utf-8')
-              changed.append(str(path))
-          print('Installed on:', ', '.join(changed) if changed else 'none')
+                  import re
+                  text = re.sub(r'<script\s+src=["\']site-fixes\.js(?:\?[^"\']*)?["\']\s*></script>', tag, text, flags=re.I)
+              else:
+                  pos = text.lower().rfind('</body>')
+                  if pos != -1:
+                      text = text[:pos] + '\n' + tag + '\n' + text[pos:]
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+          print('Updated:', ', '.join(changed) if changed else 'none')
 
       - name: Commit live fixes
         shell: bash
@@ -49,5 +52,5 @@ jobs:
             echo "No changes needed."
             exit 0
           fi
-          git commit -m "Repair live responsive Village site"
+          git commit -m "Refresh shared navigation across live pages"
           git push
