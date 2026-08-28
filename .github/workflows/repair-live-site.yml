@@ -21,11 +21,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install live polish script on every page
+      - name: Install shared live navigation on every page
         shell: python
         run: |
           from pathlib import Path
-          tag = '<script src="site-fixes.js?v=20260825"></script>'
+          tag = '<script src="site-fixes.js?v=20260828-7"></script>'
           changed = []
           for path in Path('.').glob('*.html'):
               text = path.read_text(encoding='utf-8')
