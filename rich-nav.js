@@ -1,41 +1,44 @@
-/* Site-wide illustrated navigation. Exact approved artwork only. */
+/* Site-wide illustrated navigation — exact approved composite artwork. */
 (function(){
 'use strict';
-const NAV_ITEMS=[['index.html','Home','/assets/home-button-exact.jpg'],['about.html','Inside the<br>Bubble','/assets/inside-bubble-exact.jpg'],['LearningtheUnknown.html','The<br>Unknown','/assets/nav-unknown.svg'],['events.html','Experiences','/assets/nav-experiences.svg'],['web-design.html','Webspace','/assets/nav-webspace.svg'],['contact.html','Connect','/assets/nav-connect.svg'],['coaching.html','Support','/assets/nav-support.svg']];
+const ITEMS=[
+ ['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],
+ ['events.html','Experiences'],['web-design.html','Webspace'],['contact.html','Connect'],['coaching.html','Support']
+];
 function apply(){
- const rows=document.querySelectorAll('.nav-row');
- if(!rows.length)return;
+ const rows=document.querySelectorAll('.nav-row'); if(!rows.length)return;
  rows.forEach(function(row){
   if(row.dataset.richNavApplied==='true')return;
   row.dataset.richNavApplied='true';
-  const current=location.pathname.split('/').pop()||'index.html';
   row.innerHTML='';
-  NAV_ITEMS.forEach(function(item){
+  const wrap=document.createElement('div'); wrap.className='exact-nav-wrap';
+  const img=document.createElement('img'); img.className='exact-nav-art';
+  img.src='/assets/village-navigation-exact.svg?v=20260828-1';
+  img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support';
+  wrap.appendChild(img);
+  ITEMS.forEach(function(item,i){
    const a=document.createElement('a');
-   const active=(item[0]==='index.html'&&(current===''||current==='index.html'))||current===item[0];
-   a.className='nav-item rich-nav-item'+(active?' active':'');
-   a.href=item[0];
-   a.setAttribute('aria-label',item[1].replace('<br>',' '));
-   const art=document.createElement('div');art.className='nav-art rich-art';
-   const img=document.createElement('img');img.src=item[2]+'?v=20260828';img.alt='';img.setAttribute('aria-hidden','true');img.loading='eager';img.decoding='async';art.appendChild(img);
-   const label=document.createElement('span');label.className='nav-label';label.innerHTML=item[1];
-   a.append(art,label);row.appendChild(a);
+   a.href=item[0]; a.className='exact-nav-link exact-nav-link-'+i;
+   a.setAttribute('aria-label',item[1]);
+   wrap.appendChild(a);
   });
+  row.appendChild(wrap);
  });
- if(document.getElementById('rich-village-nav-style'))return;
- const style=document.createElement('style');style.id='rich-village-nav-style';style.textContent=`
-.nav-row{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:0!important;align-items:end!important}
-.rich-nav-item{min-width:0!important;width:100%!important;text-align:center!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important}
-.rich-art{width:100%!important;height:220px!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;overflow:hidden!important}
-.rich-art img{display:block!important;width:100%!important;height:100%!important;max-width:190px!important;object-fit:contain!important;object-position:center bottom!important}
-.rich-nav-item:first-child .rich-art img,.rich-nav-item:nth-child(2) .rich-art img{max-width:205px!important}
-.rich-nav-item .nav-label{display:block!important;font-size:clamp(14px,1.45vw,20px)!important;line-height:1.04!important;color:#174f57!important;text-align:center!important}
-.rich-nav-item.active .nav-label{font-weight:700!important}
-.rich-nav-item.active:after{content:""!important;width:42px!important;height:3px!important;border-radius:999px!important;background:#b99458!important;margin-top:4px!important}
-.nav-art svg{display:none!important}
-@media(max-width:800px){.nav-band{overflow:hidden!important}.nav-row{width:100%!important;min-width:0!important;padding:6px 2px 9px!important}.rich-nav-item{gap:3px!important}.rich-art{height:120px!important}.rich-art img{max-width:100%!important}.rich-nav-item .nav-label{font-size:10px!important}.rich-nav-item.active:after{width:24px!important;height:2px!important;margin-top:3px!important}}
-@media(max-width:430px){.nav-row{padding:5px 1px 8px!important}.rich-art{height:105px!important}.rich-nav-item .nav-label{font-size:9px!important}.rich-nav-item.active:after{width:20px!important;height:2px!important;margin-top:2px!important}}
-`;document.head.appendChild(style);
+ if(document.getElementById('exact-village-nav-style'))return;
+ const s=document.createElement('style'); s.id='exact-village-nav-style'; s.textContent=`
+.nav-row{display:block!important;width:100%!important;min-width:0!important;padding:0!important;margin:0!important;overflow:hidden!important}
+.exact-nav-wrap{position:relative;width:min(75vw,970px);min-width:630px;margin:0 auto;line-height:0}
+.exact-nav-art{display:block;width:100%;height:auto;margin:0;padding:0;border:0}
+.exact-nav-link{position:absolute;top:0;height:100%;display:block;z-index:10}
+.exact-nav-link-0{left:0;width:14.3%}.exact-nav-link-1{left:14.3%;width:14.3%}.exact-nav-link-2{left:28.6%;width:14.1%}
+.exact-nav-link-3{left:42.7%;width:15.1%}.exact-nav-link-4{left:57.8%;width:14.3%}.exact-nav-link-5{left:72.1%;width:13.5%}.exact-nav-link-6{left:85.6%;width:14.4%}
+.exact-nav-link:focus-visible{outline:3px solid #b99458;outline-offset:-4px;border-radius:10px}
+@media(max-width:700px){
+ .nav-band{overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important}
+ .exact-nav-wrap{width:147vw;min-width:630px;max-width:none;margin:0}
+}
+`;
+ document.head.appendChild(s);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
 })();
