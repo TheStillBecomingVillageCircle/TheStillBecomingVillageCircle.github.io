@@ -1,4 +1,4 @@
-const CACHE = "still-becoming-village-v5";
+const CACHE = "still-becoming-village-v6";
 const APP_SHELL = [
   "/village-app.html",
   "/",
@@ -9,7 +9,7 @@ const APP_SHELL = [
   "/village-polish.js",
   "/site-fixes.js",
   "/rich-nav.js",
-  "/assets/rich-nav-sprite.svg"
+  "/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png"
 ];
 
 self.addEventListener("install", event => {
@@ -32,7 +32,7 @@ async function upgradeHtml(response) {
   const type = response.headers.get("content-type") || "";
   if (!type.includes("text/html")) return response;
   const html = await response.text();
-  const scripts = `<script src="/rich-nav.js?v=20260827" defer></script>`;
+  const scripts = `<script src="/rich-nav.js?v=20260828-4" defer></script>`;
   const upgraded = html.replace(/<\/body>/i, `${scripts}</body>`);
   return new Response(upgraded, {
     status: response.status,
