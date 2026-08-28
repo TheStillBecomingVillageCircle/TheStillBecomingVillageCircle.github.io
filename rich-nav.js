@@ -13,8 +13,7 @@ function apply(){
   row.innerHTML='';
   const wrap=document.createElement('div'); wrap.className='exact-nav-wrap';
   const img=document.createElement('img'); img.className='exact-nav-art';
-  /* Use the actual PNG artwork. Do not use the SVG-with-embedded-WebP version; Safari can render that incorrectly. */
-  img.src='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-2';
+  img.src='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260828-3';
   img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect, Support';
   wrap.appendChild(img);
   ITEMS.forEach(function(item,i){
@@ -35,9 +34,9 @@ function apply(){
 .exact-nav-link-3{left:42.7%;width:15.1%}.exact-nav-link-4{left:57.8%;width:14.3%}.exact-nav-link-5{left:72.1%;width:13.5%}.exact-nav-link-6{left:85.6%;width:14.4%}
 .exact-nav-link:focus-visible{outline:3px solid #b99458;outline-offset:-4px;border-radius:10px}
 @media(max-width:700px){
- .nav-band{overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important}
- /* Keep the same smaller sizing used in the intended mobile design. */
- .exact-nav-wrap{width:630px;min-width:630px;max-width:none;margin:0}
+ .nav-band{overflow:hidden!important}
+ .exact-nav-wrap{width:100%!important;min-width:0!important;max-width:none!important;margin:0 auto!important}
+ .exact-nav-art{width:100%!important;height:auto!important}
 }
 `;
  document.head.appendChild(s);
