@@ -1,16 +1,109 @@
-/* The Still Becoming Village Circle — one shared navigation source of truth. */
+/* The Still Becoming Village Circle — ONE shared navigation source. */
 (function(){
 'use strict';
-const ART='/assets/village-nav-6-exact.svg?v=20260829-8';
-const ITEMS=[['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],['experiences.html','Experiences'],['web-design.html','Webspace'],['coming-together.html','Be Coming Together']];
+
+/* Use the actual icon artwork directly. Do not wrap it in another navigation image. */
+const ART='/assets/village-navigation-exact.svg?v=20260829-9';
+const ITEMS=[
+  ['index.html','Home'],
+  ['about.html','Inside the Bubble'],
+  ['LearningtheUnknown.html','The Unknown'],
+  ['experiences.html','Experiences'],
+  ['web-design.html','Webspace'],
+  ['coming-together.html','Be Coming Together']
+];
 const CSS_ID='tsbvc-shared-nav-style';
-function addStyles(){if(document.getElementById(CSS_ID))return;const s=document.createElement('style');s.id=CSS_ID;s.textContent=`
-.tsbvc-site-header{position:sticky!important;top:0!important;z-index:1000!important;width:100%!important;background:rgba(255,255,255,.97)!important;border-bottom:1px solid rgba(22,84,91,.08)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}.tsbvc-site-header .tsbvc-header-inner{max-width:1180px!important;margin:0 auto!important;min-height:88px!important;padding:14px 22px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}.tsbvc-brand{display:flex!important;align-items:center!important;gap:10px!important;color:#16545b!important;text-decoration:none!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(18px,2.6vw,32px)!important;font-weight:700!important;letter-spacing:-.035em!important;white-space:nowrap!important}.tsbvc-brand svg{width:42px!important;height:42px!important;flex:none!important}.tsbvc-menu{width:54px!important;height:54px!important;border-radius:50%!important;border:1px solid #dcebe8!important;background:#fff!important;box-shadow:0 7px 18px rgba(22,84,91,.09)!important;display:grid!important;place-items:center!important;flex:none!important}.tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{content:"";display:block;width:25px;height:3px;border-radius:3px;background:#28646a}.tsbvc-menu span:before{transform:translateY(-8px)}.tsbvc-menu span:after{transform:translateY(5px)}
-.tsbvc-shared-nav-band{display:block!important;width:100%!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important;overflow:hidden!important;position:relative!important;z-index:900!important}.tsbvc-shared-nav-row{position:relative!important;width:min(1180px,100%)!important;margin:0 auto!important;padding:0!important;line-height:0!important}.tsbvc-shared-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}.tsbvc-shared-nav-link{position:absolute!important;top:0!important;height:100%!important;display:block!important;z-index:10!important;background:transparent!important;text-decoration:none!important}.tsbvc-shared-nav-link-0{left:0;width:16.6667%}.tsbvc-shared-nav-link-1{left:16.6667%;width:16.6667%}.tsbvc-shared-nav-link-2{left:33.3334%;width:16.6667%}.tsbvc-shared-nav-link-3{left:50%;width:16.6667%}.tsbvc-shared-nav-link-4{left:66.6667%;width:16.6667%}.tsbvc-shared-nav-link-5{left:83.3334%;width:16.6666%}
-@media(max-width:700px){.tsbvc-site-header .tsbvc-header-inner{min-height:72px;padding:10px 14px}.tsbvc-brand{font-size:17px;gap:7px}.tsbvc-brand svg{width:31px;height:31px}.tsbvc-menu{width:47px;height:47px}.tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px;height:2.5px}.tsbvc-shared-nav-row{width:100%!important}.tsbvc-shared-nav-art{width:100%!important}}
+
+function addStyles(){
+  if(document.getElementById(CSS_ID)) return;
+  const s=document.createElement('style');
+  s.id=CSS_ID;
+  s.textContent=`
+.tsbvc-site-header{position:sticky!important;top:0!important;z-index:1000!important;width:100%!important;background:rgba(255,255,255,.97)!important;border-bottom:1px solid rgba(22,84,91,.08)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+.tsbvc-site-header .tsbvc-header-inner{max-width:1180px!important;margin:0 auto!important;min-height:88px!important;padding:14px 22px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important}
+.tsbvc-brand{display:flex!important;align-items:center!important;gap:10px!important;color:#16545b!important;text-decoration:none!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(18px,2.6vw,32px)!important;font-weight:700!important;letter-spacing:-.035em!important;white-space:nowrap!important}
+.tsbvc-brand svg{width:42px!important;height:42px!important;flex:none!important}
+.tsbvc-menu{width:54px!important;height:54px!important;border-radius:50%!important;border:1px solid #dcebe8!important;background:#fff!important;box-shadow:0 7px 18px rgba(22,84,91,.09)!important;display:grid!important;place-items:center!important;flex:none!important}
+.tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{content:"";display:block;width:25px;height:3px;border-radius:3px;background:#28646a}
+.tsbvc-menu span:before{transform:translateY(-8px)}.tsbvc-menu span:after{transform:translateY(5px)}
+
+.tsbvc-shared-nav-band{display:block!important;width:100%!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important;overflow:hidden!important;position:relative!important;z-index:900!important}
+.tsbvc-shared-nav-row{position:relative!important;width:min(1290px,100%)!important;margin:0 auto!important;padding:0!important;line-height:0!important;overflow:hidden!important}
+.tsbvc-shared-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}
+
+/* Cover only the old text printed into the artwork; keep the six actual icons visible. */
+.tsbvc-nav-labels{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:23%!important;background:#fff!important;display:grid!important;grid-template-columns:repeat(6,1fr)!important;align-items:end!important;padding:0 0 12px!important;z-index:5!important}
+.tsbvc-nav-label{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-height:44px!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(14px,2.1vw,27px)!important;line-height:1.05!important;text-decoration:none!important;padding:0 5px!important}
+.tsbvc-nav-label[aria-current="page"]{font-weight:700!important}
+.tsbvc-nav-label[aria-current="page"]:after{content:"";position:absolute}
+
 .ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]{display:none!important}
-`;document.head.appendChild(s)}
-function ensureHeader(){let header=document.querySelector('header');if(!header){header=document.createElement('header');document.body.insertBefore(header,document.body.firstChild)}header.className='tsbvc-site-header';header.innerHTML=`<div class="tsbvc-header-inner"><a class="tsbvc-brand" href="index.html" aria-label="The Still Becoming Village Circle"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M28 54C28 36 31 18 49 7" fill="none" stroke="#5d9258" stroke-width="4" stroke-linecap="round"/><path d="M34 24C40 11 50 10 57 10c-2 10-10 16-23 16Z" fill="#82ad68"/><path d="M27 34C18 23 8 23 3 27c3 9 12 14 24 14Z" fill="#6f9e61"/></svg><span>The Still Becoming Village Circle</span></a><button class="tsbvc-menu" type="button" aria-label="Open menu"><span></span></button></div>`;return header}
-function install(){addStyles();const header=ensureHeader();document.querySelectorAll('.tsbvc-shared-nav-band,.nav-band,.destination-band').forEach(n=>n.remove());document.querySelectorAll('header > nav').forEach(n=>n.remove());document.querySelectorAll('.ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]').forEach(n=>n.remove());const band=document.createElement('nav');band.className='tsbvc-shared-nav-band';band.setAttribute('aria-label','Village destinations');const row=document.createElement('div');row.className='tsbvc-shared-nav-row';const img=document.createElement('img');img.className='tsbvc-shared-nav-art';img.src=ART;img.alt='Home, Inside the Bubble, The Unknown, Experiences, Webspace, Be Coming Together';img.decoding='async';row.appendChild(img);const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();ITEMS.forEach((item,i)=>{const a=document.createElement('a');a.href=item[0];a.className='tsbvc-shared-nav-link tsbvc-shared-nav-link-'+i;a.setAttribute('aria-label',item[1]);if(item[0].toLowerCase()===current)a.setAttribute('aria-current','page');row.appendChild(a)});band.appendChild(row);header.insertAdjacentElement('afterend',band);window.TSBVCInstallSharedNav=install}
-window.TSBVCInstallSharedNav=install;if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
+
+@media(max-width:700px){
+  .tsbvc-site-header .tsbvc-header-inner{min-height:72px;padding:10px 14px}
+  .tsbvc-brand{font-size:17px;gap:7px}
+  .tsbvc-brand svg{width:31px;height:31px}
+  .tsbvc-menu{width:47px;height:47px}
+  .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px;height:2.5px}
+  .tsbvc-nav-labels{height:23%;padding-bottom:8px}
+  .tsbvc-nav-label{font-size:14px;line-height:1.05}
+}
+`;
+  document.head.appendChild(s);
+}
+
+function ensureHeader(){
+  let header=document.querySelector('header');
+  if(!header){header=document.createElement('header');document.body.insertBefore(header,document.body.firstChild)}
+  header.className='tsbvc-site-header';
+  header.innerHTML=`<div class="tsbvc-header-inner"><a class="tsbvc-brand" href="index.html" aria-label="The Still Becoming Village Circle"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M28 54C28 36 31 18 49 7" fill="none" stroke="#5d9258" stroke-width="4" stroke-linecap="round"/><path d="M34 24C40 11 50 10 57 10c-2 10-10 16-23 16Z" fill="#82ad68"/><path d="M27 34C18 23 8 23 3 27c3 9 12 14 24 14Z" fill="#6f9e61"/></svg><span>The Still Becoming Village Circle</span></a><button class="tsbvc-menu" type="button" aria-label="Open menu"><span></span></button></div>`;
+  return header;
+}
+
+function install(){
+  addStyles();
+  const header=ensureHeader();
+
+  /* Remove every previous navigation implementation before adding the one shared nav. */
+  document.querySelectorAll('.tsbvc-shared-nav-band,.nav-band,.destination-band').forEach(n=>n.remove());
+  document.querySelectorAll('header > nav').forEach(n=>n.remove());
+  document.querySelectorAll('.ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]').forEach(n=>n.remove());
+
+  const band=document.createElement('nav');
+  band.className='tsbvc-shared-nav-band';
+  band.setAttribute('aria-label','Village destinations');
+
+  const row=document.createElement('div');
+  row.className='tsbvc-shared-nav-row';
+
+  const img=document.createElement('img');
+  img.className='tsbvc-shared-nav-art';
+  img.src=ART;
+  img.alt='Village navigation icons';
+  img.decoding='async';
+  row.appendChild(img);
+
+  const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const labels=document.createElement('div');
+  labels.className='tsbvc-nav-labels';
+
+  ITEMS.forEach((item)=>{
+    const a=document.createElement('a');
+    a.href=item[0];
+    a.className='tsbvc-nav-label';
+    a.textContent=item[1];
+    a.setAttribute('aria-label',item[1]);
+    if(item[0].toLowerCase()===current) a.setAttribute('aria-current','page');
+    labels.appendChild(a);
+  });
+
+  row.appendChild(labels);
+  band.appendChild(row);
+  header.insertAdjacentElement('afterend',band);
+  window.TSBVCInstallSharedNav=install;
+}
+
+window.TSBVCInstallSharedNav=install;
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install,{once:true});
+else install();
 })();
