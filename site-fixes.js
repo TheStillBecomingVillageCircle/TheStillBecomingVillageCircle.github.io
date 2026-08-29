@@ -31,25 +31,15 @@ function addStyles(){
 .tsbvc-nav-label{display:block!important;width:100%!important;text-align:center!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(14px,1.8vw,24px)!important;line-height:1.04!important;text-decoration:none!important;padding:0 3px!important;min-height:25px!important}
 .tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label{font-weight:700!important}
 .tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label:after{content:"";display:block;width:46px;height:3px;border-radius:3px;background:#b99458;margin:5px auto 0}
-
 .ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]{display:none!important}
-
 @media(max-width:800px){
   .tsbvc-site-header .tsbvc-header-inner{min-height:72px;padding:10px 14px}
-  .tsbvc-brand{font-size:17px;gap:7px}
-  .tsbvc-brand svg{width:31px;height:31px}
-  .tsbvc-menu{width:47px;height:47px}
+  .tsbvc-brand{font-size:17px;gap:7px}.tsbvc-brand svg{width:31px;height:31px}.tsbvc-menu{width:47px;height:47px}
   .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px;height:2.5px}
-  .tsbvc-shared-nav-row{padding:7px 1px 10px;gap:0}
-  .tsbvc-nav-item{gap:4px}
-  .tsbvc-nav-icon{height:88px}
-  .tsbvc-nav-label{font-size:11px;line-height:1.03;min-height:24px}
-  .tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label:after{width:30px;height:2px;margin-top:4px}
+  .tsbvc-shared-nav-row{padding:7px 1px 10px;gap:0}.tsbvc-nav-item{gap:4px}.tsbvc-nav-icon{height:88px}
+  .tsbvc-nav-label{font-size:11px;line-height:1.03;min-height:24px}.tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label:after{width:30px;height:2px;margin-top:4px}
 }
-@media(max-width:430px){
-  .tsbvc-nav-icon{height:78px}
-  .tsbvc-nav-label{font-size:10px}
-}
+@media(max-width:430px){.tsbvc-nav-icon{height:78px}.tsbvc-nav-label{font-size:10px}}
 `;
   document.head.appendChild(s);
 }
@@ -65,52 +55,34 @@ function ensureHeader(){
 function install(){
   addStyles();
   const header=ensureHeader();
-
-  /* Remove every previous navigation implementation before adding the one shared nav. */
   document.querySelectorAll('.tsbvc-shared-nav-band,.nav-band,.destination-band').forEach(n=>n.remove());
   document.querySelectorAll('header > nav').forEach(n=>n.remove());
   document.querySelectorAll('.ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]').forEach(n=>n.remove());
 
-  const band=document.createElement('nav');
-  band.className='tsbvc-shared-nav-band';
-  band.setAttribute('aria-label','Village destinations');
-
-  const row=document.createElement('div');
-  row.className='tsbvc-shared-nav-row';
-
+  const band=document.createElement('nav');band.className='tsbvc-shared-nav-band';band.setAttribute('aria-label','Village destinations');
+  const row=document.createElement('div');row.className='tsbvc-shared-nav-row';
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   ITEMS.forEach((item)=>{
-    const a=document.createElement('a');
-    a.href=item[0];
-    a.className='tsbvc-nav-item';
-    a.setAttribute('aria-label',item[1]);
-    if(item[0].toLowerCase()===current) a.setAttribute('aria-current','page');
-
-    const img=document.createElement('img');
-    img.className='tsbvc-nav-icon';
-    img.src=item[2]+'?v=20260829-11';
-    img.alt='';
-    img.decoding='async';
-    img.setAttribute('aria-hidden','true');
-
-    const label=document.createElement('span');
-    label.className='tsbvc-nav-label';
-    if(item[1]==='Inside the Bubble') label.innerHTML='Inside the<br>Bubble';
-    else if(item[1]==='The Unknown') label.innerHTML='The<br>Unknown';
-    else if(item[1]==='Be Coming Together') label.innerHTML='Be Coming<br>Together';
+    const a=document.createElement('a');a.href=item[0];a.className='tsbvc-nav-item';a.setAttribute('aria-label',item[1]);
+    if(item[0].toLowerCase()===current)a.setAttribute('aria-current','page');
+    const img=document.createElement('img');img.className='tsbvc-nav-icon';img.src=item[2]+'?v=20260829-12';img.alt='';img.decoding='async';img.setAttribute('aria-hidden','true');
+    const label=document.createElement('span');label.className='tsbvc-nav-label';
+    if(item[1]==='Inside the Bubble')label.innerHTML='Inside the<br>Bubble';
+    else if(item[1]==='The Unknown')label.innerHTML='The<br>Unknown';
+    else if(item[1]==='Be Coming Together')label.innerHTML='Be Coming<br>Together';
     else label.textContent=item[1];
-
-    a.appendChild(img);
-    a.appendChild(label);
-    row.appendChild(a);
+    a.appendChild(img);a.appendChild(label);row.appendChild(a);
   });
+  band.appendChild(row);header.insertAdjacentElement('afterend',band);window.TSBVCInstallSharedNav=install;
+}
 
-  band.appendChild(row);
-  header.insertAdjacentElement('afterend',band);
-  window.TSBVCInstallSharedNav=install;
+function ensureMusic(){
+  if(window.__TSBVC_MUSIC__)return;
+  if(document.querySelector('script[data-tsbvc-music]'))return;
+  const s=document.createElement('script');s.src='village-music.js?v=20260829-12';s.dataset.tsbvcMusic='true';document.body.appendChild(s);
 }
 
 window.TSBVCInstallSharedNav=install;
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install,{once:true});
-else install();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){install();ensureMusic()},{once:true});
+else{install();ensureMusic();}
 })();
