@@ -8,18 +8,18 @@
     <clipPath id="c5"><rect x="1000" y="0" width="200" height="310"/></clipPath>
   </defs>
   <g fill="#174f57" font-family="Georgia, 'Times New Roman', serif" font-size="27" text-anchor="middle">
-    <g clip-path="url(#c0)"><image xlink:href="/assets/village-navigation-exact.svg" x="0" y="0" width="1400" height="429.77"/></g>
-    <g clip-path="url(#c1)"><image xlink:href="/assets/village-navigation-exact.svg" x="-200" y="0" width="1400" height="429.77"/></g>
-    <g clip-path="url(#c2)"><image xlink:href="/assets/village-navigation-exact.svg" x="-400" y="0" width="1400" height="429.77"/></g>
-    <g clip-path="url(#c3)"><image xlink:href="/assets/village-navigation-exact.svg" x="-600" y="0" width="1400" height="429.77"/></g>
-    <g clip-path="url(#c4)"><image xlink:href="/assets/village-navigation-exact.svg" x="-800" y="0" width="1400" height="429.77"/></g>
-    <g clip-path="url(#c5)"><image xlink:href="/assets/village-navigation-exact.svg" x="-1000" y="0" width="1400" height="429.77"/></g>
-    <text x="100" y="337" font-weight="700">Home</text>
-    <rect x="72" y="343" width="56" height="3" rx="2" fill="#b99458"/>
-    <text x="300" y="326"><tspan x="300" dy="0">Inside the</tspan><tspan x="300" dy="29">Bubble</tspan></text>
-    <text x="500" y="326"><tspan x="500" dy="0">The</tspan><tspan x="500" dy="29">Unknown</tspan></text>
-    <text x="700" y="337">Experiences</text>
-    <text x="900" y="337">Webspace</text>
-    <text x="1100" y="326"><tspan x="1100" dy="0">The Coming</tspan><tspan x="1100" dy="29">Together</tspan></text>
+    <g clip-path="url(#c0)"><image xlink:href="/assets/rich-nav-sprite.svg" x="0" y="0" width="1400" height="360"/></g>
+    <g clip-path="url(#c1)"><image xlink:href="/assets/rich-nav-sprite.svg" x="-200" y="0" width="1400" height="360"/></g>
+    <g clip-path="url(#c2)"><image xlink:href="/assets/rich-nav-sprite.svg" x="-400" y="0" width="1400" height="360"/></g>
+    <g clip-path="url(#c3)"><image xlink:href="/assets/rich-nav-sprite.svg" x="-600" y="0" width="1400" height="360"/></g>
+    <g clip-path="url(#c4)"><image xlink:href="/assets/rich-nav-sprite.svg" x="-800" y="0" width="1400" height="360"/></g>
+    <g clip-path="url(#c5)"><image xlink:href="/assets/rich-nav-sprite.svg" x="-1000" y="0" width="1400" height="360"/></g>
+    <text x="100" y="326" font-weight="700">Home</text>
+    <rect x="72" y="333" width="56" height="3" rx="2" fill="#b99458"/>
+    <text x="300" y="315"><tspan x="300" dy="0">Inside the</tspan><tspan x="300" dy="29">Bubble</tspan></text>
+    <text x="500" y="315"><tspan x="500" dy="0">The</tspan><tspan x="500" dy="29">Unknown</tspan></text>
+    <text x="700" y="326">Experiences</text>
+    <text x="900" y="326">Webspace</text>
+    <text x="1100" y="315"><tspan x="1100" dy="0">Be Coming</tspan><tspan x="1100" dy="29">Together</tspan></text>
   </g>
 </svg>
