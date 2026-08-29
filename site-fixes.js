@@ -1,7 +1,8 @@
-/* The Still Becoming Village Circle — shared site shell + viewport repair. */
+/* The Still Becoming Village Circle — shared site shell + exact illustrated navigation. */
 (function(){
 'use strict';
 const CSS_ID='tsbvc-shared-nav-style';
+
 function addStyles(){
  if(document.getElementById(CSS_ID))return;
  const s=document.createElement('style');
@@ -82,10 +83,10 @@ body{
 .tsbvc-menu span:before{transform:translateY(-8px)}
 .tsbvc-menu span:after{transform:translateY(5px)}
 
-/* ---------- Shared six-item destination navigation ---------- */
+/* ---------- EXACT six-item illustrated navigation ---------- */
 .tsbvc-nav{
- display:grid!important;
- grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ position:relative!important;
+ display:block!important;
  width:100%!important;
  max-width:none!important;
  min-width:0!important;
@@ -95,44 +96,48 @@ body{
  border-bottom:1px solid rgba(22,84,91,.08)!important;
  box-shadow:0 8px 24px rgba(22,84,91,.05)!important;
  box-sizing:border-box!important;
+ line-height:0!important;
+ overflow:hidden!important;
 }
-.tsbvc-nav-item{
- display:flex!important;
- flex-direction:column!important;
- align-items:center!important;
- justify-content:flex-end!important;
- min-width:0!important;
+.tsbvc-nav-art{
+ display:block!important;
  width:100%!important;
- min-height:180px!important;
- padding:18px 8px 12px!important;
- box-sizing:border-box!important;
- color:#16545b!important;
+ height:auto!important;
+ max-width:none!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+}
+.tsbvc-nav-links{
+ position:absolute!important;
+ inset:0!important;
+ display:grid!important;
+ grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ width:100%!important;
+ height:100%!important;
+ margin:0!important;
+ padding:0!important;
+}
+.tsbvc-nav-link{
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ min-width:0!important;
+ min-height:0!important;
+ margin:0!important;
+ padding:0!important;
+ color:transparent!important;
  text-decoration:none!important;
- font-family:Georgia,'Times New Roman',serif!important;
- font-size:18px!important;
- font-weight:600!important;
- text-align:center!important;
- line-height:1.05!important;
+ background:transparent!important;
+ border:0!important;
+ outline-offset:-4px!important;
 }
-.tsbvc-nav-item img{
- display:block!important;
- width:82px!important;
- height:112px!important;
- max-width:100%!important;
- object-fit:contain!important;
- margin:0 auto 8px!important;
-}
-.tsbvc-nav-item.active span:after{
- content:"";
- display:block!important;
- width:38px!important;
- height:3px!important;
- margin:6px auto 0!important;
- background:#d2ae62!important;
- border-radius:3px!important;
+.tsbvc-nav-link:focus-visible{
+ outline:3px solid #b99458!important;
+ outline-offset:-5px!important;
 }
 
-/* ---------- Kill legacy navigation containers after shared shell installs ---------- */
+/* ---------- Kill legacy navigation containers after exact nav installs ---------- */
 .tsbvc-nav + .nav-band,
 .tsbvc-nav + .destination-band,
 .tsbvc-nav + .tsbvc-shared-nav-band{display:none!important}
@@ -168,25 +173,9 @@ body{
  .tsbvc-nav{
    width:100vw!important;
    max-width:100vw!important;
-   grid-template-columns:repeat(6,minmax(0,1fr))!important;
- }
- .tsbvc-nav-item{
-   min-height:122px!important;
-   padding:8px 2px 9px!important;
-   font-size:12px!important;
- }
- .tsbvc-nav-item img{
-   width:48px!important;
-   height:70px!important;
-   margin-bottom:5px!important;
- }
- .tsbvc-nav-item.active span:after{
-   width:28px!important;
-   height:2px!important;
-   margin-top:4px!important;
  }
 
- /* Make every legacy page section use the real mobile viewport. */
+ /* Keep legacy page sections on the real mobile viewport. */
  body > .site-header,
  body > .nav-band,
  body > .hero,
@@ -207,11 +196,11 @@ body{
 @media(max-width:430px){
  .tsbvc-site-header .tsbvc-header-inner{padding:9px 12px!important}
  .tsbvc-brand{font-size:16px!important}
- .tsbvc-nav-item{font-size:10px!important}
 }
 `;
  document.head.appendChild(s);
 }
+
 function ensureHeader(){
  let header=document.querySelector('header');
  if(!header){
@@ -222,33 +211,56 @@ function ensureHeader(){
  header.innerHTML=`<div class="tsbvc-header-inner"><a class="tsbvc-brand" href="index.html" aria-label="The Still Becoming Village Circle"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M28 54C28 36 31 18 49 7" fill="none" stroke="#5d9258" stroke-width="4" stroke-linecap="round"/><path d="M34 24C40 11 50 10 57 10c-2 10-10 16-23 16Z" fill="#82ad68"/><path d="M27 34C18 23 8 23 3 27c3 9 12 14 24 14Z" fill="#6f9e61"/></svg><span>The Still Becoming Village Circle</span></a><button class="tsbvc-menu" type="button" aria-label="Open menu"><span></span></button></div>`;
  return header;
 }
+
 function install(){
  addStyles();
  const header=ensureHeader();
+
+ /* Remove only navigation elements that this shared shell owns. */
  document.querySelectorAll('.tsbvc-nav,.tsbvc-shared-nav-band,.nav-band,.destination-band').forEach(n=>n.remove());
- document.querySelectorAll('.ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]').forEach(n=>n.remove());
+
  const nav=document.createElement('nav');
  nav.className='tsbvc-nav';
  nav.setAttribute('aria-label','Village destinations');
+
+ /*
+    IMPORTANT: This is the exact approved six-icon artwork.
+    It is one 1200x350 SVG containing all six illustrations AND labels.
+    The transparent links below sit over the six 200px-wide sections.
+ */
+ const art=document.createElement('img');
+ art.className='tsbvc-nav-art';
+ art.src='/assets/village-nav-6-exact.svg?v=20260829-1';
+ art.alt='Village navigation: Home, Inside the Bubble, The Unknown, Experiences, Webspace, Be Coming Together';
+ art.setAttribute('draggable','false');
+
+ const links=document.createElement('div');
+ links.className='tsbvc-nav-links';
+
  const items=[
-  ['index.html','/assets/nav-home-correct.svg','Home'],
-  ['about.html','/assets/nav-inside-bubble-correct.svg','Inside the Bubble'],
-  ['LearningtheUnknown.html','/assets/nav-unknown-correct.svg','The Unknown'],
-  ['experiences.html','/assets/nav-experiences-correct.svg','Experiences'],
-  ['web-design.html','/assets/nav-webspace-correct.svg','Webspace'],
-  ['coming-together.html','/assets/nav-be-coming-together-correct.svg','Be Coming Together']
+  ['index.html','Home'],
+  ['about.html','Inside the Bubble'],
+  ['LearningtheUnknown.html','The Unknown'],
+  ['experiences.html','Experiences'],
+  ['web-design.html','Webspace'],
+  ['coming-together.html','Be Coming Together']
  ];
- const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
- items.forEach(([url,src,label])=>{
+
+ items.forEach(([url,label])=>{
    const a=document.createElement('a');
-   a.className='tsbvc-nav-item'+(current===url.toLowerCase()?' active':'');
+   a.className='tsbvc-nav-link';
    a.href=url;
-   a.innerHTML='<img src="'+src+'" alt=""><span>'+label+'</span>';
-   nav.appendChild(a);
+   a.setAttribute('aria-label',label);
+   a.title=label;
+   links.appendChild(a);
  });
+
+ nav.appendChild(art);
+ nav.appendChild(links);
  header.insertAdjacentElement('afterend',nav);
  window.TSBVCInstallSharedNav=install;
 }
+
 function ensureMusic(){
  if(window.__TSBVC_MUSIC__)return;
  if(document.querySelector('script[data-tsbvc-music]'))return;
@@ -257,6 +269,7 @@ function ensureMusic(){
  s.dataset.tsbvcMusic='true';
  document.body.appendChild(s);
 }
+
 window.TSBVCInstallSharedNav=install;
 if(document.readyState==='loading'){
  document.addEventListener('DOMContentLoaded',function(){install();ensureMusic()},{once:true});
