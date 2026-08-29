@@ -4,7 +4,7 @@
 function boot(){
  if(window.TSBVCInstallSharedNav){window.TSBVCInstallSharedNav();return;}
  const s=document.createElement('script');
- s.src='site-fixes.js?v=20260829-3';
+ s.src='site-fixes.js?v=20260829-4';
  s.onload=function(){if(window.TSBVCInstallSharedNav)window.TSBVCInstallSharedNav()};
  document.head.appendChild(s);
 }
