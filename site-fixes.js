@@ -60,6 +60,7 @@ function loadOnce(src,id){
 }
 
 function install(){
+ if(document.getElementById(NAV_ID)) return;
  addStyles(); makeHeader(); makeNavigation();
  // Non-navigation enhancements and music remain in their existing script.
  loadOnce('village-persistence.js','tsbvc-persistence-loader');
