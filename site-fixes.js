@@ -1,7 +1,7 @@
 /* The Still Becoming Village Circle — one shared navigation source of truth. */
 (function(){
 'use strict';
-const ART='/assets/village-nav-6.svg?v=20260829-2';
+const ART='/assets/village-nav-6-exact.svg?v=20260829-3';
 const ITEMS=[['index.html','Home'],['about.html','Inside the Bubble'],['LearningtheUnknown.html','The Unknown'],['experiences.html','Experiences'],['web-design.html','Webspace'],['coming-together.html','The Coming Together']];
 const CSS_ID='tsbvc-shared-nav-style';
 function addStyles(){if(document.getElementById(CSS_ID))return;const s=document.createElement('style');s.id=CSS_ID;s.textContent=`
