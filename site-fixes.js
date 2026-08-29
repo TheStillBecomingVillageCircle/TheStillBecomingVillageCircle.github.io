@@ -2,15 +2,13 @@
 (function(){
 'use strict';
 
-/* Use the actual icon artwork directly. Do not wrap it in another navigation image. */
-const ART='/assets/village-navigation-exact.svg?v=20260829-9';
 const ITEMS=[
-  ['index.html','Home'],
-  ['about.html','Inside the Bubble'],
-  ['LearningtheUnknown.html','The Unknown'],
-  ['experiences.html','Experiences'],
-  ['web-design.html','Webspace'],
-  ['coming-together.html','Be Coming Together']
+  ['index.html','Home','/assets/nav-home-correct.svg'],
+  ['about.html','Inside the Bubble','/assets/nav-inside-bubble-correct.svg'],
+  ['LearningtheUnknown.html','The Unknown','/assets/nav-unknown-correct.svg'],
+  ['experiences.html','Experiences','/assets/nav-experiences-correct.svg'],
+  ['web-design.html','Webspace','/assets/nav-webspace-correct.svg'],
+  ['coming-together.html','Be Coming Together','/assets/nav-be-coming-together-correct.svg']
 ];
 const CSS_ID='tsbvc-shared-nav-style';
 
@@ -26,27 +24,31 @@ function addStyles(){
 .tsbvc-menu{width:54px!important;height:54px!important;border-radius:50%!important;border:1px solid #dcebe8!important;background:#fff!important;box-shadow:0 7px 18px rgba(22,84,91,.09)!important;display:grid!important;place-items:center!important;flex:none!important}
 .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{content:"";display:block;width:25px;height:3px;border-radius:3px;background:#28646a}
 .tsbvc-menu span:before{transform:translateY(-8px)}.tsbvc-menu span:after{transform:translateY(5px)}
-
 .tsbvc-shared-nav-band{display:block!important;width:100%!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-shadow:0 8px 24px rgba(22,84,91,.05)!important;overflow:hidden!important;position:relative!important;z-index:900!important}
-.tsbvc-shared-nav-row{position:relative!important;width:min(1290px,100%)!important;margin:0 auto!important;padding:0!important;line-height:0!important;overflow:hidden!important}
-.tsbvc-shared-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important}
-
-/* Cover only the old text printed into the artwork; keep the six actual icons visible. */
-.tsbvc-nav-labels{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:23%!important;background:#fff!important;display:grid!important;grid-template-columns:repeat(6,1fr)!important;align-items:end!important;padding:0 0 12px!important;z-index:5!important}
-.tsbvc-nav-label{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-height:44px!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(14px,2.1vw,27px)!important;line-height:1.05!important;text-decoration:none!important;padding:0 5px!important}
-.tsbvc-nav-label[aria-current="page"]{font-weight:700!important}
-.tsbvc-nav-label[aria-current="page"]:after{content:"";position:absolute}
+.tsbvc-shared-nav-row{width:min(1290px,100%)!important;margin:0 auto!important;padding:8px 4px 12px!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:2px!important;align-items:end!important}
+.tsbvc-nav-item{min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;text-decoration:none!important;color:#174f57!important}
+.tsbvc-nav-icon{display:block!important;width:100%!important;height:132px!important;object-fit:contain!important;object-position:center bottom!important}
+.tsbvc-nav-label{display:block!important;width:100%!important;text-align:center!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(14px,1.8vw,24px)!important;line-height:1.04!important;text-decoration:none!important;padding:0 3px!important;min-height:25px!important}
+.tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label{font-weight:700!important}
+.tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label:after{content:"";display:block;width:46px;height:3px;border-radius:3px;background:#b99458;margin:5px auto 0}
 
 .ornament,.mask-ornament,.gold-mask,.mask-decoration,[class*="mask-ornament"],[class*="gold-mask"]{display:none!important}
 
-@media(max-width:700px){
+@media(max-width:800px){
   .tsbvc-site-header .tsbvc-header-inner{min-height:72px;padding:10px 14px}
   .tsbvc-brand{font-size:17px;gap:7px}
   .tsbvc-brand svg{width:31px;height:31px}
   .tsbvc-menu{width:47px;height:47px}
   .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px;height:2.5px}
-  .tsbvc-nav-labels{height:23%;padding-bottom:8px}
-  .tsbvc-nav-label{font-size:14px;line-height:1.05}
+  .tsbvc-shared-nav-row{padding:7px 1px 10px;gap:0}
+  .tsbvc-nav-item{gap:4px}
+  .tsbvc-nav-icon{height:88px}
+  .tsbvc-nav-label{font-size:11px;line-height:1.03;min-height:24px}
+  .tsbvc-nav-item[aria-current="page"] .tsbvc-nav-label:after{width:30px;height:2px;margin-top:4px}
+}
+@media(max-width:430px){
+  .tsbvc-nav-icon{height:78px}
+  .tsbvc-nav-label{font-size:10px}
 }
 `;
   document.head.appendChild(s);
@@ -76,28 +78,33 @@ function install(){
   const row=document.createElement('div');
   row.className='tsbvc-shared-nav-row';
 
-  const img=document.createElement('img');
-  img.className='tsbvc-shared-nav-art';
-  img.src=ART;
-  img.alt='Village navigation icons';
-  img.decoding='async';
-  row.appendChild(img);
-
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-  const labels=document.createElement('div');
-  labels.className='tsbvc-nav-labels';
-
   ITEMS.forEach((item)=>{
     const a=document.createElement('a');
     a.href=item[0];
-    a.className='tsbvc-nav-label';
-    a.textContent=item[1];
+    a.className='tsbvc-nav-item';
     a.setAttribute('aria-label',item[1]);
     if(item[0].toLowerCase()===current) a.setAttribute('aria-current','page');
-    labels.appendChild(a);
+
+    const img=document.createElement('img');
+    img.className='tsbvc-nav-icon';
+    img.src=item[2]+'?v=20260829-11';
+    img.alt='';
+    img.decoding='async';
+    img.setAttribute('aria-hidden','true');
+
+    const label=document.createElement('span');
+    label.className='tsbvc-nav-label';
+    if(item[1]==='Inside the Bubble') label.innerHTML='Inside the<br>Bubble';
+    else if(item[1]==='The Unknown') label.innerHTML='The<br>Unknown';
+    else if(item[1]==='Be Coming Together') label.innerHTML='Be Coming<br>Together';
+    else label.textContent=item[1];
+
+    a.appendChild(img);
+    a.appendChild(label);
+    row.appendChild(a);
   });
 
-  row.appendChild(labels);
   band.appendChild(row);
   header.insertAdjacentElement('afterend',band);
   window.TSBVCInstallSharedNav=install;
