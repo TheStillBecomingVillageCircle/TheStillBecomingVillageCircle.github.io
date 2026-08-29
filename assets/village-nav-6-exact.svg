@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 350" width="1200" height="350">
+  <defs>
+    <clipPath id="c0"><rect x="0" y="0" width="200" height="310"/></clipPath>
+    <clipPath id="c1"><rect x="200" y="0" width="200" height="310"/></clipPath>
+    <clipPath id="c2"><rect x="400" y="0" width="200" height="310"/></clipPath>
+    <clipPath id="c3"><rect x="600" y="0" width="200" height="310"/></clipPath>
+    <clipPath id="c4"><rect x="800" y="0" width="200" height="310"/></clipPath>
+    <clipPath id="c5"><rect x="1000" y="0" width="200" height="310"/></clipPath>
+  </defs>
+  <g fill="#174f57" font-family="Georgia, 'Times New Roman', serif" font-size="27" text-anchor="middle">
+    <g clip-path="url(#c0)"><image href="village-navigation-exact.svg" x="0" y="0" width="1400" height="429.77"/></g>
+    <g clip-path="url(#c1)"><image href="village-navigation-exact.svg" x="-200" y="0" width="1400" height="429.77"/></g>
+    <g clip-path="url(#c2)"><image href="village-navigation-exact.svg" x="-400" y="0" width="1400" height="429.77"/></g>
+    <g clip-path="url(#c3)"><image href="village-navigation-exact.svg" x="-600" y="0" width="1400" height="429.77"/></g>
+    <g clip-path="url(#c4)"><image href="village-navigation-exact.svg" x="-800" y="0" width="1400" height="429.77"/></g>
+    <g clip-path="url(#c5)"><image href="village-navigation-exact.svg" x="-1000" y="0" width="1400" height="429.77"/></g>
+    <text x="100" y="337" font-weight="700">Home</text>
+    <rect x="72" y="343" width="56" height="3" rx="2" fill="#b99458"/>
+    <text x="300" y="326"><tspan x="300" dy="0">Inside the</tspan><tspan x="300" dy="29">Bubble</tspan></text>
+    <text x="500" y="326"><tspan x="500" dy="0">The</tspan><tspan x="500" dy="29">Unknown</tspan></text>
+    <text x="700" y="337">Experiences</text>
+    <text x="900" y="337">Webspace</text>
+    <text x="1100" y="326"><tspan x="1100" dy="0">The Coming</tspan><tspan x="1100" dy="29">Together</tspan></text>
+  </g>
+</svg>
