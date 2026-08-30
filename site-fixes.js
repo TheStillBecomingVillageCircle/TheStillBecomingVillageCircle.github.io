@@ -3,8 +3,8 @@
 'use strict';
 const STYLE_ID='tsbvc-single-shell-style';
 const NAV_ID='tsbvc-single-navigation';
-/* This is the exact navigation artwork supplied for the Village. No alternate icon set. */
-const NAV_SRC='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260829-EXACT-NAV-1';
+/* ONE source of truth: the exact rich Village artwork. The source contains 7 artwork panels; we display only the first 6, so Support can never appear. */
+const NAV_SRC='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=20260829-EXACT-SIX-NAV-1';
 
 function addStyles(){
  if(document.getElementById(STYLE_ID)) return;
@@ -22,10 +22,11 @@ body{min-height:100vh!important}
 .tsbvc-menu span:before{transform:translateY(-8px)}
 .tsbvc-menu span:after{transform:translateY(5px)}
 
-#${NAV_ID}{position:relative!important;width:100%!important;max-width:1290px!important;margin:0 auto!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;overflow:hidden!important;line-height:1!important}
-#${NAV_ID} .tsbvc-nav-art{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;user-select:none!important;-webkit-user-drag:none!important}
-#${NAV_ID} .tsbvc-nav-cover{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:22%!important;background:#fff!important;z-index:2!important}
-#${NAV_ID} .tsbvc-nav-links{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:22%!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr)) 2fr!important;z-index:3!important}
+#${NAV_ID}{position:relative!important;width:100%!important;max-width:none!important;height:clamp(150px,35vw,270px)!important;margin:0 auto!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;overflow:hidden!important;line-height:1!important}
+#${NAV_ID} .tsbvc-nav-art-window{position:absolute!important;inset:0!important;overflow:hidden!important;z-index:1!important}
+#${NAV_ID} .tsbvc-nav-art{position:absolute!important;left:0!important;top:0!important;display:block!important;width:116.6666667%!important;height:auto!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;user-select:none!important;-webkit-user-drag:none!important}
+#${NAV_ID} .tsbvc-nav-cover{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:27%!important;background:#fff!important;z-index:2!important}
+#${NAV_ID} .tsbvc-nav-links{position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:27%!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;z-index:3!important}
 #${NAV_ID} .tsbvc-nav-link{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;margin:0!important;padding:2px 3px 4px!important;box-sizing:border-box!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(12px,2vw,25px)!important;line-height:1.05!important;text-align:center!important;text-decoration:none!important;background:transparent!important;border:0!important}
 #${NAV_ID} .tsbvc-nav-link.active{font-weight:700!important;text-decoration:underline!important;text-decoration-color:#b99458!important;text-decoration-thickness:3px!important;text-underline-offset:7px!important}
 #${NAV_ID} .tsbvc-nav-link:focus-visible{outline:3px solid #b99458!important;outline-offset:-4px!important}
@@ -36,13 +37,14 @@ body{min-height:100vh!important}
  .tsbvc-brand svg{width:31px!important;height:31px!important}
  .tsbvc-menu{width:47px!important;height:47px!important}
  .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px!important;height:2.5px!important}
- #${NAV_ID} .tsbvc-nav-link{font-size:clamp(11px,3.1vw,16px)!important;padding-left:2px!important;padding-right:2px!important}
+ #${NAV_ID}{height:150px!important}
+ #${NAV_ID} .tsbvc-nav-link{font-size:clamp(10px,3.1vw,16px)!important;padding-left:2px!important;padding-right:2px!important}
 }
 @media(max-width:430px){
  .tsbvc-header-inner{padding:9px 12px!important}
  .tsbvc-brand{font-size:16px!important}
- #${NAV_ID} .tsbvc-nav-cover{height:22%!important}
- #${NAV_ID} .tsbvc-nav-links{height:22%!important}
+ #${NAV_ID}{height:150px!important}
+ #${NAV_ID} .tsbvc-nav-cover,#${NAV_ID} .tsbvc-nav-links{height:27%!important}
  #${NAV_ID} .tsbvc-nav-link{font-size:12px!important}
 }
 `;
@@ -58,19 +60,25 @@ function makeHeader(){
 }
 
 function makeNavigation(){
- /* Remove every previous shared/per-page navigation so two nav systems cannot fight. */
+ /* Remove every previous shared/per-page navigation so multiple nav systems cannot fight. */
  document.querySelectorAll('nav,#'+NAV_ID+',.tsbvc-nav,.tsbvc-shared-nav-band,.nav-band,.destination-band').forEach(n=>n.remove());
+ /* The unwanted gold ornament/mask that was being rendered on the home page is not part of the design. */
+ document.querySelectorAll('.ornament').forEach(n=>n.remove());
+
  const n=document.createElement('nav');
  n.id=NAV_ID;
  n.setAttribute('aria-label','Village destinations');
 
+ const artWindow=document.createElement('div');
+ artWindow.className='tsbvc-nav-art-window';
  const img=document.createElement('img');
  img.className='tsbvc-nav-art';
  img.src=NAV_SRC;
- img.alt='Village navigation artwork: Home, Inside the Bubble, The Unknown, Experiences, Webspace, Connect and Support';
+ img.alt='Village navigation artwork';
  img.setAttribute('draggable','false');
+ artWindow.appendChild(img);
 
- /* The exact source artwork contains the original Connect and Support visuals. They remain together in slot 6. */
+ /* Cover the baked-in labels from the seven-panel source. HTML labels below are the six real destinations. */
  const cover=document.createElement('div');
  cover.className='tsbvc-nav-cover';
 
@@ -83,25 +91,27 @@ function makeNavigation(){
   ['experiences.html','Experiences'],
   ['web-design.html','Webspace'],
   ['coming-together.html','Be Coming Together']
- ].forEach(([url,label],i)=>{
+ ].forEach(([url,label])=>{
   const a=document.createElement('a');
   a.className='tsbvc-nav-link';
   a.href=url;
   a.setAttribute('aria-label',label);
   a.title=label;
-  if((location.pathname.split('/').pop()||'index.html')===url) a.classList.add('active');
+  const current=(location.pathname.split('/').pop()||'index.html');
+  if(current===url) a.classList.add('active');
+  a.textContent=label;
   links.appendChild(a);
  });
 
- n.appendChild(img);
+ n.appendChild(artWindow);
  n.appendChild(cover);
  n.appendChild(links);
  document.querySelector('.tsbvc-site-header').insertAdjacentElement('afterend',n);
 }
 
 function install(){
- if(document.getElementById(NAV_ID)) return;
  addStyles();
+ if(document.getElementById(NAV_ID)) document.getElementById(NAV_ID).remove();
  makeHeader();
  makeNavigation();
  window.TSBVCInstallSharedNav=install;
