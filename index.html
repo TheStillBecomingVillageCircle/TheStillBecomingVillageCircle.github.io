@@ -59,8 +59,6 @@
 const menu=document.querySelector('.menu');
 if(menu) menu.addEventListener('click',()=>{const links=['index.html','about.html','LearningtheUnknown.html','events.html','web-design.html','contact.html','coaching.html'];const labels=['Home','Inside the Bubble','The Unknown','Experiences','Webspace','Connect','Support'];let box=document.querySelector('.quick-menu');if(box){box.remove();return}box=document.createElement('div');box.className='quick-menu';box.style.cssText='position:fixed;right:16px;top:92px;z-index:100;background:#fff;border:1px solid #dcebe8;border-radius:18px;box-shadow:0 12px 30px rgba(22,84,91,.16);padding:10px;display:flex;flex-direction:column;min-width:190px';links.forEach((href,i)=>{const a=document.createElement('a');a.href=href;a.textContent=labels[i];a.style.cssText='padding:10px 12px;color:#16545b;font:600 16px Georgia,serif';box.appendChild(a)});document.body.appendChild(box)});
 </script>
-<script src="/nav-stable-v3.js?v=stable-3"></script>
-<script src="/village-navigation.js?v=20260901-1"></script>
 <script src="/village-music.js?v=20260901-bubble"></script>
 </body>
 </html>
