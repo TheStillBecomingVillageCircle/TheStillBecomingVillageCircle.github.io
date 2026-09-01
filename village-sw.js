@@ -1,4 +1,4 @@
-const CACHE = "still-becoming-village-v10";
+const CACHE = "still-becoming-village-v11";
 const APP_SHELL = [
   "/village-app.html",
   "/",
@@ -8,7 +8,8 @@ const APP_SHELL = [
   "/village-music.js",
   "/village-polish.js",
   "/village-persistence.js",
-  "/nav-stable-v3.js?v=stable-3"
+  "/nav-stable-v3.js?v=stable-3",
+  "/village-navigation.js?v=20260901-1"
 ];
 
 self.addEventListener("install", event => {
