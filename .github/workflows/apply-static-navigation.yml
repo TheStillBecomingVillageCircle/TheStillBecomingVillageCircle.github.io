@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Add static navigation to every HTML page
+      - name: Normalize static navigation on every HTML page
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           marker = '<div id="tsbvc-static-nav" data-navigation="exact-original-v1">'
           block = '''<div id="tsbvc-static-nav" data-navigation="exact-original-v1" style="width:100%;background:#fff;border-bottom:1px solid rgba(22,84,91,.08);position:relative;z-index:9000;overflow:hidden;line-height:0;">
@@ -42,13 +43,17 @@ jobs:
           for path in Path('.').glob('*.html'):
               text=path.read_text(encoding='utf-8')
               if marker in text:
-                  continue
+                  text=re.sub(re.escape(marker)+r'.*?</div>\s*</div>', '', text, count=1, flags=re.S)
               if '<body' not in text or '</body>' not in text:
                   continue
-              text=text.replace('>', '>\n'+block, 1)
+              body_open=re.search(r'<body\b[^>]*>', text, flags=re.I)
+              if not body_open:
+                  continue
+              insert_at=body_open.end()
+              text=text[:insert_at]+'\n'+block+'\n'+text[insert_at:]
               path.write_text(text,encoding='utf-8')
               changed.append(path.name)
-          print('Static navigation added:', ', '.join(changed) if changed else 'none')
+          print('Normalized static navigation:', ', '.join(changed) if changed else 'none')
           PY
       - name: Commit static navigation
         run: |
@@ -56,8 +61,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add '*.html'
           if git diff --cached --quiet; then
-            echo "No pages needed the static navigation."
+            echo "No pages needed changes."
             exit 0
           fi
-          git commit -m "Add static exact navigation to every page"
+          git commit -m "Place static exact navigation inside every page body"
           git push
