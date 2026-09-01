@@ -1,0 +1,60 @@
+name: Turn soundtrack into floating bubble player
+
+on:
+  push:
+    paths:
+      - '.github/workflows/turn-soundtrack-into-bubble.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Replace sax player with translucent bubble
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('village-music.js')
+          text = path.read_text(encoding='utf-8')
+
+          new_styles = r'''function styles(){if(document.getElementById('village-music-styles'))return;const s=document.createElement('style');s.id='village-music-styles';s.textContent=`#${PLAYER_ID}{position:fixed;right:18px;bottom:18px;width:104px;height:104px;z-index:99999;background:transparent;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;animation:villageBubbleFloat 6s ease-in-out infinite}#${PLAYER_ID} .closed{position:relative;width:104px;height:104px;display:flex;align-items:center;justify-content:center}.music-orb{position:relative;width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 32% 27%,rgba(255,255,255,.86),rgba(221,255,251,.42) 28%,rgba(126,224,216,.22) 58%,rgba(255,255,255,.12) 100%);border:1.5px solid rgba(255,255,255,.9);box-shadow:inset 8px 8px 18px rgba(255,255,255,.55),inset -10px -12px 20px rgba(94,190,188,.14),0 14px 30px rgba(40,120,120,.16);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);overflow:visible}.music-orb:before,.music-orb:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.12)}.music-orb:before{width:20px;height:20px;left:13px;top:18px}.music-orb:after{width:9px;height:9px;right:18px;top:12px}.music-note{font:400 39px/1 Georgia,'Times New Roman',serif;color:rgba(25,143,145,.72);text-shadow:0 1px 8px rgba(255,255,255,.7);transform:translateY(-2px)}#${PLAYER_ID} .play{position:absolute;right:7px;bottom:7px;width:27px;height:27px;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(217,255,251,.58);color:#176f73;display:flex;align-items:center;justify-content:center;font:12px/1 Arial,sans-serif;box-shadow:0 5px 12px rgba(40,120,120,.14)}#${PLAYER_ID}.playing .play{font-size:0}#${PLAYER_ID}.playing .play:after{content:'❚❚';font-size:9px}#${PLAYER_ID} .bubble-shine{position:absolute;width:32px;height:14px;border-radius:50%;left:22px;top:16px;border-top:2px solid rgba(255,255,255,.8);transform:rotate(-28deg)}#${PLAYER_ID} .content{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}#${PLAYER_ID}.open .content{position:fixed;right:20px;bottom:20px;left:auto;top:auto;width:min(390px,calc(100vw - 40px));height:auto;opacity:1;pointer-events:auto;background:rgba(235,255,252,.94);border:1px solid rgba(255,255,255,.85);border-radius:24px;padding:16px;box-shadow:0 18px 45px rgba(40,120,120,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}#${PLAYER_ID} .cover-open{display:block;width:150px;height:150px;object-fit:cover;border-radius:18px;margin:0 auto 10px}#${PLAYER_ID} .title{text-align:center;color:#285f61;font:700 17px Arial,sans-serif}#${PLAYER_ID} .song{text-align:center;color:#16aaa9;font:14px Arial,sans-serif;margin:3px 0 10px}#${PLAYER_ID} iframe{width:100%;height:166px;border:0;border-radius:16px}#${PLAYER_ID} .close{display:block;margin:9px auto 0;border:0;background:#fff;color:#285f61;padding:7px 20px;border-radius:25px;font-weight:700}@keyframes villageBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@media(max-width:600px){#${PLAYER_ID}{width:88px;height:88px;right:8px;bottom:10px}.music-orb,#${PLAYER_ID} .closed{width:82px;height:82px}.music-note{font-size:33px}#${PLAYER_ID} .play{width:24px;height:24px;right:5px;bottom:5px}}`;document.head.appendChild(s)}'''
+
+          pattern_styles = r"function styles\(\)\{.*?document\.head\.appendChild\(s\)\}"
+          text, n = re.subn(pattern_styles, new_styles, text, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Could not find existing styles() block')
+
+          new_player = r'''function player(){if(document.getElementById(PLAYER_ID))return;const e=document.createElement('div');e.id=PLAYER_ID;e.innerHTML=`<div class="closed" aria-label="The Village Soundtrack — tap to play or pause"><div class="music-orb"><span class="bubble-shine" aria-hidden="true"></span><span class="music-note" aria-hidden="true">♪</span><div class="play">▶</div></div></div><div class="content" onclick="event.stopPropagation()"><img class="cover-open" src="${COVER}" alt="Bricks — Andra Day cover art"><div class="title">The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;document.body.appendChild(e);e.querySelector('.closed').addEventListener('click',()=>playing?pause():requestPlay());e.querySelector('.music-orb').addEventListener('dblclick',()=>e.classList.toggle('open'));e.querySelector('.close').addEventListener('click',()=>e.classList.remove('open'));setup();gesture()}'''
+
+          pattern_player = r"function player\(\)\{.*?\nfunction normalize\(\)"
+          text, n = re.subn(pattern_player, new_player + "\nfunction normalize()", text, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Could not find existing player() block')
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Commit bubble player
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add village-music.js
+          git diff --cached --quiet && exit 0
+          git commit -m 'Replace sax music player with floating bubble'
+          git push
+
+      - name: Remove temporary workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/turn-soundtrack-into-bubble.yml
+          git add .github/workflows/turn-soundtrack-into-bubble.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Remove temporary bubble player workflow'
+          git push
