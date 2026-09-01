@@ -1,4 +1,4 @@
-const CACHE = "still-becoming-village-v8";
+const CACHE = "still-becoming-village-v9";
 const APP_SHELL = [
   "/village-app.html",
   "/",
@@ -7,8 +7,8 @@ const APP_SHELL = [
   "/village-icon.svg",
   "/village-music.js",
   "/village-polish.js",
-  "/site-fixes.js",
-  "/rich-nav.js"
+  "/village-persistence.js",
+  "/nav-stable.js?v=stable-2"
 ];
 
 self.addEventListener("install", event => {
@@ -29,13 +29,30 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
+
+  const isNavigation = event.request.mode === "navigate" ||
+    event.request.destination === "document";
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(new Request(event.request, { cache: "no-store" }))
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE).then(cache => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request).then(cached => cached || caches.match("/index.html")))
+    );
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
-      .then(async response => {
+      .then(response => {
         const copy = response.clone();
         caches.open(CACHE).then(cache => cache.put(event.request, copy));
         return response;
       })
-      .catch(() => caches.match(event.request).then(cached => cached || caches.match("/index.html")))
+      .catch(() => caches.match(event.request))
   );
 });
