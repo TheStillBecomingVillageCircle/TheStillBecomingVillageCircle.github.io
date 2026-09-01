@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install exact static navigation on every HTML page
+      - name: Normalize exact static navigation on every HTML page
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -42,7 +42,7 @@ jobs:
           changed=[]
           for path in Path('.').glob('*.html'):
               text=path.read_text(encoding='utf-8')
-              text=re.sub(re.escape(marker)+r'.*?</div>\s*</div>', '', text, count=0, flags=re.S)
+              text=re.sub(re.escape(marker)+r'.*?</div>\s*</div>\s*</div>', '', text, count=0, flags=re.S)
               if '<body' not in text or '</body>' not in text:
                   continue
               body_open=re.search(r'<body\b[^>]*>', text, flags=re.I)
