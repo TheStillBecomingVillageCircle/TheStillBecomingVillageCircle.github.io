@@ -1,4 +1,4 @@
-const CACHE = "still-becoming-village-v7";
+const CACHE = "still-becoming-village-v8";
 const APP_SHELL = [
   "/village-app.html",
   "/",
@@ -8,8 +8,7 @@ const APP_SHELL = [
   "/village-music.js",
   "/village-polish.js",
   "/site-fixes.js",
-  "/rich-nav.js",
-  "/assets/village-nav-6.svg"
+  "/rich-nav.js"
 ];
 
 self.addEventListener("install", event => {
@@ -28,28 +27,14 @@ self.addEventListener("activate", event => {
   );
 });
 
-async function upgradeHtml(response) {
-  const type = response.headers.get("content-type") || "";
-  if (!type.includes("text/html")) return response;
-  const html = await response.text();
-  const scripts = `<script src="/site-fixes.js?v=20260829-2" defer></script>`;
-  const upgraded = html.replace(/<\/body>/i, `${scripts}</body>`);
-  return new Response(upgraded, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers
-  });
-}
-
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   event.respondWith(
     fetch(event.request)
       .then(async response => {
-        const upgraded = await upgradeHtml(response.clone());
-        const copy = upgraded.clone();
+        const copy = response.clone();
         caches.open(CACHE).then(cache => cache.put(event.request, copy));
-        return upgraded;
+        return response;
       })
       .catch(() => caches.match(event.request).then(cached => cached || caches.match("/index.html")))
   );
