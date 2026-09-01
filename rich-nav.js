@@ -1,12 +1,14 @@
-/* Compatibility loader: every page uses site-fixes.js as the single navigation source. */
+/* Compatibility loader: force the current shared navigation on every page. */
 (function(){
 'use strict';
 function boot(){
- if(window.TSBVCInstallSharedNav){window.TSBVCInstallSharedNav();return;}
  const s=document.createElement('script');
- s.src='site-fixes.js?v=20260829-16';
- s.onload=function(){if(window.TSBVCInstallSharedNav)window.TSBVCInstallSharedNav()};
+ s.src='site-fixes.js?v=20260901-18';
+ s.onload=function(){
+  if(window.TSBVCInstallSharedNav) window.TSBVCInstallSharedNav();
+ };
  document.head.appendChild(s);
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
+else boot();
 })();
