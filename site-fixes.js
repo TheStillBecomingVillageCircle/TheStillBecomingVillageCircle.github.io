@@ -6,15 +6,15 @@ const STYLE_ID='tsbvc-single-shell-style';
 const NAV_ID='tsbvc-single-navigation';
 const ART='/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png';
 
-/* Exact artwork from the supplied seven-icon source image.
-   The navigation remains six destinations: Connect is represented by Be Coming Together. */
+/* One exact artwork strip. The source artwork has seven panels; the navigation
+   uses the first six, with Connect serving as the visual for Be Coming Together. */
 const ITEMS=[
-  ['index.html','Home',0,184,0],
-  ['about.html','Inside the Bubble',184,184,1],
-  ['LearningtheUnknown.html','The Unknown',368,182,2],
-  ['events.html','Experiences',550,190,3],
-  ['web-design.html','Webspace',740,185,4],
-  ['coming-together.html','Be Coming Together',925,165,5]
+  ['index.html','Home',0,208],
+  ['about.html','Inside the Bubble',208,199.5],
+  ['LearningtheUnknown.html','The Unknown',407.5,174],
+  ['events.html','Experiences',581.5,164],
+  ['web-design.html','Webspace',745.5,175.5],
+  ['coming-together.html','Be Coming Together',921,172.5]
 ];
 
 function addStyles(){
@@ -33,33 +33,24 @@ nav:not(#${NAV_ID}),.nav-band,.nav-row,.tsbvc-nav,.tsbvc-shared-nav-band,.destin
 .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{content:"";display:block;width:25px;height:3px;border-radius:3px;background:#28646a}
 .tsbvc-menu span:before{transform:translateY(-8px)}
 .tsbvc-menu span:after{transform:translateY(5px)}
-#${NAV_ID}{position:relative!important;width:100%!important;height:clamp(150px,22vw,250px)!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-sizing:border-box!important;z-index:900!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:stretch!important;overflow:hidden!important}
-#${NAV_ID} .tsbvc-nav-link{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-end!important;width:100%!important;height:100%!important;min-width:0!important;margin:0!important;padding:5px 3px 10px!important;box-sizing:border-box!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(11px,1.8vw,23px)!important;line-height:1.04!important;text-align:center!important;text-decoration:none!important;background:#fff!important;border:0!important;cursor:pointer!important;z-index:2!important}
-#${NAV_ID} .tsbvc-nav-link:hover{background:#fbfffe!important}
-#${NAV_ID} .tsbvc-nav-link:focus-visible{outline:3px solid #b99458!important;outline-offset:-4px!important}
-#${NAV_ID} .tsbvc-nav-art{position:relative!important;width:100%!important;height:clamp(105px,15vw,180px)!important;overflow:hidden!important;flex:none!important;margin:0 auto 3px!important;background:#fff!important}
-#${NAV_ID} .tsbvc-nav-art img{position:absolute!important;top:0!important;height:auto!important;max-width:none!important;width:var(--imgw)!important;left:var(--left)!important;display:block!important;margin:0!important;padding:0!important;pointer-events:none!important;user-select:none!important;-webkit-user-drag:none!important}
-#${NAV_ID} .tsbvc-nav-label{display:block!important;max-width:100%!important;pointer-events:none!important}
-#${NAV_ID} .tsbvc-nav-link.active .tsbvc-nav-label{font-weight:700!important}
-#${NAV_ID} .tsbvc-nav-link.active:after{content:""!important;width:46px!important;height:3px!important;border-radius:3px!important;background:#b99458!important;margin-top:6px!important;flex:none!important}
-.tsbvc-quick-menu{position:fixed!important;right:14px!important;top:78px!important;z-index:2000!important;display:flex!important;flex-direction:column!important;min-width:205px!important;padding:10px!important;background:#fff!important;border:1px solid #dcebe8!important;border-radius:18px!important;box-shadow:0 14px 34px rgba(22,84,91,.18)!important}
-.tsbvc-quick-menu a{display:block!important;padding:11px 13px!important;color:#16545b!important;text-decoration:none!important;font:600 16px Georgia,'Times New Roman',serif!important;border-radius:10px!important}
-.tsbvc-quick-menu a:hover{background:#effcfb!important}
+#${NAV_ID}{position:relative!important;width:100%!important;margin:0!important;padding:0!important;background:#fff!important;border-bottom:1px solid rgba(22,84,91,.08)!important;box-sizing:border-box!important;z-index:900!important;overflow:hidden!important;line-height:0!important}
+#${NAV_ID} .tsbvc-nav-artwork{position:relative!important;width:100%!important;aspect-ratio:1093.5 / 396!important;overflow:hidden!important;background:#fff!important}
+#${NAV_ID} .tsbvc-nav-artwork>img{position:absolute!important;left:0!important;top:0!important;width:118%!important;height:auto!important;max-width:none!important;display:block!important;margin:0!important;padding:0!important;pointer-events:none!important;user-select:none!important;-webkit-user-drag:none!important}
+#${NAV_ID} .tsbvc-nav-link{position:absolute!important;top:0!important;height:100%!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;text-decoration:none!important;display:block!important;z-index:2!important;cursor:pointer!important}
+#${NAV_ID} .tsbvc-nav-link:focus-visible{outline:3px solid #b99458!important;outline-offset:-3px!important}
+#${NAV_ID} .tsbvc-connect-label{position:absolute!important;left:84.15%!important;top:78.3%!important;width:15.85%!important;height:21.7%!important;background:#fff!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;padding:5px 3px 0!important;box-sizing:border-box!important;color:#174f57!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(11px,1.55vw,21px)!important;line-height:1.03!important;text-align:center!important;z-index:4!important;pointer-events:none!important}
+#${NAV_ID} .tsbvc-connect-label span{display:block!important;max-width:100%!important}
+#${NAV_ID} .tsbvc-connect-label:after{content:"";position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:0!important;background:#fff!important;z-index:-1!important}
 @media(max-width:800px){
  .tsbvc-header-inner{min-height:72px!important;padding:10px 14px!important}
  .tsbvc-brand{font-size:17px!important;gap:7px!important}
  .tsbvc-brand svg{width:31px!important;height:31px!important}
  .tsbvc-menu{width:47px!important;height:47px!important}
  .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px!important;height:2.5px!important}
- #${NAV_ID}{height:250px!important}
- #${NAV_ID} .tsbvc-nav-link{font-size:12px!important;padding:4px 2px 8px!important}
- #${NAV_ID} .tsbvc-nav-art{height:180px!important;margin-bottom:3px!important}
- #${NAV_ID} .tsbvc-nav-link.active:after{width:30px!important;height:2px!important;margin-top:4px!important}
+ #${NAV_ID} .tsbvc-connect-label{font-size:10.5px!important;padding-top:4px!important}
 }
 @media(max-width:430px){
- #${NAV_ID}{height:250px!important}
- #${NAV_ID} .tsbvc-nav-link{font-size:10.5px!important;padding-left:1px!important;padding-right:1px!important}
- #${NAV_ID} .tsbvc-nav-art{height:180px!important}
+ #${NAV_ID} .tsbvc-connect-label{font-size:9px!important;padding-top:3px!important}
 }
 `;
   document.head.appendChild(s);
@@ -85,35 +76,31 @@ function makeNavigation(){
   n.setAttribute('aria-label','Village destinations');
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 
+  const artWrap=document.createElement('div');
+  artWrap.className='tsbvc-nav-artwork';
+  const img=document.createElement('img');
+  img.src=ART+'?v=20260901-exact-strip';
+  img.alt='';
+  img.setAttribute('draggable','false');
+  artWrap.appendChild(img);
+
   ITEMS.forEach(([url,label,sx,sw])=>{
     const a=document.createElement('a');
     a.className='tsbvc-nav-link';
     a.href=url;
     a.setAttribute('aria-label',label);
     a.title=label;
-    if(current===url.toLowerCase()) a.classList.add('active');
-
-    const art=document.createElement('span');
-    art.className='tsbvc-nav-art';
-    const img=document.createElement('img');
-    img.src=ART+'?v=20260901-exact-artwork';
-    img.alt='';
-    img.setAttribute('draggable','false');
-    const imgWidth=(1290/sw*100).toFixed(4)+'%';
-    const left=(-sx/sw*100).toFixed(4)+'%';
-    art.style.setProperty('--imgw',imgWidth);
-    art.style.setProperty('--left',left);
-    art.appendChild(img);
-
-    const span=document.createElement('span');
-    span.className='tsbvc-nav-label';
-    span.textContent=label;
-
-    a.appendChild(art);
-    a.appendChild(span);
-    n.appendChild(a);
+    if(current===url.toLowerCase()) a.setAttribute('aria-current','page');
+    a.style.left=(sx/1093.5*100).toFixed(4)+'%';
+    a.style.width=(sw/1093.5*100).toFixed(4)+'%';
+    artWrap.appendChild(a);
   });
 
+  const sixth=document.createElement('span');
+  sixth.className='tsbvc-connect-label';
+  sixth.innerHTML='<span>Be Coming<br>Together</span>';
+  artWrap.appendChild(sixth);
+  n.appendChild(artWrap);
   document.querySelector('.tsbvc-site-header').insertAdjacentElement('afterend',n);
 }
 
@@ -125,10 +112,12 @@ function wireMenu(){
     if(box){box.remove();button.setAttribute('aria-expanded','false');return;}
     box=document.createElement('div');
     box.className='tsbvc-quick-menu';
+    box.style.cssText='position:fixed;right:14px;top:78px;z-index:2000;display:flex;flex-direction:column;min-width:205px;padding:10px;background:#fff;border:1px solid #dcebe8;border-radius:18px;box-shadow:0 14px 34px rgba(22,84,91,.18)';
     ITEMS.forEach(([url,label])=>{
       const a=document.createElement('a');
       a.href=url;
       a.textContent=label;
+      a.style.cssText='display:block;padding:11px 13px;color:#16545b;text-decoration:none;font:600 16px Georgia,Times New Roman,serif;border-radius:10px';
       box.appendChild(a);
     });
     document.body.appendChild(box);
