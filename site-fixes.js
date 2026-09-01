@@ -51,15 +51,15 @@ nav:not(#${NAV_ID}),.nav-band,.nav-row,.tsbvc-nav,.tsbvc-shared-nav-band,.destin
  .tsbvc-brand svg{width:31px!important;height:31px!important}
  .tsbvc-menu{width:47px!important;height:47px!important}
  .tsbvc-menu span,.tsbvc-menu span:before,.tsbvc-menu span:after{width:23px!important;height:2.5px!important}
- #${NAV_ID}{height:150px!important}
+ #${NAV_ID}{height:250px!important}
  #${NAV_ID} .tsbvc-nav-link{font-size:12px!important;padding:4px 2px 8px!important}
- #${NAV_ID} .tsbvc-nav-art{height:104px!important;margin-bottom:3px!important}
+ #${NAV_ID} .tsbvc-nav-art{height:180px!important;margin-bottom:3px!important}
  #${NAV_ID} .tsbvc-nav-link.active:after{width:30px!important;height:2px!important;margin-top:4px!important}
 }
 @media(max-width:430px){
- #${NAV_ID}{height:150px!important}
+ #${NAV_ID}{height:250px!important}
  #${NAV_ID} .tsbvc-nav-link{font-size:10.5px!important;padding-left:1px!important;padding-right:1px!important}
- #${NAV_ID} .tsbvc-nav-art{height:102px!important}
+ #${NAV_ID} .tsbvc-nav-art{height:180px!important}
 }
 `;
   document.head.appendChild(s);
