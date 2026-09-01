@@ -1,0 +1,57 @@
+name: Remove unwanted mask ornament
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-mask-ornament.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remove-mask:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Remove mask ornament from every HTML page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          changed = []
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              # Remove the unwanted decorative "mask" markup.
+              text = re.sub(r'<div\s+class=["\']ornament["\'][^>]*>.*?</div>', '', text, flags=re.I | re.S)
+
+              # Remove its now-unused CSS rules.
+              text = re.sub(r'\.ornament(?:[^\{]*)\{[^\}]*\}', '', text, flags=re.I)
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Changed:', ', '.join(changed) if changed else 'none')
+          PY
+
+      - name: Commit removal
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '*.html'
+          if git diff --cached --quiet; then
+            echo 'No mask ornament found.'
+          else
+            git commit -m 'Permanently remove unwanted mask ornament'
+            git push
+          fi
+
+      - name: Delete this one-time workflow
+        run: |
+          git rm .github/workflows/remove-mask-ornament.yml
+          git commit -m 'Remove temporary mask cleanup workflow'
+          git push
