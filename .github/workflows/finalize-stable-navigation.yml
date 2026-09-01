@@ -1,0 +1,117 @@
+name: Finalize stable navigation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-stable-navigation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove legacy navigation markup and refresh service worker
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              updated = text
+              updated = re.sub(r'<nav\\s+class=["\']nav-band["\'][^>]*>.*?</nav>\\s*', '', updated, flags=re.I | re.S)
+              updated = re.sub(r'<header\\b[^>]*>.*?</header>\\s*', '', updated, flags=re.I | re.S)
+              updated = updated.replace('/nav-stable.js?v=stable-1', '/nav-stable.js?v=stable-2')
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+          PY
+
+          cat > village-sw.js <<'EOF'
+          const CACHE = "still-becoming-village-v9";
+          const APP_SHELL = [
+            "/village-app.html",
+            "/",
+            "/index.html",
+            "/village-app.webmanifest",
+            "/village-icon.svg",
+            "/village-music.js",
+            "/village-polish.js",
+            "/village-persistence.js",
+            "/nav-stable.js?v=stable-2"
+          ];
+
+          self.addEventListener("install", event => {
+            event.waitUntil(
+              caches.open(CACHE)
+                .then(cache => cache.addAll(APP_SHELL))
+                .then(() => self.skipWaiting())
+            );
+          });
+
+          self.addEventListener("activate", event => {
+            event.waitUntil(
+              caches.keys().then(keys => Promise.all(
+                keys.filter(key => key !== CACHE).map(key => caches.delete(key))
+              )).then(() => self.clients.claim())
+            );
+          });
+
+          self.addEventListener("fetch", event => {
+            if (event.request.method !== "GET") return;
+
+            const isNavigation = event.request.mode === "navigate" ||
+              event.request.destination === "document";
+
+            if (isNavigation) {
+              event.respondWith(
+                fetch(new Request(event.request, { cache: "no-store" }))
+                  .then(response => {
+                    const copy = response.clone();
+                    caches.open(CACHE).then(cache => cache.put(event.request, copy));
+                    return response;
+                  })
+                  .catch(() => caches.match(event.request).then(cached => cached || caches.match("/index.html")))
+              );
+              return;
+            }
+
+            event.respondWith(
+              fetch(event.request)
+                .then(response => {
+                  const copy = response.clone();
+                  caches.open(CACHE).then(cache => cache.put(event.request, copy));
+                  return response;
+                })
+                .catch(() => caches.match(event.request))
+            );
+          });
+          EOF
+
+      - name: Commit final navigation cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '*.html' village-sw.js
+          if git diff --cached --quiet; then
+            echo 'No final navigation changes needed.'
+            exit 0
+          fi
+          git commit -m '[stable-nav] Remove legacy nav markup and refresh service worker'
+          git push
+
+      - name: Remove one-time workflow
+        if: success()
+        run: |
+          rm -f .github/workflows/finalize-stable-navigation.yml
+          git add .github/workflows/finalize-stable-navigation.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m '[stable-nav] Remove final navigation workflow'
+          git push
