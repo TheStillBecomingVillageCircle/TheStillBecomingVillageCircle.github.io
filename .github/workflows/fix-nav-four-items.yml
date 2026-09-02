@@ -1,0 +1,65 @@
+name: Fix Village Navigation Artwork
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace navigation artwork
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          new_nav = '''<!-- TSBVC-STATIC-NAV-START -->
+          <div id="tsbvc-static-nav" data-navigation="merged-village-v2" style="width:100%;background:#fff;border-bottom:1px solid rgba(22,84,91,.08);position:relative;z-index:9000;overflow:hidden;line-height:0;">
+          <div style="position:relative;width:100%;aspect-ratio:1093.5/396;overflow:hidden;background:#fff;">
+          <div style="position:absolute;inset:0 0 21.7% 0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;">
+          <div style="position:relative;overflow:hidden;background:#fff;"><div style="position:absolute;inset:0;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=merged-village-v2');background-repeat:no-repeat;background-size:600% auto;background-position:0% 0%;"></div></div>
+          <div style="position:relative;overflow:hidden;background:#fff;"><div style="position:absolute;inset:0;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=merged-village-v2');background-repeat:no-repeat;background-size:600% auto;background-position:20% 0%;"></div></div>
+          <div style="position:relative;overflow:hidden;background:#fff;"><div style="position:absolute;inset:0;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=merged-village-v2');background-repeat:no-repeat;background-size:600% auto;background-position:80% 0%;"></div></div>
+          <div style="position:relative;overflow:hidden;background:#fff;"><div style="position:absolute;inset:0;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=merged-village-v2');background-repeat:no-repeat;background-size:600% auto;background-position:100% 0%;"></div></div>
+          </div>
+          <a href="index.html?nav=static-2" aria-label="Home" style="position:absolute;left:0;top:0;width:25%;height:78.3%;z-index:3;display:block;"></a>
+          <a href="about.html?nav=static-2" aria-label="Inside the Village" style="position:absolute;left:25%;top:0;width:25%;height:78.3%;z-index:3;display:block;"></a>
+          <a href="web-design.html?nav=static-2" aria-label="Webspace" style="position:absolute;left:50%;top:0;width:25%;height:78.3%;z-index:3;display:block;"></a>
+          <a href="coming-together.html?nav=static-2" aria-label="Be Coming Together" style="position:absolute;left:75%;top:0;width:25%;height:78.3%;z-index:3;display:block;"></a>
+          <div style="position:absolute;left:0;right:0;bottom:0;height:21.7%;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;background:#fff;z-index:4;line-height:1;">
+          <a href="index.html?nav=static-2" style="color:#174f57;text-decoration:none;text-align:center;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;padding:2px 3px;">Home</a>
+          <a href="about.html?nav=static-2" style="color:#174f57;text-decoration:none;text-align:center;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;padding:2px 3px;">Inside the Village</a>
+          <a href="web-design.html?nav=static-2" style="color:#174f57;text-decoration:none;text-align:center;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;padding:2px 3px;">Webspace</a>
+          <a href="coming-together.html?nav=static-2" style="color:#174f57;text-decoration:none;text-align:center;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;padding:2px 3px;">Be Coming Together</a>
+          </div>
+          </div>
+          </div>
+          <!-- TSBVC-STATIC-NAV-END -->'''
+
+          for p in Path('.').glob('*.html'):
+              text = p.read_text(encoding='utf-8')
+              pattern = r'<!-- TSBVC-STATIC-NAV-START -->.*?<!-- TSBVC-STATIC-NAV-END -->'
+              updated, count = re.subn(pattern, new_nav, text, count=1, flags=re.S)
+              if count:
+                  p.write_text(updated, encoding='utf-8')
+                  print('Updated', p)
+
+      - name: Commit changes and remove workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' .github/workflows/fix-nav-four-items.yml
+          git rm .github/workflows/fix-nav-four-items.yml
+          git commit -m "Use house bubble window ribbon navigation"
+          git push
