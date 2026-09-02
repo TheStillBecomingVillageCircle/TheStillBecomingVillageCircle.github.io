@@ -46,7 +46,12 @@
       '.thought',
       '.scope',
       '.cta',
-      '.person'
+      '.person',
+      '.intro-box',
+      '.word-box',
+      '.philosophy-box',
+      '.coming-box',
+      '.event-space-box'
     ];
 
     document.querySelectorAll(selectors.join(',')).forEach(function (box) {
@@ -65,7 +70,7 @@
       // Short cards with several tiny lines don't need a collapse.
       if (textLength < 420 && paragraphs.length < 4) return;
 
-      const keepCount = box.classList.contains('person') ? 2 : 2;
+      const keepCount = 2;
       const hidden = paragraphs.slice(keepCount);
       if (!hidden.length) return;
 
@@ -81,7 +86,17 @@
       hidden.forEach(function (p) { content.appendChild(p); });
       details.appendChild(summary);
       details.appendChild(content);
-      box.appendChild(details);
+
+      // Keep buttons/links in their original visual position instead of
+      // dropping the expanded reading underneath them.
+      const firstNonParagraph = Array.from(box.children).find(function (el) {
+        return el !== details && el.tagName !== 'P';
+      });
+      if (firstNonParagraph) {
+        box.insertBefore(details, firstNonParagraph);
+      } else {
+        box.appendChild(details);
+      }
 
       details.addEventListener('toggle', function () {
         summary.textContent = details.open ? 'Close this thought ↑' : 'Keep reading →';
