@@ -1,4 +1,4 @@
-name: Bust responsive CSS cache
+name: Bust responsive CSS and reading-flow cache
 on:
   push:
     branches: [main]
@@ -11,21 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update stylesheet version
+      - name: Update cache-busting versions
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = s.replace('responsive-fixes.css?v=20260902-7', 'responsive-fixes.css?v=20260902-8')
+              ns = re.sub(r'responsive-fixes\.css\?v=[^\"\']+', 'responsive-fixes.css?v=20260902-9', s)
+              ns = re.sub(r'reading-flow\.js\?v=[^\"\']+', 'reading-flow.js?v=20260902-5', ns)
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
                   changed = True
           if changed:
-              print('Updated responsive stylesheet cache version.')
+              print('Updated responsive stylesheet and reading-flow cache versions.')
           else:
-              print('No old stylesheet version found; nothing to commit.')
+              print('No cache versions needed updating.')
           PY
       - name: Commit cache-busting change
         run: |
@@ -35,6 +37,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes to commit.'
           else
-            git commit -m 'Bust responsive stylesheet cache'
+            git commit -m 'Bust responsive and reading-flow caches'
             git push
           fi
