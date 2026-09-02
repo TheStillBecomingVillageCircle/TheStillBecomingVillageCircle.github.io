@@ -1,0 +1,29 @@
+name: Fix Merged Village Nav
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore nav in merged page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('about.html')
+          s=p.read_text(encoding='utf-8')
+          nav='''<div id="tsbvc-static-nav" style="width:100%;background:#fff;border-bottom:1px solid rgba(22,84,91,.08);position:relative;z-index:9000;overflow:hidden;line-height:1"><div style="max-width:1500px;margin:auto;padding:18px 4%;display:flex;justify-content:center;gap:clamp(14px,3vw,42px);flex-wrap:wrap"><a href="index.html" style="color:#174f57;text-decoration:none;font:600 clamp(12px,1.4vw,17px) Georgia,serif">Home</a><a href="about.html" style="color:#174f57;text-decoration:none;font:600 clamp(12px,1.4vw,17px) Georgia,serif">Inside the Village</a><a href="web-design.html" style="color:#174f57;text-decoration:none;font:600 clamp(12px,1.4vw,17px) Georgia,serif">Webspace</a><a href="coming-together.html" style="color:#174f57;text-decoration:none;font:600 clamp(12px,1.4vw,17px) Georgia,serif">Be Coming Together</a></div></div>'''
+          s=s.replace('<div id="tsbvc-static-nav"></div>',nav)
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm .github/workflows/fix-merged-nav.yml
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix merged Village navigation" || exit 0
+          git push
