@@ -1,0 +1,43 @@
+name: Restructure Be Coming Together
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  restructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Replace repetitive cards with distinct actions
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('coming-together.html')
+          text = p.read_text(encoding='utf-8')
+          start = text.index('<section class="grid">')
+          end = text.index('</section>\n</main>', start) + len('</section>')
+          new = '''<section class="grid">
+          <article class="card"><h2>Connect</h2><p>Have a question, an idea, or something you want to share with the Village? Start the conversation by email.</p><a class="button" href="mailto:thestillbecomingvillagecircle@gmail.com?subject=Connecting%20with%20The%20Still%20Becoming%20Village%20Circle">Email the Village →</a></article>
+          <article class="card"><h2>Gather</h2><p>Looking for a conversation, experience, or upcoming Village gathering? Explore what's happening and find a place to join in.</p><a class="button" href="events.html">Explore Experiences →</a></article>
+          <article class="card"><h2>Collaborate</h2><p>Have a creative idea, partnership, community project, or opportunity you think belongs in the Village? Let's talk about what could become.</p><a class="button" href="mailto:thestillbecomingvillagecircle@gmail.com?subject=Village%20Collaboration%20Idea">Talk About a Collaboration →</a></article>
+          <article class="card"><h2>Support</h2><p>If the Village has given you something and you'd like to pour something back into it, reach out. We can talk about meaningful ways to support the work.</p><a class="button" href="mailto:thestillbecomingvillagecircle@gmail.com?subject=Supporting%20The%20Still%20Becoming%20Village%20Circle">Ask About Supporting the Village →</a></article>
+          <article class="card"><h2>Come As You Are</h2><p>You don't need a polished introduction. You don't need the perfect words. You can simply arrive.</p><p><strong>There is room for you here.</strong></p></article>
+          </section>'''
+          text = text[:start] + new + text[end:]
+          p.write_text(text, encoding='utf-8')
+      - name: Commit and remove workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add coming-together.html .github/workflows/restructure-coming-together.yml
+          git commit -m "Restructure Be Coming Together actions"
+          git push
+          rm .github/workflows/restructure-coming-together.yml
+          git add .github/workflows/restructure-coming-together.yml
+          git commit -m "Remove temporary restructure workflow"
+          git push
