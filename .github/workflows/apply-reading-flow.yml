@@ -1,0 +1,48 @@
+name: Apply reading flow
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-reading-flow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add reading flow to main pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          pages = [
+              'about.html',
+              'LearningtheUnknown.html',
+              'events.html',
+              'web-design.html',
+              'coming-together.html',
+          ]
+          tag = '<script src="reading-flow.js?v=20260902-1"></script>'
+
+          for name in pages:
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              if 'reading-flow.js' not in text:
+                  text = text.replace('</body>', f'{tag}\n</body>', 1)
+                  path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Remove one-time workflow
+        run: rm -f .github/workflows/apply-reading-flow.yml
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add about.html LearningtheUnknown.html events.html web-design.html coming-together.html reading-flow.js .github/workflows/apply-reading-flow.yml
+          git commit -m "Make long pages easier to read" || exit 0
+          git push
