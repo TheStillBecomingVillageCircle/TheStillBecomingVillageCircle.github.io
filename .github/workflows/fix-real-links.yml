@@ -1,0 +1,50 @@
+name: Fix real action links
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fix action links
+        shell: python
+        run: |
+          from pathlib import Path
+
+          email = 'thestillbecomingvillagecircle@gmail.com'
+
+          p = Path('web-design.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              '<a class="button" href="#letscreate">Let\'s Create</a>',
+              f'<a class="button" href="mailto:{email}?subject=Webspace%20for%20Intentional%20Becoming">Let\'s Create</a>'
+          )
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('coming-together.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('mailto:waterwinewednesday@gmail.com', f'mailto:{email}')
+          text = text.replace(
+              '<a class="button" href="coming-together.html">Stay in the Conversation →</a>',
+              f'<a class="button" href="mailto:{email}?subject=I%20Would%20Like%20to%20Support%20the%20Village">Stay in the Conversation →</a>'
+          )
+          p.write_text(text, encoding='utf-8')
+
+      - name: Commit fixes and remove workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web-design.html coming-together.html .github/workflows/fix-real-links.yml
+          git commit -m "Fix action links to real destinations"
+          git push
+          rm .github/workflows/fix-real-links.yml
+          git add .github/workflows/fix-real-links.yml
+          git commit -m "Remove temporary link fix workflow"
+          git push
