@@ -29,6 +29,8 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 }
 
 /* The four-item watercolor navigation is defined directly in each page's static-nav markup. */
+/* Hide only the neighboring hands artwork that sits immediately to the right of the ribbon in the original sprite. */
+#tsbvc-static-nav>div>div:nth-child(4)::after{content:"";position:absolute;top:0;right:0;bottom:0;width:18%;background:#fff;z-index:2;pointer-events:none}
 
 /* Remove the legacy left-edge soundtrack control; keep the intentional Village soundtrack orb. */
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
