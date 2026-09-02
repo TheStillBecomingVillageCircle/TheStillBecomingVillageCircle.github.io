@@ -1,0 +1,49 @@
+name: Remove Emojis From Site HTML
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-emojis-from-html.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove emoji characters from HTML
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          emoji = re.compile(r'[\U0001F000-\U0001FAFF\U00002600-\U000027BF\U0001F1E6-\U0001F1FF\uFE0F\u200D]')
+          changed = []
+
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              cleaned = emoji.sub('', text)
+              if cleaned != text:
+                  path.write_text(cleaned, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Emoji cleanup changed:', changed)
+
+      - name: Commit cleaned HTML and remove workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/remove-emojis-from-html.yml
+          git add '*.html' .github/workflows/remove-emojis-from-html.yml
+          if git diff --cached --quiet; then
+            echo 'No emoji characters found; workflow removed.'
+            exit 0
+          fi
+          git commit -m 'Remove emojis from site HTML'
+          git push
