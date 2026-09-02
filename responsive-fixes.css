@@ -29,18 +29,14 @@ main h1{max-width:100%!important;overflow-wrap:anywhere}
 main h2,main h3{max-width:100%!important;overflow-wrap:anywhere}
 }
 
-/* Four-icon Village navigation. Use the existing artwork, but mask the neighboring motifs so each panel reads as one intentional icon. */
+/* Four-icon Village navigation: use the four dedicated artwork assets already in the repo. */
 #tsbvc-static-nav>div>div:first-child{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:0!important}
 #tsbvc-static-nav>div>div:first-child>div{position:relative!important;background:#fff!important;overflow:hidden!important}
-#tsbvc-static-nav>div>div:first-child>div>div{height:100%!important;background-repeat:no-repeat!important}
-/* Keep the original artwork scale/placement that produces the correct four motif sequence. */
-#tsbvc-static-nav>div>div:first-child>div:nth-child(1)>div{background-size:600% auto!important;background-position:0% 0%!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(2)>div{background-size:600% auto!important;background-position:20% 0%!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>div{background-size:600% auto!important;background-position:80% 0%!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>div{background-size:600% auto!important;background-position:100% 0%!important}
-/* The source artwork contains six motifs. Hide only the adjacent tree/tablet that intrude into the four chosen panels. */
-#tsbvc-static-nav>div>div:first-child>div:nth-child(2)::after{content:"";position:absolute;top:0;right:0;bottom:0;width:25%;background:#fff;z-index:2;pointer-events:none}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)::after{content:"";position:absolute;top:0;left:0;bottom:0;width:25%;background:#fff;z-index:2;pointer-events:none}
+#tsbvc-static-nav>div>div:first-child>div>div{position:absolute!important;inset:0!important;background-repeat:no-repeat!important;background-position:center center!important;background-size:contain!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1)>div{background-image:url('/assets/nav-home-correct.svg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2)>div{background-image:url('/assets/nav-inside-bubble-correct.svg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>div{background-image:url('/assets/nav-webspace-correct.svg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>div{background-image:url('/assets/nav-be-coming-together-correct.svg')!important}
 #tsbvc-static-nav>div:first-child::after{display:none!important}
 
 /* Footer ownership */
