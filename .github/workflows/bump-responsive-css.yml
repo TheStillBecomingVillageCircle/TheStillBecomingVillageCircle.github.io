@@ -18,7 +18,7 @@ jobs:
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = s.replace('responsive-fixes.css?v=20260902-1', 'responsive-fixes.css?v=20260902-5')
+              ns = s.replace('responsive-fixes.css?v=20260902-5', 'responsive-fixes.css?v=20260902-6')
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
                   changed = True
