@@ -27,7 +27,7 @@ jobs:
 
           text = text.replace(
               'href="#conversation">💬 Ready to Have the Conversation? &nbsp;→',
-              'href="#booking">💬 Ready to Take the Next Step? &nbsp;→',
+              'href="#booking">Ready to Take the Next Step? &nbsp;→',
               1
           )
 
@@ -39,7 +39,7 @@ jobs:
 
           text = text.replace(
               '🫧 Choose Your Time',
-              '🫧 Find Your Moment',
+              'Find Your Moment',
               1
           )
 
@@ -56,5 +56,5 @@ jobs:
             echo "No changes needed."
             exit 0
           fi
-          git commit -m "Fix Inside the Bubble booking flow"
+          git commit -m "Remove emojis from booking flow"
           git push
