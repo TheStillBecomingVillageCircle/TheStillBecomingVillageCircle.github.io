@@ -3,7 +3,7 @@ name: Bump reading flow asset
 on:
   push:
     paths:
-      - 'reading-flow.js'
+      - '.github/workflows/bump-reading-flow.yml'
 
 permissions:
   contents: write
