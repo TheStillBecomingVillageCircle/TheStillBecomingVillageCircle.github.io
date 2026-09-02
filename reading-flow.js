@@ -1,56 +1,8 @@
 (function () {
-  function simplifyNavigation() {
-    const nav = document.getElementById('tsbvc-static-nav');
-    if (!nav || nav.dataset.villageNavDone === 'true') return;
-    nav.dataset.villageNavDone = 'true';
-    const frame = nav.firstElementChild && nav.firstElementChild.firstElementChild;
-    if (!frame) return;
-    const targets = [
-      ['index.html?nav=static-1', 'Home'],
-      ['inside-the-village.html?nav=static-1', 'Inside the Village'],
-      ['web-design.html?nav=static-1', 'Webspace'],
-      ['coming-together.html?nav=static-1', 'Be Coming Together']
-    ];
-    Array.from(frame.querySelectorAll(':scope > a')).forEach(function (a) { a.remove(); });
-    const oldBottom = Array.from(frame.children).find(function (el) {
-      return el.tagName === 'DIV' && el.style.position === 'absolute' && el.style.bottom === '0px';
-    });
-    if (oldBottom) oldBottom.remove();
-    const zones = [['0%','19.02%'],['19.02%','31.60%'],['50.62%','20.80%'],['71.42%','28.58%']];
-    targets.forEach(function (item, i) {
-      const a = document.createElement('a');
-      a.href = item[0];
-      a.setAttribute('aria-label', item[1]);
-      a.style.cssText = 'position:absolute;left:'+zones[i][0]+';top:0;width:'+zones[i][1]+';height:78.3%;z-index:3;display:block;';
-      frame.appendChild(a);
-    });
-    const bottom = document.createElement('div');
-    bottom.style.cssText = 'position:absolute;left:0;right:0;bottom:0;height:21.7%;display:grid;grid-template-columns:19.02% 31.60% 20.80% 28.58%;align-items:center;background:#fff;z-index:4;line-height:1;';
-    targets.forEach(function (item) {
-      const a = document.createElement('a');
-      a.href = item[0];
-      a.textContent = item[1];
-      a.style.cssText = "color:#174f57;text-decoration:none;text-align:center;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;padding:2px 3px;";
-      bottom.appendChild(a);
-    });
-    frame.appendChild(bottom);
-  }
-
-  function redirectMergedPages() {
-    const path = (window.location.pathname || '').toLowerCase();
-    if (path.endsWith('/learningtheunknown.html') || path.endsWith('/events.html') || path.endsWith('/about.html')) {
-      const hash = path.endsWith('/learningtheunknown.html') ? '#unknown' : path.endsWith('/events.html') ? '#experiences' : '';
-      window.location.replace('inside-the-village.html' + hash);
-      return true;
-    }
-    return false;
-  }
-
   function initReadingFlow() {
-    if (redirectMergedPages()) return;
-    simplifyNavigation();
     if (document.body.classList.contains('reading-flow-ready')) return;
     document.body.classList.add('reading-flow-ready');
+
     const path = (window.location.pathname || '').toLowerCase();
     if (path.endsWith('/index.html') || path === '/' || path === '') return;
 
@@ -72,14 +24,20 @@
       if (paragraphs.length < 3) return;
       const textLength = paragraphs.reduce(function (sum,p) { return sum + (p.textContent || '').trim().length; },0);
       if (textLength < 420 && paragraphs.length < 4) return;
+
       const hidden = paragraphs.slice(2);
       if (!hidden.length) return;
+
       const details = document.createElement('details');
       details.className='village-more';
-      const summary=document.createElement('summary'); summary.textContent='Keep reading →';
-      const content=document.createElement('div'); content.className='village-more-content';
+      const summary=document.createElement('summary');
+      summary.textContent='Keep reading →';
+      const content=document.createElement('div');
+      content.className='village-more-content';
       hidden.forEach(function(p){content.appendChild(p);});
-      details.appendChild(summary); details.appendChild(content);
+      details.appendChild(summary);
+      details.appendChild(content);
+
       const firstNonParagraph=Array.from(box.children).find(function(el){return el!==details&&el.tagName!=='P';});
       if(firstNonParagraph) box.insertBefore(details,firstNonParagraph); else box.appendChild(details);
       details.addEventListener('toggle',function(){summary.textContent=details.open?'Close this thought ↑':'Keep reading →';});
