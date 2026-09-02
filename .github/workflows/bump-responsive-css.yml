@@ -18,7 +18,7 @@ jobs:
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = s.replace('responsive-fixes.css?v=20260902-6', 'responsive-fixes.css?v=20260902-7')
+              ns = s.replace('responsive-fixes.css?v=20260902-7', 'responsive-fixes.css?v=20260902-8')
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
                   changed = True
@@ -35,6 +35,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes to commit.'
           else
-            git commit -m 'Bust responsive CSS cache'
+            git commit -m 'Bust responsive stylesheet cache'
             git push
           fi
