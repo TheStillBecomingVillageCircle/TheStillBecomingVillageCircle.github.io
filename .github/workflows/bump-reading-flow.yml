@@ -1,0 +1,34 @@
+name: Bump reading flow asset
+
+on:
+  push:
+    paths:
+      - 'reading-flow.js'
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump asset version on main pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for name in ['about.html','LearningtheUnknown.html','events.html','web-design.html','coming-together.html']:
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('reading-flow.js?v=20260902-1', 'reading-flow.js?v=20260902-2')
+              path.write_text(text, encoding='utf-8')
+          PY
+      - name: Remove one-time workflow
+        run: rm -f .github/workflows/bump-reading-flow.yml
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add about.html LearningtheUnknown.html events.html web-design.html coming-together.html .github/workflows/bump-reading-flow.yml
+          git commit -m "Refresh reading flow asset" || exit 0
+          git push
