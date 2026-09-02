@@ -28,14 +28,14 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
   main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}
 }
 
-/* Four-item Village navigation: use the ORIGINAL watercolor artwork, cropped cleanly to the four selected motifs. */
+/* Four-item Village navigation: crop the original watercolor sprite directly. No substitute icons, no SVG wrappers. */
 #tsbvc-static-nav>div>div:first-child{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important}
 #tsbvc-static-nav>div>div:first-child>div{position:relative!important;min-width:0!important;background:#fff!important;overflow:hidden!important}
-#tsbvc-static-nav>div>div:first-child>div>div{position:absolute!important;inset:0!important;background-repeat:no-repeat!important;background-size:cover!important;background-position:center!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(1)>div{background-image:url('/assets/nav-house.svg?v=20260902-2')!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(2)>div{background-image:url('/assets/nav-bubble.svg?v=20260902-2')!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>div{background-image:url('/assets/nav-window.svg?v=20260902-2')!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>div{background-image:url('/assets/nav-ribbon.svg?v=20260902-2')!important}
+#tsbvc-static-nav>div>div:first-child>div>div{position:absolute!important;inset:0!important;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png?v=original-watercolor-final')!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1)>div{background-size:600% auto!important;background-position:0% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2)>div{background-size:600% auto!important;background-position:18% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>div{background-size:600% auto!important;background-position:71% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>div{background-size:600% auto!important;background-position:86% 0%!important}
 #tsbvc-static-nav>div:first-child::after{display:none!important}
 
 /* Remove the legacy left-edge soundtrack control; keep the intentional Village soundtrack orb. */
