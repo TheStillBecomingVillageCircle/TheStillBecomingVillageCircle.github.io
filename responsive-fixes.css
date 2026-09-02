@@ -27,8 +27,14 @@ main h1{max-width:100%!important;overflow-wrap:anywhere}
 main h2,main h3{max-width:100%!important;overflow-wrap:anywhere}
 }
 
-/* Hide the two removed tree/photo illustrations from the merged Village navigation. */
-#tsbvc-static-nav>div:first-child::after{content:"";position:absolute;left:39%;top:0;width:29%;height:78.3%;background:#fff;z-index:2;pointer-events:none}
+/* Four-icon Village navigation: use the original artwork, but crop each exact motif tightly so the four icons flow together. */
+#tsbvc-static-nav>div>div:first-child{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:0!important}
+#tsbvc-static-nav>div>div:first-child>div{background:#fff!important;overflow:hidden!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1)>div{background-size:533.4% auto!important;background-position:0% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2)>div{background-size:437.4% auto!important;background-position:23.7% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>div{background-size:607.5% auto!important;background-position:82.1% 0%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>div{background-size:643.2% auto!important;background-position:100% 0%!important}
+#tsbvc-static-nav>div:first-child::after{display:none!important}
 
 /* Footer ownership */
 footer p:last-child{font-size:0!important}
