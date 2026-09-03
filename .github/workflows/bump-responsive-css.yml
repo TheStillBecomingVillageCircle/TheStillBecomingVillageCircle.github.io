@@ -18,8 +18,10 @@ jobs:
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = s.replace('responsive-fixes.css?v=20260902-12', 'responsive-fixes.css?v=20260902-14')
-              ns = ns.replace('responsive-fixes.css?v=20260902-13', 'responsive-fixes.css?v=20260902-14')
+              ns = s.replace('responsive-fixes.css?v=20260902-12', 'responsive-fixes.css?v=20260903-15')
+              ns = ns.replace('responsive-fixes.css?v=20260902-13', 'responsive-fixes.css?v=20260903-15')
+              ns = ns.replace('responsive-fixes.css?v=20260902-14', 'responsive-fixes.css?v=20260903-15')
+              ns = s if ns == s and 'responsive-fixes.css?v=20260903-15' in s else ns
               ns = ns.replace('Inside the Village', 'Inside the Bubble')
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
@@ -37,6 +39,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes to commit.'
           else
-            git commit -m 'Fix watercolor navigation cache and label'
+            git commit -m 'Bust responsive navigation CSS cache'
             git push
           fi
