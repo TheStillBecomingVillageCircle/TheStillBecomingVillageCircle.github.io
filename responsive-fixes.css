@@ -28,13 +28,13 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
   main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}
 }
 
-/* Four-item watercolor navigation: show only the exact source slice for each original motif. */
+/* Four-item watercolor navigation. Home and Inside the Bubble remain the original sprite motifs. */
 #tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important;background-repeat:no-repeat!important}
 #tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important;background-repeat:no-repeat!important}
-/* Webspace: use a narrower source slice centered on the original nighttime window. No clipping or masking. */
+/* Webspace remains the original nighttime window only. */
 #tsbvc-static-nav>div>div:nth-child(3)>div{background-size:900% auto!important;background-position:67% 0%!important;background-repeat:no-repeat!important;clip-path:none!important}
-/* Be Coming Together: use a narrower source slice centered on the original ribbon/heart artwork. The neighboring source artwork is outside this slice, so it is not rendered. */
-#tsbvc-static-nav>div>div:nth-child(4)>div{background-size:900% auto!important;background-position:79.6% 0%!important;background-repeat:no-repeat!important;clip-path:none!important}
+/* Be Coming Together uses a dedicated crop containing only the original ribbon/heart pixels. No adjacent sprite artwork is rendered here. */
+#tsbvc-static-nav>div>div:nth-child(4)>div{background-image:url('/assets/nav-ribbon-original.svg')!important;background-size:auto 90%!important;background-position:center top!important;background-repeat:no-repeat!important;clip-path:none!important}
 
 /* Correct the visible second navigation label without changing the artwork or layout. */
 #tsbvc-static-nav>div>div:last-child>a:nth-child(2){font-size:0!important}
