@@ -19,18 +19,19 @@ jobs:
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = re.sub(r'responsive-fixes\.css\?v=[^\"\']+', 'responsive-fixes.css?v=20260902-12', s)
-              ns = re.sub(r'reading-flow\.js\?v=[^\"\']+', 'reading-flow.js?v=20260902-6', ns)
+              ns = re.sub(r'responsive-fixes\\.css\\?v=[^\"\\']+', 'responsive-fixes.css?v=20260902-13', s)
+              ns = re.sub(r'reading-flow\\.js\\?v=[^\"\\']+', 'reading-flow.js?v=20260902-6', ns)
               ns = ns.replace('background-position:20% 0%;', 'background-position:18% 0%;')
               ns = ns.replace('background-position:80% 0%;', 'background-position:71% 0%;')
               ns = ns.replace('background-position:100% 0%;clip-path:inset(0 14% 0 0);', 'background-position:86% 0%;')
+              ns = ns.replace('Inside the Village', 'Inside the Bubble')
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
                   changed = True
           if changed:
-              print('Updated cache versions and four-item watercolor navigation crops.')
+              print('Updated cache versions, exact nav label, and four-item watercolor navigation crops.')
           else:
-              print('No cache/nav changes needed.')
+              print('No changes needed.')
           PY
       - name: Commit cache-busting change
         run: |
@@ -40,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes to commit.'
           else
-            git commit -m 'Refresh four-item watercolor navigation cache'
+            git commit -m 'Restore exact nav label and watercolor navigation'
             git push
           fi
