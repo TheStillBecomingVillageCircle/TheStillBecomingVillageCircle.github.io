@@ -31,9 +31,10 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 /* Four-item watercolor navigation: keep each original motif isolated. */
 #tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important;background-repeat:no-repeat!important}
 #tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important;background-repeat:no-repeat!important}
-/* Webspace: keep the original nighttime window, but physically clip the right edge so no ribbon pixels can enter this panel. */
+/* Webspace: keep the original nighttime window and remove any ribbon pixels from this panel. */
 #tsbvc-static-nav>div>div:nth-child(3)>div{background-size:700% auto!important;background-position:60% 0%!important;background-repeat:no-repeat!important;clip-path:inset(0 30% 0 0)!important}
-#tsbvc-static-nav>div>div:nth-child(4)>div{background-size:700% auto!important;background-position:83.3333% 0%!important;background-repeat:no-repeat!important;clip-path:none!important}
+/* Be Coming Together: remove the separate ribbon strand hiding behind the intended ribbon/heart artwork. */
+#tsbvc-static-nav>div>div:nth-child(4)>div{background-size:700% auto!important;background-position:83.3333% 0%!important;background-repeat:no-repeat!important;clip-path:inset(0 0 0 38%)!important}
 
 /* Correct the visible second navigation label without changing the artwork or layout. */
 #tsbvc-static-nav>div>div:last-child>a:nth-child(2){font-size:0!important}
