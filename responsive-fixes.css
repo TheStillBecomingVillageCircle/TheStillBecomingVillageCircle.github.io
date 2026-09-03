@@ -31,8 +31,7 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 /* The four-item watercolor navigation uses the original seven-motif sprite. Each panel isolates one complete motif. */
 #tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important}
 #tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important}
-/* Nudge Webspace left just enough to keep the Connect ribbon's cream tail out of this panel. */
-#tsbvc-static-nav>div>div:nth-child(3)>div{background-size:700% auto!important;background-position:65.8% 0%!important}
+#tsbvc-static-nav>div>div:nth-child(3)>div{background-size:700% auto!important;background-position:68% 0%!important}
 #tsbvc-static-nav>div>div:nth-child(4)>div{background-size:700% auto!important;background-position:83.3333% 0%!important;clip-path:none!important}
 
 /* Remove the legacy left-edge soundtrack control; keep the intentional Village soundtrack orb. */
