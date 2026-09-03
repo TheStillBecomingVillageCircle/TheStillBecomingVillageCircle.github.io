@@ -31,8 +31,8 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 /* Four-item watercolor navigation. Home and Inside the Bubble remain the original sprite motifs. */
 #tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important;background-repeat:no-repeat!important}
 #tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important;background-repeat:no-repeat!important}
-/* Webspace remains the original nighttime window only. */
-#tsbvc-static-nav>div>div:nth-child(3)>div{background-size:900% auto!important;background-position:67% 0%!important;background-repeat:no-repeat!important;clip-path:none!important}
+/* Webspace uses a dedicated viewport of the original nighttime window artwork, so the neighboring ribbon is not part of this panel. */
+#tsbvc-static-nav>div>div:nth-child(3)>div{background-image:url('/assets/nav-window-original.svg')!important;background-size:auto 90%!important;background-position:center top!important;background-repeat:no-repeat!important;clip-path:none!important}
 /* Be Coming Together uses a dedicated crop containing only the original ribbon/heart pixels. No adjacent sprite artwork is rendered here. */
 #tsbvc-static-nav>div>div:nth-child(4)>div{background-image:url('/assets/nav-ribbon-original.svg')!important;background-size:auto 90%!important;background-position:center top!important;background-repeat:no-repeat!important;clip-path:none!important}
 
