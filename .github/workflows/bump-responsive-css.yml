@@ -18,12 +18,13 @@ jobs:
           changed = False
           for p in Path('.').glob('*.html'):
               s = p.read_text(encoding='utf-8')
-              ns = s.replace('responsive-fixes.css?v=20260902-12', 'responsive-fixes.css?v=20260903-18')
-              ns = ns.replace('responsive-fixes.css?v=20260902-13', 'responsive-fixes.css?v=20260903-18')
-              ns = ns.replace('responsive-fixes.css?v=20260902-14', 'responsive-fixes.css?v=20260903-18')
-              ns = ns.replace('responsive-fixes.css?v=20260903-15', 'responsive-fixes.css?v=20260903-18')
-              ns = ns.replace('responsive-fixes.css?v=20260903-16', 'responsive-fixes.css?v=20260903-18')
-              ns = ns.replace('responsive-fixes.css?v=20260903-17', 'responsive-fixes.css?v=20260903-18')
+              ns = s.replace('responsive-fixes.css?v=20260902-12', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260902-13', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260902-14', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260903-15', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260903-16', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260903-17', 'responsive-fixes.css?v=20260903-19')
+              ns = ns.replace('responsive-fixes.css?v=20260903-18', 'responsive-fixes.css?v=20260903-19')
               ns = ns.replace('Inside the Village', 'Inside the Bubble')
               if ns != s:
                   p.write_text(ns, encoding='utf-8')
