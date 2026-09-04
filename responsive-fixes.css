@@ -26,8 +26,8 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 
 @media(max-width:430px){main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}}
 
-/* Only the four-panel Village navigation remains visible. */
-body>header,body>nav,body>.site-nav{display:none!important}
+/* Pages that already contain the shared four-panel navigation must not also show an older header/navigation. */
+body:has(#tsbvc-static-nav)>header,body:has(#tsbvc-static-nav)>nav,body:has(#tsbvc-static-nav)>.site-nav{display:none!important}
 
 /* Keep only the intentional Village soundtrack orb. */
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
