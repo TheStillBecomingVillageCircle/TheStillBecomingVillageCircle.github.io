@@ -28,18 +28,6 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
   main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}
 }
 
-/* Four-item watercolor navigation. Keep Home, Inside the Bubble, and Webspace; remove all ribbon artwork. */
-#tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important;background-repeat:no-repeat!important}
-/* Webspace uses a true crop of the original watercolor artwork; its source window ends before the ribbon begins. */
-#tsbvc-static-nav>div>div:nth-child(3)>div{background-image:url('/assets/nav-window-original.svg')!important;background-size:auto 90%!important;background-position:center top!important;background-repeat:no-repeat!important;clip-path:none!important}
-/* Remove the ribbon artwork completely from Be Coming Together. */
-#tsbvc-static-nav>div>div:nth-child(4)>div{background-image:none!important;background-color:#fff!important;clip-path:none!important}
-
-/* Correct the visible second navigation label without changing the artwork or layout. */
-#tsbvc-static-nav>div>div:last-child>a:nth-child(2){font-size:0!important}
-#tsbvc-static-nav>div>div:last-child>a:nth-child(2)::after{content:"Inside the Bubble";font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;color:#174f57}
-
 /* Remove the legacy left-edge soundtrack control; keep the intentional Village soundtrack orb. */
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
 
