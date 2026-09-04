@@ -1,4 +1,4 @@
-/* TSBVC Responsive Safety Layer — narrow, page-safe fixes only */
+/* TSBVC responsive safety — one clean shared layer */
 html{overflow-x:clip!important}
 body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
 img,video{max-width:100%;height:auto}
@@ -24,13 +24,19 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
   main .quote br{display:none!important}
 }
 
-@media(max-width:430px){
-  main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}
-}
+@media(max-width:430px){main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}}
 
-/* Remove the legacy left-edge soundtrack control; keep the intentional Village soundtrack orb. */
+/* Keep only the intentional Village soundtrack orb. */
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
 
 /* Footer ownership */
 footer p:last-child{font-size:0!important}
 footer p:last-child::after{content:"© 2026 LeSheAnn Hargro";font-size:16px;line-height:1.5;color:#5d565f;display:inline-block}
+
+/* One deterministic four-panel watercolor navigation. The source artwork is clipped by panel, not guessed with sprite percentages. */
+#tsbvc-static-nav>div>div:first-child>div{position:relative!important;overflow:hidden!important;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png')!important;background-repeat:no-repeat!important;background-size:auto 443.265306%!important;background-position-y:17.241379%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-position-x:1.66251%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-position-x:18.703242%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-position-x:68.578554%!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-position-x:85.619285%!important}
+#tsbvc-static-nav>div>div:first-child>div>*{display:none!important}
