@@ -1,29 +1,118 @@
-/* The Still Becoming Village Circle — persistent soundtrack + shared navigation */
+/* The Still Becoming Village Circle — soundtrack only. */
 (function(){
 'use strict';
-if(window.__TSBVC_MUSIC__)return;
+if(window.__TSBVC_MUSIC__) return;
 window.__TSBVC_MUSIC__=true;
+
 const PLAYER_ID='villageSoundtrack';
-const NAV_PAGES=new Set(['index.html','about.html','LearningtheUnknown.html','experiences.html','web-design.html','coming-together.html','kitta.html']);
-const CANONICAL_PAGES={'events.html':'experiences.html','contact.html':'coming-together.html','coaching.html':'coming-together.html'};
-const BOOKING_URL='https://calendly.com/thestillbecomingvillagecircle/30min';
 const COVER='/bricks-cover.jpeg';
 const MUSIC_SRC='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
 let widget=null,ready=false,playing=false,playRequested=true;
-function removeLegacy(){document.querySelectorAll('#soundtrack,.soundtrack,#musicBubble,.music-bubble').forEach(e=>e.remove())}
-function styles(){if(document.getElementById('village-music-styles'))return;const s=document.createElement('style');s.id='village-music-styles';s.textContent=`#${PLAYER_ID}{position:fixed;right:18px;bottom:18px;width:104px;height:104px;z-index:99999;background:transparent;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;animation:villageBubbleFloat 6s ease-in-out infinite}#${PLAYER_ID} .closed{position:relative;width:104px;height:104px;display:flex;align-items:center;justify-content:center}.music-orb{position:relative;width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 32% 27%,rgba(255,255,255,.86),rgba(221,255,251,.42) 28%,rgba(126,224,216,.22) 58%,rgba(255,255,255,.12) 100%);border:1.5px solid rgba(255,255,255,.9);box-shadow:inset 8px 8px 18px rgba(255,255,255,.55),inset -10px -12px 20px rgba(94,190,188,.14),0 14px 30px rgba(40,120,120,.16);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);overflow:visible}.music-orb:before,.music-orb:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.12)}.music-orb:before{width:20px;height:20px;left:13px;top:18px}.music-orb:after{width:9px;height:9px;right:18px;top:12px}.music-note{font:400 39px/1 Georgia,'Times New Roman',serif;color:rgba(25,143,145,.72);text-shadow:0 1px 8px rgba(255,255,255,.7);transform:translateY(-2px)}#${PLAYER_ID} .play{position:absolute;right:7px;bottom:7px;width:27px;height:27px;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(217,255,251,.58);color:#176f73;display:flex;align-items:center;justify-content:center;font:12px/1 Arial,sans-serif;box-shadow:0 5px 12px rgba(40,120,120,.14)}#${PLAYER_ID}.playing .play{font-size:0}#${PLAYER_ID}.playing .play:after{content:'❚❚';font-size:9px}#${PLAYER_ID} .bubble-shine{position:absolute;width:32px;height:14px;border-radius:50%;left:22px;top:16px;border-top:2px solid rgba(255,255,255,.8);transform:rotate(-28deg)}#${PLAYER_ID} .content{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}#${PLAYER_ID}.open .content{position:fixed;right:20px;bottom:20px;left:auto;top:auto;width:min(390px,calc(100vw - 40px));height:auto;opacity:1;pointer-events:auto;background:rgba(235,255,252,.94);border:1px solid rgba(255,255,255,.85);border-radius:24px;padding:16px;box-shadow:0 18px 45px rgba(40,120,120,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}#${PLAYER_ID} .cover-open{display:block;width:150px;height:150px;object-fit:cover;border-radius:18px;margin:0 auto 10px}#${PLAYER_ID} .title{text-align:center;color:#285f61;font:700 17px Arial,sans-serif}#${PLAYER_ID} .song{text-align:center;color:#16aaa9;font:14px Arial,sans-serif;margin:3px 0 10px}#${PLAYER_ID} iframe{width:100%;height:166px;border:0;border-radius:16px}#${PLAYER_ID} .close{display:block;margin:9px auto 0;border:0;background:#fff;color:#285f61;padding:7px 20px;border-radius:25px;font-weight:700}@keyframes villageBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@media(max-width:600px){#${PLAYER_ID}{width:88px;height:88px;right:8px;bottom:10px}.music-orb,#${PLAYER_ID} .closed{width:82px;height:82px}.music-note{font-size:33px}#${PLAYER_ID} .play{width:24px;height:24px;right:5px;bottom:5px}}`;document.head.appendChild(s)}
-function state(v){playing=!!v;const p=document.getElementById(PLAYER_ID);if(p)p.classList.toggle('playing',playing)}
-function play(){if(!widget||!ready)return false;try{widget.play();return true}catch(e){return false}}
-function requestPlay(){playRequested=true;if(ready)play()}
-function pause(){if(widget&&ready)try{widget.pause()}catch(e){}}
-function setup(){const f=document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);if(!f||f.dataset.bound==='1')return;function bind(){if(!window.SC||!window.SC.Widget)return;widget=window.SC.Widget(f);widget.bind(window.SC.Widget.Events.READY,function(){ready=true;f.dataset.bound='1';widget.bind(window.SC.Widget.Events.PLAY,()=>state(true));widget.bind(window.SC.Widget.Events.PAUSE,()=>state(false));widget.bind(window.SC.Widget.Events.FINISH,function(){try{widget.seekTo(0);widget.play()}catch(e){setTimeout(play,250)}});if(playRequested)play()})}if(window.SC&&window.SC.Widget)bind();else{let a=document.getElementById('soundcloud-widget-api');if(!a){a=document.createElement('script');a.id='soundcloud-widget-api';a.src='https://w.soundcloud.com/player/api.js';a.onload=bind;document.head.appendChild(a)}else a.addEventListener('load',bind,{once:true})}}
-function gesture(){if(window.__TSBVC_SCROLL_MUSIC__)return;window.__TSBVC_SCROLL_MUSIC__=true;let done=false;function go(){if(done)return;done=true;requestPlay();['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.removeEventListener(t,go))}['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.addEventListener(t,go,{passive:true}))}
-function player(){if(document.getElementById(PLAYER_ID))return;const e=document.createElement('div');e.id=PLAYER_ID;e.innerHTML=`<div class="closed" aria-label="The Village Soundtrack — tap to play or pause"><div class="music-orb"><span class="bubble-shine" aria-hidden="true"></span><span class="music-note" aria-hidden="true">♪</span><div class="play">▶</div></div></div><div class="content" onclick="event.stopPropagation()"><img class="cover-open" src="${COVER}" alt="Bricks — Andra Day cover art"><div class="title">The Village Soundtrack</div><div class="song">Bricks — Andra Day</div><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe><button class="close" type="button">Close</button></div>`;document.body.appendChild(e);e.querySelector('.closed').addEventListener('click',()=>playing?pause():requestPlay());e.querySelector('.close').addEventListener('click',()=>e.classList.remove('open'));setup();gesture()}
-function normalize(){document.querySelectorAll('a[href]').forEach(l=>{const raw=l.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:'))return;try{const u=new URL(raw,location.href);if(u.origin!==location.origin)return;const p=u.pathname.split('/').pop()||'index.html';if(CANONICAL_PAGES[p])u.pathname=u.pathname.replace(p,CANONICAL_PAGES[p]);l.href=u.href}catch(e){}});document.querySelectorAll('a[href*="calendly.com"]').forEach(l=>{l.href=BOOKING_URL;l.target='_blank';l.rel='noopener noreferrer'})}
-async function nav(url,push){const u=new URL(url,location.href);let p=u.pathname.split('/').pop()||'index.html';if(CANONICAL_PAGES[p]){p=CANONICAL_PAGES[p];u.pathname=u.pathname.replace(u.pathname.split('/').pop(),p)}if(u.origin!==location.origin||!NAV_PAGES.has(p))return false;const r=await fetch(u.href,{credentials:'same-origin',cache:'no-store'});if(!r.ok)throw Error(r.status);const parsed=new DOMParser().parseFromString(await r.text(),'text/html');const player=document.getElementById(PLAYER_ID);if(!player)return false;document.title=parsed.title||document.title;parsed.head.querySelectorAll('style').forEach(s=>document.head.appendChild(document.importNode(s,true)));[...document.body.children].forEach(c=>{if(c!==player)c.remove()});[...parsed.body.children].filter(c=>c.id!==PLAYER_ID&&!c.classList.contains('soundtrack')&&!c.classList.contains('music-bubble')).forEach(c=>document.body.insertBefore(document.importNode(c,true),player));normalize();scrollTo({top:0,behavior:'instant'});if(push)history.pushState({village:true},'',u.href);return true}
-document.addEventListener('click',e=>{const l=e.target.closest?.('a[href]');if(!l||l.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const u=new URL(l.href,location.href),p=u.pathname.split('/').pop()||'index.html';if(u.origin!==location.origin||!NAV_PAGES.has(p)||u.pathname===location.pathname)return;e.preventDefault();nav(u.href,true).catch(()=>location.href=u.href)});
-window.addEventListener('popstate',()=>nav(location.href,false).catch(()=>{}));
-function easyMobileFlow(){if(window.__TSBVC_EASY_FLOW__)return;window.__TSBVC_EASY_FLOW__=true;const style=document.createElement('style');style.id='village-easy-mobile-flow';style.textContent=`@media(max-width:768px){body header nav .village-mobile-menu-button{display:none!important}body header nav{display:block!important;padding:14px 16px 10px!important}body header nav .logo{display:block!important;width:100%!important;max-width:none!important;font-size:17px!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}body header nav .logo a{white-space:nowrap!important;font-size:17px!important}body header nav ul.village-mobile-menu{display:flex!important;position:static!important;width:100%!important;margin:10px 0 0!important;padding:2px 2px 6px!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;list-style:none!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important}body header nav ul.village-mobile-menu::-webkit-scrollbar{display:none!important}body header nav ul.village-mobile-menu li{flex:0 0 auto!important;width:auto!important;margin:0!important;text-align:center!important}body header nav ul.village-mobile-menu li a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:38px!important;padding:8px 14px!important;border-radius:999px!important;background:rgba(255,255,255,.76)!important;border:1px solid rgba(22,170,169,.10)!important;box-shadow:0 4px 14px rgba(40,120,120,.06)!important;font-size:14px!important;line-height:1.2!important;white-space:nowrap!important;text-decoration:none!important}body header nav.village-menu-open ul.village-mobile-menu{display:flex!important;position:static!important}}`;document.head.appendChild(style)}
-function init(){removeLegacy();styles();player();normalize();easyMobileFlow();requestPlay()}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+
+function removeLegacy(){
+  document.querySelectorAll('#soundtrack,.soundtrack,#musicBubble,.music-bubble').forEach(e=>e.remove());
+}
+
+function addStyles(){
+  if(document.getElementById('village-music-styles')) return;
+  const s=document.createElement('style');
+  s.id='village-music-styles';
+  s.textContent=`
+#${PLAYER_ID}{position:fixed;right:18px;bottom:18px;width:104px;height:104px;z-index:99999;background:transparent;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;animation:villageBubbleFloat 6s ease-in-out infinite}
+#${PLAYER_ID} .closed{position:relative;width:104px;height:104px;display:flex;align-items:center;justify-content:center}
+.music-orb{position:relative;width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 32% 27%,rgba(255,255,255,.86),rgba(221,255,251,.42) 28%,rgba(126,224,216,.22) 58%,rgba(255,255,255,.12) 100%);border:1.5px solid rgba(255,255,255,.9);box-shadow:inset 8px 8px 18px rgba(255,255,255,.55),inset -10px -12px 20px rgba(94,190,188,.14),0 14px 30px rgba(40,120,120,.16);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);overflow:visible}
+.music-orb:before,.music-orb:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.12)}
+.music-orb:before{width:20px;height:20px;left:13px;top:18px}.music-orb:after{width:9px;height:9px;right:18px;top:12px}
+.music-note{font:400 39px/1 Georgia,'Times New Roman',serif;color:rgba(25,143,145,.72);text-shadow:0 1px 8px rgba(255,255,255,.7);transform:translateY(-2px)}
+#${PLAYER_ID} .play{position:absolute;right:7px;bottom:7px;width:27px;height:27px;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(217,255,251,.58);color:#176f73;display:flex;align-items:center;justify-content:center;font:12px/1 Arial,sans-serif;box-shadow:0 5px 12px rgba(40,120,120,.14)}
+#${PLAYER_ID}.playing .play{font-size:0}#${PLAYER_ID}.playing .play:after{content:'❚❚';font-size:9px}
+#${PLAYER_ID} .bubble-shine{position:absolute;width:32px;height:14px;border-radius:50%;left:22px;top:16px;border-top:2px solid rgba(255,255,255,.8);transform:rotate(-28deg)}
+#${PLAYER_ID} .content{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+@keyframes villageBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-width:600px){#${PLAYER_ID}{width:88px;height:88px;right:8px;bottom:10px}.music-orb,#${PLAYER_ID} .closed{width:82px;height:82px}.music-note{font-size:33px}#${PLAYER_ID} .play{width:24px;height:24px;right:5px;bottom:5px}}
+`;
+  document.head.appendChild(s);
+}
+
+function setState(value){
+  playing=!!value;
+  const player=document.getElementById(PLAYER_ID);
+  if(player) player.classList.toggle('playing',playing);
+}
+
+function play(){
+  if(!widget||!ready) return false;
+  try{widget.play();return true}catch(e){return false}
+}
+
+function requestPlay(){
+  playRequested=true;
+  if(ready) play();
+}
+
+function pause(){
+  if(widget&&ready) try{widget.pause()}catch(e){}
+}
+
+function setupWidget(){
+  const frame=document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
+  if(!frame||frame.dataset.bound==='1') return;
+  function bind(){
+    if(!window.SC||!window.SC.Widget) return;
+    widget=window.SC.Widget(frame);
+    widget.bind(window.SC.Widget.Events.READY,function(){
+      ready=true;
+      frame.dataset.bound='1';
+      widget.bind(window.SC.Widget.Events.PLAY,()=>setState(true));
+      widget.bind(window.SC.Widget.Events.PAUSE,()=>setState(false));
+      widget.bind(window.SC.Widget.Events.FINISH,function(){try{widget.seekTo(0);widget.play()}catch(e){setTimeout(play,250)}});
+      if(playRequested) play();
+    });
+  }
+  if(window.SC&&window.SC.Widget) bind();
+  else{
+    let script=document.getElementById('soundcloud-widget-api');
+    if(!script){
+      script=document.createElement('script');
+      script.id='soundcloud-widget-api';
+      script.src='https://w.soundcloud.com/player/api.js';
+      script.onload=bind;
+      document.head.appendChild(script);
+    }else script.addEventListener('load',bind,{once:true});
+  }
+}
+
+function waitForGesture(){
+  if(window.__TSBVC_SCROLL_MUSIC__) return;
+  window.__TSBVC_SCROLL_MUSIC__=true;
+  let done=false;
+  function go(){
+    if(done) return;
+    done=true;
+    requestPlay();
+    ['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.removeEventListener(t,go));
+  }
+  ['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.addEventListener(t,go,{passive:true}));
+}
+
+function createPlayer(){
+  if(document.getElementById(PLAYER_ID)) return;
+  const player=document.createElement('div');
+  player.id=PLAYER_ID;
+  player.innerHTML=`<div class="closed" aria-label="The Village Soundtrack — tap to play or pause"><div class="music-orb"><span class="bubble-shine" aria-hidden="true"></span><span class="music-note" aria-hidden="true">♪</span><div class="play">▶</div></div></div><div class="content"><img class="cover-open" src="${COVER}" alt="Bricks — Andra Day cover art"><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe></div>`;
+  document.body.appendChild(player);
+  player.querySelector('.closed').addEventListener('click',()=>playing?pause():requestPlay());
+  setupWidget();
+  waitForGesture();
+}
+
+function init(){
+  removeLegacy();
+  addStyles();
+  createPlayer();
+  requestPlay();
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
+else init();
 })();
