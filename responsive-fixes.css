@@ -26,8 +26,22 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 
 @media(max-width:430px){main h1,main h2,main h3{max-width:100%!important;overflow-wrap:normal}}
 
-/* Pages that already contain the shared four-panel navigation must not also show an older header/navigation. */
+/* Pages with the shared four-panel navigation must not also show an older header/navigation. */
 body:has(#tsbvc-static-nav)>header,body:has(#tsbvc-static-nav)>nav,body:has(#tsbvc-static-nav)>.site-nav{display:none!important}
+
+/* The one legacy Inside-the-Bubble filename keeps a four-panel navigation too. */
+body>.site-nav{width:100%;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border-bottom:1px solid rgba(22,84,91,.08);line-height:1;overflow:hidden}
+body>.site-nav a{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:36.2vw;padding:0 3px 6px;color:#174f57;text-align:center;text-decoration:none;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;overflow:hidden;background:#fff}
+body>.site-nav a::before{content:"";position:absolute;left:0;right:0;top:0;height:78.3%;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png');background-repeat:no-repeat;background-size:auto 443.265306%;background-position-y:17.241379%;background-color:#fff}
+body>.site-nav a:nth-child(1)::before{background-position-x:1.66251%}
+body>.site-nav a:nth-child(2)::before{background-position-x:18.703242%}
+body>.site-nav a:nth-child(3)::before{background-position-x:68.578554%}
+body>.site-nav a:nth-child(4)::before{background-position-x:85.619285%}
+body>.site-nav a{z-index:0}
+body>.site-nav a::before{z-index:0}
+body>.site-nav a{isolation:isolate}
+body>.site-nav a{padding-top:0}
+body>.site-nav a{position:relative}
 
 /* Keep only the intentional Village soundtrack orb. */
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
