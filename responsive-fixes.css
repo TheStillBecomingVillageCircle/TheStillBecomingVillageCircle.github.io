@@ -31,8 +31,8 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 /* Four-item watercolor navigation. Keep Home, Inside the Bubble, and Webspace; remove all ribbon artwork. */
 #tsbvc-static-nav>div>div:nth-child(1)>div{background-size:700% auto!important;background-position:0% 0%!important;background-repeat:no-repeat!important}
 #tsbvc-static-nav>div>div:nth-child(2)>div{background-size:700% auto!important;background-position:16.6667% 0%!important;background-repeat:no-repeat!important}
-/* Webspace uses the original watercolor sprite, positioned so the window remains but the adjacent ribbon is outside the visible crop. */
-#tsbvc-static-nav>div>div:nth-child(3)>div{background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png')!important;background-size:700% auto!important;background-position:64% 0%!important;background-repeat:no-repeat!important;clip-path:none!important}
+/* Webspace uses a true crop of the original watercolor artwork; its source window ends before the ribbon begins. */
+#tsbvc-static-nav>div>div:nth-child(3)>div{background-image:url('/assets/nav-window-original.svg')!important;background-size:auto 90%!important;background-position:center top!important;background-repeat:no-repeat!important;clip-path:none!important}
 /* Remove the ribbon artwork completely from Be Coming Together. */
 #tsbvc-static-nav>div>div:nth-child(4)>div{background-image:none!important;background-color:#fff!important;clip-path:none!important}
 
