@@ -6,8 +6,8 @@ window.__TSBVC_MUSIC__=true;
 
 const PLAYER_ID='villageSoundtrack';
 const COVER='/bricks-cover.jpeg';
-const MUSIC_SRC='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
-let widget=null,ready=false,playing=false,playRequested=true;
+const MUSIC_SRC='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
+let widget=null,ready=false,playing=false;
 
 function removeLegacy(){
   document.querySelectorAll('#soundtrack,.soundtrack,#musicBubble,.music-bubble').forEach(e=>e.remove());
@@ -44,12 +44,6 @@ function play(){
   if(!widget||!ready) return false;
   try{widget.play();return true}catch(e){return false}
 }
-
-function requestPlay(){
-  playRequested=true;
-  if(ready) play();
-}
-
 function pause(){
   if(widget&&ready) try{widget.pause()}catch(e){}
 }
@@ -65,8 +59,7 @@ function setupWidget(){
       frame.dataset.bound='1';
       widget.bind(window.SC.Widget.Events.PLAY,()=>setState(true));
       widget.bind(window.SC.Widget.Events.PAUSE,()=>setState(false));
-      widget.bind(window.SC.Widget.Events.FINISH,function(){try{widget.seekTo(0);widget.play()}catch(e){setTimeout(play,250)}});
-      if(playRequested) play();
+      widget.bind(window.SC.Widget.Events.FINISH,function(){setState(false)});
     });
   }
   if(window.SC&&window.SC.Widget) bind();
@@ -82,35 +75,20 @@ function setupWidget(){
   }
 }
 
-function waitForGesture(){
-  if(window.__TSBVC_SCROLL_MUSIC__) return;
-  window.__TSBVC_SCROLL_MUSIC__=true;
-  let done=false;
-  function go(){
-    if(done) return;
-    done=true;
-    requestPlay();
-    ['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.removeEventListener(t,go));
-  }
-  ['touchstart','touchend','pointerdown','pointerup','click','wheel','touchmove','pointermove','scroll'].forEach(t=>window.addEventListener(t,go,{passive:true}));
-}
-
 function createPlayer(){
   if(document.getElementById(PLAYER_ID)) return;
   const player=document.createElement('div');
   player.id=PLAYER_ID;
   player.innerHTML=`<div class="closed" aria-label="The Village Soundtrack — tap to play or pause"><div class="music-orb"><span class="bubble-shine" aria-hidden="true"></span><span class="music-note" aria-hidden="true">♪</span><div class="play">▶</div></div></div><div class="content"><img class="cover-open" src="${COVER}" alt="Bricks — Andra Day cover art"><iframe class="soundcloud-frame" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" title="The Village Soundtrack" src="${MUSIC_SRC}"></iframe></div>`;
   document.body.appendChild(player);
-  player.querySelector('.closed').addEventListener('click',()=>playing?pause():requestPlay());
+  player.querySelector('.closed').addEventListener('click',()=>playing?pause():play());
   setupWidget();
-  waitForGesture();
 }
 
 function init(){
   removeLegacy();
   addStyles();
   createPlayer();
-  requestPlay();
 }
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
