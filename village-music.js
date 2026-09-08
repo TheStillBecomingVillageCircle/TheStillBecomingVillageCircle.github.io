@@ -6,8 +6,8 @@ window.__TSBVC_MUSIC__=true;
 
 const PLAYER_ID='villageSoundtrack';
 const COVER='/bricks-cover.jpeg';
-const MUSIC_SRC='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
-let widget=null,ready=false,playing=false;
+const MUSIC_SRC='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1935974870&color=%2316aaa9&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
+let widget=null,ready=false,playing=false,autoplayAttempted=false;
 
 function removeLegacy(){
   document.querySelectorAll('#soundtrack,.soundtrack,#musicBubble,.music-bubble').forEach(e=>e.remove());
@@ -48,6 +48,12 @@ function pause(){
   if(widget&&ready) try{widget.pause()}catch(e){}
 }
 
+function attemptAutoplay(){
+  if(autoplayAttempted||!widget||!ready) return;
+  autoplayAttempted=true;
+  try{widget.play();}catch(e){}
+}
+
 function setupWidget(){
   const frame=document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
   if(!frame||frame.dataset.bound==='1') return;
@@ -60,6 +66,7 @@ function setupWidget(){
       widget.bind(window.SC.Widget.Events.PLAY,()=>setState(true));
       widget.bind(window.SC.Widget.Events.PAUSE,()=>setState(false));
       widget.bind(window.SC.Widget.Events.FINISH,function(){setState(false)});
+      attemptAutoplay();
     });
   }
   if(window.SC&&window.SC.Widget) bind();
