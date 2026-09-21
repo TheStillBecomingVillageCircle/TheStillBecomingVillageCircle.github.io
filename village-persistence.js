@@ -199,6 +199,109 @@
         if(existingButton) existingButton.style.marginTop='4px';
     }
 
+    function initFloatingVillageMessage() {
+        const messages = [
+            "You belong before you bloom.",
+            "Healing isn't linear.",
+            "Rest is productive.",
+            "Curiosity creates connection.",
+            "Becoming takes courage.",
+            "It's okay to begin again.",
+            "You are allowed to change.",
+            "You don't have to rush becoming.",
+            "Your next step is enough.",
+            "There is room for who you're becoming."
+        ];
+
+        let bubble = document.getElementById('floatingMessageBubble');
+        let text = document.getElementById('floatingMessageText');
+
+        if (!bubble) {
+            bubble = document.createElement('div');
+            bubble.id = 'floatingMessageBubble';
+            bubble.innerHTML = '<span aria-hidden="true">🫧</span><span id="floatingMessageText"></span>';
+            document.body.appendChild(bubble);
+            text = bubble.querySelector('#floatingMessageText');
+        }
+
+        if (!text || bubble.dataset.messageReady === 'true') return;
+        bubble.dataset.messageReady = 'true';
+        let index = 0;
+        text.textContent = messages[index];
+
+        if (!document.getElementById('tsbvc-floating-message-style')) {
+            const style = document.createElement('style');
+            style.id = 'tsbvc-floating-message-style';
+            style.textContent = `
+                #floatingMessageBubble {
+                    position:fixed;
+                    left:50%;
+                    top:8%;
+                    transform:translate(-50%,0);
+                    z-index:8500;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    gap:9px;
+                    width:max-content;
+                    max-width:min(88vw,430px);
+                    padding:10px 18px;
+                    border:1px solid rgba(255,255,255,.9);
+                    border-radius:999px;
+                    background:rgba(255,255,255,.68);
+                    box-shadow:0 10px 28px rgba(22,84,91,.09),inset 0 1px 0 rgba(255,255,255,.85);
+                    backdrop-filter:blur(8px);
+                    -webkit-backdrop-filter:blur(8px);
+                    color:#287b7d;
+                    font:italic 16px/1.25 Georgia,'Times New Roman',serif;
+                    text-align:center;
+                    pointer-events:none;
+                    opacity:0;
+                    transition:opacity .9s ease, transform 1.8s ease, left 1.8s ease, top 1.8s ease;
+                }
+                #floatingMessageBubble span:first-child { font-style:normal; font-size:18px; }
+                #floatingMessageBubble.visible { opacity:.88; }
+                @media(max-width:600px) {
+                    #floatingMessageBubble {
+                        max-width:88vw;
+                        padding:9px 15px;
+                        font-size:14px;
+                    }
+                }
+                @media(prefers-reduced-motion:reduce) {
+                    #floatingMessageBubble { transition:opacity .4s ease; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function moveBubble() {
+            const zones = [
+                {x:'12%',y:'7%'},
+                {x:'68%',y:'7%'},
+                {x:'8%',y:'12%'},
+                {x:'62%',y:'12%'}
+            ];
+            const zone = zones[Math.floor(Math.random()*zones.length)];
+            bubble.style.left = zone.x;
+            bubble.style.top = zone.y;
+            bubble.style.transform = 'translate(-50%, 0)';
+        }
+
+        moveBubble();
+        requestAnimationFrame(() => bubble.classList.add('visible'));
+
+        setInterval(() => {
+            bubble.classList.remove('visible');
+            setTimeout(() => {
+                index = (index + 1) % messages.length;
+                text.textContent = messages[index];
+                moveBubble();
+                bubble.classList.add('visible');
+            }, 800);
+        }, 7000);
+    }
+
     function init() {
         addWebspaceNavigation();
         addMobileVillageNavigation();
@@ -208,6 +311,7 @@
         addMetanoiaBookResource();
         addLaunchExperienceVerification();
         addHomeCoachingCTA();
+        initFloatingVillageMessage();
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
