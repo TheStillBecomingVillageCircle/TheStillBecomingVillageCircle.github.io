@@ -65,86 +65,101 @@ window.addEventListener("load", function () {
 });
 
 /* =========================================================
-   FLOATING BECOMING MESSAGES
+   FLOATING BECOMING MESSAGES — GLOBAL
 ========================================================= */
 (function () {
     'use strict';
 
     const messages = [
-        "🫧 You belong before you bloom.",
-        "🫧 Healing isn't linear.",
-        "🫧 Rest is productive.",
-        "🫧 Curiosity creates connection.",
-        "🫧 Becoming takes courage.",
-        "🫧 It's okay to begin again.",
-        "🫧 You are allowed to change.",
-        "🫧 You don't have to rush becoming.",
-        "🫧 Your next step is enough.",
-        "🫧 Curiosity can lead somewhere beautiful.",
-        "🫧 You are allowed to learn yourself again.",
-        "🫧 There is room for who you're becoming."
+        "You belong before you bloom.",
+        "Healing isn't linear.",
+        "Rest is productive.",
+        "Curiosity creates connection.",
+        "Becoming takes courage.",
+        "It's okay to begin again.",
+        "You are allowed to change.",
+        "You don't have to rush becoming.",
+        "Your next step is enough.",
+        "Curiosity can lead somewhere beautiful.",
+        "You are allowed to learn yourself again.",
+        "There is room for who you're becoming."
     ];
 
     function initFloatingMessageBubble() {
-        const bubble = document.getElementById("floatingMessageBubble");
-        const messageText = document.getElementById("floatingMessageText");
-        if (!bubble || !messageText) return;
+        let bubble = document.getElementById("floatingMessageBubble");
+
+        if (!bubble) {
+            bubble = document.createElement("div");
+            bubble.id = "floatingMessageBubble";
+            bubble.setAttribute("aria-hidden", "true");
+            bubble.innerHTML = '<span aria-hidden="true">🫧</span><span id="floatingMessageText"></span>';
+            document.body.appendChild(bubble);
+        }
+
+        let messageText = document.getElementById("floatingMessageText");
+        if (!messageText) {
+            bubble.innerHTML = '<span aria-hidden="true">🫧</span><span id="floatingMessageText"></span>';
+            messageText = document.getElementById("floatingMessageText");
+        }
+
         if (bubble.dataset.floatingInitialized === "true") return;
         bubble.dataset.floatingInitialized = "true";
 
         let messageIndex = 0;
-        let x = 12, y = 62, targetX = 12, targetY = 62;
-        let nextMoveTime = Date.now() + 3500;
+        let moveIndex = 0;
 
-        function chooseNewPosition() {
-            const bubbleWidth = bubble.offsetWidth || 180;
-            const bubbleHeight = bubble.offsetHeight || 55;
-            const widthPercent = (bubbleWidth / window.innerWidth) * 100;
-            const heightPercent = (bubbleHeight / window.innerHeight) * 100;
-            const maxX = Math.max(20, 92 - widthPercent);
-            const maxY = Math.max(25, 88 - heightPercent);
-            targetX = 8 + Math.random() * (maxX - 8);
-            targetY = 18 + Math.random() * (maxY - 18);
+        const positions = [
+            { left: "12%", top: "30%" },
+            { left: "58%", top: "22%" },
+            { left: "18%", top: "48%" },
+            { left: "62%", top: "58%" },
+            { left: "8%", top: "70%" },
+            { left: "52%", top: "74%" }
+        ];
+
+        function move() {
+            const position = positions[moveIndex % positions.length];
+            moveIndex += 1;
+            bubble.style.left = position.left;
+            bubble.style.top = position.top;
         }
 
-        setTimeout(function () { bubble.classList.add("visible"); }, 1200);
-        setInterval(function () {
-            if (!document.body.contains(bubble)) return;
+        function nextMessage() {
             bubble.classList.remove("visible");
             setTimeout(function () {
-                if (!document.body.contains(bubble)) return;
                 messageIndex = (messageIndex + 1) % messages.length;
                 messageText.textContent = messages[messageIndex];
+                move();
                 bubble.classList.add("visible");
-            }, 1800);
-        }, 9000);
-
-        function animate() {
-            if (!document.body.contains(bubble)) return;
-            const ease = 0.0045;
-            x += (targetX - x) * ease;
-            y += (targetY - y) * ease;
-            bubble.style.left = x + "%";
-            bubble.style.top = y + "%";
-            if (Date.now() > nextMoveTime) {
-                chooseNewPosition();
-                nextMoveTime = Date.now() + 9000 + Math.random() * 5000;
-            }
-            requestAnimationFrame(animate);
+            }, 900);
         }
 
-        chooseNewPosition();
-        animate();
+        messageText.textContent = messages[0];
+        move();
+
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                bubble.classList.add("visible");
+            });
+        });
+
+        setInterval(nextMessage, 6000);
     }
 
     window.TSBVCInitFloatingMessageBubble = initFloatingMessageBubble;
-    function initialize() { initFloatingMessageBubble(); }
+
+    function initialize() {
+        if (document.body) initFloatingMessageBubble();
+    }
+
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initialize, { once: true });
-    } else initialize();
+    } else {
+        initialize();
+    }
+
     window.addEventListener("village:pagechange", initialize);
 })();
-
 /* =========================================================
    GENERAL MUSIC BUBBLE SUPPORT
 ========================================================= */
