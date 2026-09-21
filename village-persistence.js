@@ -311,7 +311,6 @@
         addMetanoiaBookResource();
         addLaunchExperienceVerification();
         addHomeCoachingCTA();
-        initFloatingVillageMessage();
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
