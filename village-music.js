@@ -54,6 +54,19 @@ function attemptAutoplay(){
   try{widget.play();}catch(e){}
 }
 
+function startFromUserGesture(){
+  if(!widget||!ready||playing) return;
+  try{widget.play();}catch(e){}
+}
+
+function bindUserGestureStart(){
+  const options={once:true,capture:true};
+  document.addEventListener('pointerdown',startFromUserGesture,options);
+  document.addEventListener('touchstart',startFromUserGesture,options);
+  document.addEventListener('keydown',startFromUserGesture,options);
+  document.addEventListener('click',startFromUserGesture,options);
+}
+
 function setupWidget(){
   const frame=document.querySelector(`#${PLAYER_ID} .soundcloud-frame`);
   if(!frame||frame.dataset.bound==='1') return;
@@ -96,6 +109,7 @@ function init(){
   removeLegacy();
   addStyles();
   createPlayer();
+  bindUserGestureStart();
 }
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
