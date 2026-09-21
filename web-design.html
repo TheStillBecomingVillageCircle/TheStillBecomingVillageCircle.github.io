@@ -30,14 +30,18 @@
 .webspace-pyramid{max-width:900px;margin:0 auto 55px;text-align:center}
 .webspace-pyramid h3{color:#16aaa9;font-size:clamp(30px,4vw,44px);margin-bottom:10px}
 .webspace-pyramid .lead{color:#5d565f;font-size:17px;margin-bottom:30px}
-.pyramid{display:flex;flex-direction:column;align-items:center;gap:8px}
-.pyramid-tier{min-height:78px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 18px;color:#285f61;border-radius:18px;box-shadow:0 10px 24px rgba(40,120,120,.09);border:2px solid rgba(255,255,255,.9)}
-.pyramid-tier strong{font-size:19px}.pyramid-tier span{font-size:13px;color:#5d565f}
-.pyramid-foundation{width:92%;background:#ccefe9}.pyramid-additions{width:76%;background:#dff6f1}.pyramid-refresh{width:60%;background:#eaf9f6}.pyramid-delight{width:44%;background:#fff0dc}
+.pyramid{display:flex;flex-direction:column;align-items:center;gap:0;padding:8px 0 0}
+.pyramid-tier{min-height:78px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 24px;color:#285f61;box-shadow:0 8px 20px rgba(40,120,120,.08);border:2px solid rgba(255,255,255,.9);text-align:center}
+.pyramid-tier strong{font-size:19px;letter-spacing:.02em}.pyramid-tier span{font-size:13px;line-height:1.45;color:#5d565f;margin-top:4px}
+.pyramid-delight{width:44%;background:#fff0dc;clip-path:polygon(50% 0,100% 100%,0 100%);padding:40px 24px 20px;min-height:105px}
+.pyramid-refresh{width:60%;background:#eaf9f6;clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);padding-top:22px}
+.pyramid-additions{width:76%;background:#dff6f1;clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);padding-top:22px}
+.pyramid-foundation{width:92%;background:#ccefe9;clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);padding-top:22px}
+@media(max-width:760px){.pyramid-foundation{width:100%}.pyramid-additions{width:88%}.pyramid-refresh{width:72%}.pyramid-delight{width:56%}}
 .flyer-bottom{display:grid;grid-template-columns:1fr 1fr;gap:25px;max-width:900px;margin:0 auto}
 .flyer-info{padding:30px;border-radius:34px 25px 40px 28px;background:rgba(255,255,255,.94);box-shadow:0 18px 40px rgba(40,120,120,.09);text-align:left}
 .flyer-info h3{color:#16aaa9;font-size:23px;margin-bottom:10px}.flyer-info p{color:#5d565f;font-size:16px;line-height:1.6}.flyer-info strong{color:#285f61}
-@media(max-width:760px){.webspace-flyer{padding-top:55px}.webspace-flyer .flyer-hero{grid-template-columns:1fr;gap:28px}.flyer-desk{min-height:285px}.flyer-monitors{height:175px}.flyer-monitor{height:140px}.flyer-monitor.small{height:115px}.flyer-bottom{grid-template-columns:1fr}.pyramid-foundation{width:100%}.pyramid-additions{width:86%}.pyramid-refresh{width:70%}.pyramid-delight{width:54%}}
+@media(max-width:760px){.webspace-flyer{padding-top:55px}.webspace-flyer .flyer-hero{grid-template-columns:1fr;gap:28px}.flyer-desk{min-height:285px}.flyer-monitors{height:175px}.flyer-monitor{height:140px}.flyer-monitor.small{height:115px}.flyer-bottom{grid-template-columns:1fr}}
 
 </style>
 <link rel="stylesheet" href="responsive-fixes.css?v=20260903-22">
