@@ -8,14 +8,14 @@
 <title>The Still Becoming Village Circle</title>
 <style>
 :root{--ink:#16545b;--aqua:#198f91;--mint:#dff8f5;--cream:#fffefd;--rose:#d9a99d;--platinum:#dfe8e6;--gold:#b99458}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:#effcfb;overflow-x:hidden}a{text-decoration:none;color:inherit}
-.hero{position:relative;text-align:center;min-height:1050px;padding:32px 22px 90px;overflow:hidden;background:linear-gradient(180deg,#dcf8f5 0%,#eefcfb 45%,#d9f5f2 100%)}.hero:before{content:"";position:absolute;left:50%;top:85px;transform:translateX(-50%);width:min(900px,100vw);height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(207,248,243,.48) 45%,transparent 70%)}.hero>*{position:relative;z-index:2}.belong{display:inline-flex;align-items:center;gap:12px;padding:11px 28px;border:1px solid rgba(255,255,255,.95);border-radius:999px;background:rgba(255,255,255,.66);box-shadow:0 8px 20px rgba(22,84,91,.06);font-size:clamp(17px,2vw,24px);margin-bottom:24px}.belong-bubbles{width:30px;height:30px}
-.bubble{width:min(310px,42vw);height:min(310px,42vw);min-width:220px;min-height:220px;margin:0 auto 10px;filter:drop-shadow(0 15px 18px rgba(65,165,166,.12));animation:float 7s ease-in-out infinite}.bubble circle{mix-blend-mode:screen}@keyframes float{50%{transform:translateY(-9px)}}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:#effcfb;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.hero{position:relative;text-align:center;min-height:1050px;padding:90px 22px;background:linear-gradient(180deg,#dcf8f5 0%,#eefcfb 45%,#d9f5f2 100%);overflow:hidden}.hero:before{content:"";position:absolute;left:50%;top:85px;transform:translateX(-50%);width:min(900px,100vw);height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(207,248,243,.48) 45%,transparent 70%)}.hero>*{position:relative;z-index:2}
 .hero h1{max-width:900px;margin:0 auto 28px;font-size:clamp(48px,7.4vw,86px);line-height:.93;letter-spacing:-.045em;color:#15545b}.hero h1 span{color:#198f91}.intro{max-width:730px;margin:auto auto 28px;font:clamp(18px,2.3vw,27px)/1.5 Arial,sans-serif;color:#214f56}.quote{max-width:760px;margin:0 auto 28px;font-style:italic;font-size:clamp(21px,2.8vw,30px);color:#258b8d}.welcome{max-width:770px;margin:auto;text-align:left;font:clamp(17px,1.9vw,22px)/1.7 Arial,sans-serif;color:#214f56}.foliage{position:absolute;bottom:-20px;width:290px;height:470px;opacity:.5;z-index:1}.foliage.left{left:-70px}.foliage.right{right:-70px;transform:scaleX(-1)}
-@media(max-width:800px){.hero{min-height:850px;padding-top:25px}.bubble{width:215px;height:215px;min-width:215px;min-height:215px}.belong{font-size:15px;padding:9px 17px}.hero h1{font-size:44px}.intro{font-size:17px}.quote{font-size:21px}.welcome{font-size:16px}.foliage{width:190px;height:330px}.foliage.left{left:-95px}.foliage.right{right:-95px}}
-@media(max-width:430px){.hero{min-height:790px;padding-left:14px;padding-right:14px}.hero h1{font-size:39px}.bubble{width:195px;height:195px;min-width:195px;min-height:195px}.belong{font-size:14px;padding:8px 14px}.intro{font-size:16px}.quote{font-size:20px}.welcome{font-size:15px}.foliage{opacity:.28}}
+@media(max-width:800px){.hero{min-height:850px;padding-top:70px}.hero h1{font-size:44px}.intro{font-size:17px}.quote{font-size:21px}.welcome{font-size:16px}.foliage{width:190px;height:330px}.foliage.left{left:-95px}.foliage.right{right:-95px}}
+@media(max-width:430px){.hero{min-height:790px;padding-left:14px;padding-right:14px}.hero h1{font-size:39px}.intro{font-size:16px}.quote{font-size:20px}.welcome{font-size:15px}.foliage{opacity:.28}}
 </style>
-<link rel="stylesheet" href="responsive-fixes.css?v=20260904-23">
+<link rel="stylesheet" href="responsive-fixes.css?v=20260929-24">
 </head>
 <body>
 <!-- TSBVC-STATIC-NAV-START -->
@@ -42,8 +42,6 @@
 <!-- TSBVC-STATIC-NAV-END -->
 <div id="floatingMessageBubble" aria-hidden="true"><span id="floatingMessageText">You belong before you bloom.</span></div>
 <main class="hero">
-<div class="belong"><svg class="belong-bubbles" viewBox="0 0 30 30"><circle cx="9" cy="18" r="7" fill="none" stroke="#6ec8c3" stroke-width="2"/><circle cx="17" cy="10" r="6" fill="none" stroke="#8ed9d3" stroke-width="2"/><circle cx="22" cy="20" r="5" fill="none" stroke="#c7b9db" stroke-width="2"/></svg><span>You belong before you bloom.</span></div>
-<svg class="bubble" viewBox="0 0 320 320" aria-hidden="true"><defs><radialGradient id="heroB"><stop stop-color="#fff" stop-opacity=".98"/><stop offset=".42" stop-color="#b8eee9" stop-opacity=".66"/><stop offset=".7" stop-color="#e6c5e7" stop-opacity=".32"/><stop offset="1" stop-color="#8bd7d1" stop-opacity=".15"/></radialGradient></defs><circle cx="160" cy="160" r="119" fill="url(#heroB)" stroke="#fff" stroke-width="4"/><ellipse cx="126" cy="115" rx="48" ry="23" fill="#fff" opacity=".42" transform="rotate(-25 126 115)"/><circle cx="118" cy="118" r="29" fill="url(#heroB)" stroke="#fff" stroke-width="3"/><circle cx="190" cy="185" r="22" fill="url(#heroB)" stroke="#fff" stroke-width="3"/><circle cx="236" cy="99" r="8" fill="#fff" opacity=".65"/><circle cx="74" cy="186" r="7" fill="#fff" opacity=".7"/></svg>
 <h1>The Still Becoming<br><span>Village Circle</span></h1>
 <p class="intro">A place where healing, curiosity, growth,<br>and belonging are welcomed—one step<br>at a time.</p>
 <p class="quote">“You don’t have to have it all together to<br>belong here.”</p>
