@@ -43,3 +43,7 @@ body:not(:has(#floatingMessageBubble))::after{content:"You belong before you blo
 
 /* Remove only accidental/static decorative quote bubbles. The intentional floating quote bubble above stays. */
 .belong,.bubble-icon,main>.bubble{display:none!important}
+
+/* Final navigation correction: use the single exact four-icon artwork, with no sliced/overlapping icon layers. */
+#tsbvc-static-nav>div>div:first-child{display:block!important;background:#fff url('/assets/village-navigation-exact.svg') center/100% 100% no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div{display:none!important}
