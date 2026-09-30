@@ -50,5 +50,6 @@ body:not(:has(#floatingMessageBubble))::after{content:"You belong before you blo
 #tsbvc-static-nav>div>div:first-child>div{display:block!important;background-color:#fff!important}
 #tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important}
 #tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3),#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:none!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-image:url('/assets/nav-window-original.svg')!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:url('/assets/nav-ribbon-original.svg')!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:none!important}
