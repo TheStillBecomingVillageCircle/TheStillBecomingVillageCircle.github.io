@@ -10,74 +10,38 @@ main,main>section,main article,main .section,main .section-box,main .thought,mai
 body:has(#tsbvc-static-nav)>header,body:has(#tsbvc-static-nav)>nav,body:has(#tsbvc-static-nav)>.site-nav{display:none!important}
 body>.site-nav{width:100%;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border-bottom:1px solid rgba(22,84,91,.08);line-height:1;overflow:hidden}
 body>.site-nav a{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:36.2vw;padding:0 3px 6px;color:#174f57;text-align:center;text-decoration:none;font:clamp(8px,1.35vw,17px)/1.03 Georgia,'Times New Roman',serif;overflow:hidden;background:#fff}
-body>.site-nav a::before{content:"";position:absolute;left:0;right:0;top:0;height:78.3%;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png');background-repeat:no-repeat;background-size:724% auto;background-position-y:19.7%;background-color:#fff}
-body>.site-nav a:nth-child(1)::before{background-position-x:1.66%}body>.site-nav a:nth-child(2)::before{background-position-x:18.03%}body>.site-nav a:nth-child(3)::before{background-position-x:66%}body>.site-nav a:nth-child(4)::before{background-position-x:82.55%}
+body>.site-nav a::before{content:"";position:absolute;left:0;right:0;top:0;height:78.3%;background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#fff}
+body>.site-nav a:nth-child(1)::before{background-image:url('/assets/grace-home-exact.jpg')}
+body>.site-nav a:nth-child(2)::before{background-image:url('/assets/inside-bubble-exact.jpg')}
+body>.site-nav a:nth-child(3)::before{background-image:url('/assets/nav-window-original.svg')}
+body>.site-nav a:nth-child(4)::before{background-image:url('/assets/nav-ribbon-original.svg')}
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
 footer p:last-child{font-size:0!important}footer p:last-child::after{content:"© 2026 LeSheAnn Hargro";font-size:16px;line-height:1.5;color:#5d565f;display:inline-block}
-#tsbvc-static-nav>div>div:first-child>div{position:relative!important;overflow:hidden!important;background-image:url('/assets/B307A382-B6FC-4D8D-81C5-3047BDE8F4E3.png')!important;background-repeat:no-repeat!important;background-size:724% auto!important;background-position-y:19.7%!important;background-color:#fff!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-position-x:1.66%!important}#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-position-x:18.03%!important}#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-position-x:66%!important}#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-position-x:82.55%!important}
 
-/* Global floating motivational bubble */
-#floatingMessageBubble{
-  position:fixed!important;
-  left:12%;
-  top:62%;
-  z-index:8500!important;
-  display:flex!important;
-  align-items:center;
-  justify-content:center;
-  width:clamp(125px,28vw,170px);
-  height:clamp(125px,28vw,170px);
-  padding:22px;
-  border:2px solid rgba(255,255,255,.9);
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.92),rgba(205,248,244,.58) 45%,rgba(216,196,226,.28) 70%,rgba(139,215,209,.16) 100%);
-  box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);
-  backdrop-filter:blur(5px);
-  -webkit-backdrop-filter:blur(5px);
-  color:#287b7d;
-  font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif;
-  text-align:center;
-  pointer-events:none!important;
-  opacity:0;
-  visibility:hidden;
-  transition:left 4s ease,top 4s ease,opacity 1.2s ease,visibility 0s linear 1.2s;
-  animation:tsbvcBubbleBob 5s ease-in-out infinite;
-  overflow:hidden;
-}
-#floatingMessageBubble::before{content:"";position:absolute;width:34px;height:20px;left:22%;top:17%;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-25deg)}
-#floatingMessageBubble::after{content:"";position:absolute;width:10px;height:10px;right:20%;top:25%;border-radius:50%;background:rgba(255,255,255,.58)}
-#floatingMessageBubble.visible{opacity:.94!important;visibility:visible;transition:left 4s ease,top 4s ease,opacity 1.2s ease}
-#floatingMessageBubble span:first-child{display:none}
-#floatingMessageBubble span:last-child{position:relative;z-index:2;max-width:100%}
+/* The four navigation images are intentional. Use the exact assets instead of sprite-position overrides. */
+#tsbvc-static-nav>div>div:first-child>div{position:relative!important;overflow:hidden!important;background-repeat:no-repeat!important;background-color:#fff!important;background-size:cover!important;background-position:center!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-image:url('/assets/nav-window-original.svg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:url('/assets/nav-ribbon-original.svg')!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:none!important}
+
+/* One intentional floating motivational quote bubble on every page. */
+#floatingMessageBubble{position:fixed!important;left:12%;top:62%;z-index:8990!important;display:flex!important;align-items:center;justify-content:center;width:clamp(145px,30vw,175px);height:clamp(145px,30vw,175px);padding:24px;border:2px solid rgba(255,255,255,.94);border-radius:50%;background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.95),rgba(205,248,244,.62) 45%,rgba(216,196,226,.30) 70%,rgba(139,215,209,.17) 100%);box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);color:#287b7d!important;font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif!important;text-align:center;pointer-events:none!important;opacity:0;visibility:hidden;transition:left 4s ease,top 4s ease,opacity 1.2s ease,visibility 0s linear 1.2s;animation:tsbvcBubbleBob 5s ease-in-out infinite;overflow:hidden}
+#floatingMessageBubble::before{content:"";position:absolute;width:34px;height:20px;left:22%;top:17%;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-25deg);pointer-events:none}
+#floatingMessageBubble::after{content:"";position:absolute;width:10px;height:10px;right:20%;top:25%;border-radius:50%;background:rgba(255,255,255,.58);pointer-events:none}
+#floatingMessageBubble.visible{opacity:.96!important;visibility:visible;transition:left 4s ease,top 4s ease,opacity 1.2s ease}
+#floatingMessageBubble span:first-child{display:none!important}
+#floatingMessageBubble span:last-child,#floatingMessageText{position:relative!important;z-index:2!important;display:block!important;max-width:100%!important;color:#287b7d!important;font:inherit!important;line-height:1.25!important;text-align:center!important}
 @keyframes tsbvcBubbleBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
-@media(max-width:600px){#floatingMessageBubble{width:125px;height:125px;padding:17px;font-size:13px}}
+@media(max-width:600px){#floatingMessageBubble{width:135px;height:135px;padding:18px;font-size:13px!important}}
 @media(prefers-reduced-motion:reduce){#floatingMessageBubble{animation:none;transition:opacity .4s ease}}
 
-/* Pages without the shared bubble script still receive the same intentional floating quote bubble. */
-body:not(:has(#floatingMessageBubble))::after{
-  content:"You belong before you bloom.";
-  position:fixed;
-  left:12%;
-  top:62%;
-  z-index:8500;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:clamp(125px,28vw,170px);
-  height:clamp(125px,28vw,170px);
-  padding:22px;
-  border:2px solid rgba(255,255,255,.9);
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.92),rgba(205,248,244,.58) 45%,rgba(216,196,226,.28) 70%,rgba(139,215,209,.16) 100%);
-  box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);
-  color:#287b7d;
-  font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif;
-  text-align:center;
-  pointer-events:none;
-  animation:tsbvcBubbleDrift 6s ease-in-out infinite;
-}
-body:not(:has(#floatingMessageBubble))::before{content:"";position:fixed;left:calc(12% + 34px);top:calc(62% + 25px);z-index:8501;width:34px;height:20px;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-25deg);pointer-events:none;animation:tsbvcBubbleDrift 6s ease-in-out infinite}
+/* Pages without script.js still receive the same intentional floating quote bubble. */
+body:not(:has(#floatingMessageBubble))::after{content:"You belong before you bloom.";position:fixed;left:12%;top:62%;z-index:8990;display:flex;align-items:center;justify-content:center;width:clamp(145px,30vw,175px);height:clamp(145px,30vw,175px);padding:24px;border:2px solid rgba(255,255,255,.94);border-radius:50%;background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.95),rgba(205,248,244,.62) 45%,rgba(216,196,226,.30) 70%,rgba(139,215,209,.17) 100%);box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);color:#287b7d;font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif;text-align:center;pointer-events:none;animation:tsbvcBubbleDrift 6s ease-in-out infinite}
 @keyframes tsbvcBubbleDrift{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}50%{transform:translate3d(3vw,-18px,0) rotate(2deg)}}
-@media(max-width:600px){body:not(:has(#floatingMessageBubble))::after{width:125px;height:125px;padding:17px;font-size:13px}body:not(:has(#floatingMessageBubble))::before{left:calc(12% + 28px);top:calc(62% + 20px);width:28px;height:17px}}
-@media(prefers-reduced-motion:reduce){body:not(:has(#floatingMessageBubble))::after,body:not(:has(#floatingMessageBubble))::before{animation:none}}
+@media(max-width:600px){body:not(:has(#floatingMessageBubble))::after{width:135px;height:135px;padding:18px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){body:not(:has(#floatingMessageBubble))::after{animation:none}}
+
+/* Remove the accidental/static decorative quote bubbles. The only intentional quote bubble is the floating one above. */
+.belong,.bubble-icon,main>.bubble{display:none!important}
