@@ -45,41 +45,39 @@ footer p:last-child{font-size:0!important}footer p:last-child::after{content:"©
   animation:tsbvcBubbleBob 5s ease-in-out infinite;
   overflow:hidden;
 }
-#floatingMessageBubble::before{
-  content:"";
-  position:absolute;
-  width:34px;
-  height:20px;
-  left:22%;
-  top:17%;
-  border-radius:50%;
-  background:rgba(255,255,255,.48);
-  transform:rotate(-25deg);
-}
-#floatingMessageBubble::after{
-  content:"";
-  position:absolute;
-  width:10px;
-  height:10px;
-  right:20%;
-  top:25%;
-  border-radius:50%;
-  background:rgba(255,255,255,.58);
-}
-#floatingMessageBubble.visible{
-  opacity:.94!important;
-  visibility:visible;
-  transition:left 4s ease,top 4s ease,opacity 1.2s ease;
-}
+#floatingMessageBubble::before{content:"";position:absolute;width:34px;height:20px;left:22%;top:17%;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-25deg)}
+#floatingMessageBubble::after{content:"";position:absolute;width:10px;height:10px;right:20%;top:25%;border-radius:50%;background:rgba(255,255,255,.58)}
+#floatingMessageBubble.visible{opacity:.94!important;visibility:visible;transition:left 4s ease,top 4s ease,opacity 1.2s ease}
 #floatingMessageBubble span:first-child{display:none}
-#floatingMessageBubble span:last-child{position:relative;z-index:2;max-width:100%;}
-@keyframes tsbvcBubbleBob{
-  0%,100%{transform:translateY(0) rotate(-1deg)}
-  50%{transform:translateY(-12px) rotate(1deg)}
+#floatingMessageBubble span:last-child{position:relative;z-index:2;max-width:100%}
+@keyframes tsbvcBubbleBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+@media(max-width:600px){#floatingMessageBubble{width:125px;height:125px;padding:17px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){#floatingMessageBubble{animation:none;transition:opacity .4s ease}}
+
+/* Pages without the shared bubble script still receive the same intentional floating quote bubble. */
+body:not(:has(#floatingMessageBubble))::after{
+  content:"You belong before you bloom.";
+  position:fixed;
+  left:12%;
+  top:62%;
+  z-index:8500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:clamp(125px,28vw,170px);
+  height:clamp(125px,28vw,170px);
+  padding:22px;
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.92),rgba(205,248,244,.58) 45%,rgba(216,196,226,.28) 70%,rgba(139,215,209,.16) 100%);
+  box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);
+  color:#287b7d;
+  font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif;
+  text-align:center;
+  pointer-events:none;
+  animation:tsbvcBubbleDrift 6s ease-in-out infinite;
 }
-@media(max-width:600px){
-  #floatingMessageBubble{width:125px;height:125px;padding:17px;font-size:13px}
-}
-@media(prefers-reduced-motion:reduce){
-  #floatingMessageBubble{animation:none;transition:opacity .4s ease}
-}
+body:not(:has(#floatingMessageBubble))::before{content:"";position:fixed;left:calc(12% + 34px);top:calc(62% + 25px);z-index:8501;width:34px;height:20px;border-radius:50%;background:rgba(255,255,255,.48);transform:rotate(-25deg);pointer-events:none;animation:tsbvcBubbleDrift 6s ease-in-out infinite}
+@keyframes tsbvcBubbleDrift{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}50%{transform:translate3d(3vw,-18px,0) rotate(2deg)}}
+@media(max-width:600px){body:not(:has(#floatingMessageBubble))::after{width:125px;height:125px;padding:17px;font-size:13px}body:not(:has(#floatingMessageBubble))::before{left:calc(12% + 28px);top:calc(62% + 20px);width:28px;height:17px}}
+@media(prefers-reduced-motion:reduce){body:not(:has(#floatingMessageBubble))::after,body:not(:has(#floatingMessageBubble))::before{animation:none}}
