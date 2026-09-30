@@ -19,8 +19,9 @@ body>.site-nav a:nth-child(4)::before{background-image:url('/assets/nav-ribbon-o
 footer p:last-child{font-size:0!important}footer p:last-child::after{content:"© 2026 LeSheAnn Hargro";font-size:16px;line-height:1.5;color:#5d565f;display:inline-block}
 
 /* Four intentional navigation images — keep the exact artwork. */
-#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div{position:relative!important;overflow:hidden!important;background-repeat:no-repeat!important;background-color:#fff!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important}
 #tsbvc-static-nav>div>div:first-child>div:nth-child(3),#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:none!important;background-color:#fff!important}
 #tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
 
@@ -44,6 +45,10 @@ body:not(:has(#floatingMessageBubble))::after{content:"You belong before you blo
 /* Remove only accidental/static decorative quote bubbles. The intentional floating quote bubble above stays. */
 .belong,.bubble-icon,main>.bubble{display:none!important}
 
-/* Final navigation correction: use the single exact four-icon artwork, with no sliced/overlapping icon layers. */
-#tsbvc-static-nav>div>div:first-child{display:block!important;background:#fff url('/assets/village-navigation-exact.svg') center/100% 100% no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div{display:none!important}
+/* Explicit final nav override: restore the four approved artwork panels only. */
+#tsbvc-static-nav>div>div:first-child{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:0!important;background:#fff!important;background-image:none!important}
+#tsbvc-static-nav>div>div:first-child>div{display:block!important;background-color:#fff!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3),#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:none!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
