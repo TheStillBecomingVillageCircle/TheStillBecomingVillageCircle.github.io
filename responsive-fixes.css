@@ -18,14 +18,11 @@ body>.site-nav a:nth-child(4)::before{background-image:url('/assets/nav-ribbon-o
 #soundtrack,.soundtrack,#musicBubble,.music-bubble{display:none!important}
 footer p:last-child{font-size:0!important}footer p:last-child::after{content:"© 2026 LeSheAnn Hargro";font-size:16px;line-height:1.5;color:#5d565f;display:inline-block}
 
-/* Four intentional navigation images. The first two use the exact photographic assets. */
-#tsbvc-static-nav>div>div:first-child>div{position:relative!important;overflow:hidden!important;background-repeat:no-repeat!important;background-color:#fff!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important}
-/* Webspace + Be Coming Together come from the self-contained rich navigation sprite. */
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-image:url('/assets/rich-nav-sprite.svg')!important;background-size:700% auto!important;background-position:66.67% 0!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:url('/assets/rich-nav-sprite.svg')!important;background-size:700% auto!important;background-position:83.33% 0!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:none!important}
+/* Four intentional navigation images — keep the exact artwork. */
+#tsbvc-static-nav>div>div:first-child>div:nth-child(1){background-image:url('/assets/grace-home-exact.jpg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(2){background-image:url('/assets/inside-bubble-exact.jpg')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3),#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:none!important;background-color:#fff!important}
+#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
 
 /* One intentional floating motivational quote bubble on every page. */
 #floatingMessageBubble{position:fixed!important;left:12%;top:62%;z-index:8990!important;display:flex!important;align-items:center;justify-content:center;width:clamp(145px,30vw,175px);height:clamp(145px,30vw,175px);padding:24px;border:2px solid rgba(255,255,255,.94);border-radius:50%;background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.95),rgba(205,248,244,.62) 45%,rgba(216,196,226,.30) 70%,rgba(139,215,209,.17) 100%);box-shadow:0 14px 34px rgba(22,84,91,.12),inset 12px 10px 18px rgba(255,255,255,.38),inset -10px -12px 20px rgba(110,200,195,.16);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);color:#287b7d!important;font:italic clamp(13px,2vw,16px)/1.25 Georgia,"Times New Roman",serif!important;text-align:center;pointer-events:none!important;opacity:0;visibility:hidden;transition:left 4s ease,top 4s ease,opacity 1.2s ease,visibility 0s linear 1.2s;animation:tsbvcBubbleBob 5s ease-in-out infinite;overflow:hidden}
@@ -44,10 +41,5 @@ body:not(:has(#floatingMessageBubble))::after{content:"You belong before you blo
 @media(max-width:600px){body:not(:has(#floatingMessageBubble))::after{width:135px;height:135px;padding:18px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){body:not(:has(#floatingMessageBubble))::after{animation:none}}
 
-/* Remove the accidental/static decorative quote bubbles. The only intentional quote bubble is the floating one above. */
+/* Remove only accidental/static decorative quote bubbles. The intentional floating quote bubble above stays. */
 .belong,.bubble-icon,main>.bubble{display:none!important}
-
-/* NAV ICON REPAIR — keep the floating motivational bubble untouched. */
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3){background-image:url('/assets/rich-nav-sprite.svg')!important;background-size:700% auto!important;background-position:66.67% 0!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(4){background-image:url('/assets/rich-nav-sprite.svg')!important;background-size:700% auto!important;background-position:83.33% 0!important;background-repeat:no-repeat!important}
-#tsbvc-static-nav>div>div:first-child>div:nth-child(3)>img,#tsbvc-static-nav>div>div:first-child>div:nth-child(4)>img{display:none!important}
